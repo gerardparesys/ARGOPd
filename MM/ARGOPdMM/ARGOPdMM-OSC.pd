@@ -1,0 +1,2487 @@
+#N canvas 148 62 934 490 10;
+#N canvas 224 61 523 467 OScEnvoi129 0;
+#X obj 201 101 cnv 18 178 78 empty empty empty 0 0 1 14 -261476 -1
+1.04858e+06;
+#X obj 304 127 nbx 5 12 1025 65535 0 1 \$0-A \$0-B Port 50 7 1 9 -262144
+-1 -1 1234 256;
+#X obj 207 125 vradio 16 1 1 2 \$0-A \$0-B empty 0 -6 1 10 -262144
+-1 -1 0;
+#X obj 227 130 cnv 10 20 10 empty empty Localhost 0 4 1 9 -261476 -1
+0;
+#X obj 314 107 cnv 14 20 10 empty empty SendOSC 0 4 1 14 -261476 -1
+0;
+#X obj 325 146 cnv 10 20 10 empty empty Adresse-IP 0 4 1 9 -261476
+-1 0;
+#X symbolatom 224 141 16 0 0 2 - - -;
+#X msg 114 375 disconnect;
+#X obj 188 270 change;
+#X obj 188 248 snapshot~;
+#X obj 84 214 metro 200;
+#X msg 353 270 localhost;
+#X obj 361 204 sel 0 1;
+#X msg 316 370 connect localhost 1234;
+#X obj 357 314 pack s f;
+#X msg 357 338 set connect \$1 \$2;
+#X obj 423 270 t b f;
+#X obj 189 375 spigot;
+#X obj 143 329 t b b;
+#X msg 222 351 0;
+#X msg 283 349 1;
+#X obj 283 278 t b b b;
+#X msg 188 293 send /argo \$1;
+#X msg 110 141 129.199.19.87;
+#X msg 139 95 set \$1;
+#X obj 83 40 loadbang;
+#X msg 111 190 set \$1;
+#X obj 418 244 delay 500;
+#X obj 353 244 delay 500;
+#X obj 209 163 tgl 12 1 \$0-A \$0-B Connect 15 7 1 9 -262144 -1 -1
+0 1;
+#X obj 201 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 188 40 inlet~;
+#X obj 209 183 sel 0 1;
+#X obj 201 106 nbx 4 11 1 1000 0 1 \$0-A \$0-B Cadence(ms) 40 6 1 9
+-262144 -1 -1 100 256;
+#X obj 83 68 t b b;
+#X text -139 282 Envoie des messages commençant par /argo;
+#X text -162 292 Changer ce préfixe en éditant le message send /argo
+\$1 ->;
+#X obj 250 247 delay 1000;
+#X obj 400 118 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 689 51 430 554 Help 0;
+#X obj 6 1055 cnv 15 410 100 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X text 14 1064 Erreur dans la fenêtre Pd:;
+#X text 23 141 http://www.cnmat.berkeley.edu/OpenSoundControl/;
+#X text 23 129 http://opensoundcontrol.org/;
+#X text 24 153 Applications compatibles OSC:;
+#X text 207 165 MaxMSP;
+#X text 207 154 PureData;
+#X text 207 176 Chuck;
+#X text 207 187 SuperCollider;
+#X text 25 210 OSC = OpenSound Control;
+#X text 25 224 OSC utilise le protocole réseau UDP (+ simple et + leger
+que le protocole TCP);
+#X obj 3 256 cnv 15 410 790 empty empty empty 20 12 0 14 -228856 -66577
+0;
+#X text 24 552 In computer speak \, a "port" is an interface thru which
+data is sent and received. Network ports are numbered \, and can be
+1-65535. Network services are usually registered to use a specific
+network port. HTTP uses port 80 \, sending email uses port 25 \, IMAP
+uses port 143;
+#X text 24 618 Before using a network port for your application \,
+you should check to make sure that it isn't already used. You can see
+a list of registered ports in a file called "services". On UNIX-based
+systems \, its located in /etc/services. On Windows \, its located
+in C:/WINDOWS/system32/drivers/etc/services;
+#X text 24 697 On UNIX-based systems \, ports 0-1024 can only be used
+by the administrator account "root". Windows does not have this restriction.
+Most of the ports below 1024 are claimed anyway \, so its best to use
+port numbers higher than 1024;
+#X text 9 536 network_ports;
+#X text 28 769 There are two main protocols for transmitting data over
+networks: TCP and UDP.;
+#X text 28 796 TCP is the most common \, it stands for Transmission
+Control Protocol. With TCP \, when you send a packet of data \, its
+guaranteed to arrive.;
+#X text 29 836 UDP stands for User Datagram Protocol. It is a lightweight
+\, simple protocol that is meant to be as quick and small as possible.
+The downside is that the data packets are not guaranteed to arrive.
+;
+#X text 31 889 One advantage to UDP is that you do not need to maintain
+a connection to receive data. Whenever you open a UDP port \, you will
+start receiving data.;
+#X text 10 756 UDP & TCP;
+#X text 30 947 OSC is a protocol for sharing data across networks and
+applications. OSC stands for Open Sound Control. It was originally
+designed to replace MIDI \, but it has caught on instead for inter-application
+communication.;
+#X text 10 931 OSC;
+#X text 31 999 OSC messages have two parts \, the identifier and the
+data. The idenifier is made up of symbols separated by slashes ("/").
+;
+#X text 28 1094 ... couldn't create;
+#X text 27 1081 dumpOSC 1235;
+#X text 44 1108 2 modules ReceiveOSC ont été ouverts avec le meme numero
+de port (1235 ici par exemple);
+#X text 9 7 Les minimodules ARGO SendOSC et ReceiveOSC envoient et
+recoivent (dans le même ordinateur ou sur un réseau) des données compatibles
+avec le protocole OSC.;
+#X text 8 53 Ils utilisent les objets sendOSC \, dumpOSC \, OSCroute
+de la library oscx de Pd-extended de Adrian Freed & Matt Wright;
+#X text 8 258 Citations;
+#X text 36 299 OpenSound Control (OSC) is a communication protocol
+which allows musical instruments (especially electronic musical instruments
+such as synthesizers) \, computers \, and other multimedia devices
+to share music performance data in realtime over a network. OSC is
+meant to supersede the MIDI standard \, which was defined in 1983 and
+which many consider inadequate for modern multimedia purposes. Because
+it is a networking protocol \, OSC allows musical instruments \, controllers
+\, and multimedia devices to communicate via a standard home or studio
+network (TCP/IP \, Ethernet) or via the internet. OSC operates at broadband
+network speeds \, allowing new types of realtime interactions which
+were not possible because of MIDI lag. OSC also gives musicians and
+developers more flexibility in the kinds of data they can send over
+the wire \, enabling new applications which communicate with each other
+at a higher level.;
+#X text 10 282 http://wiki.puredata.info/en/oscx;
+#X text 10 85 Ne pas confondre avec les objets udpsend \, udpreceive
+\, routeOSC \, packOSC de la library mrpeach de Pd-extended de Martin
+Peach.;
+#X text 208 197 etc.. etc...;
+#X restore 407 124 pd Help;
+#X obj 111 166 zexy/list2symbol;
+#X text 324 81 20 3 2018;
+#X obj 191 409 oscx/sendOSC;
+#X obj 427 394 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 336 174 316 152 ?. 0;
+#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X text 13 85 Construit sous / Build under Pd 0.43.4-extended;
+#X obj 13 111 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 12 53 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X text 12 98 or Pd-0.48;
+#X obj 13 124 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X restore 431 398 pd ?.;
+#X obj 398 27 cnv 15 100 70 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#X text 421 29 library:;
+#X text 402 40 pddp;
+#X text 402 53 zexy;
+#X text 403 65 oscx;
+#X connect 1 0 16 0;
+#X connect 2 0 12 0;
+#X connect 6 0 14 0;
+#X connect 6 0 24 0;
+#X connect 7 0 42 0;
+#X connect 8 0 22 0;
+#X connect 9 0 8 0;
+#X connect 10 0 9 0;
+#X connect 11 0 14 0;
+#X connect 12 0 28 0;
+#X connect 12 1 27 0;
+#X connect 13 0 42 0;
+#X connect 14 0 15 0;
+#X connect 15 0 13 0;
+#X connect 16 0 14 0;
+#X connect 16 1 14 1;
+#X connect 17 0 42 0;
+#X connect 18 0 7 0;
+#X connect 18 1 19 0;
+#X connect 19 0 17 1;
+#X connect 20 0 17 1;
+#X connect 21 0 20 0;
+#X connect 21 1 13 0;
+#X connect 21 2 18 0;
+#X connect 22 0 17 0;
+#X connect 23 0 40 0;
+#X connect 24 0 23 0;
+#X connect 25 0 34 0;
+#X connect 26 0 6 0;
+#X connect 27 0 6 0;
+#X connect 28 0 11 0;
+#X connect 29 0 32 0;
+#X connect 31 0 9 0;
+#X connect 32 0 18 0;
+#X connect 32 1 37 0;
+#X connect 33 0 10 1;
+#X connect 34 0 10 0;
+#X connect 34 1 23 0;
+#X connect 37 0 21 0;
+#X connect 40 0 26 0;
+#X coords 0 -1 1 1 180 80 1 200 100;
+#X restore 33 31 pd OScEnvoi129;
+#N canvas 239 233 605 313 (subpatch) 0;
+#X obj 401 201 cnv 10 178 30 empty empty empty 0 0 1 14 -261476 -1
+1.04858e+06;
+#X obj 497 204 cnv 10 20 10 empty empty ReceiveOSC 0 7 1 14 -261476
+-1 0;
+#X obj 400 215 nbx 8 11 -10000 10000 0 1 \$0-A \$0-B empty 70 6 1 9
+-262144 -1 -1 0 256;
+#X obj 400 200 bng 15 250 50 0 \$0-A \$0-B Receive 20 7 1 9 -261476
+-258113 -1;
+#X obj 466 215 tgl 11 1 \$0-A \$0-B Print 16 7 1 9 -262144 -1 -1 0
+1;
+#X obj 494 104 r \$0-SendOnOff;
+#X obj 493 281 switch~;
+#X obj 448 281 print;
+#X obj 433 129 spigot;
+#X obj 293 184 change;
+#X obj 433 244 spigot;
+#X obj 101 201 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 689 51 430 554 Help 0;
+#X obj 13 1055 cnv 15 410 100 empty empty empty 20 12 0 14 -224896
+-66577 0;
+#X text 21 1064 Erreur dans la fenêtre Pd:;
+#X text 30 141 http://www.cnmat.berkeley.edu/OpenSoundControl/;
+#X text 30 129 http://opensoundcontrol.org/;
+#X text 31 153 Applications compatibles OSC:;
+#X text 214 165 MaxMSP;
+#X text 214 154 PureData;
+#X text 214 176 Chuck;
+#X text 214 187 SuperCollider;
+#X text 32 210 OSC = OpenSound Control;
+#X text 32 224 OSC utilise le protocole réseau UDP (+ simple et + leger
+que le protocole TCP);
+#X obj 10 256 cnv 15 410 790 empty empty empty 20 12 0 14 -228856 -66577
+0;
+#X text 31 552 In computer speak \, a "port" is an interface thru which
+data is sent and received. Network ports are numbered \, and can be
+1-65535. Network services are usually registered to use a specific
+network port. HTTP uses port 80 \, sending email uses port 25 \, IMAP
+uses port 143;
+#X text 31 618 Before using a network port for your application \,
+you should check to make sure that it isn't already used. You can see
+a list of registered ports in a file called "services". On UNIX-based
+systems \, its located in /etc/services. On Windows \, its located
+in C:/WINDOWS/system32/drivers/etc/services;
+#X text 31 697 On UNIX-based systems \, ports 0-1024 can only be used
+by the administrator account "root". Windows does not have this restriction.
+Most of the ports below 1024 are claimed anyway \, so its best to use
+port numbers higher than 1024;
+#X text 16 536 network_ports;
+#X text 35 769 There are two main protocols for transmitting data over
+networks: TCP and UDP.;
+#X text 35 796 TCP is the most common \, it stands for Transmission
+Control Protocol. With TCP \, when you send a packet of data \, its
+guaranteed to arrive.;
+#X text 36 836 UDP stands for User Datagram Protocol. It is a lightweight
+\, simple protocol that is meant to be as quick and small as possible.
+The downside is that the data packets are not guaranteed to arrive.
+;
+#X text 38 889 One advantage to UDP is that you do not need to maintain
+a connection to receive data. Whenever you open a UDP port \, you will
+start receiving data.;
+#X text 17 756 UDP & TCP;
+#X text 37 947 OSC is a protocol for sharing data across networks and
+applications. OSC stands for Open Sound Control. It was originally
+designed to replace MIDI \, but it has caught on instead for inter-application
+communication.;
+#X text 17 931 OSC;
+#X text 38 999 OSC messages have two parts \, the identifier and the
+data. The idenifier is made up of symbols separated by slashes ("/").
+;
+#X text 35 1094 ... couldn't create;
+#X text 34 1081 dumpOSC 1235;
+#X text 51 1108 2 modules ReceiveOSC ont été ouverts avec le meme numero
+de port (1235 ici par exemple);
+#X text 16 7 Les minimodules ARGO SendOSC et ReceiveOSC envoient et
+recoivent (dans le même ordinateur ou sur un réseau) des données compatibles
+avec le protocole OSC.;
+#X text 15 53 Ils utilisent les objets sendOSC \, dumpOSC \, OSCroute
+de la library oscx de Pd-extended de Adrian Freed & Matt Wright;
+#X text 15 258 Citations;
+#X text 43 299 OpenSound Control (OSC) is a communication protocol
+which allows musical instruments (especially electronic musical instruments
+such as synthesizers) \, computers \, and other multimedia devices
+to share music performance data in realtime over a network. OSC is
+meant to supersede the MIDI standard \, which was defined in 1983 and
+which many consider inadequate for modern multimedia purposes. Because
+it is a networking protocol \, OSC allows musical instruments \, controllers
+\, and multimedia devices to communicate via a standard home or studio
+network (TCP/IP \, Ethernet) or via the internet. OSC operates at broadband
+network speeds \, allowing new types of realtime interactions which
+were not possible because of MIDI lag. OSC also gives musicians and
+developers more flexibility in the kinds of data they can send over
+the wire \, enabling new applications which communicate with each other
+at a higher level.;
+#X text 17 282 http://wiki.puredata.info/en/oscx;
+#X text 17 85 Ne pas confondre avec les objets udpsend \, udpreceive
+\, routeOSC \, packOSC de la library mrpeach de Pd-extended de Martin
+Peach.;
+#X text 215 197 etc.. etc...;
+#X restore 108 207 pd Help;
+#X obj 401 227 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 396 281 outlet~;
+#X obj 396 244 sig~;
+#X text 51 135 Reçoit des messages commençant par /argo;
+#X text 75 91 Reçoit sur le port 1234 (par exemple);
+#X text 75 104 Changer ce port en éditant l'objet dumpOSC 1234 ->;
+#X obj 26 20 cnv 15 340 60 empty empty empty 20 12 0 14 -258113 -66577
+0;
+#X text 32 27 ATTENTION: ne pas ouvrir 2 fois ce module avec le meme
+numero de port car 2 objets dumpOSC ne peuvent pas s'exécuter sur le
+meme port;
+#X obj 293 158 oscx/OSCroute /argo;
+#X obj 379 104 oscx/dumpOSC 1234;
+#X text 50 147 Changer ce préfixe en éditant;
+#X text 139 158 l'objet OSCroute /argo ->;
+#X text 526 166 20 3 2018;
+#X obj 549 273 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 336 174 316 152 ?. 0;
+#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X text 13 85 Construit sous / Build under Pd 0.43.4-extended;
+#X obj 13 111 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 12 53 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X text 12 98 or Pd-0.48;
+#X obj 13 124 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X restore 553 277 pd ?.;
+#X obj 463 16 cnv 15 100 70 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#X text 486 18 library:;
+#X text 467 29 pddp;
+#X text 468 54 oscx;
+#X connect 4 0 10 1;
+#X connect 5 0 6 0;
+#X connect 5 0 8 1;
+#X connect 8 0 10 0;
+#X connect 8 0 3 0;
+#X connect 8 0 21 0;
+#X connect 9 0 15 0;
+#X connect 9 0 2 0;
+#X connect 10 0 7 0;
+#X connect 15 0 14 0;
+#X connect 21 0 9 0;
+#X connect 22 0 8 0;
+#X coords 0 1 100 -1 180 32 1 400 200;
+#X restore 33 168 graph;
+#X text 19 14 Audio;
+#X text 19 3 Input;
+#X text 25 211 Audio;
+#X text 25 200 Output;
+#X text 221 0 Input;
+#X text 224 11 Text;
+#X text 221 199 Output;
+#X text 226 211 Text;
+#X text 371 132 Voir ExMM64-OSC;
+#X obj 84 234 pddp/pddplink http://puredata.info/downloads/oscx/;
+#X obj 332 233 pddp/pddplink http://en.wikipedia.org/wiki/Open_Sound_Control
+;
+#X obj 422 38 cnv 15 100 70 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#X text 445 40 library:;
+#X text 426 51 pddp;
+#X text 426 64 zexy;
+#N canvas 842 68 569 441 OScEnvoi129 0;
+#X obj 201 101 cnv 18 178 78 empty empty empty 0 0 1 14 -261476 -1
+1.04858e+06;
+#X obj 304 127 nbx 5 12 1025 65535 0 1 \$0-A \$0-B Port 50 7 1 9 -262144
+-1 -1 12000 256;
+#X obj 207 125 vradio 16 1 1 2 \$0-A \$0-B empty 0 -6 1 10 -262144
+-1 -1 1;
+#X obj 227 130 cnv 10 20 10 empty empty Localhost 0 4 1 9 -261476 -1
+0;
+#X obj 310 107 cnv 14 20 10 empty empty SendOSC. 0 4 1 14 -261476 -1
+0;
+#X obj 325 146 cnv 10 20 10 empty empty Adresse-IP 0 4 1 9 -261476
+-1 0;
+#X symbolatom 224 141 16 0 0 2 - - -;
+#X msg 114 375 disconnect;
+#X msg 376 301 localhost;
+#X obj 376 236 sel 0 1;
+#X msg 316 375 connect 192.168.1.13 12000;
+#X obj 376 328 pack s f;
+#X msg 376 352 set connect \$1 \$2;
+#X obj 319 243 t b f;
+#X obj 189 375 spigot;
+#X obj 209 326 t b b;
+#X msg 236 351 0;
+#X msg 283 351 1;
+#X obj 283 278 t b b b;
+#X msg 188 291 send /argo \$1;
+#X msg 103 83 set \$1;
+#X obj 84 40 loadbang;
+#X obj 394 258 delay 500;
+#X obj 376 277 delay 500;
+#X obj 209 163 tgl 12 1 \$0-A \$0-B Connect 15 7 1 9 -262144 -1 -1
+0 1;
+#X obj 209 214 sel 0 1;
+#X obj 228 244 delay 1000;
+#X obj 201 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 188 40 inlet;
+#X obj 404 70 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 689 51 430 554 Help 0;
+#X obj 6 1055 cnv 15 410 100 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X text 14 1064 Erreur dans la fenêtre Pd:;
+#X text 24 153 Applications compatibles OSC:;
+#X text 207 165 MaxMSP;
+#X text 207 176 Chuck;
+#X text 207 187 SuperCollider;
+#X text 25 210 OSC = OpenSound Control;
+#X text 25 224 OSC utilise le protocole réseau UDP (+ simple et + leger
+que le protocole TCP);
+#X obj 3 256 cnv 15 410 790 empty empty empty 20 12 0 14 -228856 -66577
+0;
+#X text 24 552 In computer speak \, a "port" is an interface thru which
+data is sent and received. Network ports are numbered \, and can be
+1-65535. Network services are usually registered to use a specific
+network port. HTTP uses port 80 \, sending email uses port 25 \, IMAP
+uses port 143;
+#X text 24 618 Before using a network port for your application \,
+you should check to make sure that it isn't already used. You can see
+a list of registered ports in a file called "services". On UNIX-based
+systems \, its located in /etc/services. On Windows \, its located
+in C:/WINDOWS/system32/drivers/etc/services;
+#X text 24 697 On UNIX-based systems \, ports 0-1024 can only be used
+by the administrator account "root". Windows does not have this restriction.
+Most of the ports below 1024 are claimed anyway \, so its best to use
+port numbers higher than 1024;
+#X text 9 536 network_ports;
+#X text 28 769 There are two main protocols for transmitting data over
+networks: TCP and UDP.;
+#X text 28 796 TCP is the most common \, it stands for Transmission
+Control Protocol. With TCP \, when you send a packet of data \, its
+guaranteed to arrive.;
+#X text 29 836 UDP stands for User Datagram Protocol. It is a lightweight
+\, simple protocol that is meant to be as quick and small as possible.
+The downside is that the data packets are not guaranteed to arrive.
+;
+#X text 31 889 One advantage to UDP is that you do not need to maintain
+a connection to receive data. Whenever you open a UDP port \, you will
+start receiving data.;
+#X text 10 756 UDP & TCP;
+#X text 30 947 OSC is a protocol for sharing data across networks and
+applications. OSC stands for Open Sound Control. It was originally
+designed to replace MIDI \, but it has caught on instead for inter-application
+communication.;
+#X text 10 931 OSC;
+#X text 31 999 OSC messages have two parts \, the identifier and the
+data. The idenifier is made up of symbols separated by slashes ("/").
+;
+#X text 28 1094 ... couldn't create;
+#X text 27 1081 dumpOSC 1235;
+#X text 44 1108 2 modules ReceiveOSC ont été ouverts avec le meme numero
+de port (1235 ici par exemple);
+#X text 9 7 Les minimodules ARGO SendOSC et ReceiveOSC envoient et
+recoivent (dans le même ordinateur ou sur un réseau) des données compatibles
+avec le protocole OSC.;
+#X text 8 53 Ils utilisent les objets sendOSC \, dumpOSC \, OSCroute
+de la library oscx de Pd-extended de Adrian Freed & Matt Wright;
+#X text 8 258 Citations;
+#X text 36 299 OpenSound Control (OSC) is a communication protocol
+which allows musical instruments (especially electronic musical instruments
+such as synthesizers) \, computers \, and other multimedia devices
+to share music performance data in realtime over a network. OSC is
+meant to supersede the MIDI standard \, which was defined in 1983 and
+which many consider inadequate for modern multimedia purposes. Because
+it is a networking protocol \, OSC allows musical instruments \, controllers
+\, and multimedia devices to communicate via a standard home or studio
+network (TCP/IP \, Ethernet) or via the internet. OSC operates at broadband
+network speeds \, allowing new types of realtime interactions which
+were not possible because of MIDI lag. OSC also gives musicians and
+developers more flexibility in the kinds of data they can send over
+the wire \, enabling new applications which communicate with each other
+at a higher level.;
+#X text 10 85 Ne pas confondre avec les objets udpsend \, udpreceive
+\, routeOSC \, packOSC de la library mrpeach de Pd-extended de Martin
+Peach.;
+#X text 208 197 etc.. etc...;
+#X obj 23 127 pddp/pddplink http://opensoundcontrol.org/;
+#X text 207 154 PureData Processing;
+#X obj 23 140 pddp/pddplink http://archive.cnmat.berkeley.edu/OpenSoundControl/
+;
+#X obj 36 272 pddp/pddplink http://puredata.info/downloads/oscx/;
+#X obj 36 285 pddp/pddplink http://en.wikipedia.org/wiki/Open_Sound_Control
+;
+#X restore 411 76 pd Help;
+#X text 239 28 Envoi par OSC sur le port 12000 avec le prefixe /argo
+;
+#X text 238 42 Send by OSC on port 12000 with the prefix /argo;
+#X text 20 286 Changer le prefixe /argo ->;
+#X text 26 298 Change the prefix /argo ->;
+#X obj 189 409 oscx/sendOSC;
+#X obj 430 404 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 336 174 316 152 ?. 0;
+#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X text 13 85 Construit sous / Build under Pd 0.43.4-extended;
+#X obj 13 111 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 12 53 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X text 12 98 or Pd-0.48;
+#X obj 13 124 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X restore 434 408 pd ?.;
+#X obj 84 135 zexy/list2symbol;
+#X obj 404 111 cnv 15 100 70 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#X text 427 113 library:;
+#X text 408 124 pddp;
+#X text 408 137 zexy;
+#X text 409 149 oscx;
+#X msg 111 186 set \$1;
+#X obj 84 160 t b s;
+#X text 323 80 29 8 2018;
+#X obj 376 190 t a b;
+#X msg 403 216 0;
+#X msg 84 110 192.168.1.13;
+#X connect 1 0 13 0;
+#X connect 2 0 47 0;
+#X connect 6 0 11 0;
+#X connect 6 0 20 0;
+#X connect 7 0 35 0;
+#X connect 8 0 11 0;
+#X connect 9 0 23 0;
+#X connect 9 1 22 0;
+#X connect 10 0 35 0;
+#X connect 11 0 12 0;
+#X connect 12 0 10 0;
+#X connect 13 0 11 0;
+#X connect 13 1 11 1;
+#X connect 14 0 35 0;
+#X connect 15 0 7 0;
+#X connect 15 1 16 0;
+#X connect 16 0 14 1;
+#X connect 17 0 14 1;
+#X connect 18 0 17 0;
+#X connect 18 1 10 0;
+#X connect 18 2 15 0;
+#X connect 19 0 14 0;
+#X connect 20 0 49 0;
+#X connect 21 0 49 0;
+#X connect 22 0 6 0;
+#X connect 23 0 8 0;
+#X connect 24 0 25 0;
+#X connect 25 0 15 0;
+#X connect 25 1 26 0;
+#X connect 26 0 18 0;
+#X connect 28 0 19 0;
+#X connect 38 0 45 0;
+#X connect 44 0 6 0;
+#X connect 45 0 6 0;
+#X connect 45 1 44 0;
+#X connect 47 0 9 0;
+#X connect 47 1 48 0;
+#X connect 48 0 24 0;
+#X connect 49 0 38 0;
+#X coords 0 -1 1 1 180 80 1 200 100;
+#X restore 233 31 pd OScEnvoi129;
+#N canvas 390 160 438 426 (subpatch) 0;
+#X obj 101 301 cnv 12 178 30 empty empty empty 0 0 1 14 -261476 -1
+1.04858e+06;
+#X obj 193 301 cnv 10 20 10 empty empty ReceiveOSC. 0 7 1 14 -261476
+-1 0;
+#X obj 100 319 bng 12 50 50 0 \$0-A \$0-B Receive 20 7 1 9 -261476
+-258113 -1;
+#X obj 221 321 tgl 11 1 \$0-A \$0-B Print 14 7 1 9 -262144 -1 -1 0
+1;
+#X obj 188 387 print;
+#X obj 32 303 spigot;
+#X obj 188 359 spigot;
+#X obj 35 6 cnv 15 380 100 empty empty empty 20 12 0 14 -258113 -66577
+0;
+#X text 44 8 ATTENTION: ne pas ouvrir 2 fois ce module avec le meme
+numero de port car 2 objets dumpOSC ne peuvent pas s'exécuter sur le
+meme port;
+#X obj 101 327 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 32 387 outlet;
+#X obj 217 223 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 689 51 430 554 Help 0;
+#X obj 6 1055 cnv 15 410 100 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X text 14 1064 Erreur dans la fenêtre Pd:;
+#X text 24 153 Applications compatibles OSC:;
+#X text 207 165 MaxMSP;
+#X text 207 176 Chuck;
+#X text 207 187 SuperCollider;
+#X text 25 210 OSC = OpenSound Control;
+#X text 25 224 OSC utilise le protocole réseau UDP (+ simple et + leger
+que le protocole TCP);
+#X obj 3 256 cnv 15 410 790 empty empty empty 20 12 0 14 -228856 -66577
+0;
+#X text 24 552 In computer speak \, a "port" is an interface thru which
+data is sent and received. Network ports are numbered \, and can be
+1-65535. Network services are usually registered to use a specific
+network port. HTTP uses port 80 \, sending email uses port 25 \, IMAP
+uses port 143;
+#X text 24 618 Before using a network port for your application \,
+you should check to make sure that it isn't already used. You can see
+a list of registered ports in a file called "services". On UNIX-based
+systems \, its located in /etc/services. On Windows \, its located
+in C:/WINDOWS/system32/drivers/etc/services;
+#X text 24 697 On UNIX-based systems \, ports 0-1024 can only be used
+by the administrator account "root". Windows does not have this restriction.
+Most of the ports below 1024 are claimed anyway \, so its best to use
+port numbers higher than 1024;
+#X text 9 536 network_ports;
+#X text 28 769 There are two main protocols for transmitting data over
+networks: TCP and UDP.;
+#X text 28 796 TCP is the most common \, it stands for Transmission
+Control Protocol. With TCP \, when you send a packet of data \, its
+guaranteed to arrive.;
+#X text 29 836 UDP stands for User Datagram Protocol. It is a lightweight
+\, simple protocol that is meant to be as quick and small as possible.
+The downside is that the data packets are not guaranteed to arrive.
+;
+#X text 31 889 One advantage to UDP is that you do not need to maintain
+a connection to receive data. Whenever you open a UDP port \, you will
+start receiving data.;
+#X text 10 756 UDP & TCP;
+#X text 30 947 OSC is a protocol for sharing data across networks and
+applications. OSC stands for Open Sound Control. It was originally
+designed to replace MIDI \, but it has caught on instead for inter-application
+communication.;
+#X text 10 931 OSC;
+#X text 31 999 OSC messages have two parts \, the identifier and the
+data. The idenifier is made up of symbols separated by slashes ("/").
+;
+#X text 28 1094 ... couldn't create;
+#X text 27 1081 dumpOSC 1235;
+#X text 44 1108 2 modules ReceiveOSC ont été ouverts avec le meme numero
+de port (1235 ici par exemple);
+#X text 9 7 Les minimodules ARGO SendOSC et ReceiveOSC envoient et
+recoivent (dans le même ordinateur ou sur un réseau) des données compatibles
+avec le protocole OSC.;
+#X text 8 53 Ils utilisent les objets sendOSC \, dumpOSC \, OSCroute
+de la library oscx de Pd-extended de Adrian Freed & Matt Wright;
+#X text 8 258 Citations;
+#X text 36 299 OpenSound Control (OSC) is a communication protocol
+which allows musical instruments (especially electronic musical instruments
+such as synthesizers) \, computers \, and other multimedia devices
+to share music performance data in realtime over a network. OSC is
+meant to supersede the MIDI standard \, which was defined in 1983 and
+which many consider inadequate for modern multimedia purposes. Because
+it is a networking protocol \, OSC allows musical instruments \, controllers
+\, and multimedia devices to communicate via a standard home or studio
+network (TCP/IP \, Ethernet) or via the internet. OSC operates at broadband
+network speeds \, allowing new types of realtime interactions which
+were not possible because of MIDI lag. OSC also gives musicians and
+developers more flexibility in the kinds of data they can send over
+the wire \, enabling new applications which communicate with each other
+at a higher level.;
+#X text 10 85 Ne pas confondre avec les objets udpsend \, udpreceive
+\, routeOSC \, packOSC de la library mrpeach de Pd-extended de Martin
+Peach.;
+#X text 208 197 etc.. etc...;
+#X obj 23 127 pddp/pddplink http://opensoundcontrol.org/;
+#X text 207 154 PureData Processing;
+#X obj 23 140 pddp/pddplink http://archive.cnmat.berkeley.edu/OpenSoundControl/
+;
+#X obj 36 272 pddp/pddplink http://puredata.info/downloads/oscx/;
+#X obj 36 285 pddp/pddplink http://en.wikipedia.org/wiki/Open_Sound_Control
+;
+#X restore 224 229 pd Help;
+#X text 8 112 Reception par OSC sur le port 12000 avec le prefixe /argo
+;
+#X text 49 156 Receipt by the OSC on port 12000 with the prefix /argo
+;
+#X text 7 124 Changer le port en éditant l'objet dumpOSC 12000;
+#X text 7 136 Changer le préfixe en éditant l'objet OSCroute /argo
+;
+#X text 90 189 Change the prefix by editing the object OSCroute /argo
+;
+#X text 90 178 Change the port by editing the object dumpOSC 12000
+;
+#X text 44 51 CAUTION: Do not open 2 of this module with the same port
+number because 2 dumpOSC objects can not execute on the same port;
+#X obj 32 359 oscx/OSCroute /argo;
+#X obj 370 377 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#X obj 308 223 cnv 15 100 70 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#X text 331 225 library:;
+#X text 312 236 pddp;
+#X text 313 261 oscx;
+#N canvas 336 174 316 152 ?. 0;
+#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X text 13 85 Construit sous / Build under Pd 0.43.4-extended;
+#X obj 13 111 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 12 53 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X text 12 98 or Pd-0.48;
+#X obj 13 124 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X restore 374 381 pd ?.;
+#X obj 32 239 oscx/dumpOSC 1235;
+#X obj 100 300 tgl 11 1 \$0-A \$0-B On 14 7 1 9 -262144 -1 -1 0 1;
+#X text 222 281 1 9 2018;
+#X connect 3 0 6 1;
+#X connect 5 0 6 0;
+#X connect 5 0 2 0;
+#X connect 5 0 20 0;
+#X connect 6 0 4 0;
+#X connect 20 0 10 0;
+#X connect 27 0 5 0;
+#X connect 28 0 5 1;
+#X coords 0 1 100 -1 180 32 1 100 300;
+#X restore 233 168 graph;
+#N canvas 411 145 562 648 (subpatch) 0;
+#X obj 101 301 cnv 12 178 53 empty empty empty 0 0 1 14 -261476 -1
+1.04858e+06;
+#X obj 193 301 cnv 10 20 10 empty empty ReceiveOSC. 0 7 1 14 -261476
+-1 0;
+#X obj 100 342 bng 12 50 50 0 \$0-A \$0-B Receive 20 7 1 9 -261476
+-258113 -1;
+#X obj 240 344 tgl 11 1 \$0-A \$0-B Print 14 7 1 9 -262144 -1 -1 0
+1;
+#X obj 35 320 spigot;
+#X obj 59 401 spigot;
+#X obj 35 -30 cnv 15 380 100 empty empty empty 20 12 0 14 -258113 -66577
+0;
+#X obj 101 350 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 35 590 outlet;
+#X obj 446 180 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 689 51 430 554 Help 0;
+#X obj 6 1055 cnv 15 410 100 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X text 14 1064 Erreur dans la fenêtre Pd:;
+#X text 24 153 Applications compatibles OSC:;
+#X text 207 165 MaxMSP;
+#X text 207 176 Chuck;
+#X text 207 187 SuperCollider;
+#X text 25 210 OSC = OpenSound Control;
+#X text 25 224 OSC utilise le protocole réseau UDP (+ simple et + leger
+que le protocole TCP);
+#X obj 3 256 cnv 15 410 790 empty empty empty 20 12 0 14 -228856 -66577
+0;
+#X text 24 552 In computer speak \, a "port" is an interface thru which
+data is sent and received. Network ports are numbered \, and can be
+1-65535. Network services are usually registered to use a specific
+network port. HTTP uses port 80 \, sending email uses port 25 \, IMAP
+uses port 143;
+#X text 24 618 Before using a network port for your application \,
+you should check to make sure that it isn't already used. You can see
+a list of registered ports in a file called "services". On UNIX-based
+systems \, its located in /etc/services. On Windows \, its located
+in C:/WINDOWS/system32/drivers/etc/services;
+#X text 24 697 On UNIX-based systems \, ports 0-1024 can only be used
+by the administrator account "root". Windows does not have this restriction.
+Most of the ports below 1024 are claimed anyway \, so its best to use
+port numbers higher than 1024;
+#X text 9 536 network_ports;
+#X text 28 769 There are two main protocols for transmitting data over
+networks: TCP and UDP.;
+#X text 28 796 TCP is the most common \, it stands for Transmission
+Control Protocol. With TCP \, when you send a packet of data \, its
+guaranteed to arrive.;
+#X text 29 836 UDP stands for User Datagram Protocol. It is a lightweight
+\, simple protocol that is meant to be as quick and small as possible.
+The downside is that the data packets are not guaranteed to arrive.
+;
+#X text 31 889 One advantage to UDP is that you do not need to maintain
+a connection to receive data. Whenever you open a UDP port \, you will
+start receiving data.;
+#X text 10 756 UDP & TCP;
+#X text 30 947 OSC is a protocol for sharing data across networks and
+applications. OSC stands for Open Sound Control. It was originally
+designed to replace MIDI \, but it has caught on instead for inter-application
+communication.;
+#X text 10 931 OSC;
+#X text 31 999 OSC messages have two parts \, the identifier and the
+data. The idenifier is made up of symbols separated by slashes ("/").
+;
+#X text 28 1094 ... couldn't create;
+#X text 27 1081 dumpOSC 1235;
+#X text 44 1108 2 modules ReceiveOSC ont été ouverts avec le meme numero
+de port (1235 ici par exemple);
+#X text 9 7 Les minimodules ARGO SendOSC et ReceiveOSC envoient et
+recoivent (dans le même ordinateur ou sur un réseau) des données compatibles
+avec le protocole OSC.;
+#X text 8 53 Ils utilisent les objets sendOSC \, dumpOSC \, OSCroute
+de la library oscx de Pd-extended de Adrian Freed & Matt Wright;
+#X text 8 258 Citations;
+#X text 36 299 OpenSound Control (OSC) is a communication protocol
+which allows musical instruments (especially electronic musical instruments
+such as synthesizers) \, computers \, and other multimedia devices
+to share music performance data in realtime over a network. OSC is
+meant to supersede the MIDI standard \, which was defined in 1983 and
+which many consider inadequate for modern multimedia purposes. Because
+it is a networking protocol \, OSC allows musical instruments \, controllers
+\, and multimedia devices to communicate via a standard home or studio
+network (TCP/IP \, Ethernet) or via the internet. OSC operates at broadband
+network speeds \, allowing new types of realtime interactions which
+were not possible because of MIDI lag. OSC also gives musicians and
+developers more flexibility in the kinds of data they can send over
+the wire \, enabling new applications which communicate with each other
+at a higher level.;
+#X text 10 85 Ne pas confondre avec les objets udpsend \, udpreceive
+\, routeOSC \, packOSC de la library mrpeach de Pd-extended de Martin
+Peach.;
+#X text 208 197 etc.. etc...;
+#X obj 23 127 pddp/pddplink http://opensoundcontrol.org/;
+#X text 207 154 PureData Processing;
+#X obj 23 140 pddp/pddplink http://archive.cnmat.berkeley.edu/OpenSoundControl/
+;
+#X obj 36 272 pddp/pddplink http://puredata.info/downloads/oscx/;
+#X obj 36 285 pddp/pddplink http://en.wikipedia.org/wiki/Open_Sound_Control
+;
+#X restore 453 186 pd Help;
+#X text 7 105 Receipt by the OSC on port 12000 with the prefix /argo
+;
+#X obj 434 11 cnv 15 100 70 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#X text 457 13 library:;
+#X text 438 24 pddp;
+#X obj 100 300 tgl 11 1 \$0-A \$0-B On 14 7 1 9 -262144 -1 -1 0 1;
+#X obj 268 229 unpack 0 0 0 0 0;
+#X floatatom 361 251 8 0 0 0 - - -;
+#X text 138 442 If the OSC packet has a timetag \, [pipelist] will
+delay it until the time occurs;
+#X msg 138 526 paths;
+#X msg 115 503 verbosity \$1;
+#X obj 115 482 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X text 133 481 set to 1 for debugging;
+#X obj 35 369 mrpeach/unpackOSC;
+#X obj 35 563 mrpeach/routeOSC /argo;
+#X text 439 49 mrpeach;
+#X text 8 76 Reception par OSC sur le port 1234 avec le prefixe /argo
+;
+#X text 7 87 Changer le préfixe en éditant l'objet mrpeach/routeOSC
+/argo;
+#X text 5 118 Change the prefix by editing the object mrpeach/routeOSC
+/argo, f 65;
+#X obj 35 448 mrpeach/pipelist;
+#X text 175 527 [paths( will print the current OSC addresses to Pd
+console;
+#X text 44 -28 ATTENTION: ne pas ouvrir 2 fois ce module avec le meme
+numero de port car 2 objets udpreceive ne peuvent pas s'exécuter sur
+le meme port;
+#X text 44 15 CAUTION: Do not open 2 of this module with the same port
+number because 2 udpreceive objects can not execute on the same port
+;
+#X obj 160 343 nbx 5 12 0 99999 0 0 \$0-A \$0-B Bytes 45 7 1 9 -262144
+-33289 -33289 0 10;
+#X text 172 312 (library mrpeach);
+#X obj 476 565 cnv 15 46 22 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 353 174 321 152 ?.. 0;
+#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 13 121 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 12 53 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X obj 13 97 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X text 13 85 Construit sous / Build under Pd-0.49...;
+#X text 12 109 or Pd 0.43.4-extended;
+#X restore 479 568 pd ?..;
+#X obj 160 331 nbx 3 12 0 99999 0 0 \$0-A \$0-B from -21 7 1 9 -262144
+-33289 -33289 0 10;
+#X obj 190 331 nbx 3 12 0 99999 0 0 \$0-A \$0-B empty 45 7 1 9 -262144
+-33289 -33289 0 10;
+#X obj 220 331 nbx 3 12 0 99999 0 0 \$0-A \$0-B empty 45 7 1 9 -262144
+-33289 -33289 0 10;
+#X obj 250 331 nbx 3 12 0 99999 0 0 \$0-A \$0-B empty 45 7 1 9 -262144
+-33289 -33289 0 10;
+#X obj 219 231 nbx 5 12 0 99999 0 0 \$0-A \$0-B empty 45 7 1 9 -262144
+-33289 -33289 0 10;
+#X obj 170 202 route received total from;
+#X text 95 230 Ne fonctionne pas ->;
+#X obj 122 319 nbx 5 12 1025 65535 0 1 \$0-A \$0-B Port -20 7 1 9 -262144
+-1 -1 11000 256;
+#X msg 35 155 port \$1;
+#X obj 35 179 mrpeach/udpreceive 11000;
+#X obj 59 423 print OSC Receive;
+#X text 284 306 21 3 2019;
+#X connect 3 0 5 1;
+#X connect 4 0 2 0;
+#X connect 4 0 23 0;
+#X connect 5 0 47 0;
+#X connect 15 0 4 1;
+#X connect 16 0 37 0;
+#X connect 16 1 38 0;
+#X connect 16 2 39 0;
+#X connect 16 3 40 0;
+#X connect 16 4 17 0;
+#X connect 19 0 24 0;
+#X connect 20 0 24 0;
+#X connect 21 0 20 0;
+#X connect 23 0 29 0;
+#X connect 23 0 5 0;
+#X connect 23 1 29 1;
+#X connect 24 0 8 0;
+#X connect 29 0 24 0;
+#X connect 42 0 33 0;
+#X connect 42 1 41 0;
+#X connect 42 2 16 0;
+#X connect 44 0 45 0;
+#X connect 45 0 46 0;
+#X connect 46 0 4 0;
+#X connect 46 1 42 0;
+#X coords 0 1 100 -1 180 55 1 100 300;
+#X restore 528 145 graph;
+#X obj 849 438 cnv 15 46 22 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 353 174 321 152 ?.. 0;
+#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 13 121 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 12 53 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X obj 13 97 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X text 13 85 Construit sous / Build under Pd-0.49...;
+#X text 12 109 or Pd 0.43.4-extended;
+#X restore 852 441 pd ?..;
+#X text 516 1 Input;
+#X text 519 12 Text;
+#X text 428 87 mrpeach ->;
+#X text 427 76 <- oscx;
+#X text 513 200 Output;
+#X text 518 212 Text;
+#N canvas 173 85 576 489 OScEnvoi129 0;
+#X obj 201 101 cnv 18 178 78 empty empty empty 0 0 1 14 -261476 -1
+1.04858e+06;
+#X obj 337 132 nbx 5 12 1025 65535 0 1 \$0-A \$0-B Port -20 7 1 9 -262144
+-1 -1 11000 256;
+#X obj 207 131 vradio 16 1 1 2 \$0-A \$0-B empty 0 -6 1 10 -262144
+-1 -1 0;
+#X obj 227 136 cnv 10 20 10 empty empty Localhost 0 4 1 9 -261476 -1
+0;
+#X obj 246 105 cnv 14 20 10 empty empty SendOSC. 0 4 1 14 -261476 -1
+0;
+#X obj 325 151 cnv 10 20 10 empty empty Adresse-IP 0 4 1 9 -261476
+-1 0;
+#X symbolatom 224 147 16 0 0 2 - - -;
+#X msg 114 402 disconnect;
+#X msg 376 301 localhost;
+#X obj 376 236 sel 0 1;
+#X msg 376 402 connect localhost 11000;
+#X obj 376 328 pack s f;
+#X msg 376 352 set connect \$1 \$2;
+#X obj 319 243 t b f;
+#X obj 189 375 spigot;
+#X obj 209 326 t b b;
+#X msg 236 351 0;
+#X msg 283 351 1;
+#X obj 283 278 t b b b;
+#X msg 189 277 send /argo \$1;
+#X msg 103 83 set \$1;
+#X obj 84 56 loadbang;
+#X obj 394 258 delay 500;
+#X obj 376 277 delay 500;
+#X obj 368 101 tgl 12 1 \$0-A \$0-B Connect -39 7 1 9 -262144 -1 -1
+0 1;
+#X obj 209 214 sel 0 1;
+#X obj 228 244 delay 1000;
+#X obj 201 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 189 56 inlet;
+#X obj 453 212 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 689 51 430 554 Help 0;
+#X obj 6 1055 cnv 15 410 100 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X text 14 1064 Erreur dans la fenêtre Pd:;
+#X text 24 153 Applications compatibles OSC:;
+#X text 207 165 MaxMSP;
+#X text 207 176 Chuck;
+#X text 207 187 SuperCollider;
+#X text 25 210 OSC = OpenSound Control;
+#X text 25 224 OSC utilise le protocole réseau UDP (+ simple et + leger
+que le protocole TCP);
+#X obj 3 256 cnv 15 410 790 empty empty empty 20 12 0 14 -228856 -66577
+0;
+#X text 24 552 In computer speak \, a "port" is an interface thru which
+data is sent and received. Network ports are numbered \, and can be
+1-65535. Network services are usually registered to use a specific
+network port. HTTP uses port 80 \, sending email uses port 25 \, IMAP
+uses port 143;
+#X text 24 618 Before using a network port for your application \,
+you should check to make sure that it isn't already used. You can see
+a list of registered ports in a file called "services". On UNIX-based
+systems \, its located in /etc/services. On Windows \, its located
+in C:/WINDOWS/system32/drivers/etc/services;
+#X text 24 697 On UNIX-based systems \, ports 0-1024 can only be used
+by the administrator account "root". Windows does not have this restriction.
+Most of the ports below 1024 are claimed anyway \, so its best to use
+port numbers higher than 1024;
+#X text 9 536 network_ports;
+#X text 28 769 There are two main protocols for transmitting data over
+networks: TCP and UDP.;
+#X text 28 796 TCP is the most common \, it stands for Transmission
+Control Protocol. With TCP \, when you send a packet of data \, its
+guaranteed to arrive.;
+#X text 29 836 UDP stands for User Datagram Protocol. It is a lightweight
+\, simple protocol that is meant to be as quick and small as possible.
+The downside is that the data packets are not guaranteed to arrive.
+;
+#X text 31 889 One advantage to UDP is that you do not need to maintain
+a connection to receive data. Whenever you open a UDP port \, you will
+start receiving data.;
+#X text 10 756 UDP & TCP;
+#X text 30 947 OSC is a protocol for sharing data across networks and
+applications. OSC stands for Open Sound Control. It was originally
+designed to replace MIDI \, but it has caught on instead for inter-application
+communication.;
+#X text 10 931 OSC;
+#X text 31 999 OSC messages have two parts \, the identifier and the
+data. The idenifier is made up of symbols separated by slashes ("/").
+;
+#X text 28 1094 ... couldn't create;
+#X text 27 1081 dumpOSC 1235;
+#X text 44 1108 2 modules ReceiveOSC ont été ouverts avec le meme numero
+de port (1235 ici par exemple);
+#X text 9 7 Les minimodules ARGO SendOSC et ReceiveOSC envoient et
+recoivent (dans le même ordinateur ou sur un réseau) des données compatibles
+avec le protocole OSC.;
+#X text 8 53 Ils utilisent les objets sendOSC \, dumpOSC \, OSCroute
+de la library oscx de Pd-extended de Adrian Freed & Matt Wright;
+#X text 8 258 Citations;
+#X text 36 299 OpenSound Control (OSC) is a communication protocol
+which allows musical instruments (especially electronic musical instruments
+such as synthesizers) \, computers \, and other multimedia devices
+to share music performance data in realtime over a network. OSC is
+meant to supersede the MIDI standard \, which was defined in 1983 and
+which many consider inadequate for modern multimedia purposes. Because
+it is a networking protocol \, OSC allows musical instruments \, controllers
+\, and multimedia devices to communicate via a standard home or studio
+network (TCP/IP \, Ethernet) or via the internet. OSC operates at broadband
+network speeds \, allowing new types of realtime interactions which
+were not possible because of MIDI lag. OSC also gives musicians and
+developers more flexibility in the kinds of data they can send over
+the wire \, enabling new applications which communicate with each other
+at a higher level.;
+#X text 10 85 Ne pas confondre avec les objets udpsend \, udpreceive
+\, routeOSC \, packOSC de la library mrpeach de Pd-extended de Martin
+Peach.;
+#X text 208 197 etc.. etc...;
+#X obj 23 127 pddp/pddplink http://opensoundcontrol.org/;
+#X text 207 154 PureData Processing;
+#X obj 23 140 pddp/pddplink http://archive.cnmat.berkeley.edu/OpenSoundControl/
+;
+#X obj 36 272 pddp/pddplink http://puredata.info/downloads/oscx/;
+#X obj 36 285 pddp/pddplink http://en.wikipedia.org/wiki/Open_Sound_Control
+;
+#X restore 460 218 pd Help;
+#X text 23 272 Changer le prefixe /argo ->;
+#X text 29 284 Change the prefix /argo ->;
+#X obj 84 135 zexy/list2symbol;
+#X obj 404 111 cnv 15 100 70 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#X text 427 113 library:;
+#X text 408 124 pddp;
+#X text 408 137 zexy;
+#X msg 111 186 set \$1;
+#X obj 84 160 t b s;
+#X obj 376 190 t a b;
+#X msg 403 216 0;
+#X msg 84 110 192.168.1.12;
+#X obj 189 402 mrpeach/packOSC;
+#X obj 189 446 mrpeach/udpsend;
+#X text 410 149 mrpeach;
+#X text 218 113 (library mrpeach);
+#X obj 470 436 cnv 15 46 22 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 353 174 321 152 ?.. 0;
+#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 13 121 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 12 53 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X obj 13 97 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X text 13 85 Construit sous / Build under Pd-0.49...;
+#X text 12 109 or Pd 0.43.4-extended;
+#X restore 473 439 pd ?..;
+#X obj 342 169 tgl 11 1 \$0-A \$0-B Print 14 7 1 9 -262144 -1 -1 0
+1;
+#X obj 309 402 spigot;
+#X text 276 82 21 3 2019;
+#X text 137 0 Envoi par OSC sur le port 1234 avec le prefixe /argo
+;
+#X text 136 14 Send by OSC on port 1234 with the prefix /argo;
+#X obj 369 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 368 56 inlet;
+#X text 355 31 connect: 1;
+#X text 337 41 disconnect: 0;
+#X obj 309 446 print OSC;
+#X connect 1 0 13 0;
+#X connect 2 0 40 0;
+#X connect 6 0 11 0;
+#X connect 6 0 20 0;
+#X connect 7 0 44 0;
+#X connect 8 0 11 0;
+#X connect 9 0 23 0;
+#X connect 9 1 22 0;
+#X connect 10 0 44 0;
+#X connect 11 0 12 0;
+#X connect 12 0 10 0;
+#X connect 13 0 11 0;
+#X connect 13 1 11 1;
+#X connect 14 0 43 0;
+#X connect 14 0 50 0;
+#X connect 15 0 7 0;
+#X connect 15 1 16 0;
+#X connect 16 0 14 1;
+#X connect 17 0 14 1;
+#X connect 18 0 17 0;
+#X connect 18 1 10 0;
+#X connect 18 2 15 0;
+#X connect 19 0 14 0;
+#X connect 20 0 42 0;
+#X connect 21 0 42 0;
+#X connect 22 0 6 0;
+#X connect 23 0 8 0;
+#X connect 24 0 25 0;
+#X connect 25 0 15 0;
+#X connect 25 1 26 0;
+#X connect 26 0 18 0;
+#X connect 28 0 19 0;
+#X connect 33 0 39 0;
+#X connect 38 0 6 0;
+#X connect 39 0 6 0;
+#X connect 39 1 38 0;
+#X connect 40 0 9 0;
+#X connect 40 1 41 0;
+#X connect 41 0 24 0;
+#X connect 42 0 33 0;
+#X connect 43 0 44 0;
+#X connect 49 0 50 1;
+#X connect 50 0 58 0;
+#X connect 55 0 24 0;
+#X coords 0 -1 1 1 180 80 1 200 100;
+#X restore 528 30 pd OScEnvoi129;
+#X text 259 261 Pour MadMapper;
+#N canvas 710 345 606 347 MadMapperScheduler 0;
+#X obj 236 118 nbx 2 12 1 99 0 0 \$0-A \$0-B MadMapper_Columns -105
+7 1 9 -262144 -1 -1 1 256;
+#X text 469 98 MadMapper;
+#X obj 8 33 inlet;
+#X obj 236 272 outlet;
+#X obj 45 33 inlet;
+#X obj 81 33 inlet;
+#X obj 118 33 inlet;
+#X obj 154 33 inlet;
+#X obj 191 33 inlet;
+#X obj 227 33 inlet;
+#X obj 264 33 inlet;
+#X obj 301 33 inlet;
+#X obj 338 33 inlet;
+#X obj 374 33 inlet;
+#X obj 411 33 inlet;
+#X obj 447 33 inlet;
+#X obj 484 33 inlet;
+#X obj 520 33 inlet;
+#X obj 557 33 inlet;
+#X obj 100 103 bng 15 250 50 0 \$0-A \$0-B 1 5 8 1 9 -262144 -1 -1
+;
+#X msg 4 170 1;
+#X msg 33 170 2;
+#X msg 62 170 3;
+#X msg 92 170 4;
+#X msg 121 170 5;
+#X msg 153 170 6;
+#X msg 182 170 7;
+#X msg 212 170 8;
+#X msg 242 170 9;
+#X msg 274 170 10;
+#X msg 305 170 11;
+#X msg 337 170 12;
+#X msg 366 170 13;
+#X msg 396 170 14;
+#X msg 426 170 15;
+#X msg 458 170 16;
+#X obj 325 103 bng 15 250 50 0 \$0-A \$0-B 16 2 8 1 9 -262144 -1 -1
+;
+#X obj 115 103 bng 15 250 50 0 \$0-A \$0-B 2 5 8 1 9 -262144 -1 -1
+;
+#X obj 130 103 bng 15 250 50 0 \$0-A \$0-B 3 5 8 1 9 -262144 -1 -1
+;
+#X obj 310 103 bng 15 250 50 0 \$0-A \$0-B 15 2 8 1 9 -262144 -1 -1
+;
+#X obj 145 103 bng 15 250 50 0 \$0-A \$0-B 4 5 8 1 9 -262144 -1 -1
+;
+#X obj 160 103 bng 15 250 50 0 \$0-A \$0-B 5 5 8 1 9 -262144 -1 -1
+;
+#X obj 175 103 bng 15 250 50 0 \$0-A \$0-B 6 5 8 1 9 -262144 -1 -1
+;
+#X obj 190 103 bng 15 250 50 0 \$0-A \$0-B 7 5 8 1 9 -262144 -1 -1
+;
+#X obj 205 103 bng 15 250 50 0 \$0-A \$0-B 8 5 8 1 9 -262144 -1 -1
+;
+#X obj 220 103 bng 15 250 50 0 \$0-A \$0-B 9 5 8 1 9 -262144 -1 -1
+;
+#X obj 265 103 bng 15 250 50 0 \$0-A \$0-B 12 2 8 1 9 -262144 -1 -1
+;
+#X obj 280 103 bng 15 250 50 0 \$0-A \$0-B 13 2 8 1 9 -262144 -1 -1
+;
+#X obj 235 103 bng 15 250 50 0 \$0-A \$0-B 10 2 8 1 9 -262144 -1 -1
+;
+#X obj 250 103 bng 15 250 50 0 \$0-A \$0-B 11 2 8 1 9 -262144 -1 -1
+;
+#X obj 295 103 bng 15 250 50 0 \$0-A \$0-B 14 2 8 1 9 -262144 -1 -1
+;
+#X msg 236 211 send /argo/Columns \$1;
+#X connect 0 0 29 0;
+#X connect 0 0 51 0;
+#X connect 2 0 19 0;
+#X connect 4 0 37 0;
+#X connect 5 0 38 0;
+#X connect 6 0 40 0;
+#X connect 7 0 41 0;
+#X connect 8 0 42 0;
+#X connect 9 0 43 0;
+#X connect 10 0 44 0;
+#X connect 11 0 45 0;
+#X connect 12 0 48 0;
+#X connect 13 0 49 0;
+#X connect 14 0 46 0;
+#X connect 15 0 47 0;
+#X connect 16 0 50 0;
+#X connect 17 0 39 0;
+#X connect 18 0 36 0;
+#X connect 19 0 20 0;
+#X connect 20 0 0 0;
+#X connect 21 0 0 0;
+#X connect 22 0 0 0;
+#X connect 23 0 0 0;
+#X connect 24 0 0 0;
+#X connect 25 0 0 0;
+#X connect 26 0 0 0;
+#X connect 27 0 0 0;
+#X connect 28 0 0 0;
+#X connect 29 0 0 0;
+#X connect 30 0 0 0;
+#X connect 31 0 0 0;
+#X connect 32 0 0 0;
+#X connect 33 0 0 0;
+#X connect 34 0 0 0;
+#X connect 35 0 0 0;
+#X connect 36 0 35 0;
+#X connect 37 0 21 0;
+#X connect 38 0 22 0;
+#X connect 39 0 34 0;
+#X connect 40 0 23 0;
+#X connect 41 0 24 0;
+#X connect 42 0 25 0;
+#X connect 43 0 26 0;
+#X connect 44 0 27 0;
+#X connect 45 0 28 0;
+#X connect 46 0 31 0;
+#X connect 47 0 32 0;
+#X connect 48 0 29 0;
+#X connect 49 0 30 0;
+#X connect 50 0 33 0;
+#X connect 51 0 3 0;
+#X coords 0 -1 1 1 240 30 2 100 100;
+#X restore 278 319 pd MadMapperScheduler;
+#N canvas 588 220 576 489 OScEnvoi12913000 0;
+#X obj 201 101 cnv 18 178 78 empty empty empty 0 0 1 14 -261476 -1
+1.04858e+06;
+#X obj 337 132 nbx 5 12 1025 65535 0 1 \$0-A \$0-B Port -20 7 1 9 -262144
+-1 -1 13000 256;
+#X obj 207 131 vradio 16 1 1 2 \$0-A \$0-B empty 0 -6 1 10 -262144
+-1 -1 0;
+#X obj 227 136 cnv 10 20 10 empty empty Localhost 0 4 1 9 -261476 -1
+0;
+#X obj 246 105 cnv 14 20 10 empty empty SendOSC. 0 4 1 14 -261476 -1
+0;
+#X obj 325 151 cnv 10 20 10 empty empty Adresse-IP 0 4 1 9 -261476
+-1 0;
+#X symbolatom 224 147 16 0 0 2 - - -;
+#X msg 114 402 disconnect;
+#X msg 376 301 localhost;
+#X obj 376 236 sel 0 1;
+#X msg 376 402 connect localhost 13000;
+#X obj 376 328 pack s f;
+#X msg 376 352 set connect \$1 \$2;
+#X obj 319 243 t b f;
+#X obj 189 375 spigot;
+#X obj 209 326 t b b;
+#X msg 236 351 0;
+#X msg 283 351 1;
+#X obj 283 278 t b b b;
+#X msg 103 83 set \$1;
+#X obj 84 56 loadbang;
+#X obj 394 258 delay 500;
+#X obj 376 277 delay 500;
+#X obj 368 101 tgl 12 1 \$0-A \$0-B Connect -39 7 1 9 -262144 -1 -1
+0 1;
+#X obj 209 214 sel 0 1;
+#X obj 228 244 delay 1000;
+#X obj 201 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 189 56 inlet;
+#X obj 453 212 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 689 51 430 554 Help 0;
+#X obj 6 1055 cnv 15 410 100 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X text 14 1064 Erreur dans la fenêtre Pd:;
+#X text 24 153 Applications compatibles OSC:;
+#X text 207 165 MaxMSP;
+#X text 207 176 Chuck;
+#X text 207 187 SuperCollider;
+#X text 25 210 OSC = OpenSound Control;
+#X text 25 224 OSC utilise le protocole réseau UDP (+ simple et + leger
+que le protocole TCP);
+#X obj 3 256 cnv 15 410 790 empty empty empty 20 12 0 14 -228856 -66577
+0;
+#X text 24 552 In computer speak \, a "port" is an interface thru which
+data is sent and received. Network ports are numbered \, and can be
+1-65535. Network services are usually registered to use a specific
+network port. HTTP uses port 80 \, sending email uses port 25 \, IMAP
+uses port 143;
+#X text 24 618 Before using a network port for your application \,
+you should check to make sure that it isn't already used. You can see
+a list of registered ports in a file called "services". On UNIX-based
+systems \, its located in /etc/services. On Windows \, its located
+in C:/WINDOWS/system32/drivers/etc/services;
+#X text 24 697 On UNIX-based systems \, ports 0-1024 can only be used
+by the administrator account "root". Windows does not have this restriction.
+Most of the ports below 1024 are claimed anyway \, so its best to use
+port numbers higher than 1024;
+#X text 9 536 network_ports;
+#X text 28 769 There are two main protocols for transmitting data over
+networks: TCP and UDP.;
+#X text 28 796 TCP is the most common \, it stands for Transmission
+Control Protocol. With TCP \, when you send a packet of data \, its
+guaranteed to arrive.;
+#X text 29 836 UDP stands for User Datagram Protocol. It is a lightweight
+\, simple protocol that is meant to be as quick and small as possible.
+The downside is that the data packets are not guaranteed to arrive.
+;
+#X text 31 889 One advantage to UDP is that you do not need to maintain
+a connection to receive data. Whenever you open a UDP port \, you will
+start receiving data.;
+#X text 10 756 UDP & TCP;
+#X text 30 947 OSC is a protocol for sharing data across networks and
+applications. OSC stands for Open Sound Control. It was originally
+designed to replace MIDI \, but it has caught on instead for inter-application
+communication.;
+#X text 10 931 OSC;
+#X text 31 999 OSC messages have two parts \, the identifier and the
+data. The idenifier is made up of symbols separated by slashes ("/").
+;
+#X text 28 1094 ... couldn't create;
+#X text 27 1081 dumpOSC 1235;
+#X text 44 1108 2 modules ReceiveOSC ont été ouverts avec le meme numero
+de port (1235 ici par exemple);
+#X text 9 7 Les minimodules ARGO SendOSC et ReceiveOSC envoient et
+recoivent (dans le même ordinateur ou sur un réseau) des données compatibles
+avec le protocole OSC.;
+#X text 8 53 Ils utilisent les objets sendOSC \, dumpOSC \, OSCroute
+de la library oscx de Pd-extended de Adrian Freed & Matt Wright;
+#X text 8 258 Citations;
+#X text 36 299 OpenSound Control (OSC) is a communication protocol
+which allows musical instruments (especially electronic musical instruments
+such as synthesizers) \, computers \, and other multimedia devices
+to share music performance data in realtime over a network. OSC is
+meant to supersede the MIDI standard \, which was defined in 1983 and
+which many consider inadequate for modern multimedia purposes. Because
+it is a networking protocol \, OSC allows musical instruments \, controllers
+\, and multimedia devices to communicate via a standard home or studio
+network (TCP/IP \, Ethernet) or via the internet. OSC operates at broadband
+network speeds \, allowing new types of realtime interactions which
+were not possible because of MIDI lag. OSC also gives musicians and
+developers more flexibility in the kinds of data they can send over
+the wire \, enabling new applications which communicate with each other
+at a higher level.;
+#X text 10 85 Ne pas confondre avec les objets udpsend \, udpreceive
+\, routeOSC \, packOSC de la library mrpeach de Pd-extended de Martin
+Peach.;
+#X text 208 197 etc.. etc...;
+#X obj 23 127 pddp/pddplink http://opensoundcontrol.org/;
+#X text 207 154 PureData Processing;
+#X obj 23 140 pddp/pddplink http://archive.cnmat.berkeley.edu/OpenSoundControl/
+;
+#X obj 36 272 pddp/pddplink http://puredata.info/downloads/oscx/;
+#X obj 36 285 pddp/pddplink http://en.wikipedia.org/wiki/Open_Sound_Control
+;
+#X restore 460 218 pd Help;
+#X obj 84 135 zexy/list2symbol;
+#X obj 404 111 cnv 15 100 70 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#X text 427 113 library:;
+#X text 408 124 pddp;
+#X text 408 137 zexy;
+#X msg 111 186 set \$1;
+#X obj 84 160 t b s;
+#X obj 376 190 t a b;
+#X msg 403 216 0;
+#X msg 84 110 192.168.1.12;
+#X obj 189 402 mrpeach/packOSC;
+#X obj 189 446 mrpeach/udpsend;
+#X text 410 149 mrpeach;
+#X text 218 113 (library mrpeach);
+#X obj 470 436 cnv 15 46 22 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 353 174 321 152 ?.. 0;
+#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 13 121 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 12 53 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X obj 13 97 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X text 13 85 Construit sous / Build under Pd-0.49...;
+#X text 12 109 or Pd 0.43.4-extended;
+#X restore 473 439 pd ?..;
+#X obj 342 169 tgl 11 1 \$0-A \$0-B Print 14 7 1 9 -262144 -1 -1 0
+1;
+#X obj 309 402 spigot;
+#X text 276 82 21 3 2019;
+#X obj 369 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 368 56 inlet;
+#X text 355 31 connect: 1;
+#X text 337 41 disconnect: 0;
+#X obj 309 446 print OSC;
+#X obj 336 115 cnv 10 36 14 empty empty empty 20 12 0 14 -258113 -66577
+0;
+#X text 336 114 Modif;
+#X connect 1 0 13 0;
+#X connect 2 0 37 0;
+#X connect 6 0 11 0;
+#X connect 6 0 19 0;
+#X connect 7 0 41 0;
+#X connect 8 0 11 0;
+#X connect 9 0 22 0;
+#X connect 9 1 21 0;
+#X connect 10 0 41 0;
+#X connect 11 0 12 0;
+#X connect 12 0 10 0;
+#X connect 13 0 11 0;
+#X connect 13 1 11 1;
+#X connect 14 0 40 0;
+#X connect 14 0 47 0;
+#X connect 15 0 7 0;
+#X connect 15 1 16 0;
+#X connect 16 0 14 1;
+#X connect 17 0 14 1;
+#X connect 18 0 17 0;
+#X connect 18 1 10 0;
+#X connect 18 2 15 0;
+#X connect 19 0 39 0;
+#X connect 20 0 39 0;
+#X connect 21 0 6 0;
+#X connect 22 0 8 0;
+#X connect 23 0 24 0;
+#X connect 24 0 15 0;
+#X connect 24 1 25 0;
+#X connect 25 0 18 0;
+#X connect 27 0 14 0;
+#X connect 30 0 36 0;
+#X connect 35 0 6 0;
+#X connect 36 0 6 0;
+#X connect 36 1 35 0;
+#X connect 37 0 9 0;
+#X connect 37 1 38 0;
+#X connect 38 0 23 0;
+#X connect 39 0 30 0;
+#X connect 40 0 41 0;
+#X connect 46 0 47 1;
+#X connect 47 0 53 0;
+#X connect 50 0 23 0;
+#X coords 0 -1 1 1 180 80 1 200 100;
+#X restore 250 392 pd OScEnvoi12913000;
+#X obj 371 262 pddp/pddplink https://madmapper.com;
+#X text 790 11 Vanilla;
+#N canvas 404 136 604 493 OScEnvoi129 0;
+#X obj 201 101 cnv 18 178 78 empty empty empty 0 0 1 14 -261476 -1
+1.04858e+06;
+#X obj 337 132 nbx 5 12 1025 65535 0 1 \$0-A \$0-B Port -20 7 1 9 -262144
+-1 -1 10000 256;
+#X obj 207 131 vradio 16 1 1 2 \$0-A \$0-B empty 0 -6 1 10 -262144
+-1 -1 0;
+#X obj 227 136 cnv 10 20 10 empty empty Localhost 0 4 1 9 -261476 -1
+0;
+#X obj 246 105 cnv 14 20 10 empty empty SendOSC. 0 4 1 14 -261476 -1
+0;
+#X obj 325 151 cnv 10 20 10 empty empty Adresse-IP 0 4 1 9 -261476
+-1 0;
+#X symbolatom 224 147 16 0 0 2 - - -;
+#X msg 272 399 disconnect;
+#X msg 469 310 localhost;
+#X obj 469 245 sel 0 1;
+#X msg 394 399 connect localhost 10000;
+#X obj 469 337 pack s f;
+#X msg 469 370 set connect \$1 \$2;
+#X obj 428 286 t b f;
+#X obj 189 259 spigot;
+#X obj 302 313 t b b;
+#X msg 329 336 0;
+#X msg 376 336 1;
+#X obj 376 287 t b b b;
+#X msg 85 83 set \$1;
+#X obj 66 56 loadbang;
+#X obj 487 267 delay 500;
+#X obj 469 286 delay 500;
+#X obj 368 101 tgl 12 1 \$0-A \$0-B Connect -39 7 1 9 -262144 -1 -1
+0 1;
+#X obj 302 223 sel 0 1;
+#X obj 321 253 delay 1000;
+#X obj 201 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 189 56 inlet;
+#X obj 441 55 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 689 51 437 559 Help 0;
+#X obj 11 977 cnv 15 410 100 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X text 19 986 Erreur dans la fenêtre Pd:;
+#X text 29 75 Applications compatibles OSC:;
+#X text 212 87 MaxMSP;
+#X text 212 98 Chuck;
+#X text 212 109 SuperCollider;
+#X text 30 132 OSC = OpenSound Control;
+#X text 30 146 OSC utilise le protocole réseau UDP (+ simple et + leger
+que le protocole TCP);
+#X obj 8 178 cnv 15 410 790 empty empty empty 20 12 0 14 -228856 -66577
+0;
+#X text 29 474 In computer speak \, a "port" is an interface thru which
+data is sent and received. Network ports are numbered \, and can be
+1-65535. Network services are usually registered to use a specific
+network port. HTTP uses port 80 \, sending email uses port 25 \, IMAP
+uses port 143;
+#X text 29 540 Before using a network port for your application \,
+you should check to make sure that it isn't already used. You can see
+a list of registered ports in a file called "services". On UNIX-based
+systems \, its located in /etc/services. On Windows \, its located
+in C:/WINDOWS/system32/drivers/etc/services;
+#X text 29 619 On UNIX-based systems \, ports 0-1024 can only be used
+by the administrator account "root". Windows does not have this restriction.
+Most of the ports below 1024 are claimed anyway \, so its best to use
+port numbers higher than 1024;
+#X text 14 458 network_ports;
+#X text 33 691 There are two main protocols for transmitting data over
+networks: TCP and UDP.;
+#X text 33 718 TCP is the most common \, it stands for Transmission
+Control Protocol. With TCP \, when you send a packet of data \, its
+guaranteed to arrive.;
+#X text 34 758 UDP stands for User Datagram Protocol. It is a lightweight
+\, simple protocol that is meant to be as quick and small as possible.
+The downside is that the data packets are not guaranteed to arrive.
+;
+#X text 36 811 One advantage to UDP is that you do not need to maintain
+a connection to receive data. Whenever you open a UDP port \, you will
+start receiving data.;
+#X text 15 678 UDP & TCP;
+#X text 35 869 OSC is a protocol for sharing data across networks and
+applications. OSC stands for Open Sound Control. It was originally
+designed to replace MIDI \, but it has caught on instead for inter-application
+communication.;
+#X text 15 853 OSC;
+#X text 36 921 OSC messages have two parts \, the identifier and the
+data. The idenifier is made up of symbols separated by slashes ("/").
+;
+#X text 13 12 Les minimodules ARGO SendOSC et ReceiveOSC envoient et
+recoivent (dans le même ordinateur ou sur un réseau) des données compatibles
+avec le protocole OSC.;
+#X text 13 180 Citations;
+#X text 41 221 OpenSound Control (OSC) is a communication protocol
+which allows musical instruments (especially electronic musical instruments
+such as synthesizers) \, computers \, and other multimedia devices
+to share music performance data in realtime over a network. OSC is
+meant to supersede the MIDI standard \, which was defined in 1983 and
+which many consider inadequate for modern multimedia purposes. Because
+it is a networking protocol \, OSC allows musical instruments \, controllers
+\, and multimedia devices to communicate via a standard home or studio
+network (TCP/IP \, Ethernet) or via the internet. OSC operates at broadband
+network speeds \, allowing new types of realtime interactions which
+were not possible because of MIDI lag. OSC also gives musicians and
+developers more flexibility in the kinds of data they can send over
+the wire \, enabling new applications which communicate with each other
+at a higher level.;
+#X text 213 119 etc.. etc...;
+#X obj 28 49 pddp/pddplink http://opensoundcontrol.org/;
+#X text 212 76 PureData Processing;
+#X obj 28 62 pddp/pddplink http://archive.cnmat.berkeley.edu/OpenSoundControl/
+;
+#X obj 41 194 pddp/pddplink http://puredata.info/downloads/oscx/;
+#X obj 41 207 pddp/pddplink http://en.wikipedia.org/wiki/Open_Sound_Control
+;
+#X restore 448 61 pd Help;
+#X text -38 253 Changer le prefixe /argo ->;
+#X text -32 265 Change the prefix /argo ->;
+#X obj 66 135 zexy/list2symbol;
+#X obj 404 111 cnv 15 100 70 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#X text 427 113 library:;
+#X text 408 124 pddp;
+#X text 408 137 zexy;
+#X msg 93 186 set \$1;
+#X obj 66 160 t b s;
+#X obj 469 199 t a b;
+#X msg 496 225 0;
+#X msg 66 110 192.168.1.13;
+#X obj 470 436 cnv 15 46 22 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 353 174 321 152 ?.. 0;
+#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 13 121 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 12 53 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X obj 13 97 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X text 13 85 Construit sous / Build under Pd-0.49...;
+#X text 12 109 or Pd 0.43.4-extended;
+#X restore 473 439 pd ?..;
+#X obj 342 169 tgl 11 1 \$0-A \$0-B Print 14 7 1 9 -262144 -1 -1 0
+1;
+#X obj 93 399 spigot;
+#X text 137 0 Envoi par OSC sur le port 1234 avec le prefixe /argo
+;
+#X text 136 14 Send by OSC on port 1234 with the prefix /argo;
+#X obj 369 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 368 56 inlet;
+#X text 355 31 connect: 1;
+#X text 337 41 disconnect: 0;
+#X text 276 82 24 3 2019;
+#X text 226 113 (Vanilla 0.45..);
+#X obj 189 448 netsend -u -b;
+#X obj 189 370 list prepend send;
+#X obj 189 399 list trim;
+#X msg 128 259 set argo;
+#X obj 189 317 oscformat argo;
+#X obj 93 361 oscparse;
+#X obj 93 448 print OSC Send;
+#X connect 1 0 13 0;
+#X connect 2 0 39 0;
+#X connect 6 0 11 0;
+#X connect 6 0 19 0;
+#X connect 7 0 54 0;
+#X connect 8 0 11 0;
+#X connect 9 0 22 0;
+#X connect 9 1 21 0;
+#X connect 10 0 54 0;
+#X connect 11 0 12 0;
+#X connect 12 0 10 0;
+#X connect 13 0 11 0;
+#X connect 13 1 11 1;
+#X connect 14 0 58 0;
+#X connect 15 0 7 0;
+#X connect 15 1 16 0;
+#X connect 16 0 14 1;
+#X connect 17 0 14 1;
+#X connect 18 0 17 0;
+#X connect 18 1 10 0;
+#X connect 18 2 15 0;
+#X connect 19 0 41 0;
+#X connect 20 0 41 0;
+#X connect 21 0 6 0;
+#X connect 22 0 8 0;
+#X connect 23 0 24 0;
+#X connect 24 0 15 0;
+#X connect 24 1 25 0;
+#X connect 25 0 18 0;
+#X connect 27 0 14 0;
+#X connect 32 0 38 0;
+#X connect 37 0 6 0;
+#X connect 38 0 6 0;
+#X connect 38 1 37 0;
+#X connect 39 0 9 0;
+#X connect 39 1 40 0;
+#X connect 40 0 23 0;
+#X connect 41 0 32 0;
+#X connect 44 0 45 1;
+#X connect 45 0 60 0;
+#X connect 49 0 23 0;
+#X connect 55 0 56 0;
+#X connect 56 0 54 0;
+#X connect 57 0 58 0;
+#X connect 58 0 55 0;
+#X connect 58 0 59 0;
+#X connect 59 0 45 0;
+#X coords 0 -1 1 1 180 80 1 200 100;
+#X restore 728 30 pd OScEnvoi129;
+#N canvas 115 83 543 581 (subpatch) 0;
+#X obj 101 301 cnv 12 178 53 empty empty empty 0 0 1 14 -261476 -1
+1.04858e+06;
+#X obj 182 301 cnv 10 20 10 empty empty ReceiveOSC. 0 7 1 14 -261476
+-1 0;
+#X obj 100 342 bng 12 50 50 0 \$0-A \$0-B Receive 18 7 1 9 -261476
+-258113 -1;
+#X obj 240 344 tgl 11 1 \$0-A \$0-B Print 14 7 1 9 -262144 -1 -1 0
+1;
+#X obj 35 320 spigot;
+#X obj 207 423 spigot;
+#X obj 33 472 cnv 15 380 100 empty empty empty 20 12 0 14 -258113 -66577
+0;
+#X obj 101 350 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 35 445 outlet;
+#X obj 412 192 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 689 51 430 554 Help 0;
+#X obj 6 1055 cnv 15 410 100 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X text 14 1064 Erreur dans la fenêtre Pd:;
+#X text 24 153 Applications compatibles OSC:;
+#X text 207 165 MaxMSP;
+#X text 207 176 Chuck;
+#X text 207 187 SuperCollider;
+#X text 25 210 OSC = OpenSound Control;
+#X text 25 224 OSC utilise le protocole réseau UDP (+ simple et + leger
+que le protocole TCP);
+#X obj 3 256 cnv 15 410 790 empty empty empty 20 12 0 14 -228856 -66577
+0;
+#X text 24 552 In computer speak \, a "port" is an interface thru which
+data is sent and received. Network ports are numbered \, and can be
+1-65535. Network services are usually registered to use a specific
+network port. HTTP uses port 80 \, sending email uses port 25 \, IMAP
+uses port 143;
+#X text 24 618 Before using a network port for your application \,
+you should check to make sure that it isn't already used. You can see
+a list of registered ports in a file called "services". On UNIX-based
+systems \, its located in /etc/services. On Windows \, its located
+in C:/WINDOWS/system32/drivers/etc/services;
+#X text 24 697 On UNIX-based systems \, ports 0-1024 can only be used
+by the administrator account "root". Windows does not have this restriction.
+Most of the ports below 1024 are claimed anyway \, so its best to use
+port numbers higher than 1024;
+#X text 9 536 network_ports;
+#X text 28 769 There are two main protocols for transmitting data over
+networks: TCP and UDP.;
+#X text 28 796 TCP is the most common \, it stands for Transmission
+Control Protocol. With TCP \, when you send a packet of data \, its
+guaranteed to arrive.;
+#X text 29 836 UDP stands for User Datagram Protocol. It is a lightweight
+\, simple protocol that is meant to be as quick and small as possible.
+The downside is that the data packets are not guaranteed to arrive.
+;
+#X text 31 889 One advantage to UDP is that you do not need to maintain
+a connection to receive data. Whenever you open a UDP port \, you will
+start receiving data.;
+#X text 10 756 UDP & TCP;
+#X text 30 947 OSC is a protocol for sharing data across networks and
+applications. OSC stands for Open Sound Control. It was originally
+designed to replace MIDI \, but it has caught on instead for inter-application
+communication.;
+#X text 10 931 OSC;
+#X text 31 999 OSC messages have two parts \, the identifier and the
+data. The idenifier is made up of symbols separated by slashes ("/").
+;
+#X text 28 1094 ... couldn't create;
+#X text 27 1081 dumpOSC 1235;
+#X text 44 1108 2 modules ReceiveOSC ont été ouverts avec le meme numero
+de port (1235 ici par exemple);
+#X text 9 7 Les minimodules ARGO SendOSC et ReceiveOSC envoient et
+recoivent (dans le même ordinateur ou sur un réseau) des données compatibles
+avec le protocole OSC.;
+#X text 8 53 Ils utilisent les objets sendOSC \, dumpOSC \, OSCroute
+de la library oscx de Pd-extended de Adrian Freed & Matt Wright;
+#X text 8 258 Citations;
+#X text 36 299 OpenSound Control (OSC) is a communication protocol
+which allows musical instruments (especially electronic musical instruments
+such as synthesizers) \, computers \, and other multimedia devices
+to share music performance data in realtime over a network. OSC is
+meant to supersede the MIDI standard \, which was defined in 1983 and
+which many consider inadequate for modern multimedia purposes. Because
+it is a networking protocol \, OSC allows musical instruments \, controllers
+\, and multimedia devices to communicate via a standard home or studio
+network (TCP/IP \, Ethernet) or via the internet. OSC operates at broadband
+network speeds \, allowing new types of realtime interactions which
+were not possible because of MIDI lag. OSC also gives musicians and
+developers more flexibility in the kinds of data they can send over
+the wire \, enabling new applications which communicate with each other
+at a higher level.;
+#X text 10 85 Ne pas confondre avec les objets udpsend \, udpreceive
+\, routeOSC \, packOSC de la library mrpeach de Pd-extended de Martin
+Peach.;
+#X text 208 197 etc.. etc...;
+#X obj 23 127 pddp/pddplink http://opensoundcontrol.org/;
+#X text 207 154 PureData Processing;
+#X obj 23 140 pddp/pddplink http://archive.cnmat.berkeley.edu/OpenSoundControl/
+;
+#X obj 36 272 pddp/pddplink http://puredata.info/downloads/oscx/;
+#X obj 36 285 pddp/pddplink http://en.wikipedia.org/wiki/Open_Sound_Control
+;
+#X restore 419 198 pd Help;
+#X text 7 105 Receipt by the OSC on port 12000 with the prefix /argo
+;
+#X obj 407 88 cnv 15 100 70 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#X text 430 90 library:;
+#X text 411 101 pddp;
+#X obj 100 300 tgl 11 1 \$0-A \$0-B On 14 7 1 9 -262144 -1 -1 0 1;
+#X text 8 76 Reception par OSC sur le port 1234 avec le prefixe /argo
+;
+#X text 7 87 Changer le préfixe en éditant l'objet mrpeach/routeOSC
+/argo;
+#X text 5 118 Change the prefix by editing the object mrpeach/routeOSC
+/argo, f 65;
+#X obj 422 548 cnv 15 46 22 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 353 174 321 152 ?.. 0;
+#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 13 121 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 12 53 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X obj 13 97 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X text 13 85 Construit sous / Build under Pd-0.49...;
+#X text 12 109 or Pd 0.43.4-extended;
+#X restore 425 551 pd ?..;
+#X obj 122 319 nbx 5 12 1025 65535 0 1 \$0-A \$0-B Port -20 7 1 9 -262144
+-1 -1 10000 256;
+#X obj 207 445 print OSC Receive;
+#X text 284 306 24 3 2019;
+#X text 172 312 (Vanilla 0.45..);
+#X obj 35 212 netreceive -u -b;
+#X msg 35 155 listen \$1;
+#X msg 128 181 listen 0;
+#X text 254 157 stop listening;
+#X obj 157 258 sel 0 1;
+#X obj 35 346 oscparse;
+#X text 42 474 ATTENTION: ne pas ouvrir 2 fois ce module avec le meme
+numero de port car 2 objets netreceive ne peuvent pas s'exécuter sur
+le meme port;
+#X text 42 517 CAUTION: Do not open 2 of this module with the same
+port number because 2 netreceive objects can not execute on the same
+port;
+#X obj 35 393 route argo;
+#X obj 35 370 route list;
+#X connect 3 0 5 1;
+#X connect 4 0 2 0;
+#X connect 4 0 30 0;
+#X connect 5 0 22 0;
+#X connect 15 0 4 1;
+#X connect 15 0 29 0;
+#X connect 21 0 26 0;
+#X connect 25 0 4 0;
+#X connect 26 0 25 0;
+#X connect 27 0 25 0;
+#X connect 29 0 27 0;
+#X connect 29 1 21 0;
+#X connect 30 0 34 0;
+#X connect 33 0 8 0;
+#X connect 33 0 5 0;
+#X connect 34 0 33 0;
+#X coords 0 1 100 -1 180 55 1 100 300;
+#X restore 728 145 graph;
+#N canvas 456 242 607 358 MadMapperScheduler 0;
+#X obj 236 118 nbx 2 12 1 99 0 0 \$0-A \$0-B MadMapper_Scheduler -105
+7 1 9 -262144 -1 -1 1 256;
+#X msg 139 280 send /argo/S\$1 1;
+#X text 3 281 Scheduler Sx active ->;
+#X obj 281 231 f;
+#X msg 282 255 send /argo/S\$1 0;
+#X obj 214 204 t f f b;
+#X obj 8 33 inlet;
+#X obj 215 318 outlet;
+#X text 116 255 Scheduler avant inactive ->;
+#X obj 45 33 inlet;
+#X obj 81 33 inlet;
+#X obj 118 33 inlet;
+#X obj 154 33 inlet;
+#X obj 191 33 inlet;
+#X obj 227 33 inlet;
+#X obj 264 33 inlet;
+#X obj 301 33 inlet;
+#X obj 338 33 inlet;
+#X obj 374 33 inlet;
+#X obj 411 33 inlet;
+#X obj 447 33 inlet;
+#X obj 484 33 inlet;
+#X obj 520 33 inlet;
+#X obj 557 33 inlet;
+#X obj 100 103 bng 15 250 50 0 \$0-A \$0-B 1 5 8 1 9 -262144 -1 -1
+;
+#X msg 7 170 1;
+#X msg 36 170 2;
+#X msg 65 170 3;
+#X msg 95 170 4;
+#X msg 124 170 5;
+#X msg 156 170 6;
+#X msg 185 170 7;
+#X msg 215 170 8;
+#X msg 245 170 9;
+#X msg 277 170 10;
+#X msg 308 170 11;
+#X msg 340 170 12;
+#X msg 369 170 13;
+#X msg 399 170 14;
+#X msg 429 170 15;
+#X msg 461 170 16;
+#X obj 325 103 bng 15 250 50 0 \$0-A \$0-B 16 2 8 1 9 -262144 -1 -1
+;
+#X obj 115 103 bng 15 250 50 0 \$0-A \$0-B 2 5 8 1 9 -262144 -1 -1
+;
+#X obj 130 103 bng 15 250 50 0 \$0-A \$0-B 3 5 8 1 9 -262144 -1 -1
+;
+#X obj 310 103 bng 15 250 50 0 \$0-A \$0-B 15 2 8 1 9 -262144 -1 -1
+;
+#X obj 145 103 bng 15 250 50 0 \$0-A \$0-B 4 5 8 1 9 -262144 -1 -1
+;
+#X obj 160 103 bng 15 250 50 0 \$0-A \$0-B 5 5 8 1 9 -262144 -1 -1
+;
+#X obj 175 103 bng 15 250 50 0 \$0-A \$0-B 6 5 8 1 9 -262144 -1 -1
+;
+#X obj 190 103 bng 15 250 50 0 \$0-A \$0-B 7 5 8 1 9 -262144 -1 -1
+;
+#X obj 205 103 bng 15 250 50 0 \$0-A \$0-B 8 5 8 1 9 -262144 -1 -1
+;
+#X obj 220 103 bng 15 250 50 0 \$0-A \$0-B 9 5 8 1 9 -262144 -1 -1
+;
+#X obj 265 103 bng 15 250 50 0 \$0-A \$0-B 12 2 8 1 9 -262144 -1 -1
+;
+#X obj 280 103 bng 15 250 50 0 \$0-A \$0-B 13 2 8 1 9 -262144 -1 -1
+;
+#X obj 235 103 bng 15 250 50 0 \$0-A \$0-B 10 2 8 1 9 -262144 -1 -1
+;
+#X obj 250 103 bng 15 250 50 0 \$0-A \$0-B 11 2 8 1 9 -262144 -1 -1
+;
+#X obj 295 103 bng 15 250 50 0 \$0-A \$0-B 14 2 8 1 9 -262144 -1 -1
+;
+#X text 346 105 2-4-2019;
+#X obj 540 308 cnv 15 46 22 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 353 174 321 152 ?.. 0;
+#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 13 121 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 12 53 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X obj 13 97 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X text 13 85 Construit sous / Build under Pd-0.49...;
+#X text 12 109 or Pd 0.43.4-extended;
+#X restore 543 311 pd ?..;
+#X text 437 106 Pour MadMapper & OSC;
+#X connect 0 0 5 0;
+#X connect 1 0 7 0;
+#X connect 3 0 4 0;
+#X connect 4 0 7 0;
+#X connect 5 0 3 1;
+#X connect 5 1 1 0;
+#X connect 5 2 3 0;
+#X connect 6 0 24 0;
+#X connect 9 0 42 0;
+#X connect 10 0 43 0;
+#X connect 11 0 45 0;
+#X connect 12 0 46 0;
+#X connect 13 0 47 0;
+#X connect 14 0 48 0;
+#X connect 15 0 49 0;
+#X connect 16 0 50 0;
+#X connect 17 0 53 0;
+#X connect 18 0 54 0;
+#X connect 19 0 51 0;
+#X connect 20 0 52 0;
+#X connect 21 0 55 0;
+#X connect 22 0 44 0;
+#X connect 23 0 41 0;
+#X connect 24 0 25 0;
+#X connect 25 0 0 0;
+#X connect 26 0 0 0;
+#X connect 27 0 0 0;
+#X connect 28 0 0 0;
+#X connect 29 0 0 0;
+#X connect 30 0 0 0;
+#X connect 31 0 0 0;
+#X connect 32 0 0 0;
+#X connect 33 0 0 0;
+#X connect 34 0 0 0;
+#X connect 35 0 0 0;
+#X connect 36 0 0 0;
+#X connect 37 0 0 0;
+#X connect 38 0 0 0;
+#X connect 39 0 0 0;
+#X connect 40 0 0 0;
+#X connect 41 0 40 0;
+#X connect 42 0 26 0;
+#X connect 43 0 27 0;
+#X connect 44 0 39 0;
+#X connect 45 0 28 0;
+#X connect 46 0 29 0;
+#X connect 47 0 30 0;
+#X connect 48 0 31 0;
+#X connect 49 0 32 0;
+#X connect 50 0 33 0;
+#X connect 51 0 36 0;
+#X connect 52 0 37 0;
+#X connect 53 0 34 0;
+#X connect 54 0 35 0;
+#X connect 55 0 38 0;
+#X coords 0 -1 1 1 240 30 2 100 100;
+#X restore 304 355 pd MadMapperScheduler;
+#N canvas 122 192 1177 361 MadMapperScheduler 0;
+#X obj 101 109 cnv 20 478 20 empty ColorForm empty 0 0 1 14 -99865
+-1 1.04858e+06;
+#X obj 340 118 nbx 2 12 1 99 0 0 \$0-A \$0-B MadMapper_Scheduler -105
+7 1 9 -128992 -262144 -262144 1 256;
+#X msg 139 287 send /argo/S\$1 1;
+#X text 3 288 Scheduler Sx active ->;
+#X obj 281 238 f, f 4;
+#X msg 281 262 send /argo/S\$1 0;
+#X obj 214 211 t f f b;
+#X obj 17 33 inlet;
+#X obj 215 325 outlet;
+#X text 115 262 Scheduler avant inactive ->;
+#X obj 53 33 inlet;
+#X obj 89 33 inlet;
+#X obj 125 33 inlet;
+#X obj 161 33 inlet;
+#X obj 197 33 inlet;
+#X obj 233 33 inlet;
+#X obj 269 33 inlet;
+#X obj 305 33 inlet;
+#X obj 341 33 inlet;
+#X obj 377 33 inlet;
+#X obj 413 33 inlet;
+#X obj 449 33 inlet;
+#X obj 485 33 inlet;
+#X obj 521 33 inlet;
+#X obj 557 33 inlet;
+#X obj 100 103 bng 15 250 50 0 \$0-A \$0-B 1 5 8 1 9 -128992 -4032
+-262144;
+#X msg 9 151 1;
+#X msg 38 151 2;
+#X msg 67 151 3;
+#X msg 97 151 4;
+#X msg 126 151 5;
+#X msg 158 151 6;
+#X msg 187 151 7;
+#X msg 216 151 8;
+#X msg 245 151 9;
+#X msg 276 151 10;
+#X msg 307 151 11;
+#X msg 338 151 12;
+#X msg 367 151 13;
+#X msg 397 151 14;
+#X msg 427 151 15;
+#X msg 459 151 16;
+#X obj 325 103 bng 15 250 50 0 \$0-A \$0-B 16 2 8 1 9 -128992 -4032
+-262144;
+#X obj 115 103 bng 15 250 50 0 \$0-A \$0-B 2 5 8 1 9 -128992 -4032
+-262144;
+#X obj 130 103 bng 15 250 50 0 \$0-A \$0-B 3 5 8 1 9 -128992 -4032
+-262144;
+#X obj 310 103 bng 15 250 50 0 \$0-A \$0-B 15 2 8 1 9 -128992 -4032
+-262144;
+#X obj 145 103 bng 15 250 50 0 \$0-A \$0-B 4 5 8 1 9 -128992 -4032
+-262144;
+#X obj 160 103 bng 15 250 50 0 \$0-A \$0-B 5 5 8 1 9 -128992 -4032
+-262144;
+#X obj 175 103 bng 15 250 50 0 \$0-A \$0-B 6 5 8 1 9 -128992 -4032
+-262144;
+#X obj 190 103 bng 15 250 50 0 \$0-A \$0-B 7 5 8 1 9 -128992 -4032
+-262144;
+#X obj 205 103 bng 15 250 50 0 \$0-A \$0-B 8 5 8 1 9 -128992 -4032
+-262144;
+#X obj 220 103 bng 15 250 50 0 \$0-A \$0-B 9 5 8 1 9 -128992 -4032
+-262144;
+#X obj 265 103 bng 15 250 50 0 \$0-A \$0-B 12 2 8 1 9 -128992 -4032
+-262144;
+#X obj 280 103 bng 15 250 50 0 \$0-A \$0-B 13 2 8 1 9 -128992 -4032
+-262144;
+#X obj 235 103 bng 15 250 50 0 \$0-A \$0-B 10 2 8 1 9 -128992 -4032
+-262144;
+#X obj 250 103 bng 15 250 50 0 \$0-A \$0-B 11 2 8 1 9 -128992 -4032
+-262144;
+#X obj 295 103 bng 15 250 50 0 \$0-A \$0-B 14 2 8 1 9 -128992 -4032
+-262144;
+#X text 584 103 2-4-2019;
+#X obj 593 33 inlet;
+#X obj 629 33 inlet;
+#X obj 665 33 inlet;
+#X obj 701 33 inlet;
+#X obj 737 33 inlet;
+#X obj 773 33 inlet;
+#X obj 809 33 inlet;
+#X obj 845 33 inlet;
+#X obj 881 33 inlet;
+#X obj 917 33 inlet;
+#X obj 953 33 inlet;
+#X obj 989 33 inlet;
+#X obj 1025 33 inlet;
+#X obj 1061 33 inlet;
+#X obj 1097 33 inlet;
+#X obj 1133 33 inlet;
+#X obj 340 103 bng 15 250 50 0 \$0-A \$0-B 17 2 8 1 9 -128992 -4032
+-262144;
+#X obj 565 103 bng 15 250 50 0 \$0-A \$0-B 32 3 8 1 9 -128992 -4032
+-262144;
+#X obj 355 103 bng 15 250 50 0 \$0-A \$0-B 18 2 8 1 9 -128992 -4032
+-262144;
+#X obj 370 103 bng 15 250 50 0 \$0-A \$0-B 19 2 8 1 9 -128992 -4032
+-262144;
+#X obj 550 103 bng 15 250 50 0 \$0-A \$0-B 31 3 8 1 9 -128992 -4032
+-262144;
+#X obj 385 103 bng 15 250 50 0 \$0-A \$0-B 20 3 8 1 9 -128992 -4032
+-262144;
+#X obj 400 103 bng 15 250 50 0 \$0-A \$0-B 21 3 8 1 9 -128992 -4032
+-262144;
+#X obj 415 103 bng 15 250 50 0 \$0-A \$0-B 22 3 8 1 9 -128992 -4032
+-262144;
+#X obj 430 103 bng 15 250 50 0 \$0-A \$0-B 23 3 8 1 9 -128992 -4032
+-262144;
+#X obj 445 103 bng 15 250 50 0 \$0-A \$0-B 24 3 8 1 9 -128992 -4032
+-262144;
+#X obj 460 103 bng 15 250 50 0 \$0-A \$0-B 25 3 8 1 9 -128992 -4032
+-262144;
+#X obj 505 103 bng 15 250 50 0 \$0-A \$0-B 28 3 8 1 9 -128992 -4032
+-262144;
+#X obj 520 103 bng 15 250 50 0 \$0-A \$0-B 29 3 8 1 9 -128992 -4032
+-262144;
+#X obj 475 103 bng 15 250 50 0 \$0-A \$0-B 26 3 8 1 9 -128992 -4032
+-262144;
+#X obj 490 103 bng 15 250 50 0 \$0-A \$0-B 27 3 8 1 9 -128992 -4032
+-262144;
+#X obj 535 103 bng 15 250 50 0 \$0-A \$0-B 30 3 8 1 9 -128992 -4032
+-262144;
+#X obj 1096 314 cnv 15 46 22 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 353 174 321 152 ?.. 0;
+#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 13 121 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 12 53 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X obj 13 97 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X text 13 85 Construit sous / Build under Pd-0.49...;
+#X text 12 109 or Pd 0.43.4-extended;
+#X restore 1099 317 pd ?..;
+#X msg 488 151 17;
+#X msg 517 151 18;
+#X msg 546 151 19;
+#X msg 576 151 20;
+#X msg 605 151 21;
+#X msg 637 151 22;
+#X msg 666 151 23;
+#X msg 696 151 24;
+#X msg 724 151 25;
+#X msg 755 151 26;
+#X msg 786 151 27;
+#X msg 817 151 28;
+#X msg 846 151 29;
+#X msg 876 151 30;
+#X msg 906 151 31;
+#X msg 938 151 32;
+#X text 638 244 Pour MadMapper & OSC;
+#X obj 101 125 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X connect 1 0 6 0;
+#X connect 2 0 8 0;
+#X connect 4 0 5 0;
+#X connect 5 0 8 0;
+#X connect 6 0 4 1;
+#X connect 6 1 2 0;
+#X connect 6 2 4 0;
+#X connect 7 0 25 0;
+#X connect 10 0 43 0;
+#X connect 11 0 44 0;
+#X connect 12 0 46 0;
+#X connect 13 0 47 0;
+#X connect 14 0 48 0;
+#X connect 15 0 49 0;
+#X connect 16 0 50 0;
+#X connect 17 0 51 0;
+#X connect 18 0 54 0;
+#X connect 19 0 55 0;
+#X connect 20 0 52 0;
+#X connect 21 0 53 0;
+#X connect 22 0 56 0;
+#X connect 23 0 45 0;
+#X connect 24 0 42 0;
+#X connect 25 0 26 0;
+#X connect 26 0 1 0;
+#X connect 27 0 1 0;
+#X connect 28 0 1 0;
+#X connect 29 0 1 0;
+#X connect 30 0 1 0;
+#X connect 31 0 1 0;
+#X connect 32 0 1 0;
+#X connect 33 0 1 0;
+#X connect 34 0 1 0;
+#X connect 35 0 1 0;
+#X connect 36 0 1 0;
+#X connect 37 0 1 0;
+#X connect 38 0 1 0;
+#X connect 39 0 1 0;
+#X connect 40 0 1 0;
+#X connect 41 0 1 0;
+#X connect 42 0 41 0;
+#X connect 43 0 27 0;
+#X connect 44 0 28 0;
+#X connect 45 0 40 0;
+#X connect 46 0 29 0;
+#X connect 47 0 30 0;
+#X connect 48 0 31 0;
+#X connect 49 0 32 0;
+#X connect 50 0 33 0;
+#X connect 51 0 34 0;
+#X connect 52 0 37 0;
+#X connect 53 0 38 0;
+#X connect 54 0 35 0;
+#X connect 55 0 36 0;
+#X connect 56 0 39 0;
+#X connect 58 0 74 0;
+#X connect 59 0 76 0;
+#X connect 60 0 77 0;
+#X connect 61 0 79 0;
+#X connect 62 0 80 0;
+#X connect 63 0 81 0;
+#X connect 64 0 82 0;
+#X connect 65 0 83 0;
+#X connect 66 0 84 0;
+#X connect 67 0 87 0;
+#X connect 68 0 88 0;
+#X connect 69 0 85 0;
+#X connect 70 0 86 0;
+#X connect 71 0 89 0;
+#X connect 72 0 78 0;
+#X connect 73 0 75 0;
+#X connect 74 0 92 0;
+#X connect 75 0 107 0;
+#X connect 76 0 93 0;
+#X connect 77 0 94 0;
+#X connect 78 0 106 0;
+#X connect 79 0 95 0;
+#X connect 80 0 96 0;
+#X connect 81 0 97 0;
+#X connect 82 0 98 0;
+#X connect 83 0 99 0;
+#X connect 84 0 100 0;
+#X connect 85 0 103 0;
+#X connect 86 0 104 0;
+#X connect 87 0 101 0;
+#X connect 88 0 102 0;
+#X connect 89 0 105 0;
+#X connect 92 0 1 0;
+#X connect 93 0 1 0;
+#X connect 94 0 1 0;
+#X connect 95 0 1 0;
+#X connect 96 0 1 0;
+#X connect 97 0 1 0;
+#X connect 98 0 1 0;
+#X connect 99 0 1 0;
+#X connect 100 0 1 0;
+#X connect 101 0 1 0;
+#X connect 102 0 1 0;
+#X connect 103 0 1 0;
+#X connect 104 0 1 0;
+#X connect 105 0 1 0;
+#X connect 106 0 1 0;
+#X connect 107 0 1 0;
+#X coords 0 -1 1 1 480 30 2 100 100;
+#X restore 250 282 pd MadMapperScheduler;
+#X text 563 405 ReceiveOSC;
+#X text 590 423 V;
+#X text 590 416 |;
+#N canvas 342 371 488 329 ARGO 0;
+#X obj 101 101 cnv 20 204 28 empty ColorForm empty 0 0 1 14 -99865
+-1 1.04858e+06;
+#X obj 103 106 hsl 201 12 0 100 0 0 \$0-A ColorForm PositionMedia=0
+0 7 1 9 -4032 -258113 -1 0 0;
+#X obj 100 276 outlet;
+#X obj 100 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 100 125 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 392 130 cnv 15 46 22 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 353 174 321 152 ?.. 0;
+#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 13 121 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 12 53 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X obj 13 97 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X text 13 85 Construit sous / Build under Pd-0.49...;
+#X text 12 109 or Pd 0.43.4-extended;
+#X restore 395 133 pd ?..;
+#X obj 99 7 inlet;
+#N canvas 389 277 228 160 label 0;
+#X msg 15 103 label \$1;
+#X obj 14 36 expr (int(1000 * $f1) / 1000) \;;
+#X obj 14 12 inlet;
+#X obj 15 126 outlet;
+#X obj 15 81 cyclone/tosymbol;
+#X obj 15 59 cyclone/sprintf PositionMedia=%s;
+#X connect 0 0 3 0;
+#X connect 1 0 5 0;
+#X connect 2 0 1 0;
+#X connect 4 0 0 0;
+#X connect 5 0 4 0;
+#X restore 30 105 pd label;
+#X obj 369 29 cnv 15 100 70 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#X text 392 31 library:;
+#X text 373 43 pddp;
+#X text 373 54 cyclone;
+#X obj 294 276 outlet;
+#X text 299 292 Bang;
+#X obj 294 118 bng 12 250 50 0 \$0-A \$0-B empty 15 6 1 9 -128992 -4032
+-1;
+#X obj 295 125 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 99 30 mrpeach/routeOSC /PositionMedia;
+#X obj 243 225 sel 1;
+#X text 23 7 MadMapper ->;
+#X obj 243 181 > 0.995;
+#X obj 271 118 nbx 2 12 0 99 0 1 \$0-A ColorTime empty 0 7 1 9 -128992
+-262144 -1 86 256;
+#X obj 243 203 change;
+#X obj 99 75 * 100;
+#X obj 229 276 outlet;
+#X text 234 292 Bang;
+#X obj 229 118 bng 12 250 50 0 \$0-A \$0-B empty 15 6 1 9 -128992 -4032
+-1;
+#X obj 230 125 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 176 225 sel 1;
+#X obj 176 181 > 0.995;
+#X obj 206 118 nbx 2 12 0 99 0 1 \$0-A ColorTime empty 0 7 1 9 -128992
+-262144 -262144 71 256;
+#X obj 176 203 change;
+#X obj 163 276 outlet;
+#X text 168 292 Bang;
+#X obj 163 118 bng 12 250 50 0 \$0-A \$0-B empty 15 6 1 9 -128992 -4032
+-1;
+#X obj 164 125 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 112 225 sel 1;
+#X obj 112 181 > 0.995;
+#X obj 140 118 nbx 2 12 0 99 0 1 \$0-A ColorTime empty 0 7 1 9 -128992
+-262144 -4032 28 256;
+#X obj 112 203 change;
+#X text 373 64 mrpeach;
+#X text 334 202 Pour MadMapper & OSC;
+#X obj 199 7 loadbang;
+#X msg 115 52 0;
+#X text 290 80 8 4 2019;
+#X connect 1 0 8 0;
+#X connect 1 0 2 0;
+#X connect 1 0 20 0;
+#X connect 1 0 29 0;
+#X connect 1 0 37 0;
+#X connect 7 0 17 0;
+#X connect 8 0 1 0;
+#X connect 15 0 13 0;
+#X connect 17 0 23 0;
+#X connect 18 0 15 0;
+#X connect 20 0 22 0;
+#X connect 21 0 20 1;
+#X connect 22 0 18 0;
+#X connect 23 0 1 0;
+#X connect 26 0 24 0;
+#X connect 28 0 26 0;
+#X connect 29 0 31 0;
+#X connect 30 0 29 1;
+#X connect 31 0 28 0;
+#X connect 34 0 32 0;
+#X connect 36 0 34 0;
+#X connect 37 0 39 0;
+#X connect 38 0 37 1;
+#X connect 39 0 36 0;
+#X connect 42 0 43 0;
+#X connect 43 0 23 0;
+#X coords 0 -1 1 1 206 30 2 100 100;
+#X restore 590 437 pd ARGO;
+#X connect 30 0 31 0;
+#X connect 36 0 31 0;
+#X connect 37 0 31 0;

@@ -1,0 +1,428 @@
+#N canvas 428 65 606 348 10;
+#N canvas 468 88 516 353 ARGO 0;
+#X obj 100 204 outlet~;
+#X obj 202 201 outlet~;
+#X obj 100 180 sig~;
+#X obj 202 177 sig~;
+#X obj 209 125 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 101 125 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 29 78 cnv 15 41 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 350 196 381 103 ? 0;
+#X obj 5 49 cnv 15 370 38 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X text 6 65 Voir/Look at: http://puredata.info/downloads;
+#X obj 4 12 cnv 18 370 30 empty empty ARGOPdMiniModules 1 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 7 31 cnv 10 10 10 empty empty Gerard 0 5 1 9 -4033 -1 1.04858e+06
+;
+#X obj 38 31 cnv 10 10 10 empty empty Paresys 0 5 1 9 -4033 -1 1.04858e+06
+;
+#X obj 175 20 cnv 10 10 10 empty empty http://pagesperso-orange.fr/Paresys/ARGOPd/
+0 5 1 9 -4033 -1 1.04858e+06;
+#X obj 175 31 cnv 10 10 10 empty empty http://gerard.paresys.free.fr/ARGOPd/
+0 5 1 9 -4033 -1 1.04858e+06;
+#X text 6 51 Construit sous / Build under Pd 0.41.4-extended;
+#X restore 35 85 pd ?;
+#X obj 20 43 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 543 378 513 105 Help 0;
+#X text 22 20 "get_pos" = if my_canvas has a receive-name and a send-name
+;
+#X text 380 20 and you send the;
+#X text 378 36 coordinates.;
+#X text 25 36 message "get_pos" to it \, you receive the current x-
+and y-;
+#X text 26 53 Pd-0.41.4-extended.app/Contents/Resources/extra/iemlib/7_guis-INTRO.pd
+;
+#X restore 27 49 pd Help;
+#X text 116 223 X;
+#X text 217 217 Y;
+#X obj 111 57 / 100;
+#X obj 245 57 / -100;
+#X obj 246 -102 key;
+#X obj 246 -79 sel 90 122;
+#X obj 100 112 nbx 5 12 -10 10 0 0 \$0-A ColorTime empty 0 0 1 9 -262144
+-1 -1 0 256;
+#X obj 177 112 nbx 5 12 -10 10 0 0 \$0-A ColorTime empty 0 0 1 9 -262144
+-1 -1 0 256;
+#X msg -27 183 get_pos;
+#X obj 112 -77 unpack 1 2;
+#X obj 100 100 tgl 12 1 \$0-A \$0-B Visible 14 6 1 9 -262144 -1 -1
+0 1;
+#X obj 126 -17 int;
+#X obj 111 33 - 0;
+#X obj 258 -15 int;
+#X obj 245 31 - 0;
+#X obj -27 161 metro 20;
+#X obj 126 8 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj 259 10 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj 111 -47 change;
+#X obj 169 -45 change;
+#X obj 245 -51 t b b;
+#X obj 21 -99 loadbang;
+#X obj 22 -75 delay 1000;
+#X obj 111 -102 r \$0-SendCanvas1;
+#X obj -108 203 s pd-Surface;
+#X msg -110 182 vis 1;
+#N canvas 169 22 314 270 Surface 0;
+#X obj 37 0 cnv 1 1 200 empty empty empty 20 12 0 14 -4034 -66577 0
+;
+#X obj -61 100 cnv 1 200 1 empty empty empty 20 12 0 14 -4034 -66577
+0;
+#X obj 24 74 cnv 11 11 11 \$0-SendCanvas1 \$0-ReceiveGetPos1 empty
+20 12 0 14 -258113 -66577 0;
+#X text -3 226 Taper z = zero;
+#X text -112 209 En mode Edit (Ctrl E ou Pomme E) déplacer le carré
+;
+#X restore -101 224 pd Surface;
+#X msg -185 181 editmode 1;
+#X obj -151 158 t b b;
+#X obj -100 42 cnv 15 100 60 empty empty empty 20 12 0 14 -258113 -66577
+0;
+#X text -95 46 ATTENTION;
+#X text -85 60 Ce MiniModule;
+#X text -84 71 n'est pas;
+#X text -83 82 duplicable;
+#X obj 148 102 cnv 10 20 10 empty ColorAmpli Control-2D 1 5 1 14 -262144
+-1 1.04858e+06;
+#X obj -95 131 sel 1;
+#X obj -26 205 s \$0-ReceiveGetPos1;
+#X msg -68 183 vis 0;
+#X text 166 81 14 2 2010;
+#X connect 2 0 0 0;
+#X connect 3 0 1 0;
+#X connect 12 0 16 0;
+#X connect 13 0 17 0;
+#X connect 14 0 15 0;
+#X connect 15 0 30 0;
+#X connect 15 1 30 0;
+#X connect 16 0 2 0;
+#X connect 17 0 3 0;
+#X connect 18 0 46 0;
+#X connect 19 0 28 0;
+#X connect 19 1 29 0;
+#X connect 20 0 25 0;
+#X connect 20 0 45 0;
+#X connect 21 0 26 0;
+#X connect 22 0 12 0;
+#X connect 23 0 27 0;
+#X connect 24 0 13 0;
+#X connect 25 0 18 0;
+#X connect 26 0 22 1;
+#X connect 27 0 24 1;
+#X connect 28 0 22 0;
+#X connect 28 0 21 1;
+#X connect 29 0 24 0;
+#X connect 29 0 23 1;
+#X connect 30 0 22 0;
+#X connect 30 0 24 0;
+#X connect 30 1 23 0;
+#X connect 30 1 21 0;
+#X connect 31 0 32 0;
+#X connect 32 0 28 0;
+#X connect 32 0 29 0;
+#X connect 33 0 19 0;
+#X connect 35 0 34 0;
+#X connect 37 0 34 0;
+#X connect 38 0 37 0;
+#X connect 38 1 35 0;
+#X connect 45 0 38 0;
+#X connect 45 1 47 0;
+#X connect 47 0 34 0;
+#X coords 0 -1 1 1 120 30 2 100 100;
+#X restore 22 13 pd ARGO;
+#N canvas 365 62 752 388 ARGO 0;
+#X obj 101 334 outlet~;
+#X obj 294 334 outlet~;
+#X obj 101 311 sig~;
+#X obj 293 311 sig~;
+#X obj 99 51 loadbang;
+#X msg 230 59 color 110 110 110;
+#X msg 100 75 color 190 190 190;
+#X obj 290 300 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 101 300 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 100 12 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 334 205 426 225 Help 0;
+#X obj 4 73 cnv 15 400 100 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X text 7 72 Citation;
+#X text 22 87 Grid is a 2-dimensional control object;
+#X text 21 98 It was inspired by the chaospad device;
+#X text 4 48 change bg color ( from alberto zin );
+#X text 5 36 Library unauthorized;
+#X text 5 10 Object Grid by Yves de Goyon;
+#X text 5 23 http://ydegoyon.free.fr/software.html;
+#X text 107 194 http://gige.xdv.org/pd/externals.php;
+#X text 4 181 Objet similaire: gcanvas (Library Ggee) de Guenter Geiger.
+;
+#X restore 107 18 pd Help;
+#X text 117 353 X;
+#X text 309 350 Y;
+#X obj 100 100 unauthorized/grid grid1 201 -1 1 201 -1 1 1 0.005 0.005
+10 10 118 208;
+#X text 324 186 unauthorized/grid grid1 201 -1 1 201 -1 1 1 0.005 0.005
+10 10 110 132;
+#X text 305 174 <- Objet:;
+#X obj 391 334 cnv 15 52 22 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 353 174 321 152 ?... 0;
+#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 13 121 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 13 97 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X text 13 85 Construit sous / Build under Pd-0.49...;
+#X text 12 109 or Pd 0.43.4-extended;
+#X obj 12 53 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X restore 394 337 pd ?...;
+#X text 242 84 25 8 2019;
+#X connect 2 0 0 0;
+#X connect 3 0 1 0;
+#X connect 4 0 6 0;
+#X connect 5 0 13 0;
+#X connect 6 0 13 0;
+#X connect 13 0 2 0;
+#X connect 13 1 3 0;
+#X coords 0 -1 1 1 201 205 1 100 100;
+#X restore 20 111 pd ARGO;
+#N canvas 277 195 558 341 ARGO 0;
+#X obj 100 181 outlet~;
+#X obj 151 181 outlet~;
+#X obj 100 157 sig~;
+#X obj 151 157 sig~;
+#X obj 155 125 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 101 125 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj -120 -16 cnv 15 41 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 350 196 381 103 ? 0;
+#X obj 5 49 cnv 15 370 38 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X text 6 65 Voir/Look at: http://puredata.info/downloads;
+#X obj 4 12 cnv 18 370 30 empty empty ARGOPdMiniModules 1 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 7 31 cnv 10 10 10 empty empty Gerard 0 5 1 9 -4033 -1 1.04858e+06
+;
+#X obj 38 31 cnv 10 10 10 empty empty Paresys 0 5 1 9 -4033 -1 1.04858e+06
+;
+#X obj 175 20 cnv 10 10 10 empty empty http://pagesperso-orange.fr/Paresys/ARGOPd/
+0 5 1 9 -4033 -1 1.04858e+06;
+#X obj 175 31 cnv 10 10 10 empty empty http://gerard.paresys.free.fr/ARGOPd/
+0 5 1 9 -4033 -1 1.04858e+06;
+#X text 6 51 Construit sous / Build under Pd 0.41.4-extended;
+#X restore -114 -9 pd ?;
+#X obj -63 -15 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 543 378 513 105 Help 0;
+#X text 22 20 "get_pos" = if my_canvas has a receive-name and a send-name
+;
+#X text 380 20 and you send the;
+#X text 378 36 coordinates.;
+#X text 25 36 message "get_pos" to it \, you receive the current x-
+and y-;
+#X text 26 53 Pd-0.41.4-extended.app/Contents/Resources/extra/iemlib/7_guis-INTRO.pd
+;
+#X restore -56 -9 pd Help;
+#X text 116 197 X;
+#X text 166 197 Y;
+#X obj 23 72 / 100;
+#X obj 142 73 / -100;
+#X obj 143 -86 key;
+#X obj 143 -63 sel 90 122;
+#X msg -27 160 get_pos;
+#X obj 23 -56 unpack 1 2;
+#X obj 100 100 tgl 12 1 \$0-A \$0-B Visible 14 6 1 9 -262144 -1 -1
+0 1;
+#X obj 38 -2 int;
+#X obj 23 48 - 0;
+#X obj 155 1 int;
+#X obj 142 47 - 0;
+#X obj -27 138 metro 20;
+#X obj 38 23 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj 156 26 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj 23 -32 change;
+#X obj 81 -30 change;
+#X obj 142 -35 t b b;
+#X obj -67 -84 loadbang;
+#X obj -66 -57 delay 1000;
+#X msg -112 184 vis 1;
+#X msg -187 183 editmode 1;
+#X obj -153 160 t b b;
+#X obj -102 54 cnv 15 100 60 empty empty empty 20 12 0 14 -258113 -66577
+0;
+#X text -97 58 ATTENTION;
+#X text -87 72 Ce MiniModule;
+#X text -86 83 n'est pas;
+#X text -85 94 duplicable;
+#X obj 23 -87 r \$0-SendCanvas2;
+#N canvas 170 315 314 270 Surface23 0;
+#X obj 98 20 cnv 1 1 200 empty empty empty 20 12 0 14 -4034 -66577
+0;
+#X obj 0 120 cnv 1 200 1 empty empty empty 20 12 0 14 -4034 -66577
+0;
+#X obj 82 120 cnv 11 11 11 \$0-SendCanvas2 \$0-ReceiveGetPos2 empty
+20 12 0 14 -258113 -66577 0;
+#X text 48 240 Taper z = zero;
+#X obj 127 101 cnv 11 11 11 \$0-SendCanvas3 \$0-ReceiveGetPos2 empty
+20 12 0 14 -4160 -66577 0;
+#X text -61 225 En mode Edit (Ctrl E ou Pomme E) déplacer les carrés
+;
+#X restore -141 228 pd Surface23;
+#X obj -148 208 s pd-Surface23;
+#X obj 203 181 outlet~;
+#X obj 255 181 outlet~;
+#X obj 203 157 sig~;
+#X obj 255 157 sig~;
+#X obj 269 125 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 213 125 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X text 219 197 X;
+#X text 270 197 Y;
+#X obj 224 74 / 100;
+#X obj 288 73 / -100;
+#X obj 224 -54 unpack 1 2;
+#X obj 239 0 int;
+#X obj 224 50 - 0;
+#X obj 301 1 int;
+#X obj 288 47 - 0;
+#X obj 239 25 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj 302 26 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj 224 -30 change;
+#X obj 282 -28 change;
+#X obj 224 -85 r \$0-SendCanvas3;
+#X text 104 209 rouge;
+#X text 154 209 rouge;
+#X text 207 208 bleu;
+#X text 260 208 bleu;
+#X obj 207 102 cnv 10 20 10 empty ColorAmpli Control-2D 1 5 1 14 -262144
+-1 1.04858e+06;
+#X obj -77 132 sel 1;
+#X obj 100 112 nbx 5 12 -10 10 0 0 \$0-A ColorTime empty 0 0 1 9 -262144
+-1 -1 0 256;
+#X obj 143 112 nbx 5 12 -10 10 0 0 \$0-A ColorTime empty 0 0 1 9 -262144
+-1 -1 0 256;
+#X obj 194 112 nbx 5 12 -10 10 0 0 \$0-A ColorTime empty 0 0 1 9 -262144
+-1 -1 0 256;
+#X obj 237 112 nbx 5 12 -10 10 0 0 \$0-A ColorTime empty 0 0 1 9 -262144
+-1 -1 0 256;
+#X obj -26 182 s \$0-ReceiveGetPos2;
+#X msg -68 183 vis 0;
+#X text 288 102 14 2 2010;
+#X connect 2 0 0 0;
+#X connect 3 0 1 0;
+#X connect 12 0 68 0;
+#X connect 13 0 69 0;
+#X connect 14 0 15 0;
+#X connect 15 0 28 0;
+#X connect 15 1 28 0;
+#X connect 16 0 72 0;
+#X connect 17 0 26 0;
+#X connect 17 1 27 0;
+#X connect 18 0 23 0;
+#X connect 18 0 67 0;
+#X connect 19 0 24 0;
+#X connect 20 0 12 0;
+#X connect 21 0 25 0;
+#X connect 22 0 13 0;
+#X connect 23 0 16 0;
+#X connect 24 0 20 1;
+#X connect 25 0 22 1;
+#X connect 26 0 20 0;
+#X connect 26 0 19 1;
+#X connect 27 0 22 0;
+#X connect 27 0 21 1;
+#X connect 28 0 20 0;
+#X connect 28 0 22 0;
+#X connect 28 0 54 0;
+#X connect 28 0 56 0;
+#X connect 28 1 21 0;
+#X connect 28 1 19 0;
+#X connect 28 1 55 0;
+#X connect 28 1 53 0;
+#X connect 29 0 30 0;
+#X connect 30 0 26 0;
+#X connect 30 0 27 0;
+#X connect 30 0 60 0;
+#X connect 30 0 59 0;
+#X connect 31 0 41 0;
+#X connect 32 0 41 0;
+#X connect 33 0 32 0;
+#X connect 33 1 31 0;
+#X connect 39 0 17 0;
+#X connect 44 0 42 0;
+#X connect 45 0 43 0;
+#X connect 50 0 70 0;
+#X connect 51 0 71 0;
+#X connect 52 0 59 0;
+#X connect 52 1 60 0;
+#X connect 53 0 57 0;
+#X connect 54 0 50 0;
+#X connect 55 0 58 0;
+#X connect 56 0 51 0;
+#X connect 57 0 54 1;
+#X connect 58 0 56 1;
+#X connect 59 0 54 0;
+#X connect 59 0 53 1;
+#X connect 60 0 56 0;
+#X connect 60 0 55 1;
+#X connect 61 0 52 0;
+#X connect 67 0 33 0;
+#X connect 67 1 73 0;
+#X connect 68 0 2 0;
+#X connect 69 0 3 0;
+#X connect 70 0 44 0;
+#X connect 71 0 45 0;
+#X connect 73 0 41 0;
+#X coords 0 -1 1 1 180 30 2 100 100;
+#X restore 22 52 pd ARGO;
+#X obj 214 14 cnv 15 380 70 empty empty empty 20 12 0 14 -258113 -66577
+0;
+#X text 17 317 ExMM1g-Sinus;
+#X obj 535 300 cnv 15 52 22 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 353 174 321 152 ?... 0;
+#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 13 121 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 13 97 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X text 13 85 Construit sous / Build under Pd-0.49...;
+#X text 12 109 or Pd 0.43.4-extended;
+#X obj 12 53 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X restore 538 303 pd ?...;
+#X text 224 23 ATTENTION: ces 2 MiniModules ne peuvent pas etre present
+2 fois dans le meme patch.;
+#X text 222 49 ATTENTION: these 2 MiniModules can not be present 2
+times in the same patch.;

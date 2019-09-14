@@ -1,0 +1,950 @@
+#N canvas 356 64 416 344 10;
+#N canvas 337 44 483 377 ARGO 0;
+#X obj -26 234 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 344 63 467 557 Help 0;
+#X text 22 36 EEG = electroencephalography. = électro-encéphalographie
+;
+#X text 30 515 Made for:;
+#X text 21 62 Simule des datas envoyées par une carte digitale ModularEEG
+avec un firmware P2 par sa prise série.;
+#X obj 23 129 cnv 15 420 370 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X text 27 131 Citation;
+#X text 38 249 P2 uses 17 data bytes to transmit 6 channels of EEG
+data:;
+#X text 57 267 1: sync0 // synchronisation byte 1 = 0xa5 = 165;
+#X text 57 291 3: version // version number = 2;
+#X text 57 279 2: sync1 // synchronisation byte 2 = 0x5a = 90;
+#X text 57 316 5: Chn1low // channel 1 low byte;
+#X text 57 328 6: Chn1high // channel 1 high byte;
+#X text 51 464 17: switches // State of PD5 to PD2 \, in bits 3 to
+0;
+#X text 57 340 7: Chn2low // channel 2 low byte;
+#X text 57 352 8: Chn2high // channel 2 high byte;
+#X text 57 364 9: ...;
+#X text 51 377 10: ...;
+#X text 51 389 11: ...;
+#X text 51 401 12: ...;
+#X text 51 414 13: ...;
+#X text 51 426 14: ...;
+#X text 51 439 15: ...;
+#X text 51 452 16: Chn6high // channel 6 high byte;
+#X text 57 303 4: count // packet counter. Increases by 1 each packet.
+;
+#X text 38 207 The P2 Firmware Protocol was the inital transmission
+protocol of the OpenEEG project \, used by ModularEEG. It is compatible
+with the ElectricGuru application.;
+#X text 39 148 The ModularEEG device is made up of two or more EEG
+amplifiers \, and a 6-channel signal capture board that connects to
+a PC via a standard serial cable. The standard setup has two EEG channels.
+;
+#X obj 22 91 pddp/pddplink http://openeeg.sourceforge.net/doc/modeeg/modeeg.html
+;
+#X obj 21 105 pddp/pddplink http://openeeg.sourceforge.net/doc/modeeg/modeeg_design.html
+;
+#X obj 34 480 pddp/pddplink http://www.shifz.org/brainbay/manuals/brainbay_developer_manual.pdf
+;
+#X obj 40 528 pddp/pddplink http://openeeg.sourceforge.net/doc/;
+#X text 5 11 -MM EEG-SimulPacket;
+#X restore -19 240 pd Help;
+#X msg 313 267 165;
+#X msg 284 267 90;
+#X msg 254 267 2;
+#X obj 170 241 float;
+#X obj 211 241 + 1;
+#X obj 196 267 mod 256;
+#X msg 38 269 15;
+#X obj 88 269 mod 256;
+#X obj 141 269 div 256;
+#X obj 92 185 random 1024;
+#X obj 88 242 t f f;
+#X obj 178 338 outlet;
+#X obj 66 213 expr $f1 + 512 - ($f2 / 2);
+#X msg -13 131 label \$1;
+#X obj -13 87 int;
+#X obj -56 40 cnv 15 170 24 empty empty empty 20 12 0 14 -261682 -66577
+0;
+#X obj 101 43 inlet;
+#X text -54 47 Input anything message ->;
+#X text -54 39 N'importe quel message ->;
+#X obj 101 101 cnv 20 130 34 empty ColorForm EEG-SimulPacket. 15 8
+1 14 -262144 -1 1.04858e+06;
+#X obj 101 131 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 103 115 hsl 127 12 16 1024 1 1 \$0-A \$0-B 128 0 7 1 9 -262144
+-1 -1 6300 0;
+#X obj 100 100 bng 12 50 50 0 \$0-A \$0-B empty 14 6 1 9 -262144 -1
+-1;
+#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X text 236 113 <- Amplitude;
+#X obj 88 143 t b b b b b b b b b b b;
+#X obj -13 109 cyclone/tosymbol;
+#X obj 299 323 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 336 174 309 137 ?. 0;
+#X obj 3 83 cnv 15 300 46 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 3 6 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 26 26 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 64 26 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 7 37 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X text 8 85 Construit sous / Build under Pd 0.43.4-extended;
+#X obj 8 111 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 7 50 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X text 7 98 or Pd-0.46-7 + deken;
+#X restore 303 327 pd ?.;
+#X text 183 79 20 3 2016;
+#X connect 2 0 13 0;
+#X connect 3 0 13 0;
+#X connect 4 0 13 0;
+#X connect 5 0 6 0;
+#X connect 5 0 7 0;
+#X connect 6 0 5 1;
+#X connect 7 0 13 0;
+#X connect 8 0 13 0;
+#X connect 9 0 13 0;
+#X connect 10 0 13 0;
+#X connect 11 0 14 0;
+#X connect 12 0 9 0;
+#X connect 12 1 10 0;
+#X connect 14 0 12 0;
+#X connect 15 0 23 0;
+#X connect 16 0 11 1;
+#X connect 16 0 28 0;
+#X connect 18 0 24 0;
+#X connect 23 0 14 1;
+#X connect 23 0 16 0;
+#X connect 24 0 27 0;
+#X connect 27 0 8 0;
+#X connect 27 1 11 0;
+#X connect 27 2 11 0;
+#X connect 27 3 11 0;
+#X connect 27 4 11 0;
+#X connect 27 5 11 0;
+#X connect 27 6 11 0;
+#X connect 27 7 5 0;
+#X connect 27 8 4 0;
+#X connect 27 9 3 0;
+#X connect 27 10 2 0;
+#X connect 28 0 15 0;
+#X coords 0 -1 1 1 132 36 1 100 100;
+#X restore 26 132 pd ARGO;
+#N canvas 309 88 499 409 ARGO 0;
+#X obj 301 104 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 364 127 402 326 Help 0;
+#X text 16 57 6 filtres passe-bandes pour séparer les ondes mesurées
+par électro-encéphalographie.;
+#X text 16 88 6 bandpass filters to separate the waves measured by
+electroencephalography.;
+#X text 15 39 EEG = electroencephalography. = électro-encéphalographie
+;
+#X text 17 214 Made for:;
+#X obj 16 133 pddp/pddplink http://en.wikipedia.org/wiki/Electroencephalography
+;
+#X obj 16 149 pddp/pddplink http://fr.wikipedia.org/wiki/Rythme_cérébral
+;
+#X obj 16 166 pddp/pddplink http://fr.wikipedia.org/wiki/Électro-encéphalographie
+;
+#X obj 16 181 pddp/pddplink http://www.brainmaster.com/generalinfo/eegbands/eegbands.html
+;
+#X obj 24 229 pddp/pddplink http://openeeg.sourceforge.net/doc/;
+#X obj 22 265 pddp/pddplink http://gerard.paresys.free.fr/Projets/ProjetEEG.html
+;
+#X text 14 14 - MM Flt-EEG;
+#X restore 308 110 pd Help;
+#X obj 101 101 cnv 20 130 34 empty ColorForm Flt-EEG 80 8 1 14 -188398
+-1 1.04858e+06;
+#X obj 101 131 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 197 131 cnv 4 10 4 empty empty empty 0 0 0 9 -1 -66577 0;
+#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 148 131 cnv 4 10 4 empty empty empty 0 0 0 9 -1 -66577 0;
+#X obj 123 131 cnv 4 10 4 empty empty empty 0 0 0 9 -1 -66577 0;
+#X obj 21 290 lop~ 3;
+#X obj 21 312 lop~ 3;
+#X text 26 367 Delta;
+#X text 7 381 0.1Hz...3Hz;
+#X obj 84 249 hip~ 4;
+#X obj 84 270 hip~ 4;
+#X obj 84 291 lop~ 7;
+#X obj 84 312 lop~ 7;
+#X text 89 367 Theta;
+#X text 81 381 4Hz...7Hz;
+#X obj 146 249 hip~ 8;
+#X obj 146 270 hip~ 8;
+#X obj 146 291 lop~ 12;
+#X obj 146 312 lop~ 12;
+#X text 153 367 Alpha;
+#X text 143 381 8Hz...12Hz;
+#X obj 214 249 hip~ 12;
+#X obj 214 270 hip~ 12;
+#X obj 214 291 lop~ 30;
+#X obj 214 312 lop~ 30;
+#X text 224 367 Beta;
+#X text 209 381 12Hz...30Hz;
+#X text 291 367 Gamma;
+#X text 280 381 30Hz...100Hz;
+#X obj 283 247 hip~ 30;
+#X obj 283 268 hip~ 30;
+#X obj 89 71 inlet~;
+#X obj 89 146 hip~ 0.1;
+#X obj 89 167 hip~ 0.1;
+#X obj 89 190 lop~ 100;
+#X obj 89 211 lop~ 100;
+#X obj 21 348 outlet~;
+#X obj 84 347 outlet~;
+#X obj 146 346 outlet~;
+#X obj 214 346 outlet~;
+#X obj 283 347 outlet~;
+#X obj 372 349 outlet~;
+#X obj 221 131 cnv 4 10 4 empty empty empty 0 0 0 9 -1 -66577 0;
+#X obj 172 131 cnv 4 10 4 empty empty empty 0 0 0 9 -1 -66577 0;
+#X obj 142 121 cnv 3 6 6 empty ColorForm Alpha 1 5 1 9 -188398 -1 1.04858e+06
+;
+#X obj 101 121 cnv 3 6 6 empty ColorForm Delta 1 5 1 9 -188398 -1 1.04858e+06
+;
+#X obj 116 114 cnv 3 6 6 empty ColorForm Theta 1 5 1 9 -188398 -1 1.04858e+06
+;
+#X obj 187 121 cnv 3 6 6 empty ColorForm Gamma 1 5 1 9 -188398 -1 1.04858e+06
+;
+#X obj 166 114 cnv 3 6 6 empty ColorForm Beta 1 5 1 9 -188398 -1 1.04858e+06
+;
+#X obj 221 121 cnv 3 6 6 empty ColorForm All 1 5 1 9 -188398 -1 1.04858e+06
+;
+#X text 383 367 All;
+#X text 359 381 0.1Hz...100Hz;
+#X obj 446 371 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 336 174 309 137 ?. 0;
+#X obj 3 83 cnv 15 300 46 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 3 6 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 26 26 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 64 26 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 7 37 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X text 8 85 Construit sous / Build under Pd 0.43.4-extended;
+#X obj 8 111 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 7 50 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X text 7 98 or Pd-0.46-7 + deken;
+#X restore 450 375 pd ?.;
+#X text 171 78 20 3 2016;
+#X connect 8 0 9 0;
+#X connect 9 0 39 0;
+#X connect 12 0 13 0;
+#X connect 13 0 14 0;
+#X connect 14 0 15 0;
+#X connect 15 0 40 0;
+#X connect 18 0 19 0;
+#X connect 19 0 20 0;
+#X connect 20 0 21 0;
+#X connect 21 0 41 0;
+#X connect 24 0 25 0;
+#X connect 25 0 26 0;
+#X connect 26 0 27 0;
+#X connect 27 0 42 0;
+#X connect 32 0 33 0;
+#X connect 33 0 43 0;
+#X connect 34 0 35 0;
+#X connect 35 0 36 0;
+#X connect 36 0 37 0;
+#X connect 37 0 38 0;
+#X connect 38 0 8 0;
+#X connect 38 0 12 0;
+#X connect 38 0 18 0;
+#X connect 38 0 24 0;
+#X connect 38 0 32 0;
+#X connect 38 0 44 0;
+#X coords 0 -1 1 1 132 36 1 100 100;
+#X restore 26 243 pd ARGO;
+#X text 27 31 EEG = electroencephalography. = électro-encéphalographie
+;
+#X text 26 57 Traitement des datas envoyées par une carte digitale
+ModularEEG avec un firmware P2 par sa prise série.;
+#N canvas 311 66 422 449 ARGO 0;
+#X obj -21 38 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 298 113 446 540 Help 0;
+#X text -12 -8 EEG = electroencephalography. = électro-encéphalographie
+;
+#X text -6 473 Made for:;
+#X obj -13 87 cnv 15 420 370 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X text -9 89 Citation;
+#X text 2 207 P2 uses 17 data bytes to transmit 6 channels of EEG data:
+;
+#X text 21 225 1: sync0 // synchronisation byte 1 = 0xa5 = 165;
+#X text 21 249 3: version // version number = 2;
+#X text 21 237 2: sync1 // synchronisation byte 2 = 0x5a = 90;
+#X text 21 274 5: Chn1low // channel 1 low byte;
+#X text 21 286 6: Chn1high // channel 1 high byte;
+#X text 15 422 17: switches // State of PD5 to PD2 \, in bits 3 to
+0;
+#X text 21 298 7: Chn2low // channel 2 low byte;
+#X text 21 310 8: Chn2high // channel 2 high byte;
+#X text 21 322 9: ...;
+#X text 15 335 10: ...;
+#X text 15 347 11: ...;
+#X text 15 359 12: ...;
+#X text 15 372 13: ...;
+#X text 15 384 14: ...;
+#X text 15 397 15: ...;
+#X text 15 410 16: Chn6high // channel 6 high byte;
+#X text 21 261 4: count // packet counter. Increases by 1 each packet.
+;
+#X text 2 165 The P2 Firmware Protocol was the inital transmission
+protocol of the OpenEEG project \, used by ModularEEG. It is compatible
+with the ElectricGuru application.;
+#X text 3 106 The ModularEEG device is made up of two or more EEG amplifiers
+\, and a 6-channel signal capture board that connects to a PC via a
+standard serial cable. The standard setup has two EEG channels.;
+#X text -13 18 Recoit les datas envoyées par une carte digitale ModularEEG
+avec un firmware P2 par sa prise série.;
+#X obj -12 47 pddp/pddplink http://openeeg.sourceforge.net/doc/modeeg/modeeg.html
+;
+#X obj -13 61 pddp/pddplink http://openeeg.sourceforge.net/doc/modeeg/modeeg_design.html
+;
+#X obj -2 438 pddp/pddplink http://www.shifz.org/brainbay/manuals/brainbay_developer_manual.pdf
+;
+#X obj 4 486 pddp/pddplink http://openeeg.sourceforge.net/doc/;
+#X text -28 -33 -MM EEG-receive;
+#X restore -14 44 pd Help;
+#X obj -35 382 cnv 15 300 42 empty empty empty 20 12 0 14 -261682 -66577
+0;
+#X obj 101 101 cnv 10 130 34 empty ColorForm EEG-Receive. 41 8 1 14
+-262144 -1 1.04858e+06;
+#X obj 101 131 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 197 124 tgl 12 0 \$0-A \$0-B Print 15 7 1 9 -262144 -1 -1 0
+1;
+#X obj 188 328 spigot;
+#X msg -29 303 close;
+#X msg 258 232 help;
+#X msg 219 232 info;
+#X msg 162 232 devices;
+#X msg -16 327 open 4;
+#X obj 107 389 outlet;
+#X text -30 406 165 90 2 17 2 104 2 160 1 48 1 117 3 36 2 126 15;
+#X obj 188 355 print Receive;
+#X obj 126 124 nbx 2 12 0 16 0 1 \$0-SendDevice \$0-ReceiveDevice Device
+26 7 1 9 -262144 -1 -1 1 256;
+#X obj 126 112 bng 12 250 50 0 \$0-SendListDevices \$0-ReceiveListDevices
+ListDevices 15 7 1 9 -262144 -1 -1;
+#X obj -45 161 t b f;
+#X msg -46 206 0;
+#X msg 87 232 close;
+#X msg 32 232 open \$1;
+#X msg 32 209 1;
+#X msg -18 183 set \$1;
+#X obj 68 152 sel 1 0;
+#X obj 87 263 spigot;
+#X msg 131 232 1;
+#X obj 100 62 inlet;
+#X obj -92 97 cnv 15 190 20 empty empty empty 20 12 0 14 -261682 -66577
+0;
+#X text -30 382 Series de 17 octets ->;
+#X text -29 394 Par exemple:;
+#X text -91 98 1:Receive 0:Stop Bang:Change ->;
+#X msg -56 280 baud 57600;
+#X obj 32 183 t b b b;
+#X obj 100 100 tgl 12 0 \$0-A \$0-B On 14 7 1 9 -262144 -1 -1 0 1;
+#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 272 396 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 336 174 309 137 ?. 0;
+#X obj 3 83 cnv 15 300 46 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 3 6 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 26 26 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 64 26 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 7 37 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X text 8 85 Construit sous / Build under Pd 0.43.4-extended;
+#X obj 8 111 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 7 50 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X text 7 98 or Pd-0.46-7 + deken;
+#X restore 276 400 pd ?.;
+#X text 174 83 20 3 2016;
+#X obj 107 299 comport/comport 4 57600;
+#X connect 5 0 6 1;
+#X connect 6 0 14 0;
+#X connect 7 0 38 0;
+#X connect 8 0 38 0;
+#X connect 9 0 38 0;
+#X connect 10 0 38 0;
+#X connect 11 0 38 0;
+#X connect 15 0 17 0;
+#X connect 16 0 10 0;
+#X connect 17 0 18 0;
+#X connect 17 1 22 0;
+#X connect 18 0 33 0;
+#X connect 19 0 24 0;
+#X connect 20 0 24 0;
+#X connect 21 0 20 0;
+#X connect 22 0 21 0;
+#X connect 23 0 32 0;
+#X connect 23 1 19 0;
+#X connect 24 0 38 0;
+#X connect 25 0 24 1;
+#X connect 26 0 33 0;
+#X connect 31 0 24 0;
+#X connect 32 1 21 0;
+#X connect 32 2 25 0;
+#X connect 33 0 23 0;
+#X connect 38 0 12 0;
+#X connect 38 0 6 0;
+#X coords 0 -1 1 1 132 36 1 100 100;
+#X restore 170 132 pd ARGO;
+#N canvas 537 81 433 558 ARGO 0;
+#X obj 83 61 cnv 15 340 24 empty empty empty 20 12 0 14 -261682 -66577
+0;
+#X obj 101 101 cnv 20 130 34 empty ColorForm EEG-DecodePacket 3 13
+1 14 -262144 -1 1.04858e+06;
+#X obj 101 144 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 104 180 select 165;
+#X msg 180 230 17;
+#X obj 137 121 nbx 3 12 -1e+37 1e+37 0 0 \$0-A \$0-B empty 0 -8 1 10
+-262144 -1 -1 0 256;
+#X obj 71 398 * 256;
+#X obj 92 422 +;
+#X obj 215 205 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 161 205 t b b b;
+#X msg 145 230 165;
+#X msg 214 232 1;
+#X obj 92 445 / 512;
+#X obj 92 468 - 1;
+#X obj 156 307 print Packet;
+#X text 106 380 Ch1;
+#X text 170 379 Ch2;
+#X obj 153 398 * 256;
+#X obj 174 422 +;
+#X obj 174 445 / 512;
+#X obj 174 468 - 1;
+#X obj 87 65 inlet;
+#X obj 92 492 outlet;
+#X obj 174 491 outlet;
+#X text 89 510 -1...+1;
+#X text 171 511 -1...+1;
+#X text 105 527 Ch1;
+#X text 187 527 Ch2;
+#X text 95 367 10 bits;
+#X text 158 367 10 bits;
+#X obj 139 144 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 101 135 cnv 3 6 6 empty ColorForm Ch1 1 5 1 9 -262144 -1 1.04858e+06
+;
+#X obj 137 135 cnv 3 6 6 empty ColorForm Ch2 1 5 1 9 -262144 -1 1.04858e+06
+;
+#X text 124 59 <- Suite de 17 nombres commencant par 165 90 2;
+#X text 124 70 <- Sequence of 17 numbers starting with 165 90 2;
+#X obj 169 121 tgl 12 0 \$0-A \$0-B Print 15 7 1 9 -262144 -1 -1 0
+1;
+#X obj 156 284 spigot;
+#X text 29 348 165 90 2 Counter;
+#X text 130 348 MSB1;
+#X text 161 349 LSB1;
+#X text 185 349 MSB2;
+#X text 209 349 LSB2;
+#X obj 87 329 unpack 1 2 3 4 5 6 7 8 9 10 11 12;
+#X obj 233 398 * 256;
+#X obj 254 422 +;
+#X obj 254 445 / 512;
+#X obj 254 468 - 1;
+#X obj 300 400 * 256;
+#X obj 321 424 +;
+#X obj 321 447 / 512;
+#X obj 321 470 - 1;
+#X obj 254 492 outlet;
+#X obj 321 493 outlet;
+#X text 251 510 -1...+1;
+#X text 318 513 -1...+1;
+#X text 267 527 Ch3;
+#X text 334 529 Ch4;
+#X obj 180 144 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 178 135 cnv 3 6 6 empty ColorForm Ch3 1 5 1 9 -262144 -1 1.04858e+06
+;
+#X obj 221 144 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 215 135 cnv 3 6 6 empty ColorForm Ch4 1 5 1 9 -262144 -1 1.04858e+06
+;
+#X text 37 117 Counter ->;
+#X obj 87 257 list-abs/list-group 17;
+#X obj 372 515 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 336 174 309 137 ?. 0;
+#X obj 3 83 cnv 15 300 46 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 3 6 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 26 26 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 64 26 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 7 37 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X text 8 85 Construit sous / Build under Pd 0.43.4-extended;
+#X obj 8 111 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 7 50 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X text 7 98 or Pd-0.46-7 + deken;
+#X restore 376 519 pd ?.;
+#X text 235 101 20 3 2016;
+#X obj 11 48 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 33 98 447 550 Help 0;
+#X text 20 31 EEG = electroencephalography. = électro-encéphalographie
+;
+#X text 19 57 Décode les datas envoyées par une carte digitale ModularEEG
+avec un firmware P2 par sa prise série.;
+#X text 26 512 Made for:;
+#X obj 19 126 cnv 15 420 370 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X text 23 128 Citation;
+#X text 34 246 P2 uses 17 data bytes to transmit 6 channels of EEG
+data:;
+#X text 53 264 1: sync0 // synchronisation byte 1 = 0xa5 = 165;
+#X text 53 288 3: version // version number = 2;
+#X text 53 276 2: sync1 // synchronisation byte 2 = 0x5a = 90;
+#X text 53 313 5: Chn1low // channel 1 low byte;
+#X text 53 325 6: Chn1high // channel 1 high byte;
+#X text 47 461 17: switches // State of PD5 to PD2 \, in bits 3 to
+0;
+#X text 53 337 7: Chn2low // channel 2 low byte;
+#X text 53 349 8: Chn2high // channel 2 high byte;
+#X text 53 361 9: ...;
+#X text 47 374 10: ...;
+#X text 47 386 11: ...;
+#X text 47 398 12: ...;
+#X text 47 411 13: ...;
+#X text 47 423 14: ...;
+#X text 47 436 15: ...;
+#X text 47 449 16: Chn6high // channel 6 high byte;
+#X text 53 300 4: count // packet counter. Increases by 1 each packet.
+;
+#X text 34 204 The P2 Firmware Protocol was the inital transmission
+protocol of the OpenEEG project \, used by ModularEEG. It is compatible
+with the ElectricGuru application.;
+#X text 35 145 The ModularEEG device is made up of two or more EEG
+amplifiers \, and a 6-channel signal capture board that connects to
+a PC via a standard serial cable. The standard setup has two EEG channels.
+;
+#X text 4 6 -MM EEG-DecodePacket, f 21;
+#X obj 20 86 pddp/pddplink http://openeeg.sourceforge.net/doc/modeeg/modeeg.html
+;
+#X obj 19 100 pddp/pddplink http://openeeg.sourceforge.net/doc/modeeg/modeeg_design.html
+;
+#X obj 20 86 pddplink http://openeeg.sourceforge.net/doc/modeeg/modeeg.html
+;
+#X obj 30 477 pddp/pddplink http://www.shifz.org/brainbay/manuals/brainbay_developer_manual.pdf
+;
+#X obj 36 525 pddp/pddplink http://openeeg.sourceforge.net/doc/;
+#X restore 18 54 pd Help;
+#X connect 4 1 9 0;
+#X connect 4 1 10 0;
+#X connect 5 0 63 1;
+#X connect 7 0 8 0;
+#X connect 8 0 13 0;
+#X connect 10 0 11 0;
+#X connect 10 1 5 0;
+#X connect 10 2 12 0;
+#X connect 11 0 63 0;
+#X connect 12 0 63 1;
+#X connect 13 0 14 0;
+#X connect 14 0 23 0;
+#X connect 18 0 19 0;
+#X connect 19 0 20 0;
+#X connect 20 0 21 0;
+#X connect 21 0 24 0;
+#X connect 22 0 63 0;
+#X connect 36 0 37 1;
+#X connect 37 0 15 0;
+#X connect 43 0 4 0;
+#X connect 43 3 6 0;
+#X connect 43 4 7 0;
+#X connect 43 5 8 1;
+#X connect 43 6 18 0;
+#X connect 43 7 19 1;
+#X connect 43 8 44 0;
+#X connect 43 9 45 1;
+#X connect 43 10 48 0;
+#X connect 43 11 49 1;
+#X connect 44 0 45 0;
+#X connect 45 0 46 0;
+#X connect 46 0 47 0;
+#X connect 47 0 52 0;
+#X connect 48 0 49 0;
+#X connect 49 0 50 0;
+#X connect 50 0 51 0;
+#X connect 51 0 53 0;
+#X connect 63 0 37 0;
+#X connect 63 0 43 0;
+#X coords 0 -1 1 1 132 49 1 100 100;
+#X restore 170 178 pd ARGO;
+#X text 24 283 ExMM131-EEG;
+#N canvas 366 57 516 509 ARGO 0;
+#X obj 301 104 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 422 90 413 322 Help 0;
+#X text 16 57 6 filtres passe-bandes pour séparer les ondes mesurées
+par électro-encéphalographie.;
+#X text 16 88 6 bandpass filters to separate the waves measured by
+electroencephalography.;
+#X text 15 39 EEG = electroencephalography. = électro-encéphalographie
+;
+#X text 17 214 Made for:;
+#X obj 16 133 pddp/pddplink http://en.wikipedia.org/wiki/Electroencephalography
+;
+#X obj 16 149 pddp/pddplink http://fr.wikipedia.org/wiki/Rythme_cérébral
+;
+#X obj 16 166 pddp/pddplink http://fr.wikipedia.org/wiki/Électro-encéphalographie
+;
+#X obj 16 181 pddp/pddplink http://www.brainmaster.com/generalinfo/eegbands/eegbands.html
+;
+#X obj 24 229 pddp/pddplink http://openeeg.sourceforge.net/doc/;
+#X obj 22 265 pddp/pddplink http://gerard.paresys.free.fr/Projets/ProjetEEG.html
+;
+#X text 14 14 - MM Flt-EEG;
+#X restore 308 110 pd Help;
+#X obj 101 101 cnv 20 130 34 empty ColorForm Flt-EEG-v2 60 8 1 14 -188398
+-1 1.04858e+06;
+#X obj 101 131 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 197 131 cnv 4 10 4 empty empty empty 0 0 0 9 -1 -66577 0;
+#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 148 131 cnv 4 10 4 empty empty empty 0 0 0 9 -1 -66577 0;
+#X obj 123 131 cnv 4 10 4 empty empty empty 0 0 0 9 -1 -66577 0;
+#X obj 21 397 lop~ 3;
+#X obj 21 419 lop~ 3;
+#X text 26 474 Delta;
+#X text 7 488 0.1Hz...3Hz;
+#X obj 84 356 hip~ 4;
+#X obj 84 377 hip~ 4;
+#X obj 84 398 lop~ 7;
+#X obj 84 419 lop~ 7;
+#X text 89 474 Theta;
+#X text 81 488 4Hz...7Hz;
+#X obj 146 356 hip~ 8;
+#X obj 146 377 hip~ 8;
+#X obj 146 398 lop~ 12;
+#X obj 146 419 lop~ 12;
+#X text 153 474 Alpha;
+#X text 143 488 8Hz...12Hz;
+#X obj 214 356 hip~ 12;
+#X obj 214 377 hip~ 12;
+#X obj 214 398 lop~ 30;
+#X obj 214 419 lop~ 30;
+#X text 224 474 Beta;
+#X text 209 488 12Hz...30Hz;
+#X text 291 474 Gamma;
+#X text 280 488 30Hz...100Hz;
+#X obj 283 354 hip~ 30;
+#X obj 283 375 hip~ 30;
+#X obj 89 66 inlet~;
+#X obj 21 455 outlet~;
+#X obj 84 454 outlet~;
+#X obj 146 453 outlet~;
+#X obj 214 453 outlet~;
+#X obj 283 454 outlet~;
+#X obj 372 456 outlet~;
+#X obj 221 131 cnv 4 10 4 empty empty empty 0 0 0 9 -1 -66577 0;
+#X obj 172 131 cnv 4 10 4 empty empty empty 0 0 0 9 -1 -66577 0;
+#X obj 142 121 cnv 3 6 6 empty ColorForm Alpha 1 5 1 9 -188398 -1 1.04858e+06
+;
+#X obj 101 121 cnv 3 6 6 empty ColorForm Delta 1 5 1 9 -188398 -1 1.04858e+06
+;
+#X obj 116 114 cnv 3 6 6 empty ColorForm Theta 1 5 1 9 -188398 -1 1.04858e+06
+;
+#X obj 187 121 cnv 3 6 6 empty ColorForm Gamma 1 5 1 9 -188398 -1 1.04858e+06
+;
+#X obj 166 114 cnv 3 6 6 empty ColorForm Beta 1 5 1 9 -188398 -1 1.04858e+06
+;
+#X obj 221 121 cnv 3 6 6 empty ColorForm All 1 5 1 9 -188398 -1 1.04858e+06
+;
+#X text 383 474 All;
+#X text 359 488 0.1Hz...100Hz;
+#X obj 84 232 cnv 15 420 110 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#X obj 89 145 hip~ 0.1;
+#X obj 89 166 hip~ 0.1;
+#X obj 89 288 lop~ 100;
+#X obj 89 309 lop~ 100;
+#X obj 89 187 lop~ 100;
+#X obj 89 208 lop~ 100;
+#X obj 89 246 lop~ 100;
+#X obj 89 267 lop~ 100;
+#X text 145 234 4 filtres Passe-Bas ajoutÃ©s par rapport Ã  la 1ere
+version;
+#X text 160 286 4 low-pass filters added compared to the first version
+;
+#X text 31 43 6 filtres passe-bandes pour séparer les ondes EEG;
+#X text 31 30 6 bandpass filters to separate the EEG waves;
+#X text 145 247 pour mieux attÃ©nuer les artefacts > 100 Hz \, trÃ©s
+audibles \, crÃ©Ã©s par l'Ã©chantillonnage Ã  environ 250 sample/sec
+des donnÃ©es reÃ§ues depuis la carte OpenEEG.;
+#X text 160 299 to better minimize the artifacts > 100 Hz \, very audible
+\, created by sampling about 250 sample / sec data received from the
+OpenEEG card.;
+#X obj 449 472 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 336 174 309 137 ?. 0;
+#X obj 3 83 cnv 15 300 46 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 3 6 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 26 26 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 64 26 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 7 37 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X text 8 85 Construit sous / Build under Pd 0.43.4-extended;
+#X obj 8 111 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 7 50 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X text 7 98 or Pd-0.46-7 + deken;
+#X restore 453 476 pd ?.;
+#X text 171 78 20 3 2016;
+#X connect 8 0 9 0;
+#X connect 9 0 35 0;
+#X connect 12 0 13 0;
+#X connect 13 0 14 0;
+#X connect 14 0 15 0;
+#X connect 15 0 36 0;
+#X connect 18 0 19 0;
+#X connect 19 0 20 0;
+#X connect 20 0 21 0;
+#X connect 21 0 37 0;
+#X connect 24 0 25 0;
+#X connect 25 0 26 0;
+#X connect 26 0 27 0;
+#X connect 27 0 38 0;
+#X connect 32 0 33 0;
+#X connect 33 0 39 0;
+#X connect 34 0 52 0;
+#X connect 52 0 53 0;
+#X connect 53 0 56 0;
+#X connect 54 0 55 0;
+#X connect 55 0 8 0;
+#X connect 55 0 12 0;
+#X connect 55 0 18 0;
+#X connect 55 0 24 0;
+#X connect 55 0 32 0;
+#X connect 55 0 40 0;
+#X connect 56 0 57 0;
+#X connect 57 0 58 0;
+#X connect 58 0 59 0;
+#X connect 59 0 54 0;
+#X coords 0 -1 1 1 132 36 1 100 100;
+#X restore 170 243 pd ARGO;
+#X obj 27 86 pddp/pddplink http://openeeg.sourceforge.net/doc/modeeg/modeeg.html
+;
+#X obj 26 100 pddp/pddplink http://openeeg.sourceforge.net/doc/modeeg/modeeg_design.html
+;
+#X obj 349 298 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 336 174 309 137 ?. 0;
+#X obj 3 83 cnv 15 300 46 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 3 6 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 26 26 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 64 26 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 7 37 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X text 8 85 Construit sous / Build under Pd 0.43.4-extended;
+#X obj 8 111 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 7 50 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X text 7 98 or Pd-0.46-7 + deken;
+#X restore 353 302 pd ?.;
+#X obj 23 309 pddp/pddplink http://gerard.paresys.free.fr/Theme/Theme10.html
+;
+#N canvas 337 44 450 567 ARGO 0;
+#X obj 310 96 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 33 98 447 550 Help 0;
+#X text 20 31 EEG = electroencephalography. = électro-encéphalographie
+;
+#X text 19 57 Décode les datas envoyées par une carte digitale ModularEEG
+avec un firmware P2 par sa prise série.;
+#X text 26 512 Made for:;
+#X obj 19 126 cnv 15 420 370 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X text 23 128 Citation;
+#X text 34 246 P2 uses 17 data bytes to transmit 6 channels of EEG
+data:;
+#X text 53 264 1: sync0 // synchronisation byte 1 = 0xa5 = 165;
+#X text 53 288 3: version // version number = 2;
+#X text 53 276 2: sync1 // synchronisation byte 2 = 0x5a = 90;
+#X text 53 313 5: Chn1low // channel 1 low byte;
+#X text 53 325 6: Chn1high // channel 1 high byte;
+#X text 47 461 17: switches // State of PD5 to PD2 \, in bits 3 to
+0;
+#X text 53 337 7: Chn2low // channel 2 low byte;
+#X text 53 349 8: Chn2high // channel 2 high byte;
+#X text 53 361 9: ...;
+#X text 47 374 10: ...;
+#X text 47 386 11: ...;
+#X text 47 398 12: ...;
+#X text 47 411 13: ...;
+#X text 47 423 14: ...;
+#X text 47 436 15: ...;
+#X text 47 449 16: Chn6high // channel 6 high byte;
+#X text 53 300 4: count // packet counter. Increases by 1 each packet.
+;
+#X text 34 204 The P2 Firmware Protocol was the inital transmission
+protocol of the OpenEEG project \, used by ModularEEG. It is compatible
+with the ElectricGuru application.;
+#X text 35 145 The ModularEEG device is made up of two or more EEG
+amplifiers \, and a 6-channel signal capture board that connects to
+a PC via a standard serial cable. The standard setup has two EEG channels.
+;
+#X text 4 6 -MM EEG-DecodePacket, f 21;
+#X obj 20 86 pddp/pddplink http://openeeg.sourceforge.net/doc/modeeg/modeeg.html
+;
+#X obj 19 100 pddp/pddplink http://openeeg.sourceforge.net/doc/modeeg/modeeg_design.html
+;
+#X obj 20 86 pddplink http://openeeg.sourceforge.net/doc/modeeg/modeeg.html
+;
+#X obj 30 477 pddp/pddplink http://www.shifz.org/brainbay/manuals/brainbay_developer_manual.pdf
+;
+#X obj 36 525 pddp/pddplink http://openeeg.sourceforge.net/doc/;
+#X restore 317 102 pd Help;
+#X obj 83 50 cnv 15 340 24 empty empty empty 20 12 0 14 -261682 -66577
+0;
+#X obj 101 101 cnv 20 130 34 empty ColorForm EEG-DecodePacket 3 14
+1 14 -262144 -1 1.04858e+06;
+#X obj 101 131 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 104 169 select 165;
+#X msg 180 219 17;
+#X obj 87 318 unpack 1 2 3 4 5 6 7 8;
+#X obj 137 124 nbx 3 12 -1e+37 1e+37 0 0 \$0-A \$0-B empty 0 -8 1 10
+-262144 -1 -1 0 256;
+#X obj 67 387 * 256;
+#X obj 88 411 +;
+#X obj 215 194 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 161 194 t b b b;
+#X msg 145 219 165;
+#X msg 214 221 1;
+#X obj 88 434 / 512;
+#X obj 88 457 - 1;
+#X obj 156 296 print Packet;
+#X text 169 362 Ch1;
+#X text 250 362 Ch2;
+#X obj 190 387 * 256;
+#X obj 211 411 +;
+#X obj 211 434 / 512;
+#X obj 211 457 - 1;
+#X obj 87 54 inlet;
+#X obj 88 481 outlet;
+#X obj 211 480 outlet;
+#X text 85 499 -1...+1;
+#X text 208 500 -1...+1;
+#X text 101 516 Ch1;
+#X text 224 516 Ch2;
+#X text 158 349 10 bits;
+#X text 238 350 10 bits;
+#X obj 221 131 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 101 121 cnv 3 6 6 empty ColorForm Ch1 1 5 1 9 -262144 -1 1.04858e+06
+;
+#X obj 215 121 cnv 3 6 6 empty ColorForm Ch2 1 5 1 9 -262144 -1 1.04858e+06
+;
+#X text 124 48 <- Suite de 17 nombres commencant par 165 90 2;
+#X text 124 59 <- Sequence of 17 numbers starting with 165 90 2;
+#X obj 169 124 tgl 12 0 \$0-A \$0-B Print 15 7 1 9 -262144 -1 -1 0
+1;
+#X obj 156 273 spigot;
+#X text 48 337 165 90 2 Counter;
+#X text 149 337 MSB1;
+#X text 190 338 LSB1;
+#X text 230 337 MSB2;
+#X text 271 338 LSB2;
+#X text 149 134 ^;
+#X text 149 139 |;
+#X text 134 147 Counter;
+#X obj 274 503 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 336 174 309 137 ?. 0;
+#X obj 3 83 cnv 15 300 46 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 3 6 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 26 26 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 64 26 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 7 37 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X text 8 85 Construit sous / Build under Pd 0.43.4-extended;
+#X obj 8 111 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 7 50 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X text 7 98 or Pd-0.46-7 + deken;
+#X restore 278 507 pd ?.;
+#X text 174 83 20 3 2016;
+#X obj 87 246 list-abs/list-group 17;
+#X obj 297 164 cnv 15 100 70 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#X text 320 166 library:;
+#X text 301 178 pddp;
+#X text 301 211 list-abs;
+#X connect 6 1 12 0;
+#X connect 6 1 13 0;
+#X connect 7 0 52 1;
+#X connect 8 0 6 0;
+#X connect 8 3 9 0;
+#X connect 8 4 10 0;
+#X connect 8 5 11 1;
+#X connect 8 6 21 0;
+#X connect 8 7 22 1;
+#X connect 10 0 11 0;
+#X connect 11 0 16 0;
+#X connect 13 0 14 0;
+#X connect 13 1 7 0;
+#X connect 13 2 15 0;
+#X connect 14 0 52 0;
+#X connect 15 0 52 1;
+#X connect 16 0 17 0;
+#X connect 17 0 26 0;
+#X connect 21 0 22 0;
+#X connect 22 0 23 0;
+#X connect 23 0 24 0;
+#X connect 24 0 27 0;
+#X connect 25 0 52 0;
+#X connect 39 0 40 1;
+#X connect 40 0 18 0;
+#X connect 52 0 8 0;
+#X connect 52 0 40 0;
+#X coords 0 -1 1 1 132 36 1 100 100;
+#X restore 26 184 pd ARGO;
