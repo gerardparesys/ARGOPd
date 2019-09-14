@@ -1,0 +1,993 @@
+#N canvas 351 23 490 657 10;
+#X obj 75 615 dac~ 1 2;
+#X obj 197 591 switch~;
+#N canvas 608 166 228 173 ARGOnOff 0;
+#X obj 100 100 tgl 18 1 \$0-SendOnOff \$0-ReceiveOnOff On/Off 20 11
+1 14 -4033 -1 -1 1 1;
+#X obj 99 10 loadbang;
+#X msg 99 33 \; pd dsp 1;
+#X obj 100 129 outlet;
+#X text -50 99 Audio On/Off du patch ->;
+#X text -22 45 Audio General On ->;
+#X text 107 82 17 3 2010;
+#X connect 0 0 3 0;
+#X connect 1 0 2 0;
+#X coords 0 -1 1 1 65 18 2 100 100;
+#X restore 197 573 pd ARGOnOff;
+#X text 202 557 V;
+#X text 202 550 |;
+#N canvas 324 59 331 313 ARGO 0;
+#X obj 101 101 cnv 20 104 34 empty ColorAmpli empty 20 12 0 14 -261299
+-1 1.04858e+06;
+#X obj 85 285 outlet~;
+#X obj 134 104 cnv 10 20 10 empty ColorAmpli Ampli 1 5 1 14 -261299
+-1 1.04858e+06;
+#X obj 85 72 inlet~;
+#X obj 85 260 *~;
+#X obj 103 118 hsl 101 12 -80 20 0 1 \$0-A ColorAmpli 0dB 0 7 1 9 -261299
+-1 -1 8000 0;
+#X msg -24 161 label \$1;
+#X obj -25 138 tosymbol;
+#X obj -25 103 sprintf %ddB;
+#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 101 131 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X text -16 120 -> -80dB..20dB;
+#X text 106 182 -> 0.0001..10 = -80dB..20dB;
+#X text 209 97 5 5 2011;
+#X obj 100 163 expr (pow(10 \, $f1 / 20));
+#X text 107 140 -> -80..20;
+#X obj 227 270 cnv 15 41 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 350 196 308 136 ?? 0;
+#X obj -9 87 cnv 15 300 38 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj -9 10 cnv 18 300 70 empty empty ARGOPdMiniModules 1 10 1 14
+-4033 -1 1.04858e+06;
+#X obj 9 29 cnv 10 10 10 empty empty Gerard 0 5 1 9 -4033 -1 1.04858e+06
+;
+#X obj 40 29 cnv 10 10 10 empty empty Paresys 0 5 1 9 -4033 -1 1.04858e+06
+;
+#X text -8 89 Construit sous / Build under Pd 0.42.5-extended;
+#X obj 39 105 pddplink http://puredata.info/downloads;
+#X obj 3 42 pddplink http://pagesperso-orange.fr/Paresys/ARGOPd/;
+#X obj 3 57 pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X restore 231 277 pd ??;
+#X obj 100 206 sel 0.0001;
+#X msg 100 234 0;
+#X connect 3 0 4 0;
+#X connect 4 0 1 0;
+#X connect 5 0 8 0;
+#X connect 5 0 14 0;
+#X connect 6 0 5 0;
+#X connect 7 0 6 0;
+#X connect 8 0 7 0;
+#X connect 14 0 18 0;
+#X connect 18 0 19 0;
+#X connect 18 1 4 1;
+#X connect 19 0 4 1;
+#X connect 19 0 7 0;
+#X coords 0 -1 1 1 106 36 1 100 100;
+#X restore 97 459 pd ARGO;
+#N canvas 432 42 314 359 ARGO 0;
+#X obj 101 101 cnv 30 37 130 empty ColorAmpli empty 20 12 0 14 -1 -258113
+0;
+#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 102 108 vu 8 120 \$0-B empty 0 0 1 11 -1 -4034 1 0;
+#X obj 42 -112 inlet~;
+#X obj 35 -87 *~;
+#X obj 35 3 snapshot~;
+#X obj 35 26 sqrt;
+#X obj 35 -24 lop~ 10;
+#X obj 35 50 rmstodb;
+#X obj 98 -111 loadbang;
+#X obj 35 73 - 100;
+#X obj 171 26 sqrt;
+#X obj 172 50 rmstodb;
+#X obj 172 73 - 100;
+#X obj 97 -23 metro 200;
+#X obj 236 -97 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 300 65 442 264 Help 0;
+#X obj 12 48 cnv 15 400 150 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X text 16 50 Citation;
+#X text 28 67 peakamp~ tracks and outputs the absolute value of the
+peak amplitude of the incoming signal. It outputs when banged or using
+its own internal clock. The peak value is reset each time peakamp~
+outputs a value.;
+#X text 17 214 par rapport à la version précédente du MM-Vumetre env~
+est remplacé par square~ + lop~ + snapshot~ + sqrt + rmstodb car env~
+consomme beaucoup CPU.;
+#X text 29 123 cyclone library;
+#X text 28 135 http://suita.chopin.edu.pl/~czaja/miXed/externs/cyclone.html
+;
+#X text 29 155 Voir doc Max/MSP MSP46ReferenceManual.pdf;
+#X text 18 14 MM-Vumetre;
+#X restore 243 -91 pd Help;
+#X obj 261 199 cnv 15 41 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 350 196 308 136 ?? 0;
+#X obj -9 87 cnv 15 300 38 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj -9 10 cnv 18 300 70 empty empty ARGOPdMiniModules 1 10 1 14
+-4033 -1 1.04858e+06;
+#X obj 9 29 cnv 10 10 10 empty empty Gerard 0 5 1 9 -4033 -1 1.04858e+06
+;
+#X obj 40 29 cnv 10 10 10 empty empty Paresys 0 5 1 9 -4033 -1 1.04858e+06
+;
+#X text -8 89 Construit sous / Build under Pd 0.42.5-extended;
+#X obj 39 105 pddplink http://puredata.info/downloads;
+#X obj 3 42 pddplink http://pagesperso-orange.fr/Paresys/ARGOPd/;
+#X obj 3 57 pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X restore 265 206 pd ??;
+#X obj 158 -111 r SendFluid;
+#X obj 171 -50 cyclone/peakamp~ 1000;
+#X text 145 106 13 2 2011;
+#X connect 3 0 4 0;
+#X connect 3 0 4 1;
+#X connect 4 0 7 0;
+#X connect 4 0 20 0;
+#X connect 5 0 6 0;
+#X connect 6 0 8 0;
+#X connect 7 0 5 0;
+#X connect 8 0 10 0;
+#X connect 9 0 14 0;
+#X connect 10 0 2 0;
+#X connect 11 0 12 0;
+#X connect 12 0 13 0;
+#X connect 13 0 2 1;
+#X connect 14 0 5 0;
+#X connect 19 0 14 1;
+#X connect 20 0 11 0;
+#X coords 0 -1 1 1 39 132 2 100 100;
+#X restore 133 500 pd ARGO;
+#X obj 173 206 bng 15 50 50 0 empty empty empty 17 7 0 10 -260097 -1
+-1;
+#N canvas 13 111 618 337 ARGO 0;
+#X obj 101 101 cnv 20 105 43 empty ColorForm Markov 44 8 1 14 -261476
+-1 1.04858e+06;
+#X obj 104 121 hsl 101 12 0 100 0 1 \$0-A ColorForm 20 0 7 1 9 -262144
+-1 -1 2000 0;
+#X obj -124 76 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 319 68 359 100 Help 0;
+#X obj -91 39 pddp/pddplink http://fr.wikipedia.org/wiki/Chaîne_de_Markov
+;
+#X obj -91 51 pddp/pddplink http://en.wikipedia.org/wiki/Markov_chain
+;
+#X text -111 18 Processus de Markov à 2 états;
+#X text -113 37 cf:;
+#X restore -117 83 pd Help;
+#X obj 100 100 bng 12 50 50 0 \$0-A \$0-B empty 14 6 1 9 -262144 -1
+-1;
+#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj -140 -14 cnv 15 280 50 empty empty empty 20 12 0 14 -261682
+-66577 0;
+#X obj 100 -11 inlet;
+#X text -57 -7 Input anything message ->;
+#X text -57 -17 N'importe quel message ->;
+#X obj 100 255 outlet;
+#N canvas 613 207 212 161 labelP 0;
+#X msg 15 103 label \$1;
+#X obj 15 81 tosymbol;
+#X obj 14 12 inlet;
+#X obj 15 126 outlet;
+#X obj 104 57 sprintf P=%s;
+#X obj 102 34 expr (int($f1));
+#X connect 0 0 3 0;
+#X connect 1 0 0 0;
+#X connect 2 0 1 0;
+#X restore -6 83 pd labelP;
+#X obj 100 133 bng 12 50 50 0 \$0-A \$0-B empty 14 6 1 9 -262144 -1
+-1;
+#X obj 101 140 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 195 133 bng 12 50 50 0 \$0-A \$0-B empty 14 6 1 9 -262144 -1
+-1;
+#X obj 196 140 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj -8 209 random 101;
+#X obj 77 207 int;
+#X obj 50 233 moses;
+#X obj 195 253 outlet;
+#X text 212 131 31 12 2011;
+#X obj 195 101 tgl 12 1 \$0-A \$0-B empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 196 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj -8 156 t b b;
+#X obj -8 131 spigot;
+#X msg 160 67 0;
+#X obj 417 254 cnv 15 48 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 350 196 308 136 ??? 0;
+#X obj -6 87 cnv 15 300 38 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj -6 10 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14
+-4033 -1 1.04858e+06;
+#X obj 13 31 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 55 30 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X text -1 89 Construit sous / Build under Pd 0.42.5-extended;
+#X obj 6 43 pddp/pddplink http://pagesperso-orange.fr/Paresys/ARGOPd/
+;
+#X obj 6 58 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 46 105 pddp/pddplink http://puredata.info/downloads;
+#X restore 421 258 pd ???;
+#X obj -8 182 delay 2;
+#X text -141 7 Les sorties sont déclenchées 2 ms aprés.;
+#X text -141 21 The outputs are triggered after 2 ms.;
+#X obj 190 -13 cnv 15 280 50 empty empty empty 20 12 0 14 -261682 -66577
+0;
+#X obj 195 -11 inlet;
+#X obj 195 44 bang;
+#X msg 195 67 1;
+#X text 233 -15 <- N'importe quel message;
+#X text 233 -5 <- Input anything message;
+#X text 104 273 bang;
+#X text 201 270 bang;
+#X text -140 -40 Processus de Markov à 2 états;
+#X text 250 7 comment;
+#X connect 1 0 17 0;
+#X connect 4 0 24 0;
+#X connect 7 0 4 0;
+#X connect 11 0 1 0;
+#X connect 12 0 10 0;
+#X connect 14 0 19 0;
+#X connect 16 0 18 0;
+#X connect 17 0 11 0;
+#X connect 17 0 18 1;
+#X connect 18 0 12 0;
+#X connect 18 1 14 0;
+#X connect 21 0 24 1;
+#X connect 23 0 28 0;
+#X connect 23 1 25 0;
+#X connect 24 0 23 0;
+#X connect 25 0 21 0;
+#X connect 28 0 16 0;
+#X connect 32 0 33 0;
+#X connect 33 0 34 0;
+#X connect 34 0 21 0;
+#X coords 0 -1 1 1 107 45 1 100 100;
+#X restore 39 194 pd ARGO;
+#X obj 352 272 bng 15 50 50 0 empty empty empty 17 7 0 10 -260097 -1
+-1;
+#N canvas 469 132 618 337 ARGO 0;
+#X obj 101 101 cnv 20 105 43 empty ColorForm Markov 44 8 1 14 -261476
+-1 1.04858e+06;
+#X obj 104 121 hsl 101 12 0 100 0 1 \$0-A ColorForm 45 0 7 1 9 -262144
+-1 -1 4500 0;
+#X obj -124 76 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 319 68 359 100 Help 0;
+#X obj -91 39 pddp/pddplink http://fr.wikipedia.org/wiki/Chaîne_de_Markov
+;
+#X obj -91 51 pddp/pddplink http://en.wikipedia.org/wiki/Markov_chain
+;
+#X text -111 18 Processus de Markov à 2 états;
+#X text -113 37 cf:;
+#X restore -117 83 pd Help;
+#X obj 100 100 bng 12 50 50 0 \$0-A \$0-B empty 14 6 1 9 -262144 -1
+-1;
+#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj -140 -14 cnv 15 280 50 empty empty empty 20 12 0 14 -261682
+-66577 0;
+#X obj 100 -11 inlet;
+#X text -57 -7 Input anything message ->;
+#X text -57 -17 N'importe quel message ->;
+#X obj 100 255 outlet;
+#N canvas 613 207 212 161 labelP 0;
+#X msg 15 103 label \$1;
+#X obj 15 81 tosymbol;
+#X obj 14 12 inlet;
+#X obj 15 126 outlet;
+#X obj 104 57 sprintf P=%s;
+#X obj 102 34 expr (int($f1));
+#X connect 0 0 3 0;
+#X connect 1 0 0 0;
+#X connect 2 0 1 0;
+#X restore -6 83 pd labelP;
+#X obj 100 133 bng 12 50 50 0 \$0-A \$0-B empty 14 6 1 9 -262144 -1
+-1;
+#X obj 101 140 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 195 133 bng 12 50 50 0 \$0-A \$0-B empty 14 6 1 9 -262144 -1
+-1;
+#X obj 196 140 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj -8 209 random 101;
+#X obj 77 207 int;
+#X obj 50 233 moses;
+#X obj 195 253 outlet;
+#X text 212 131 31 12 2011;
+#X obj 195 101 tgl 12 1 \$0-A \$0-B empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 196 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj -8 156 t b b;
+#X obj -8 131 spigot;
+#X msg 160 67 0;
+#X obj 417 254 cnv 15 48 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 350 196 308 136 ??? 0;
+#X obj -6 87 cnv 15 300 38 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj -6 10 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14
+-4033 -1 1.04858e+06;
+#X obj 13 31 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 55 30 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X text -1 89 Construit sous / Build under Pd 0.42.5-extended;
+#X obj 6 43 pddp/pddplink http://pagesperso-orange.fr/Paresys/ARGOPd/
+;
+#X obj 6 58 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 46 105 pddp/pddplink http://puredata.info/downloads;
+#X restore 421 258 pd ???;
+#X obj -8 182 delay 2;
+#X text -141 7 Les sorties sont déclenchées 2 ms aprés.;
+#X text -141 21 The outputs are triggered after 2 ms.;
+#X obj 190 -13 cnv 15 280 50 empty empty empty 20 12 0 14 -261682 -66577
+0;
+#X obj 195 -11 inlet;
+#X obj 195 44 bang;
+#X msg 195 67 1;
+#X text 233 -15 <- N'importe quel message;
+#X text 233 -5 <- Input anything message;
+#X text 250 7 place le module en position On;
+#X text 104 273 bang;
+#X text 201 270 bang;
+#X text -140 -40 Processus de Markov à 2 états;
+#X connect 1 0 17 0;
+#X connect 4 0 24 0;
+#X connect 7 0 4 0;
+#X connect 11 0 1 0;
+#X connect 12 0 10 0;
+#X connect 14 0 19 0;
+#X connect 16 0 18 0;
+#X connect 17 0 11 0;
+#X connect 17 0 18 1;
+#X connect 18 0 12 0;
+#X connect 18 1 14 0;
+#X connect 21 0 24 1;
+#X connect 23 0 28 0;
+#X connect 23 1 25 0;
+#X connect 24 0 23 0;
+#X connect 25 0 21 0;
+#X connect 28 0 16 0;
+#X connect 32 0 33 0;
+#X connect 33 0 34 0;
+#X connect 34 0 21 0;
+#X coords 0 -1 1 1 107 45 1 100 100;
+#X restore 218 259 pd ARGO;
+#X text 18 39 A simple two-state Markov chain.;
+#X text 18 27 Une simple chaine de Markov à 2 états;
+#X text 190 539 On/Off Audio Patch;
+#X obj 9 8 cnv 15 15 15 empty empty ExMM135c-Markov.pd 0 8 1 14 -262144
+-1 0;
+#N canvas 469 132 618 337 ARGO 0;
+#X obj 101 101 cnv 20 105 43 empty ColorForm Markov 44 8 1 14 -261476
+-1 1.04858e+06;
+#X obj 104 121 hsl 101 12 0 100 0 1 \$0-A ColorForm 30 0 7 1 9 -262144
+-1 -1 3000 0;
+#X obj -124 76 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 319 68 359 100 Help 0;
+#X obj -91 39 pddp/pddplink http://fr.wikipedia.org/wiki/Chaîne_de_Markov
+;
+#X obj -91 51 pddp/pddplink http://en.wikipedia.org/wiki/Markov_chain
+;
+#X text -111 18 Processus de Markov à 2 états;
+#X text -113 37 cf:;
+#X restore -117 83 pd Help;
+#X obj 100 100 bng 12 50 50 0 \$0-A \$0-B empty 14 6 1 9 -262144 -1
+-1;
+#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj -140 -14 cnv 15 280 50 empty empty empty 20 12 0 14 -261682
+-66577 0;
+#X obj 100 -11 inlet;
+#X text -57 -7 Input anything message ->;
+#X text -57 -17 N'importe quel message ->;
+#X obj 100 255 outlet;
+#N canvas 613 207 212 161 labelP 0;
+#X msg 15 103 label \$1;
+#X obj 15 81 tosymbol;
+#X obj 14 12 inlet;
+#X obj 15 126 outlet;
+#X obj 104 57 sprintf P=%s;
+#X obj 102 34 expr (int($f1));
+#X connect 0 0 3 0;
+#X connect 1 0 0 0;
+#X connect 2 0 1 0;
+#X restore -6 83 pd labelP;
+#X obj 100 133 bng 12 50 50 0 \$0-A \$0-B empty 14 6 1 9 -262144 -1
+-1;
+#X obj 101 140 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 195 133 bng 12 50 50 0 \$0-A \$0-B empty 14 6 1 9 -262144 -1
+-1;
+#X obj 196 140 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj -8 209 random 101;
+#X obj 77 207 int;
+#X obj 50 233 moses;
+#X obj 195 253 outlet;
+#X text 212 131 31 12 2011;
+#X obj 195 101 tgl 12 1 \$0-A \$0-B empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 196 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj -8 156 t b b;
+#X obj -8 131 spigot;
+#X msg 160 67 0;
+#X obj 417 254 cnv 15 48 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 350 196 308 136 ??? 0;
+#X obj -6 87 cnv 15 300 38 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj -6 10 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14
+-4033 -1 1.04858e+06;
+#X obj 13 31 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 55 30 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X text -1 89 Construit sous / Build under Pd 0.42.5-extended;
+#X obj 6 43 pddp/pddplink http://pagesperso-orange.fr/Paresys/ARGOPd/
+;
+#X obj 6 58 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 46 105 pddp/pddplink http://puredata.info/downloads;
+#X restore 421 258 pd ???;
+#X obj -8 182 delay 2;
+#X text -141 7 Les sorties sont déclenchées 2 ms aprés.;
+#X text -141 21 The outputs are triggered after 2 ms.;
+#X obj 190 -13 cnv 15 280 50 empty empty empty 20 12 0 14 -261682 -66577
+0;
+#X obj 195 -11 inlet;
+#X obj 195 44 bang;
+#X msg 195 67 1;
+#X text 233 -15 <- N'importe quel message;
+#X text 233 -5 <- Input anything message;
+#X text 250 7 place le module en position On;
+#X text 104 273 bang;
+#X text 201 270 bang;
+#X text -140 -40 Processus de Markov à 2 états;
+#X connect 1 0 17 0;
+#X connect 4 0 24 0;
+#X connect 7 0 4 0;
+#X connect 11 0 1 0;
+#X connect 12 0 10 0;
+#X connect 14 0 19 0;
+#X connect 16 0 18 0;
+#X connect 17 0 11 0;
+#X connect 17 0 18 1;
+#X connect 18 0 12 0;
+#X connect 18 1 14 0;
+#X connect 21 0 24 1;
+#X connect 23 0 28 0;
+#X connect 23 1 25 0;
+#X connect 24 0 23 0;
+#X connect 25 0 21 0;
+#X connect 28 0 16 0;
+#X connect 32 0 33 0;
+#X connect 33 0 34 0;
+#X connect 34 0 21 0;
+#X coords 0 -1 1 1 107 45 1 100 100;
+#X restore 358 195 pd ARGO;
+#X msg 133 262 100;
+#X text 118 178 A;
+#X text 265 239 B;
+#X text 415 175 C;
+#X text 37 379 A B C -->;
+#X text 320 49 Transition table (%);
+#X text 356 70 | A| B| C|;
+#X msg 97 262 60;
+#X msg 404 285 80;
+#X msg 276 327 70;
+#X msg 312 327 66;
+#X msg 438 284 400;
+#X obj 224 130 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 100 256;
+#X obj 348 152 print;
+#X obj 224 154 delay 100;
+#X text 33 84 | <-> 80%;
+#X text 141 94 | <-> 55%;
+#X text 21 74 A | --> 20% --> | B | --> 45% --> | C;
+#X text 33 64 | <-------------------- 30% <-- |;
+#X text 141 84 | <-- 70% <-- |;
+#X text 344 80 |A|80|20| 0|;
+#X text 344 90 |B| 0|55|45|;
+#X text 344 100 |C|30|70| 0|;
+#X obj 112 125 cnv 15 80 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#X obj 171 132 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 116 130 Start ->;
+#N canvas 472 348 372 267 ARGO 0;
+#X obj 34 152 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 344 122 417 366 Help 0;
+#X obj 4 73 cnv 15 400 200 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X text 7 72 Citation;
+#X text 5 37 Library unauthorized;
+#X text 19 146 (invoke with <right mouse>Properties );
+#X text 20 135 You can set the following properties :;
+#X text 40 167 * Width : graphical x size;
+#X text 40 179 * Height : graphical y size;
+#X text 40 192 * Values : number of values ( range is [ 1 \, nvalues
+] );
+#X text 41 206 * Max Occurrences : max number of occurences in a serial
+;
+#X obj 5 51 pddplink http://ydegoyon.free.fr/software.html;
+#X text 22 97 probalizer : outputs integer values according to a drawn
+probability curve \, version 0.4 (ydegoyon@free.fr);
+#X text 6 4 MM-Statistic;
+#X text 5 23 Utilise l'object probalizer de Yves de Goyon;
+#X obj 6 287 cnv 15 350 60 empty empty empty 20 12 0 14 -258113 -66577
+0;
+#X text 13 310 Ne fonctionne pas sous Pd-0.42.5-extended sous Windows
+7;
+#X restore 41 158 pd Help;
+#X obj 88 31 inlet;
+#X msg 53 106 zero;
+#X obj 127 32 loadbang;
+#X obj 88 57 + 1;
+#X obj 115 209 cnv 5 7 12 empty empty 0 2 7 1 11 -262144 -66577 0;
+#X text 163 104 18 7 2011;
+#X obj 129 143 cnv 15 120 58 empty empty empty 20 12 0 14 -258113 -66577
+0;
+#X text 133 142 Pd-0.42.5-extended;
+#X text 133 153 + Windows 7;
+#X text 131 176 ne fonctionne pas;
+#X text 132 165 MM Statistic;
+#X text 131 186 don't work;
+#X text 270 157 <- Message caché;
+#X obj 127 115 probalizer 128 100 128 100 0;
+#X obj 101 101 cnv 5 165 13 empty empty Statistic 115 8 1 14 -262144
+-66577 0;
+#X obj 101 104 cnv 5 25 124 empty empty 100 5 14 1 11 -262144 -66577
+0;
+#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 109 216 cnv 5 150 12 empty empty 0 16 7 1 11 -262144 -66577
+0;
+#X obj 127 103 bng 12 50 50 0 \$0-A \$0-B Reset 15 7 1 9 -262144 -1
+-1;
+#X obj 313 231 cnv 15 48 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 350 196 308 136 ??? 0;
+#X obj -6 87 cnv 15 300 38 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj -6 10 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14
+-4033 -1 1.04858e+06;
+#X obj 13 31 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 55 30 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X text -1 89 Construit sous / Build under Pd 0.42.5-extended;
+#X obj 6 43 pddp/pddplink http://pagesperso-orange.fr/Paresys/ARGOPd/
+;
+#X obj 6 58 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 46 105 pddp/pddplink http://puredata.info/downloads;
+#X restore 317 235 pd ???;
+#X text 219 82 7 6 2012;
+#X obj 245 216 cnv 5 15 12 empty empty 127 2 7 1 11 -262144 -66577
+0;
+#X connect 2 0 5 0;
+#X connect 3 0 15 0;
+#X connect 4 0 20 0;
+#X connect 5 0 15 0;
+#X connect 20 0 3 0;
+#X coords 0 -1 1 1 167 129 1 100 100;
+#X restore 294 367 pd ARGO;
+#X obj 305 500 cnv 15 145 52 empty empty empty 20 12 0 14 -258113 -66577
+0;
+#X text 308 500 MM Statistic;
+#X text 308 534 sous Windows 7;
+#X text 308 523 sous Pd-0.42.5-extended;
+#X text 308 511 ne fonctionne pas;
+#X obj 417 604 cnv 15 48 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 350 196 308 136 ??? 0;
+#X obj -6 87 cnv 15 300 38 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj -6 10 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14
+-4033 -1 1.04858e+06;
+#X obj 13 31 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 55 30 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X text -1 89 Construit sous / Build under Pd 0.42.5-extended;
+#X obj 6 43 pddp/pddplink http://pagesperso-orange.fr/Paresys/ARGOPd/
+;
+#X obj 6 58 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 46 105 pddp/pddplink http://puredata.info/downloads;
+#X restore 421 608 pd ???;
+#N canvas 285 45 618 509 ARGO 0;
+#X obj 309 482 outlet~;
+#X obj 300 9 inlet;
+#N canvas 499 145 264 245 Freq-v6 0;
+#X obj 34 30 inlet;
+#X obj 34 184 outlet;
+#X text 31 201 Hslider;
+#X text 29 9 Hslider;
+#X obj 158 156 clip 0 20000;
+#X obj 158 132 mtof;
+#X obj 158 183 outlet;
+#X text 155 201 Freq Hz;
+#N canvas 220 243 583 317 pitchb-11-2010 0;
+#X obj 70 111 mod 12;
+#X obj 70 135 sel 0 1 2 3 4 5 6 7 8 9 10 11;
+#X msg 246 170 A;
+#X msg 300 170 B;
+#X msg 192 170 G;
+#X msg 3 170 C;
+#X msg 57 170 D;
+#X msg 111 170 E;
+#X msg 138 170 F;
+#X obj 204 1 inlet;
+#X obj 377 115 div 12;
+#X obj 204 79 t f f;
+#X text 381 197 -> Numero de l'octave;
+#X text 213 64 -> Numero MIDI de la note (69 = A3 = 440Hz);
+#X msg 260 260 label \$1;
+#X obj 260 283 outlet;
+#X msg 30 170 Db;
+#X msg 84 170 Eb;
+#X msg 165 170 Gb;
+#X msg 219 170 Ab;
+#X msg 273 170 Bb;
+#X text 369 78 (70 = A#3 = Bb3);
+#X obj 260 238 symbol;
+#X text 11 231 Impossible d'afficher # dans un label;
+#X text 11 243 donc j'affiche b;
+#X obj 204 51 int;
+#X text 255 23 -> pour corriger certaines erreurs de calcul;
+#X obj 377 144 - 12;
+#X text 255 35 et le pb du passage a zero de mod 12;
+#X obj 204 25 + 120.5;
+#X obj 260 213 cyclone/sprintf %s%d;
+#X connect 0 0 1 0;
+#X connect 1 0 5 0;
+#X connect 1 1 16 0;
+#X connect 1 2 6 0;
+#X connect 1 3 17 0;
+#X connect 1 4 7 0;
+#X connect 1 5 8 0;
+#X connect 1 6 18 0;
+#X connect 1 7 4 0;
+#X connect 1 8 19 0;
+#X connect 1 9 2 0;
+#X connect 1 10 20 0;
+#X connect 1 11 3 0;
+#X connect 2 0 30 0;
+#X connect 3 0 30 0;
+#X connect 4 0 30 0;
+#X connect 5 0 30 0;
+#X connect 6 0 30 0;
+#X connect 7 0 30 0;
+#X connect 8 0 30 0;
+#X connect 9 0 29 0;
+#X connect 10 0 27 0;
+#X connect 11 0 0 0;
+#X connect 11 1 10 0;
+#X connect 14 0 15 0;
+#X connect 16 0 30 0;
+#X connect 17 0 30 0;
+#X connect 18 0 30 0;
+#X connect 19 0 30 0;
+#X connect 20 0 30 0;
+#X connect 22 0 14 0;
+#X connect 25 0 11 0;
+#X connect 27 0 30 1;
+#X connect 29 0 25 0;
+#X connect 30 0 22 0;
+#X restore 34 95 pd pitchb-11-2010;
+#X connect 0 0 5 0;
+#X connect 0 0 8 0;
+#X connect 4 0 6 0;
+#X connect 5 0 4 0;
+#X connect 8 0 1 0;
+#X restore 236 190 pd Freq-v6;
+#X obj 301 101 cnv 6 132 49 empty ColorForm Synth6 87 8 1 14 -262144
+-1 1.04858e+06;
+#X obj 300 101 bng 12 50 50 0 \$0-A \$0-B empty 14 6 1 9 -262144 -1
+-1;
+#X obj 301 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 301 146 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 300 34 t b f;
+#X obj 327 61 select 0;
+#X obj 58 9 loadbang;
+#X obj 514 30 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 272 71 601 573 Help 0;
+#X obj 14 291 cnv 15 550 160 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X text 192 405 If the sample rate of pd is set to 44100 \, files having
+the sample rates of 44100 are correctly played \, other files will
+be transposed.;
+#X text 194 378 WARNING The sample rate of the output depends on the
+system sample rate of pd:;
+#X text 22 298 - ATTENTION Le taux d'échantillonnage de la lecture
+du fichier dépends du taux d'échantillonnage de Pd.;
+#X text 34 325 Si le taux d'échantillonnage de Pd est de 44100 (Menu
+Preferences -> Audio Settings...) \, les fichiers échantillonnés à
+44100 Hz sont lus correctement \, sinon ils sont transposés.;
+#X text 14 612 Ajouter:;
+#X text 8 -154 Synth6 = Synthétiseur 6 = Synthesizer 6;
+#X obj 13 95 cnv 15 400 120 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X text 16 94 Citation;
+#X text 12 -66 - Ne lit pas un fichier au format mp3 \, SoundDesigner
+II (.SDII ou .SD2);
+#X text 29 5 error: soundfiler_read: x.aiff: unknown or bad header
+format;
+#X text 16 29 Solution: ouvrir puis sauver le fichier au format aiff
+avec Audacity;
+#X text 15 -34 - Ne lit pas un fichier au format aiff "Entier petit
+boutien" comme les pistes d'un CD Audio copiées avec le finder du Mac.
+Les messages d'erreur s'affichent:;
+#X text 29 16 error: dsp: xxx.aiff: unknown or bad header format;
+#X text 35 109 The soundfiler object reads and writes floating point
+arrays to binary soundfiles which may contain 2 or 3 byte fixed point
+or 4 byte floating point samples in wave \, aiff \, or next formats
+(no floating point aiff \, though.). The number of channels of the
+soundfile need not match the number of arrays given (extras are dropped
+and unsupplied channels are zeroed out.);
+#X obj 13 222 cnv 15 290 60 empty empty empty 20 12 0 14 -258113 -66577
+0;
+#X text 16 226 File < 4e+06 samples;
+#X text 48 238 < 90 sec at 44100 samples/sec;
+#X text 15 -122 - La lecture est déclenchée par la reception à l'entrée
+d'un code MIDI de note.;
+#X text 165 -84 C3 = 261.626 Hz;
+#X text 17 -138 - lit un échantillon audio.;
+#X text 28 -96 Code MIDI 60 = C3 = Do3 lit l'échantillon audio à sa
+vitesse normale.;
+#X text 20 60 - Ouvre automatiquement le fichier Audio s'il se trouve
+dans le même dossier que son patch.;
+#X obj 14 458 cnv 15 580 150 empty empty empty 20 12 0 14 -258113 -66577
+0;
+#X text 17 512 Cela crash Pd...;
+#X text 18 581 4 Coller le MiniModule dans le patch;
+#X text 18 555 2 Fermer le patch d'où il a été copié;
+#X text 290 531 SOLUTION;
+#X text 17 488 Ces MiniModules ne sont pas duplicables directement
+;
+#X text 338 475 Bug under MacOSX.5 or X.6 (not under X.4);
+#X text 241 458 ATTENTION (Pd-0.42.5-extended);
+#X text 17 475 Bug sous MacOSX.5 ou X.6 (pas sous X.4);
+#X text 338 488 These modules are not directly duplicable;
+#X text 338 500 (by doing: Duplicate or Copy + Paste);
+#X text 17 500 (en faisant: Duplicate ou Copier + Coller);
+#X text 338 512 This crash Pd ...;
+#X text 18 543 1 Copier le MiniModule;
+#X text 338 543 1 Copy the MiniModule;
+#X text 338 555 2 Close the patch where it was copied;
+#X text 18 568 3 Ré-ouvrir le patch;
+#X text 338 568 3 Re-open the patch;
+#X text 338 581 4 Paste the MiniModule in the patch;
+#X restore 521 36 pd Help;
+#N canvas 306 172 684 364 RenameArrays 0;
+#X obj 131 40 realtime;
+#X obj 131 64 * 100;
+#X obj 131 87 int;
+#X obj 109 268 pack s s;
+#X msg 109 293 \; \$1 rename \$2;
+#X msg 35 186 set \$1;
+#X text 88 297 (1);
+#X text 12 185 (2);
+#X text 87 219 (3);
+#X text 228 28 array -> Voir:;
+#X text 228 41 Help Browser/2.control.examples/15.array.pd;
+#X text 228 54 Help Browser/2.control.examples/16.more.arrays.pd;
+#X text 228 66 Help Browser/5.reference/all_about_arrays.pd;
+#X obj 78 332 outlet;
+#X obj 177 12 inlet;
+#X text 314 179 Démarrer en nommant les arrays (graph) A et B et en
+mettant A et B dans (3);
+#X text 310 130 SOLUTION:;
+#X text 315 146 (1) Renommer les 2 arrays;
+#X obj 32 331 outlet;
+#X text 312 102 PROBLEME: Comment dupliquer un MiniModule comportant
+un ou plusieurs arrays;
+#X text 314 161 (2) Renommer le message qui renomme les 2 arrays;
+#X obj 66 158 t a a b a;
+#X msg 109 220 A91;
+#N canvas 0 22 844 357 (subpatch) 0;
+#X array A91 100115 float 2;
+#X coords 0 0 100115 1 300 40 0;
+#X restore 374 235 graph;
+#X obj 66 131 cyclone/tosymbol;
+#X obj 66 109 cyclone/sprintf A%d;
+#X obj 109 242 cyclone/tosymbol;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 2 0 25 0;
+#X connect 3 0 4 0;
+#X connect 5 0 22 0;
+#X connect 5 0 18 0;
+#X connect 14 0 0 1;
+#X connect 21 0 5 0;
+#X connect 21 1 13 0;
+#X connect 21 2 22 0;
+#X connect 21 3 3 1;
+#X connect 22 0 26 0;
+#X connect 24 0 21 0;
+#X connect 25 0 24 0;
+#X connect 26 0 3 0;
+#X restore 58 102 pd RenameArrays;
+#N canvas 275 158 590 299 Open 0;
+#X obj 238 267 soundfiler;
+#X obj 235 62 openpanel;
+#X obj 235 89 pack s s;
+#X obj 277 13 inlet;
+#X obj 228 13 inlet;
+#X text 265 146 read -resize -> soundfiler clear save-in-patch flag
+;
+#X text 264 135 Problem;
+#X obj 123 117 stripdir;
+#X obj 123 268 outlet;
+#X obj 276 36 bang;
+#X obj 89 88 bang;
+#X msg 122 244 set \$1;
+#X text 249 194 <- pour conserver le nom original du fichier ds le
+MM;
+#X msg 236 118 read -resize \$1 \$2;
+#X msg 11 195 3.wav;
+#X msg 11 170 set \$1;
+#X obj 10 219 zexy/list2symbol;
+#X obj 121 219 zexy/list2symbol;
+#X obj 124 89 zexy/list2symbol;
+#X connect 1 0 2 0;
+#X connect 1 0 18 0;
+#X connect 2 0 13 0;
+#X connect 3 0 9 0;
+#X connect 4 0 2 1;
+#X connect 4 0 10 0;
+#X connect 7 0 15 0;
+#X connect 7 0 17 0;
+#X connect 9 0 1 0;
+#X connect 10 0 14 0;
+#X connect 11 0 8 0;
+#X connect 13 0 0 0;
+#X connect 14 0 16 0;
+#X connect 15 0 14 0;
+#X connect 16 0 2 0;
+#X connect 16 0 11 0;
+#X connect 17 0 11 0;
+#X connect 18 0 7 0;
+#X restore 145 128 pd Open;
+#X obj 115 2 cnv 15 180 30 empty empty empty 20 12 0 14 -261682 -66577
+0;
+#X text 436 130 <- Click the name to change;
+#X obj 303 117 hsl 129 12 0 128 0 1 \$0-A ColorTime C3 0 7 1 9 -208064
+-1 -1 6000 0;
+#X obj 267 301 / 100;
+#X msg 253 277 10000;
+#X obj 267 254 t b f;
+#X msg 437 290 1;
+#X obj 309 434 tabread4~;
+#X obj 299 348 t b f;
+#X msg 269 375 4.41e+08;
+#X obj 309 404 vline~;
+#X text 358 324 C3 = MIDINote 60 = 261.626Hz;
+#X obj 298 325 * 261626;
+#X obj 376 434 vline~;
+#X obj 309 459 *~;
+#X msg 412 405 1;
+#X obj 403 180 t b b b b;
+#X text 118 2 NoteMIDI;
+#X text 179 1 0..127 = C-2..G8 ->;
+#X text 233 15 ou Bang ->;
+#X text 453 155 <- Anti-Clic 5 ms;
+#X obj 266 228 float;
+#X obj 403 157 delay 5;
+#X msg 376 405 0 5;
+#X obj 545 459 cnv 15 48 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 350 196 308 136 ??? 0;
+#X obj -6 87 cnv 15 300 38 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj -6 10 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14
+-4033 -1 1.04858e+06;
+#X obj 13 31 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 55 30 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X text -1 89 Construit sous / Build under Pd 0.42.5-extended;
+#X obj 6 43 pddp/pddplink http://pagesperso-orange.fr/Paresys/ARGOPd/
+;
+#X obj 6 58 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 46 105 pddp/pddplink http://puredata.info/downloads;
+#X restore 549 463 pd ???;
+#X obj 303 129 hsl 123 15 0 127 0 0 \$0-A \$0-B empty -2 -8 0 10 -262144
+-262144 -1 0 1;
+#X symbolatom 300 129 21 0 0 0 - - #0-A;
+#X text 384 81 14 7 2019;
+#X connect 1 0 7 0;
+#X connect 2 0 16 0;
+#X connect 2 1 35 1;
+#X connect 4 0 36 0;
+#X connect 4 0 37 0;
+#X connect 7 0 4 0;
+#X connect 7 1 8 0;
+#X connect 8 1 16 0;
+#X connect 9 0 12 0;
+#X connect 12 0 21 0;
+#X connect 12 1 13 0;
+#X connect 13 0 41 0;
+#X connect 16 0 2 0;
+#X connect 17 0 26 0;
+#X connect 18 0 17 0;
+#X connect 19 0 18 0;
+#X connect 19 1 17 1;
+#X connect 20 0 24 0;
+#X connect 21 0 28 0;
+#X connect 22 0 23 0;
+#X connect 22 1 24 1;
+#X connect 23 0 24 0;
+#X connect 24 0 21 0;
+#X connect 26 0 22 0;
+#X connect 27 0 28 1;
+#X connect 28 0 0 0;
+#X connect 29 0 27 0;
+#X connect 30 0 29 0;
+#X connect 30 1 26 0;
+#X connect 30 2 20 0;
+#X connect 30 3 35 0;
+#X connect 35 0 19 0;
+#X connect 36 0 30 0;
+#X connect 37 0 27 0;
+#X connect 40 0 13 1;
+#X coords 0 -1 1 1 134 51 1 300 100;
+#X restore 97 365 pd ARGO;
+#X connect 2 0 1 0;
+#X connect 5 0 6 0;
+#X connect 5 0 0 0;
+#X connect 5 0 0 1;
+#X connect 7 0 8 1;
+#X connect 8 0 23 0;
+#X connect 8 0 16 0;
+#X connect 8 0 10 1;
+#X connect 8 1 7 0;
+#X connect 8 1 23 0;
+#X connect 8 1 16 0;
+#X connect 9 0 10 1;
+#X connect 10 0 25 0;
+#X connect 10 0 15 1;
+#X connect 10 0 26 0;
+#X connect 10 1 9 0;
+#X connect 10 1 25 0;
+#X connect 10 1 26 0;
+#X connect 15 0 8 1;
+#X connect 15 0 24 0;
+#X connect 15 0 27 0;
+#X connect 15 1 10 1;
+#X connect 15 1 24 0;
+#X connect 15 1 27 0;
+#X connect 16 0 28 0;
+#X connect 23 0 42 0;
+#X connect 23 0 50 0;
+#X connect 24 0 42 0;
+#X connect 24 0 50 0;
+#X connect 25 0 42 0;
+#X connect 25 0 50 0;
+#X connect 26 0 28 0;
+#X connect 27 0 28 0;
+#X connect 28 0 29 0;
+#X connect 28 0 30 0;
+#X connect 30 0 8 0;
+#X connect 30 0 10 0;
+#X connect 30 0 15 0;
+#X connect 40 0 30 0;
+#X connect 50 0 5 0;

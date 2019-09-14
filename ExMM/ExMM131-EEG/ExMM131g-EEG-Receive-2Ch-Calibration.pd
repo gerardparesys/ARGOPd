@@ -1,0 +1,1004 @@
+#N canvas 278 23 677 455 10;
+#X obj 49 134 switch~;
+#N canvas 608 166 228 173 ARGOnOff 0;
+#X obj 100 100 tgl 18 1 \$0-SendOnOff \$0-ReceiveOnOff On/Off 20 11
+1 14 -4033 -1 -1 1 1;
+#X obj 99 10 loadbang;
+#X msg 99 33 \; pd dsp 1;
+#X obj 100 129 outlet;
+#X text -50 99 Audio On/Off du patch ->;
+#X text -22 45 Audio General On ->;
+#X text 107 82 17 3 2010;
+#X connect 0 0 3 0;
+#X connect 1 0 2 0;
+#X coords 0 -1 1 1 65 18 2 100 100;
+#X restore 49 116 pd ARGOnOff;
+#X text 54 100 V;
+#X text 54 93 |;
+#X text 42 82 On/Off Patch;
+#N canvas 413 140 402 279 ARGO 0;
+#X obj 101 101 cnv 10 95 41 \$0-A \$0-B empty 20 12 0 14 -1 -1 1.04858e+06
+;
+#X obj 101 109 nbx 4 12 0 1e+37 0 0 \$0 \$0-ReceiveCpuPeak CPUPeak
+45 7 1 11 -24198 -1 -24198 4 256;
+#X obj 101 122 nbx 4 12 0 1e+37 0 0 \$0 \$0-ReceiveCpuMean CPUMean
+45 7 1 11 -24198 -1 -24198 3.36 256;
+#X obj 145 -55 cputime;
+#X obj 145 -76 t b b;
+#X text 188 24 (c) musil@iem.kug.ac.at;
+#X text 230 37 IEM KUG;
+#X text 78 18 CPU-load;
+#X obj 144 -125 loadbang;
+#X text 205 48 graz \, austria 2001;
+#X obj 145 -100 metro 500;
+#X obj 145 -34 * 0.2;
+#X text 237 -88 -dsp-load in %;
+#X text 228 -101 measure average- and peak-;
+#X obj 37 18 * 100;
+#X obj 37 63 int;
+#X obj 37 41 + 0.499;
+#X obj 37 86 * 0.01;
+#N canvas 524 162 422 273 1p1zmodif 0;
+#X text 134 89 (c) musil@iem.kug.ac.at;
+#X text 179 99 IEM KUG;
+#X obj 14 195 +;
+#X text 151 108 graz \, austria 2001;
+#X text 135 71 y[n] = a0*x[n] + a1*x[n-1] + b1*y[n-1];
+#X text 18 13 x[n];
+#X text 16 244 y[n];
+#X text 84 111 y[n-1];
+#X text 134 56 <float> control-IIR-filter 1.order;
+#X obj 15 28 inlet;
+#X obj 14 228 outlet;
+#X obj 15 112 * 0.1;
+#X obj 59 156 * 0.9;
+#X text 139 144 a1 = 0;
+#X text 139 155 b1 = 0.9;
+#X text 139 133 a0 = 0.1;
+#X obj 15 50 t f b;
+#X text 135 40 Inspiré de 1p1z;
+#X obj 59 112 f 0;
+#X connect 2 0 10 0;
+#X connect 2 0 18 1;
+#X connect 9 0 16 0;
+#X connect 11 0 2 0;
+#X connect 12 0 2 1;
+#X connect 16 0 11 0;
+#X connect 16 1 18 0;
+#X connect 18 0 12 0;
+#X restore 37 -8 pd 1p1zmodif;
+#X text 146 9 Inspiré de 5.reference/iemabs/help-dsp.pd;
+#X text 141 83 25 3 2010;
+#X connect 3 0 11 0;
+#X connect 4 0 3 0;
+#X connect 4 1 3 1;
+#X connect 8 0 10 0;
+#X connect 10 0 4 0;
+#X connect 11 0 18 0;
+#X connect 11 0 1 0;
+#X connect 14 0 16 0;
+#X connect 15 0 17 0;
+#X connect 16 0 15 0;
+#X connect 17 0 2 0;
+#X connect 18 0 14 0;
+#X coords 0 -1 1 1 97 43 1 100 100;
+#X restore 35 202 pd ARGO;
+#X obj 9 9 cnv 15 15 15 empty empty ExMM131g-EEG-Receive-2Ch-Calibration.pd
+0 8 1 14 -262144 -66577 0;
+#X text 261 194 <- 4 Adjust Amplitudes ->;
+#X obj 153 154 sig~;
+#N canvas 462 219 430 320 ARGO 0;
+#X obj 40 -35 inlet~;
+#X obj 251 108 cnv 10 44 10 empty empty Scope. 1 5 1 14 -262144 -1
+1.04858e+06;
+#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X msg -36 168 frgb 255 0 0;
+#X obj 124 105 nbx 4 12 1 2000 0 1 \$0-A ColorTime ms/div 40 7 1 9
+-208064 -1 -1 20 256;
+#X obj 205 105 tgl 12 1 \$0-A \$0-B Sync 15 6 1 9 -262144 -1 -1 0 1
+;
+#X msg 128 52 delay 0 \, triglevel 0 \, trigger 0;
+#X obj 126 5 sel 0 1;
+#X msg -39 192 brgb 255 255 255;
+#X obj 85 64 * 2;
+#X msg 146 28 delay 1 \, triglevel 0.1 \, trigger 1;
+#X obj 277 -36 inlet~;
+#X obj 289 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj -14 80 t b b b b;
+#X obj -15 57 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 196 -34 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 374 104 413 135 Help 0;
+#X text 24 54 Voir MSP46ReferenceManual.pdf;
+#X text 23 1 utilise l'objet Scope~ de la library cyclone;
+#X text 24 26 Voir Browser -> Pure Data/examples/cyclone/scope-test.pd
+;
+#X text 24 40 Voir Browser -> Pure Data/examples/cyclone/pink-test.pd
+;
+#X text 24 -20 Scope;
+#X restore 203 -28 pd Help;
+#X obj 101 121 cnv 15 199 129 empty empty empty 20 12 0 14 -1 -66577
+0;
+#X obj 40 -11 clip~ -1 1;
+#X obj 277 -12 clip~ -1 1;
+#X msg -24 136 range -1 1;
+#X msg -33 111 bufsize 176;
+#X obj 101 123 cyclone/Scope~ 198 61 40 3 176 -1 1 0 0 0 0 255 0 0
+255 255 255 0;
+#X obj 101 187 cyclone/Scope~ 198 61 40 3 176 -1 1 0 0 0 0 255 0 0
+255 255 255 0;
+#X text 243 85 15 3 2016;
+#X obj 308 224 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 336 174 309 137 ?. 0;
+#X obj 3 83 cnv 15 300 46 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 3 6 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 26 26 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 64 26 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 7 37 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X text 8 85 Construit sous / Build under Pd 0.43.4-extended;
+#X obj 8 111 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 7 50 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X text 7 98 or Pd-0.46-7 + deken;
+#X restore 312 228 pd ?.;
+#X connect 0 0 18 0;
+#X connect 3 0 22 0;
+#X connect 3 0 23 0;
+#X connect 4 0 9 0;
+#X connect 5 0 7 0;
+#X connect 6 0 22 0;
+#X connect 6 0 23 0;
+#X connect 7 0 6 0;
+#X connect 7 1 10 0;
+#X connect 8 0 22 0;
+#X connect 8 0 23 0;
+#X connect 9 0 22 0;
+#X connect 9 0 23 0;
+#X connect 10 0 22 0;
+#X connect 10 0 23 0;
+#X connect 11 0 19 0;
+#X connect 13 0 21 0;
+#X connect 13 1 20 0;
+#X connect 13 2 3 0;
+#X connect 13 3 8 0;
+#X connect 14 0 13 0;
+#X connect 18 0 22 0;
+#X connect 19 0 23 0;
+#X connect 20 0 22 0;
+#X connect 20 0 23 0;
+#X connect 21 0 22 0;
+#X connect 21 0 23 0;
+#X coords 0 -1 1 1 200 150 2 100 100;
+#X restore 131 282 pd ARGO;
+#N canvas 337 44 450 567 ARGO 0;
+#X obj 310 96 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 33 98 447 550 Help 0;
+#X text 20 31 EEG = electroencephalography. = électro-encéphalographie
+;
+#X text 19 57 Décode les datas envoyées par une carte digitale ModularEEG
+avec un firmware P2 par sa prise série.;
+#X text 26 512 Made for:;
+#X obj 19 126 cnv 15 420 370 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X text 23 128 Citation;
+#X text 34 246 P2 uses 17 data bytes to transmit 6 channels of EEG
+data:;
+#X text 53 264 1: sync0 // synchronisation byte 1 = 0xa5 = 165;
+#X text 53 288 3: version // version number = 2;
+#X text 53 276 2: sync1 // synchronisation byte 2 = 0x5a = 90;
+#X text 53 313 5: Chn1low // channel 1 low byte;
+#X text 53 325 6: Chn1high // channel 1 high byte;
+#X text 47 461 17: switches // State of PD5 to PD2 \, in bits 3 to
+0;
+#X text 53 337 7: Chn2low // channel 2 low byte;
+#X text 53 349 8: Chn2high // channel 2 high byte;
+#X text 53 361 9: ...;
+#X text 47 374 10: ...;
+#X text 47 386 11: ...;
+#X text 47 398 12: ...;
+#X text 47 411 13: ...;
+#X text 47 423 14: ...;
+#X text 47 436 15: ...;
+#X text 47 449 16: Chn6high // channel 6 high byte;
+#X text 53 300 4: count // packet counter. Increases by 1 each packet.
+;
+#X text 34 204 The P2 Firmware Protocol was the inital transmission
+protocol of the OpenEEG project \, used by ModularEEG. It is compatible
+with the ElectricGuru application.;
+#X text 35 145 The ModularEEG device is made up of two or more EEG
+amplifiers \, and a 6-channel signal capture board that connects to
+a PC via a standard serial cable. The standard setup has two EEG channels.
+;
+#X text 4 6 -MM EEG-DecodePacket, f 21;
+#X obj 20 86 pddp/pddplink http://openeeg.sourceforge.net/doc/modeeg/modeeg.html
+;
+#X obj 19 100 pddp/pddplink http://openeeg.sourceforge.net/doc/modeeg/modeeg_design.html
+;
+#X obj 20 86 pddplink http://openeeg.sourceforge.net/doc/modeeg/modeeg.html
+;
+#X obj 30 477 pddp/pddplink http://www.shifz.org/brainbay/manuals/brainbay_developer_manual.pdf
+;
+#X obj 36 525 pddp/pddplink http://openeeg.sourceforge.net/doc/;
+#X restore 317 102 pd Help;
+#X obj 83 50 cnv 15 340 24 empty empty empty 20 12 0 14 -261682 -66577
+0;
+#X obj 101 101 cnv 20 130 34 empty ColorForm EEG-DecodePacket 3 14
+1 14 -262144 -1 1.04858e+06;
+#X obj 101 131 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 104 169 select 165;
+#X msg 180 219 17;
+#X obj 87 318 unpack 1 2 3 4 5 6 7 8;
+#X obj 137 124 nbx 3 12 -1e+37 1e+37 0 0 \$0-A \$0-B empty 0 -8 1 10
+-262144 -1 -1 0 256;
+#X obj 67 387 * 256;
+#X obj 88 411 +;
+#X obj 215 194 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 161 194 t b b b;
+#X msg 145 219 165;
+#X msg 214 221 1;
+#X obj 88 434 / 512;
+#X obj 88 457 - 1;
+#X obj 156 296 print Packet;
+#X text 169 362 Ch1;
+#X text 250 362 Ch2;
+#X obj 190 387 * 256;
+#X obj 211 411 +;
+#X obj 211 434 / 512;
+#X obj 211 457 - 1;
+#X obj 87 54 inlet;
+#X obj 88 481 outlet;
+#X obj 211 480 outlet;
+#X text 85 499 -1...+1;
+#X text 208 500 -1...+1;
+#X text 101 516 Ch1;
+#X text 224 516 Ch2;
+#X text 158 349 10 bits;
+#X text 238 350 10 bits;
+#X obj 221 131 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 101 121 cnv 3 6 6 empty ColorForm Ch1 1 5 1 9 -262144 -1 1.04858e+06
+;
+#X obj 215 121 cnv 3 6 6 empty ColorForm Ch2 1 5 1 9 -262144 -1 1.04858e+06
+;
+#X text 124 48 <- Suite de 17 nombres commencant par 165 90 2;
+#X text 124 59 <- Sequence of 17 numbers starting with 165 90 2;
+#X obj 169 124 tgl 12 0 \$0-A \$0-B Print 15 7 1 9 -262144 -1 -1 0
+1;
+#X obj 156 273 spigot;
+#X text 48 337 165 90 2 Counter;
+#X text 149 337 MSB1;
+#X text 190 338 LSB1;
+#X text 230 337 MSB2;
+#X text 271 338 LSB2;
+#X text 149 134 ^;
+#X text 149 139 |;
+#X text 134 147 Counter;
+#X obj 274 503 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 336 174 309 137 ?. 0;
+#X obj 3 83 cnv 15 300 46 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 3 6 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 26 26 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 64 26 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 7 37 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X text 8 85 Construit sous / Build under Pd 0.43.4-extended;
+#X obj 8 111 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 7 50 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X text 7 98 or Pd-0.46-7 + deken;
+#X restore 278 507 pd ?.;
+#X text 174 83 20 3 2016;
+#X obj 87 246 list-abs/list-group 17;
+#X obj 297 164 cnv 15 100 70 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#X text 320 166 library:;
+#X text 301 178 pddp;
+#X text 301 211 list-abs;
+#X connect 6 1 12 0;
+#X connect 6 1 13 0;
+#X connect 7 0 52 1;
+#X connect 8 0 6 0;
+#X connect 8 3 9 0;
+#X connect 8 4 10 0;
+#X connect 8 5 11 1;
+#X connect 8 6 21 0;
+#X connect 8 7 22 1;
+#X connect 10 0 11 0;
+#X connect 11 0 16 0;
+#X connect 13 0 14 0;
+#X connect 13 1 7 0;
+#X connect 13 2 15 0;
+#X connect 14 0 52 0;
+#X connect 15 0 52 1;
+#X connect 16 0 17 0;
+#X connect 17 0 26 0;
+#X connect 21 0 22 0;
+#X connect 22 0 23 0;
+#X connect 23 0 24 0;
+#X connect 24 0 27 0;
+#X connect 25 0 52 0;
+#X connect 39 0 40 1;
+#X connect 40 0 18 0;
+#X connect 52 0 8 0;
+#X connect 52 0 40 0;
+#X coords 0 -1 1 1 132 36 1 100 100;
+#X restore 274 95 pd ARGO;
+#N canvas 309 88 499 409 ARGO 0;
+#X obj 301 104 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 364 127 402 326 Help 0;
+#X text 16 57 6 filtres passe-bandes pour séparer les ondes mesurées
+par électro-encéphalographie.;
+#X text 16 88 6 bandpass filters to separate the waves measured by
+electroencephalography.;
+#X text 15 39 EEG = electroencephalography. = électro-encéphalographie
+;
+#X text 17 214 Made for:;
+#X obj 16 133 pddp/pddplink http://en.wikipedia.org/wiki/Electroencephalography
+;
+#X obj 16 149 pddp/pddplink http://fr.wikipedia.org/wiki/Rythme_cérébral
+;
+#X obj 16 166 pddp/pddplink http://fr.wikipedia.org/wiki/Électro-encéphalographie
+;
+#X obj 16 181 pddp/pddplink http://www.brainmaster.com/generalinfo/eegbands/eegbands.html
+;
+#X obj 24 229 pddp/pddplink http://openeeg.sourceforge.net/doc/;
+#X obj 22 265 pddp/pddplink http://gerard.paresys.free.fr/Projets/ProjetEEG.html
+;
+#X text 14 14 - MM Flt-EEG;
+#X restore 308 110 pd Help;
+#X obj 101 101 cnv 20 130 34 empty ColorForm Flt-EEG 80 8 1 14 -188398
+-1 1.04858e+06;
+#X obj 101 131 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 197 131 cnv 4 10 4 empty empty empty 0 0 0 9 -1 -66577 0;
+#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 148 131 cnv 4 10 4 empty empty empty 0 0 0 9 -1 -66577 0;
+#X obj 123 131 cnv 4 10 4 empty empty empty 0 0 0 9 -1 -66577 0;
+#X obj 21 290 lop~ 3;
+#X obj 21 312 lop~ 3;
+#X text 26 367 Delta;
+#X text 7 381 0.1Hz...3Hz;
+#X obj 84 249 hip~ 4;
+#X obj 84 270 hip~ 4;
+#X obj 84 291 lop~ 7;
+#X obj 84 312 lop~ 7;
+#X text 89 367 Theta;
+#X text 81 381 4Hz...7Hz;
+#X obj 146 249 hip~ 8;
+#X obj 146 270 hip~ 8;
+#X obj 146 291 lop~ 12;
+#X obj 146 312 lop~ 12;
+#X text 153 367 Alpha;
+#X text 143 381 8Hz...12Hz;
+#X obj 214 249 hip~ 12;
+#X obj 214 270 hip~ 12;
+#X obj 214 291 lop~ 30;
+#X obj 214 312 lop~ 30;
+#X text 224 367 Beta;
+#X text 209 381 12Hz...30Hz;
+#X text 291 367 Gamma;
+#X text 280 381 30Hz...100Hz;
+#X obj 283 247 hip~ 30;
+#X obj 283 268 hip~ 30;
+#X obj 89 71 inlet~;
+#X obj 89 146 hip~ 0.1;
+#X obj 89 167 hip~ 0.1;
+#X obj 89 190 lop~ 100;
+#X obj 89 211 lop~ 100;
+#X obj 21 348 outlet~;
+#X obj 84 347 outlet~;
+#X obj 146 346 outlet~;
+#X obj 214 346 outlet~;
+#X obj 283 347 outlet~;
+#X obj 372 349 outlet~;
+#X obj 221 131 cnv 4 10 4 empty empty empty 0 0 0 9 -1 -66577 0;
+#X obj 172 131 cnv 4 10 4 empty empty empty 0 0 0 9 -1 -66577 0;
+#X obj 142 121 cnv 3 6 6 empty ColorForm Alpha 1 5 1 9 -188398 -1 1.04858e+06
+;
+#X obj 101 121 cnv 3 6 6 empty ColorForm Delta 1 5 1 9 -188398 -1 1.04858e+06
+;
+#X obj 116 114 cnv 3 6 6 empty ColorForm Theta 1 5 1 9 -188398 -1 1.04858e+06
+;
+#X obj 187 121 cnv 3 6 6 empty ColorForm Gamma 1 5 1 9 -188398 -1 1.04858e+06
+;
+#X obj 166 114 cnv 3 6 6 empty ColorForm Beta 1 5 1 9 -188398 -1 1.04858e+06
+;
+#X obj 221 121 cnv 3 6 6 empty ColorForm All 1 5 1 9 -188398 -1 1.04858e+06
+;
+#X text 383 367 All;
+#X text 359 381 0.1Hz...100Hz;
+#X obj 446 371 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 336 174 309 137 ?. 0;
+#X obj 3 83 cnv 15 300 46 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 3 6 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 26 26 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 64 26 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 7 37 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X text 8 85 Construit sous / Build under Pd 0.43.4-extended;
+#X obj 8 111 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 7 50 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X text 7 98 or Pd-0.46-7 + deken;
+#X restore 450 375 pd ?.;
+#X text 171 78 20 3 2016;
+#X connect 8 0 9 0;
+#X connect 9 0 39 0;
+#X connect 12 0 13 0;
+#X connect 13 0 14 0;
+#X connect 14 0 15 0;
+#X connect 15 0 40 0;
+#X connect 18 0 19 0;
+#X connect 19 0 20 0;
+#X connect 20 0 21 0;
+#X connect 21 0 41 0;
+#X connect 24 0 25 0;
+#X connect 25 0 26 0;
+#X connect 26 0 27 0;
+#X connect 27 0 42 0;
+#X connect 32 0 33 0;
+#X connect 33 0 43 0;
+#X connect 34 0 35 0;
+#X connect 35 0 36 0;
+#X connect 36 0 37 0;
+#X connect 37 0 38 0;
+#X connect 38 0 8 0;
+#X connect 38 0 12 0;
+#X connect 38 0 18 0;
+#X connect 38 0 24 0;
+#X connect 38 0 32 0;
+#X connect 38 0 44 0;
+#X coords 0 -1 1 1 132 36 1 100 100;
+#X restore 153 226 pd ARGO;
+#X obj 453 55 cnv 15 100 70 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#X text 476 57 library:;
+#X text 457 69 pddp;
+#X text 457 80 cyclone;
+#X text 457 102 list-abs;
+#X text 144 46 1 Clic Listdevices ->;
+#X text 162 59 2 Choose Device ->;
+#X text 198 33 3 Clic On ->;
+#X text 279 76 -> approx 200 packets/sec;
+#N canvas 537 160 370 314 ARGO 0;
+#X obj 101 101 cnv 20 104 34 empty ColorAmpli empty 20 12 0 14 -261299
+-1 1.04858e+06;
+#X obj 85 278 outlet~;
+#X obj 134 104 cnv 10 20 10 empty ColorAmpli Ampli. 1 5 1 14 -261299
+-1 1.04858e+06;
+#X obj 87 60 inlet~;
+#X obj 85 253 *~;
+#X obj 103 118 hsl 101 12 -80 120 0 1 \$0-A ColorAmpli 26dB 0 7 1 9
+-261299 -1 -1 5300 0;
+#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 101 131 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X text 109 170 -> 0.0001..1000000 = -80dB..120dB;
+#X msg -41 146 label \$1;
+#X obj 101 147 expr (pow(10 \, $f1 / 20));
+#X obj 101 190 sel 0.0001;
+#X msg 101 218 0;
+#X obj -41 97 cyclone/sprintf %ddB;
+#X obj -41 122 cyclone/tosymbol;
+#X obj 249 266 cnv 15 52 22 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 353 174 321 152 ?... 0;
+#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 13 121 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 13 97 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X text 13 85 Construit sous / Build under Pd-0.49...;
+#X text 12 109 or Pd 0.43.4-extended;
+#X obj 12 53 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X restore 252 269 pd ?...;
+#X text 209 97 22 8 2019;
+#X connect 3 0 4 0;
+#X connect 4 0 1 0;
+#X connect 5 0 10 0;
+#X connect 5 0 13 0;
+#X connect 9 0 5 0;
+#X connect 10 0 11 0;
+#X connect 11 0 12 0;
+#X connect 11 1 4 1;
+#X connect 12 0 4 1;
+#X connect 12 0 14 0;
+#X connect 13 0 14 0;
+#X connect 14 0 9 0;
+#X coords 0 -1 1 1 106 36 1 100 100;
+#X restore 153 179 pd ARGO;
+#X text 457 91 comport;
+#N canvas 311 66 422 449 ARGO 0;
+#X obj -21 38 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 298 113 446 540 Help 0;
+#X text -12 -8 EEG = electroencephalography. = électro-encéphalographie
+;
+#X text -6 473 Made for:;
+#X obj -13 87 cnv 15 420 370 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X text -9 89 Citation;
+#X text 2 207 P2 uses 17 data bytes to transmit 6 channels of EEG data:
+;
+#X text 21 225 1: sync0 // synchronisation byte 1 = 0xa5 = 165;
+#X text 21 249 3: version // version number = 2;
+#X text 21 237 2: sync1 // synchronisation byte 2 = 0x5a = 90;
+#X text 21 274 5: Chn1low // channel 1 low byte;
+#X text 21 286 6: Chn1high // channel 1 high byte;
+#X text 15 422 17: switches // State of PD5 to PD2 \, in bits 3 to
+0;
+#X text 21 298 7: Chn2low // channel 2 low byte;
+#X text 21 310 8: Chn2high // channel 2 high byte;
+#X text 21 322 9: ...;
+#X text 15 335 10: ...;
+#X text 15 347 11: ...;
+#X text 15 359 12: ...;
+#X text 15 372 13: ...;
+#X text 15 384 14: ...;
+#X text 15 397 15: ...;
+#X text 15 410 16: Chn6high // channel 6 high byte;
+#X text 21 261 4: count // packet counter. Increases by 1 each packet.
+;
+#X text 2 165 The P2 Firmware Protocol was the inital transmission
+protocol of the OpenEEG project \, used by ModularEEG. It is compatible
+with the ElectricGuru application.;
+#X text 3 106 The ModularEEG device is made up of two or more EEG amplifiers
+\, and a 6-channel signal capture board that connects to a PC via a
+standard serial cable. The standard setup has two EEG channels.;
+#X text -13 18 Recoit les datas envoyées par une carte digitale ModularEEG
+avec un firmware P2 par sa prise série.;
+#X obj -12 47 pddp/pddplink http://openeeg.sourceforge.net/doc/modeeg/modeeg.html
+;
+#X obj -13 61 pddp/pddplink http://openeeg.sourceforge.net/doc/modeeg/modeeg_design.html
+;
+#X obj -2 438 pddp/pddplink http://www.shifz.org/brainbay/manuals/brainbay_developer_manual.pdf
+;
+#X obj 4 486 pddp/pddplink http://openeeg.sourceforge.net/doc/;
+#X text -28 -33 -MM EEG-receive;
+#X restore -14 44 pd Help;
+#X obj -35 382 cnv 15 300 42 empty empty empty 20 12 0 14 -261682 -66577
+0;
+#X obj 101 101 cnv 10 130 34 empty ColorForm EEG-Receive. 41 8 1 14
+-262144 -1 1.04858e+06;
+#X obj 101 131 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 197 124 tgl 12 0 \$0-A \$0-B Print 15 7 1 9 -262144 -1 -1 0
+1;
+#X obj 188 328 spigot;
+#X msg -29 303 close;
+#X msg 258 232 help;
+#X msg 219 232 info;
+#X msg 162 232 devices;
+#X msg -16 327 open 4;
+#X obj 107 389 outlet;
+#X text -30 406 165 90 2 17 2 104 2 160 1 48 1 117 3 36 2 126 15;
+#X obj 188 355 print Receive;
+#X obj 126 124 nbx 2 12 0 16 0 1 \$0-SendDevice \$0-ReceiveDevice Device
+26 7 1 9 -262144 -1 -1 2 256;
+#X obj 126 112 bng 12 250 50 0 \$0-SendListDevices \$0-ReceiveListDevices
+ListDevices 15 7 1 9 -262144 -1 -1;
+#X obj -45 161 t b f;
+#X msg -46 206 0;
+#X msg 87 232 close;
+#X msg 32 232 open \$1;
+#X msg 32 209 2;
+#X msg -18 183 set \$1;
+#X obj 68 152 sel 1 0;
+#X obj 87 263 spigot;
+#X msg 131 232 1;
+#X obj 100 62 inlet;
+#X obj -92 97 cnv 15 190 20 empty empty empty 20 12 0 14 -261682 -66577
+0;
+#X text -30 382 Series de 17 octets ->;
+#X text -29 394 Par exemple:;
+#X text -91 98 1:Receive 0:Stop Bang:Change ->;
+#X msg -56 280 baud 57600;
+#X obj 32 183 t b b b;
+#X obj 100 100 tgl 12 0 \$0-A \$0-B On 14 7 1 9 -262144 -1 -1 0 1;
+#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 272 396 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 336 174 309 137 ?. 0;
+#X obj 3 83 cnv 15 300 46 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 3 6 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 26 26 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 64 26 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 7 37 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X text 8 85 Construit sous / Build under Pd 0.43.4-extended;
+#X obj 8 111 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 7 50 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X text 7 98 or Pd-0.46-7 + deken;
+#X restore 276 400 pd ?.;
+#X text 174 83 20 3 2016;
+#X obj 107 299 comport/comport 4 57600;
+#X connect 5 0 6 1;
+#X connect 6 0 14 0;
+#X connect 7 0 38 0;
+#X connect 8 0 38 0;
+#X connect 9 0 38 0;
+#X connect 10 0 38 0;
+#X connect 11 0 38 0;
+#X connect 15 0 17 0;
+#X connect 16 0 10 0;
+#X connect 17 0 18 0;
+#X connect 17 1 22 0;
+#X connect 18 0 33 0;
+#X connect 19 0 24 0;
+#X connect 20 0 24 0;
+#X connect 21 0 20 0;
+#X connect 22 0 21 0;
+#X connect 23 0 32 0;
+#X connect 23 1 19 0;
+#X connect 24 0 38 0;
+#X connect 25 0 24 1;
+#X connect 26 0 33 0;
+#X connect 31 0 24 0;
+#X connect 32 1 21 0;
+#X connect 32 2 25 0;
+#X connect 33 0 23 0;
+#X connect 38 0 12 0;
+#X connect 38 0 6 0;
+#X coords 0 -1 1 1 132 36 1 100 100;
+#X restore 274 37 pd ARGO;
+#X text 183 163 -80dB..120dB;
+#X obj 418 154 sig~;
+#N canvas 462 219 430 320 ARGO 0;
+#X obj 40 -35 inlet~;
+#X obj 251 108 cnv 10 44 10 empty empty Scope. 1 5 1 14 -262144 -1
+1.04858e+06;
+#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X msg -36 168 frgb 255 0 0;
+#X obj 124 105 nbx 4 12 1 2000 0 1 \$0-A ColorTime ms/div 40 7 1 9
+-208064 -1 -1 20 256;
+#X obj 205 105 tgl 12 1 \$0-A \$0-B Sync 15 6 1 9 -262144 -1 -1 0 1
+;
+#X msg 128 52 delay 0 \, triglevel 0 \, trigger 0;
+#X obj 126 5 sel 0 1;
+#X msg -39 192 brgb 255 255 255;
+#X obj 85 64 * 2;
+#X msg 146 28 delay 1 \, triglevel 0.1 \, trigger 1;
+#X obj 277 -36 inlet~;
+#X obj 289 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj -14 80 t b b b b;
+#X obj -15 57 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 196 -34 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 374 104 413 135 Help 0;
+#X text 24 54 Voir MSP46ReferenceManual.pdf;
+#X text 23 1 utilise l'objet Scope~ de la library cyclone;
+#X text 24 26 Voir Browser -> Pure Data/examples/cyclone/scope-test.pd
+;
+#X text 24 40 Voir Browser -> Pure Data/examples/cyclone/pink-test.pd
+;
+#X text 24 -20 Scope;
+#X restore 203 -28 pd Help;
+#X obj 101 121 cnv 15 199 129 empty empty empty 20 12 0 14 -1 -66577
+0;
+#X obj 40 -11 clip~ -1 1;
+#X obj 277 -12 clip~ -1 1;
+#X msg -24 136 range -1 1;
+#X msg -33 111 bufsize 176;
+#X obj 101 123 cyclone/Scope~ 198 61 40 3 176 -1 1 0 0 0 0 255 0 0
+255 255 255 0;
+#X obj 101 187 cyclone/Scope~ 198 61 40 3 176 -1 1 0 0 0 0 255 0 0
+255 255 255 0;
+#X text 243 85 15 3 2016;
+#X obj 308 224 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 336 174 309 137 ?. 0;
+#X obj 3 83 cnv 15 300 46 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 3 6 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 26 26 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 64 26 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 7 37 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X text 8 85 Construit sous / Build under Pd 0.43.4-extended;
+#X obj 8 111 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 7 50 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X text 7 98 or Pd-0.46-7 + deken;
+#X restore 312 228 pd ?.;
+#X connect 0 0 18 0;
+#X connect 3 0 22 0;
+#X connect 3 0 23 0;
+#X connect 4 0 9 0;
+#X connect 5 0 7 0;
+#X connect 6 0 22 0;
+#X connect 6 0 23 0;
+#X connect 7 0 6 0;
+#X connect 7 1 10 0;
+#X connect 8 0 22 0;
+#X connect 8 0 23 0;
+#X connect 9 0 22 0;
+#X connect 9 0 23 0;
+#X connect 10 0 22 0;
+#X connect 10 0 23 0;
+#X connect 11 0 19 0;
+#X connect 13 0 21 0;
+#X connect 13 1 20 0;
+#X connect 13 2 3 0;
+#X connect 13 3 8 0;
+#X connect 14 0 13 0;
+#X connect 18 0 22 0;
+#X connect 19 0 23 0;
+#X connect 20 0 22 0;
+#X connect 20 0 23 0;
+#X connect 21 0 22 0;
+#X connect 21 0 23 0;
+#X coords 0 -1 1 1 200 150 2 100 100;
+#X restore 396 282 pd ARGO;
+#N canvas 309 88 499 409 ARGO 0;
+#X obj 301 104 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 364 127 402 326 Help 0;
+#X text 16 57 6 filtres passe-bandes pour séparer les ondes mesurées
+par électro-encéphalographie.;
+#X text 16 88 6 bandpass filters to separate the waves measured by
+electroencephalography.;
+#X text 15 39 EEG = electroencephalography. = électro-encéphalographie
+;
+#X text 17 214 Made for:;
+#X obj 16 133 pddp/pddplink http://en.wikipedia.org/wiki/Electroencephalography
+;
+#X obj 16 149 pddp/pddplink http://fr.wikipedia.org/wiki/Rythme_cérébral
+;
+#X obj 16 166 pddp/pddplink http://fr.wikipedia.org/wiki/Électro-encéphalographie
+;
+#X obj 16 181 pddp/pddplink http://www.brainmaster.com/generalinfo/eegbands/eegbands.html
+;
+#X obj 24 229 pddp/pddplink http://openeeg.sourceforge.net/doc/;
+#X obj 22 265 pddp/pddplink http://gerard.paresys.free.fr/Projets/ProjetEEG.html
+;
+#X text 14 14 - MM Flt-EEG;
+#X restore 308 110 pd Help;
+#X obj 101 101 cnv 20 130 34 empty ColorForm Flt-EEG 80 8 1 14 -188398
+-1 1.04858e+06;
+#X obj 101 131 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 197 131 cnv 4 10 4 empty empty empty 0 0 0 9 -1 -66577 0;
+#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 148 131 cnv 4 10 4 empty empty empty 0 0 0 9 -1 -66577 0;
+#X obj 123 131 cnv 4 10 4 empty empty empty 0 0 0 9 -1 -66577 0;
+#X obj 21 290 lop~ 3;
+#X obj 21 312 lop~ 3;
+#X text 26 367 Delta;
+#X text 7 381 0.1Hz...3Hz;
+#X obj 84 249 hip~ 4;
+#X obj 84 270 hip~ 4;
+#X obj 84 291 lop~ 7;
+#X obj 84 312 lop~ 7;
+#X text 89 367 Theta;
+#X text 81 381 4Hz...7Hz;
+#X obj 146 249 hip~ 8;
+#X obj 146 270 hip~ 8;
+#X obj 146 291 lop~ 12;
+#X obj 146 312 lop~ 12;
+#X text 153 367 Alpha;
+#X text 143 381 8Hz...12Hz;
+#X obj 214 249 hip~ 12;
+#X obj 214 270 hip~ 12;
+#X obj 214 291 lop~ 30;
+#X obj 214 312 lop~ 30;
+#X text 224 367 Beta;
+#X text 209 381 12Hz...30Hz;
+#X text 291 367 Gamma;
+#X text 280 381 30Hz...100Hz;
+#X obj 283 247 hip~ 30;
+#X obj 283 268 hip~ 30;
+#X obj 89 71 inlet~;
+#X obj 89 146 hip~ 0.1;
+#X obj 89 167 hip~ 0.1;
+#X obj 89 190 lop~ 100;
+#X obj 89 211 lop~ 100;
+#X obj 21 348 outlet~;
+#X obj 84 347 outlet~;
+#X obj 146 346 outlet~;
+#X obj 214 346 outlet~;
+#X obj 283 347 outlet~;
+#X obj 372 349 outlet~;
+#X obj 221 131 cnv 4 10 4 empty empty empty 0 0 0 9 -1 -66577 0;
+#X obj 172 131 cnv 4 10 4 empty empty empty 0 0 0 9 -1 -66577 0;
+#X obj 142 121 cnv 3 6 6 empty ColorForm Alpha 1 5 1 9 -188398 -1 1.04858e+06
+;
+#X obj 101 121 cnv 3 6 6 empty ColorForm Delta 1 5 1 9 -188398 -1 1.04858e+06
+;
+#X obj 116 114 cnv 3 6 6 empty ColorForm Theta 1 5 1 9 -188398 -1 1.04858e+06
+;
+#X obj 187 121 cnv 3 6 6 empty ColorForm Gamma 1 5 1 9 -188398 -1 1.04858e+06
+;
+#X obj 166 114 cnv 3 6 6 empty ColorForm Beta 1 5 1 9 -188398 -1 1.04858e+06
+;
+#X obj 221 121 cnv 3 6 6 empty ColorForm All 1 5 1 9 -188398 -1 1.04858e+06
+;
+#X text 383 367 All;
+#X text 359 381 0.1Hz...100Hz;
+#X obj 446 371 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 336 174 309 137 ?. 0;
+#X obj 3 83 cnv 15 300 46 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 3 6 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 26 26 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 64 26 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 7 37 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X text 8 85 Construit sous / Build under Pd 0.43.4-extended;
+#X obj 8 111 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 7 50 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X text 7 98 or Pd-0.46-7 + deken;
+#X restore 450 375 pd ?.;
+#X text 171 78 20 3 2016;
+#X connect 8 0 9 0;
+#X connect 9 0 39 0;
+#X connect 12 0 13 0;
+#X connect 13 0 14 0;
+#X connect 14 0 15 0;
+#X connect 15 0 40 0;
+#X connect 18 0 19 0;
+#X connect 19 0 20 0;
+#X connect 20 0 21 0;
+#X connect 21 0 41 0;
+#X connect 24 0 25 0;
+#X connect 25 0 26 0;
+#X connect 26 0 27 0;
+#X connect 27 0 42 0;
+#X connect 32 0 33 0;
+#X connect 33 0 43 0;
+#X connect 34 0 35 0;
+#X connect 35 0 36 0;
+#X connect 36 0 37 0;
+#X connect 37 0 38 0;
+#X connect 38 0 8 0;
+#X connect 38 0 12 0;
+#X connect 38 0 18 0;
+#X connect 38 0 24 0;
+#X connect 38 0 32 0;
+#X connect 38 0 44 0;
+#X coords 0 -1 1 1 132 36 1 100 100;
+#X restore 418 226 pd ARGO;
+#N canvas 537 160 370 314 ARGO 0;
+#X obj 101 101 cnv 20 104 34 empty ColorAmpli empty 20 12 0 14 -261299
+-1 1.04858e+06;
+#X obj 85 278 outlet~;
+#X obj 134 104 cnv 10 20 10 empty ColorAmpli Ampli. 1 5 1 14 -261299
+-1 1.04858e+06;
+#X obj 87 60 inlet~;
+#X obj 85 253 *~;
+#X obj 103 118 hsl 101 12 -80 120 0 1 \$0-A ColorAmpli 26dB 0 7 1 9
+-261299 -1 -1 5300 0;
+#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 101 131 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X text 109 170 -> 0.0001..1000000 = -80dB..120dB;
+#X msg -41 146 label \$1;
+#X obj 101 147 expr (pow(10 \, $f1 / 20));
+#X obj 101 190 sel 0.0001;
+#X msg 101 218 0;
+#X obj -41 97 cyclone/sprintf %ddB;
+#X obj -41 122 cyclone/tosymbol;
+#X obj 249 266 cnv 15 52 22 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 353 174 321 152 ?... 0;
+#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 13 121 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 13 97 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X text 13 85 Construit sous / Build under Pd-0.49...;
+#X text 12 109 or Pd 0.43.4-extended;
+#X obj 12 53 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X restore 252 269 pd ?...;
+#X text 209 97 22 8 2019;
+#X connect 3 0 4 0;
+#X connect 4 0 1 0;
+#X connect 5 0 10 0;
+#X connect 5 0 13 0;
+#X connect 9 0 5 0;
+#X connect 10 0 11 0;
+#X connect 11 0 12 0;
+#X connect 11 1 4 1;
+#X connect 12 0 4 1;
+#X connect 12 0 14 0;
+#X connect 13 0 14 0;
+#X connect 14 0 9 0;
+#X coords 0 -1 1 1 106 36 1 100 100;
+#X restore 418 179 pd ARGO;
+#X text 448 163 -80dB..120dB;
+#X obj 602 413 cnv 15 52 22 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 353 174 321 152 ?... 0;
+#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 13 121 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 13 97 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X text 13 85 Construit sous / Build under Pd-0.49...;
+#X text 12 109 or Pd 0.43.4-extended;
+#X obj 12 53 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X restore 605 416 pd ?...;
+#X connect 1 0 0 0;
+#X connect 8 0 21 0;
+#X connect 10 0 8 0;
+#X connect 10 1 25 0;
+#X connect 11 2 9 0;
+#X connect 11 5 9 1;
+#X connect 21 0 11 0;
+#X connect 23 0 10 0;
+#X connect 25 0 28 0;
+#X connect 27 2 26 0;
+#X connect 27 5 26 1;
+#X connect 28 0 27 0;
