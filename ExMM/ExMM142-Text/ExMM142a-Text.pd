@@ -1,0 +1,277 @@
+#N canvas 299 23 733 297 10;
+#X msg 424 222 set \$1;
+#X msg 424 245 p;
+#X text 9 110 Clic pour ouvrir un fichier texte ->;
+#X msg 229 222 set \$1;
+#X msg 229 267 Jeanne aussi.;
+#X obj 11 9 cnv 15 15 15 empty empty ExMM142a-Text.pd 0 8 1 14 -262144
+-66577 0;
+#X text 150 170 Ligne/Line <-;
+#X text 291 170 Caractère/Character <-;
+#X obj 252 62 cnv 15 70 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#X text 252 65 Début/Begin;
+#X text 282 83 V;
+#X text 282 76 |;
+#X obj 533 140 cnv 15 180 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#X text 531 139 -> Bang à la fin du fichier;
+#X text 531 148 -> Bang at the end of the file;
+#X obj 480 58 cnv 15 110 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#X text 519 82 V;
+#X text 519 75 |;
+#X text 482 56 Caractère suivant;
+#X text 495 67 Next Character;
+#X obj 650 250 cnv 15 52 22 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 353 174 321 152 ?... 0;
+#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 13 121 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 13 97 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X text 13 85 Construit sous / Build under Pd-0.49...;
+#X text 12 109 or Pd 0.43.4-extended;
+#X obj 12 53 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X restore 653 253 pd ?...;
+#X text 31 27 Lecture d'un fichier texte ligne par ligne et caractere
+par caractere;
+#X obj 229 197 cyclone/tosymbol;
+#X obj 424 197 cyclone/tosymbol;
+#N canvas 288 99 803 582 ARGO 0;
+#X obj 350 103 cnv 10 20 10 empty empty Text. 1 5 1 14 -262144 -1 1.04858e+06
+;
+#X obj 58 88 openpanel;
+#X msg 93 144 set \$1;
+#X obj 248 39 loadbang;
+#X obj 58 66 bang;
+#X text 450 113 <- Click the name to change;
+#X obj 80 174 cnv 15 400 50 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X text 82 173 Nom du fichier / File name;
+#X text 484 180 <- Ajouter ../ devant le nom du fichier \; pour remonter
+d'un dossier;
+#X obj 620 45 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 447 110 428 226 Help 0;
+#X obj 13 73 cnv 15 400 100 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X text 18 75 Citation;
+#X text 12 17 MM Text;
+#X text 23 33 Lit un fichier texte ligne par ligne et caractère par
+caractère;
+#X text 37 90 The textfile object reads and writes text files to and
+from memory. You can read a file and output sequential lines as lists
+\, or collect lines and write them out.;
+#X restore 627 51 pd Help;
+#X obj 59 108 t b b s;
+#X obj 438 148 bng 12 50 20 0 \$0-A \$0-B empty 14 6 1 9 -262144 -1
+-1;
+#X obj 439 156 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 433 530 cnv 15 240 24 empty empty empty 20 12 0 14 -261682 -66577
+0;
+#X text 483 528 -> Bang à la fin du fichier;
+#X text 484 538 -> Bang at the end of the file;
+#X obj 438 534 outlet;
+#X obj 157 534 outlet;
+#X obj 157 345 textfile;
+#X msg 171 304 rewind;
+#X msg 95 304 read \$1 cr;
+#X obj 56 276 t b b a;
+#X msg 22 398 set \$1;
+#X symbolatom 150 129 49 0 0 0 - - -;
+#X obj 202 101 bng 12 250 50 0 \$0-A \$0-B Begin 14 7 1 9 -262144 -1
+-1;
+#X obj 150 101 bng 12 250 50 0 \$0-A \$0-B Line 14 7 1 9 -262144 -1
+-1;
+#X obj 151 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 50 36 cnv 15 170 24 empty empty empty 20 12 0 14 -261682 -66577
+0;
+#X text 50 33 N'importe quel message ->;
+#X obj 204 39 inlet;
+#X text 454 128 <- Ligne;
+#X msg 30 135 set ...;
+#X msg 260 304 print;
+#X obj 260 101 bng 12 250 50 0 \$0-A \$0-B Print-Console 14 7 1 9 -262144
+-1 -1;
+#X obj 300 534 outlet;
+#X symbolatom 328 145 2 0 0 0 - - -;
+#X obj 300 480 moocow/bytes2any 128 0;
+#X obj 438 101 bng 12 250 50 0 \$0-A \$0-B Character -45 7 1 9 -262144
+-1 -1;
+#X obj 439 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 481 369 spigot 1;
+#X msg 585 342 0;
+#X msg 506 342 1;
+#X msg 527 258 0;
+#X msg 558 257 1;
+#X obj 501 287 spigot 0;
+#X obj 501 315 t b b b;
+#X obj 462 257 t b b b;
+#X obj 343 156 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X text 80 43 Input any message ->;
+#X obj 308 36 cnv 15 170 24 empty empty empty 20 12 0 14 -261682 -66577
+0;
+#X text 308 33 N'importe quel message ->;
+#X text 338 43 Input any message ->;
+#X obj 464 39 inlet;
+#X text 145 549 Ligne/Line;
+#X obj 558 233 t b b;
+#X text 407 394 Watch out! ASCII characters 123 and 125 (curly braces)
+lock up Pd. Also \, reserved characters that Pd uses show up with a
+backslash in front of them (comma \, semi-colon \, and backslash).
+;
+#X obj 57 252 zexy/list2symbol;
+#X obj 22 374 cyclone/tosymbol;
+#X obj 328 506 cyclone/tosymbol;
+#X obj 154 114 hsl 275 15 0 127 0 0 \$0-A \$0-B empty -2 -8 0 10 -262144
+-262144 -1 0 1;
+#X symbolatom 150 114 49 0 0 0 - - -;
+#X obj 157 376 moocow/any2bytes;
+#X obj 180 420 tof/list_unfold wait;
+#X obj 207 458 select 123 125 0;
+#X text 190 20 Next Line;
+#X text 170 8 Ligne suivante;
+#X text 419 8 Caractère suivant;
+#X text 426 20 Next Character;
+#X text 361 83 4 8 2019;
+#X obj 233 534 outlet;
+#X obj 233 144 nbx 3 12 0 255 0 0 \$0-A \$0-B ASCII -27 7 1 9 -262144
+-1 -1 112 256;
+#X obj 245 156 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X text 290 559 Character;
+#X text 290 549 Caractere;
+#X text 237 549 ASCII;
+#X text 239 561 Code;
+#X obj 150 148 bng 12 250 50 0 \$0-A \$0-B Line 14 7 1 9 -262144 -1
+-1;
+#X obj 151 156 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X msg 269 506 set _;
+#X obj 719 531 cnv 15 52 22 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 353 174 321 152 ?... 0;
+#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 13 121 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 13 97 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X text 13 85 Construit sous / Build under Pd-0.49...;
+#X text 12 109 or Pd 0.43.4-extended;
+#X obj 12 53 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X restore 722 534 pd ?...;
+#X obj 604 285 cnv 15 170 25 empty empty empty 20 12 0 14 -258113 -66577
+0;
+#X text 608 290 MODIF without mrpeach/str;
+#X obj 653 93 cnv 15 100 70 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#X text 676 94 library:;
+#X text 657 103 pddp;
+#X text 657 114 cyclone;
+#X text 657 125 zexy;
+#X text 657 136 moocow;
+#X text 657 147 tof;
+#X msg 84 192 HUGO-J'entends-des-voix-UTF8.txt;
+#X connect 1 0 11 0;
+#X connect 2 0 91 0;
+#X connect 3 0 91 0;
+#X connect 4 0 1 0;
+#X connect 11 0 32 0;
+#X connect 11 1 91 0;
+#X connect 11 2 2 0;
+#X connect 12 0 17 0;
+#X connect 19 0 58 0;
+#X connect 19 0 62 0;
+#X connect 19 0 18 0;
+#X connect 19 1 12 0;
+#X connect 20 0 19 0;
+#X connect 21 0 19 0;
+#X connect 22 1 25 0;
+#X connect 22 2 21 0;
+#X connect 23 0 24 0;
+#X connect 25 0 20 0;
+#X connect 25 0 55 0;
+#X connect 26 0 19 0;
+#X connect 30 0 26 0;
+#X connect 32 0 24 0;
+#X connect 33 0 19 0;
+#X connect 34 0 33 0;
+#X connect 37 0 35 0;
+#X connect 37 0 59 0;
+#X connect 38 0 47 0;
+#X connect 40 0 63 0;
+#X connect 41 0 40 1;
+#X connect 42 0 40 1;
+#X connect 43 0 45 1;
+#X connect 44 0 45 1;
+#X connect 45 0 46 0;
+#X connect 46 0 41 0;
+#X connect 46 1 43 0;
+#X connect 46 2 26 0;
+#X connect 47 0 42 0;
+#X connect 47 1 40 0;
+#X connect 47 2 45 0;
+#X connect 53 0 38 0;
+#X connect 55 0 44 0;
+#X connect 55 1 41 0;
+#X connect 57 0 22 0;
+#X connect 57 0 61 0;
+#X connect 58 0 23 0;
+#X connect 59 0 36 0;
+#X connect 60 0 4 0;
+#X connect 62 0 63 0;
+#X connect 62 0 77 0;
+#X connect 63 0 71 0;
+#X connect 64 2 19 0;
+#X connect 64 2 79 0;
+#X connect 64 3 37 0;
+#X connect 71 0 70 0;
+#X connect 71 0 64 0;
+#X connect 79 0 36 0;
+#X connect 91 0 57 0;
+#X coords 0 -1 1 1 300 61 2 150 100;
+#X restore 229 97 pd ARGO;
+#X obj 606 32 cnv 15 100 70 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#X text 629 33 library:;
+#X text 610 42 pddp;
+#X text 610 53 cyclone;
+#X text 610 64 zexy;
+#X text 610 75 moocow;
+#X text 610 86 tof;
+#X obj 153 62 cnv 15 90 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#X text 231 84 V;
+#X text 231 77 |;
+#X text 174 75 Next Line;
+#X text 154 63 Ligne suivante;
+#X connect 0 0 1 0;
+#X connect 3 0 4 0;
+#X connect 23 0 3 0;
+#X connect 24 0 0 0;
+#X connect 25 0 23 0;
+#X connect 25 2 24 0;

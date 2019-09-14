@@ -1,0 +1,188 @@
+#N canvas 247 23 735 223 10;
+#X text 9 89 Clic pour ouvrir un fichier texte ->;
+#N canvas 299 59 758 440 ARGO 0;
+#X obj 302 102 cnv 10 20 10 empty empty File. 1 5 1 14 -262144 -1 1.04858e+06
+;
+#X obj 4 91 openpanel;
+#X msg 36 136 set \$1;
+#X obj 216 39 loadbang;
+#X obj 4 69 bang;
+#X text 400 113 <- Click the name to change;
+#X obj 30 174 cnv 15 400 50 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X text 32 173 Nom du fichier / File name;
+#X text 432 182 <- Ajouter ../ devant le nom du fichier \; pour remonter
+d'un dossier;
+#X obj 570 45 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 447 110 429 226 Help 0;
+#X obj 12 68 cnv 15 400 100 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X text 17 70 Citation;
+#X text 23 32 Lit un fichier octet par octet;
+#X text 27 89 The binfile object reads and writes binary files to and
+from a buffer in memory. You can read a file and output its contents
+one byte at a time as floats.;
+#X text 210 137 Martin Peach 2009/10/13;
+#X text 11 12 MM File;
+#X restore 577 51 pd Help;
+#X obj 5 111 t b b s;
+#X obj 388 132 bng 12 50 20 0 \$0-A \$0-B empty 14 6 1 9 -262144 -1
+-1;
+#X obj 389 140 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 383 372 cnv 15 240 24 empty empty empty 20 12 0 14 -261682 -66577
+0;
+#X text 433 370 -> Bang à la fin du fichier;
+#X text 434 380 -> Bang at the end of the file;
+#X obj 388 376 outlet;
+#X obj 111 376 outlet;
+#X obj 101 140 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X msg 59 313 rewind;
+#X obj 25 263 t b b a;
+#X obj 152 100 bng 12 250 50 0 \$0-A \$0-B Begin 14 7 1 9 -262144 -1
+-1;
+#X obj 100 101 bng 12 250 50 0 \$0-A \$0-B Byte 14 7 1 9 -262144 -1
+-1;
+#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 4 36 cnv 15 170 24 empty empty empty 20 12 0 14 -261682 -66577
+0;
+#X text 4 43 Input anything message ->;
+#X text 4 33 N'importe quel message ->;
+#X obj 162 39 inlet;
+#X obj 218 100 bng 12 250 50 0 \$0-A \$0-B Info 14 7 1 9 -262144 -1
+-1;
+#X obj 232 376 outlet;
+#X symbolatom 232 129 2 0 0 0 - - -;
+#X obj 214 262 moocow/bytes2any 128 0;
+#X obj 247 140 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 125 348 mrpeach/binfile;
+#X obj 112 133 nbx 3 12 0 255 0 0 \$0-A \$0-B empty 0 -8 1 9 -262144
+-1 -1 10 256;
+#X msg 199 313 info;
+#X obj 160 376 print Info;
+#X obj 202 137 cnv 5 5 5 empty empty ASCII: 0 3 1 9 -262144 -66577
+0;
+#X msg 133 313 read \$1;
+#X obj 133 236 select 123 125;
+#X text 362 239 Watch out! ASCII characters 123 and 125 (curly braces)
+lock up Pd. Also \, reserved characters that Pd uses show up with a
+backslash in front of them (comma \, semi-colon \, and backslash).
+;
+#X msg 34 192 HUGO-J'entends-des-voix-OccidentalWindowsLatin1.txt;
+#X obj 104 113 hsl 291 15 0 127 0 0 \$0-A \$0-B empty -2 -8 0 10 -262144
+-262144 -1 0 1;
+#X symbolatom 101 113 49 0 0 0 - - -;
+#X text 331 83 21 7 2019;
+#X obj 25 238 zexy/list2symbol;
+#X obj 214 285 cyclone/tosymbol;
+#X obj 661 362 cnv 15 52 22 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 353 174 321 152 ?... 0;
+#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 13 121 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 13 97 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X text 13 85 Construit sous / Build under Pd-0.49...;
+#X text 12 109 or Pd 0.43.4-extended;
+#X obj 12 53 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X restore 664 365 pd ?...;
+#X connect 1 0 11 0;
+#X connect 2 0 42 0;
+#X connect 3 0 42 0;
+#X connect 4 0 1 0;
+#X connect 11 1 42 0;
+#X connect 11 2 2 0;
+#X connect 12 0 17 0;
+#X connect 20 0 34 0;
+#X connect 21 1 20 0;
+#X connect 21 2 39 0;
+#X connect 22 0 20 0;
+#X connect 23 0 34 0;
+#X connect 28 0 23 0;
+#X connect 29 0 36 0;
+#X connect 31 0 30 0;
+#X connect 32 0 47 0;
+#X connect 34 0 35 0;
+#X connect 34 1 37 0;
+#X connect 34 2 12 0;
+#X connect 35 0 18 0;
+#X connect 35 0 40 0;
+#X connect 36 0 34 0;
+#X connect 39 0 34 0;
+#X connect 40 2 32 0;
+#X connect 42 0 46 0;
+#X connect 43 0 4 0;
+#X connect 46 0 21 0;
+#X connect 46 0 44 0;
+#X connect 47 0 31 0;
+#X coords 0 -1 1 1 300 45 2 100 100;
+#X restore 229 80 pd ARGO;
+#X obj 9 9 cnv 15 15 15 empty empty ExMM143a-File.pd 0 8 1 14 -262144
+-66577 0;
+#X obj 229 181 nbx 3 24 0 999 0 0 \$0-A \$0-B empty 0 -8 1 18 -262144
+-1 -1 10 256;
+#X obj 253 44 cnv 15 70 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#X text 253 47 Début/Begin;
+#X text 283 65 V;
+#X text 283 58 |;
+#X obj 534 105 cnv 15 180 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#X text 532 104 -> Bang à la fin du fichier;
+#X text 532 113 -> Bang at the end of the file;
+#X obj 158 44 cnv 15 85 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#X text 230 63 V;
+#X text 230 56 |;
+#X text 160 41 Octet suivant;
+#X text 174 53 Next byte;
+#X symbolatom 375 184 10 0 0 0 - - -;
+#X obj 658 180 cnv 15 52 22 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 353 174 321 152 ?... 0;
+#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 13 121 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 13 97 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X text 13 85 Construit sous / Build under Pd-0.49...;
+#X text 12 109 or Pd 0.43.4-extended;
+#X obj 12 53 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X restore 661 183 pd ?...;
+#X obj 591 14 cnv 15 100 70 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#X text 614 15 library:;
+#X text 596 27 pddp;
+#X text 596 38 cyclone;
+#X text 596 49 moocow;
+#X text 596 59 zexy;
+#X text 596 69 mrpeach;
+#X text 152 8 Lire un fichier octet par octet;
+#X text 153 22 Read a file byte by byte;
+#X text 57 98 Click to open a text file ->;
+#X text 147 110 ASCII code <-;
+#X connect 1 0 3 0;
+#X connect 1 1 16 0;
