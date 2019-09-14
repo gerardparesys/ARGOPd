@@ -1,0 +1,311 @@
+#N canvas 420 23 482 315 10;
+#X obj 356 184 bng 15 50 50 0 empty empty empty 17 7 0 10 -260097 -1
+-1;
+#X text 359 206 V;
+#X text 359 199 |;
+#X text 350 217 Bang;
+#X obj 10 15 cnv 15 15 15 empty empty ExMM60d-JukeBox3.pd 0 8 1 14
+-262144 -1 0;
+#X obj 190 283 dac~ 1 2;
+#X text 46 208 Niveau general ->;
+#X text 52 218 General level ->;
+#X obj 392 148 switch~;
+#N canvas 608 166 228 173 ARGOnOff 0;
+#X obj 100 100 tgl 18 1 \$0-SendOnOff \$0-ReceiveOnOff On/Off 20 11
+1 14 -4033 -1 -1 1 1;
+#X obj 99 10 loadbang;
+#X msg 99 33 \; pd dsp 1;
+#X obj 100 129 outlet;
+#X text -50 99 Audio On/Off du patch ->;
+#X text -22 45 Audio General On ->;
+#X text 107 82 17 3 2010;
+#X connect 0 0 3 0;
+#X connect 1 0 2 0;
+#X coords 0 -1 1 1 65 18 2 100 100;
+#X restore 392 130 pd ARGOnOff;
+#X text 397 114 V;
+#X text 397 107 |;
+#X text 385 96 On/Off Patch;
+#X text 415 108 (Audio);
+#X msg 179 102 1;
+#X msg 217 102 2;
+#X msg 251 102 3;
+#X msg 286 102 4;
+#X text 20 95 Nom d'un fichier Audio ->;
+#X text 26 106 Name of an Audio file ->;
+#X text 99 35 Les fichiers Audio doivent etre situés dans le meme dossier
+que le patch.;
+#X text 99 66 Audio files must be located in the same folder as the
+patch.;
+#X obj 408 275 cnv 15 52 22 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 353 174 321 152 ?... 0;
+#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 13 121 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 13 97 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X text 13 85 Construit sous / Build under Pd-0.49...;
+#X text 12 109 or Pd 0.43.4-extended;
+#X obj 12 53 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X restore 411 278 pd ?...;
+#N canvas 175 68 381 386 ARGO 0;
+#X obj 101 101 cnv 20 116 34 empty ColorAmpli empty 20 12 0 14 -261299
+-1 1.04858e+06;
+#X obj 85 353 outlet~;
+#X obj 157 104 cnv 10 20 10 empty ColorAmpli Ampli. 1 5 1 14 -261299
+-1 1.04858e+06;
+#X obj 85 43 inlet~;
+#X obj 85 330 *~;
+#X obj 115 118 hsl 101 12 -80 20 0 1 \$0-A ColorAmpli 0dB 0 7 1 9 -261299
+-1 -1 8000 0;
+#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 101 131 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 207 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 207 131 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 222 352 outlet~;
+#X obj 222 42 inlet~;
+#X obj 222 329 *~;
+#X msg -42 138 label \$1;
+#X text 148 194 -> 0.0001..10 = -80dB..20dB;
+#X obj 142 175 expr (pow(10 \, $f1 / 20));
+#X obj 142 215 sel 0.0001;
+#X msg 100 244 0;
+#X obj 100 118 tgl 12 1 \$0-A \$0-B Mute 2 -5 1 9 -261299 -1 -1 0 1
+;
+#X obj 99 146 select 0 1;
+#X obj 140 295 line~;
+#X obj 140 275 pack 0 10;
+#X msg 123 74 set 0;
+#X obj -42 92 cyclone/sprintf %ddB;
+#X text 228 110 6 3 2016;
+#X obj -42 115 cyclone/tosymbol;
+#X obj 273 344 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 336 174 309 137 ?. 0;
+#X obj 3 83 cnv 15 300 46 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 3 6 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 26 26 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 64 26 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 7 37 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X text 8 85 Construit sous / Build under Pd 0.43.4-extended;
+#X obj 8 111 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 7 50 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X text 7 98 or Pd-0.46-7 + deken;
+#X restore 277 348 pd ?.;
+#X connect 3 0 4 0;
+#X connect 4 0 1 0;
+#X connect 5 0 15 0;
+#X connect 5 0 23 0;
+#X connect 11 0 12 0;
+#X connect 12 0 10 0;
+#X connect 13 0 5 0;
+#X connect 15 0 16 0;
+#X connect 16 0 17 0;
+#X connect 16 1 21 0;
+#X connect 16 1 22 0;
+#X connect 17 0 21 0;
+#X connect 17 0 25 0;
+#X connect 18 0 19 0;
+#X connect 19 0 5 0;
+#X connect 19 1 17 0;
+#X connect 20 0 12 1;
+#X connect 20 0 4 1;
+#X connect 21 0 20 0;
+#X connect 22 0 18 0;
+#X connect 23 0 25 0;
+#X connect 25 0 13 0;
+#X coords 0 -1 1 1 118 36 1 100 100;
+#X restore 154 197 pd ARGO;
+#N canvas 254 236 558 361 ARGO 0;
+#X obj 99 304 outlet~;
+#X obj 173 304 outlet~;
+#X obj 391 104 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 392 50 574 619 Help 0;
+#X obj 15 293 cnv 15 400 100 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X text 18 292 Citation;
+#X obj 15 402 cnv 15 550 200 empty empty empty 20 12 0 14 -258113 -66577
+0;
+#X text 34 238 error: soundfiler_read: x.aiff: unknown or bad header
+format;
+#X text 21 262 Solution: ouvrir puis sauver le fichier au format aiff
+avec Audacity;
+#X text 20 199 - Ne lit pas un fichier au format aiff "Entier petit
+boutien" comme les pistes d'un CD Audio copiées avec le finder du Mac.
+Les messages d'erreur s'affichent:;
+#X text 34 249 error: dsp: xxx.aiff: unknown or bad header format;
+#X text 37 308 READSF~ - read a soundfile;
+#X text 36 326 The wave \, aiff \, and nextstep formats are parsed
+automatically \, although only 2- 3- and 4- byte samples are accepted
+(4 bytes implies floating point and is not available in aiff format.)
+;
+#X text 29 567 Erreur dans la fenêtre Pd:;
+#X text 193 520 If the sample rate of pd is set to 44100 \, files having
+the sample rates of 44100 are correctly played \, other files will
+be transposed.;
+#X text 195 493 WARNING The sample rate of the output depends on the
+system sample rate of pd:;
+#X text 23 409 - ATTENTION Le taux d'échantillonnage de la lecture
+du fichier dépends du taux d'échantillonnage de Pd.;
+#X text 35 436 Si le taux d'échantillonnage de Pd est de 44100 (Menu
+Preferences -> Audio Settings...) \, les fichiers échantillonnés à
+44100 Hz sont lus correctement \, sinon ils sont transposés.;
+#X text 35 46 Les fichiers doivent etre situés dans le meme dossier
+que le patch contenant le MiniModule;
+#X text 35 106 Les canaux 3 \, 4... d'un fichier Audio de plus de 2
+canaux ne sont pas lus.;
+#X text 35 92 Le canal d'un fichier Audio Mono est lu sur la sortie
+gauche;
+#X text 23 78 - Lit un fichier Audio Stereo (2 canaux).;
+#X text 217 154 Channels 3 \, 4... of an Audio file of more than 2
+channels are not read.;
+#X text 217 140 A Mono Audio file is read on the left output.;
+#X text 218 125 Reads an Stereo Audio file (2 channels).;
+#X text 35 4 JukeBox3;
+#X text 35 18 - Lit des fichiers wav ou aiff dont le nom (sans extension)
+est recu par l'entrée: A.aiff ou Machin.wav;
+#X restore 398 110 pd Help;
+#X obj 232 300 cnv 15 240 24 empty empty empty 20 12 0 14 -261682 -66577
+0;
+#X text 280 298 -> Bang à la fin du fichier;
+#X text 281 308 -> Bang at the end of the file;
+#X obj 237 304 outlet;
+#X msg 18 239 1;
+#X msg 119 239 open \$1;
+#X obj 131 267 readsf~ 2;
+#X obj 18 209 delay 10;
+#X obj 328 182 sel 0 1;
+#X msg 238 66 0;
+#N canvas 316 301 516 192 Choix------- 0;
+#X obj 56 19 inlet;
+#X obj 99 141 outlet;
+#X msg 55 111 label aiff;
+#X msg 121 111 label wav;
+#X obj 56 51 sel 0 1;
+#X connect 0 0 4 0;
+#X connect 2 0 1 0;
+#X connect 3 0 1 0;
+#X connect 4 0 2 0;
+#X connect 4 1 3 0;
+#X restore 149 153 pd Choix-------;
+#X obj 44 152 + 1;
+#X obj 18 -3 cnv 15 170 24 empty empty empty 20 12 0 14 -261682 -66577
+0;
+#X obj 100 0 inlet;
+#X obj 101 101 cnv 8 198 28 empty empty JukeBox3. 130 8 1 14 -262144
+-1 0;
+#X obj 101 125 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 122 100 tgl 12 1 \$0-A \$0-B Play 15 8 1 12 -262144 -1 -1 0
+1;
+#X obj 194 125 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 100 100 bng 12 250 50 0 \$0-A \$0-B empty 14 6 1 9 -262144 -1
+-1;
+#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 288 118 bng 12 250 50 0 \$0-A \$0-B empty 14 6 1 9 -262144 -1
+-1;
+#X obj 289 125 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 173 100 hradio 12 1 1 2 \$0-A \$0-B wav 28 8 1 12 -262144 -1
+-1 1;
+#X obj 74 209 makefilename %s.aiff;
+#X obj 201 209 makefilename %s.wav;
+#X obj 98 152 t b a;
+#X text 47 5 Text ->;
+#X text 41 -5 Texte ->;
+#X msg 127 65 set \$1;
+#X obj 127 45 cyclone/tosymbol;
+#X symbolatom 112 114 13 0 0 0 - - -;
+#X obj 100 23 t b a;
+#X msg 328 209 0;
+#X msg 190 66 set 1;
+#X obj 419 257 cnv 15 52 22 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 353 174 321 152 ?... 0;
+#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 13 121 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 13 97 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X text 13 85 Construit sous / Build under Pd-0.49...;
+#X text 12 109 or Pd 0.43.4-extended;
+#X obj 12 53 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X restore 422 260 pd ?...;
+#X obj 44 178 cyclone/gate 2;
+#X text 239 83 22 8 2019;
+#X connect 8 0 10 0;
+#X connect 9 0 10 0;
+#X connect 10 0 0 0;
+#X connect 10 1 1 0;
+#X connect 10 2 24 0;
+#X connect 11 0 8 0;
+#X connect 12 0 36 0;
+#X connect 12 1 22 0;
+#X connect 13 0 20 0;
+#X connect 14 0 26 0;
+#X connect 15 0 40 0;
+#X connect 17 0 35 0;
+#X connect 20 0 12 0;
+#X connect 22 0 37 0;
+#X connect 22 0 34 0;
+#X connect 24 0 7 0;
+#X connect 24 0 13 0;
+#X connect 26 0 14 0;
+#X connect 26 0 15 0;
+#X connect 27 0 9 0;
+#X connect 28 0 9 0;
+#X connect 29 0 11 0;
+#X connect 29 1 40 1;
+#X connect 32 0 34 0;
+#X connect 33 0 32 0;
+#X connect 34 0 29 0;
+#X connect 35 0 22 0;
+#X connect 35 1 33 0;
+#X connect 36 0 10 0;
+#X connect 37 0 20 0;
+#X connect 40 0 27 0;
+#X connect 40 1 28 0;
+#X coords 0 -1 1 1 200 30 2 100 100;
+#X restore 163 144 pd ARGO;
+#X connect 9 0 8 0;
+#X connect 14 0 25 0;
+#X connect 15 0 25 0;
+#X connect 16 0 25 0;
+#X connect 17 0 25 0;
+#X connect 24 0 5 0;
+#X connect 24 1 5 1;
+#X connect 25 0 24 0;
+#X connect 25 1 24 1;
+#X connect 25 2 0 0;
