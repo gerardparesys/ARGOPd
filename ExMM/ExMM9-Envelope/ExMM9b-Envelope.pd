@@ -1,0 +1,282 @@
+#N canvas 411 23 463 320 10;
+#X obj 10 8 cnv 15 15 15 empty empty ExMM9b-Envelope.pd 0 8 1 14 -262144
+-66577 0;
+#X obj 113 287 dac~ 1 2;
+#X text 33 238 General level ->;
+#X text 27 227 Niveau général ->;
+#X text 150 80 Déclenchement ->;
+#X text 186 70 Trigger ->;
+#X obj 390 281 cnv 15 52 22 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 353 174 321 152 ?... 0;
+#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 13 121 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 13 97 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X text 13 85 Construit sous / Build under Pd-0.49...;
+#X text 12 109 or Pd 0.43.4-extended;
+#X obj 12 53 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X restore 393 284 pd ?...;
+#N canvas 157 158 536 332 ARGO 0;
+#X obj 100 22 inlet~;
+#X obj 227 103 cnv 10 44 10 empty empty Envelope. 1 5 1 14 -262144
+-1 1.04858e+06;
+#X obj 163 105 nbx 4 12 10 10000 0 1 \$0-A ColorTime ms 40 7 1 9 -208064
+-1 -1 2000 256;
+#X obj 99 296 outlet~;
+#X obj 99 269 line~;
+#X text 304 166 (ggee library);
+#X text 123 230 arguments;
+#X text 153 239 xsize ysize xmax ymax send_symbol receive_symbol ...
+;
+#X msg 19 52 duration \$1;
+#X text 305 180 Guenter Geiger;
+#X obj 286 119 vsl 10 101 0 1 0 0 \$0-A \$0-B empty 0 -9 0 10 -261299
+-1 -1 0 1;
+#X obj 100 100 bng 12 250 50 0 \$0-A \$0-B empty 17 7 0 10 -262144
+-1 -1;
+#X text 152 251 Menu Put -> 0bject -> Taper envgen 180 100 1 0;
+#X obj 321 96 unpack 1 2;
+#X obj 100 52 threshold~ 0.5 5 0.49 5;
+#X msg 20 124 dump;
+#X obj 410 119 list prepend set;
+#X obj 410 140 list trim;
+#X msg 251 54 0 1000 1 1000 0;
+#X obj 251 22 loadbang;
+#X msg 320 139 set \$1;
+#X obj 101 223 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 101 100 cnv 2 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 102 101 cnv 2 8 2 empty empty empty 20 12 0 14 -262144 -66577
+0;
+#X text 75 75 Trig Decl;
+#X obj 413 179 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 181 89 420 345 Help 0;
+#X obj 7 39 cnv 15 400 250 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X text 11 41 Citation;
+#X text 9 19 Générateur d'enveloppe / Envelope generator;
+#X text 225 195 (ggee library);
+#X text 316 196 Guenter Geiger;
+#X text 20 56 envgen:;
+#X text 21 77 Envelope generator. This external delivers value for
+line~ if it is banged. When numbers are sent to its input it delivers
+the corresponding value of the envelope;
+#X text 20 120 arguments;
+#X text 81 120 xsize ysize xmax ymax send_symbol receive_symbol ...
+;
+#X text 20 141 a bang outputs the data on the left inlet as separate
+messages and times them properly to work with [line~];
+#X text 21 172 dump outputs all of the data as a list on the right
+outlet;
+#X text 6 299 Menu Put -> 0bject -> Taper ggee/envgen 180 100 1 0;
+#X restore 420 185 pd Help;
+#X obj 102 119 ggee/envgen 180 100 1 0  ;
+#X obj 397 285 cnv 15 52 22 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 353 174 321 152 ?... 0;
+#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 13 121 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 13 97 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X text 13 85 Construit sous / Build under Pd-0.49...;
+#X text 12 109 or Pd 0.43.4-extended;
+#X obj 12 53 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X restore 400 288 pd ?...;
+#X text 243 81 25 8 2019;
+#X connect 0 0 14 0;
+#X connect 2 0 8 0;
+#X connect 4 0 3 0;
+#X connect 8 0 27 0;
+#X connect 10 0 4 0;
+#X connect 11 0 15 0;
+#X connect 11 0 27 0;
+#X connect 13 0 20 0;
+#X connect 14 0 11 0;
+#X connect 15 0 27 0;
+#X connect 16 0 17 0;
+#X connect 17 0 18 0;
+#X connect 18 0 27 0;
+#X connect 19 0 18 0;
+#X connect 20 0 10 0;
+#X connect 27 0 4 0;
+#X connect 27 0 13 0;
+#X connect 27 1 16 0;
+#X coords 0 -1 1 1 196 128 2 100 100;
+#X restore 250 77 pd ARGO;
+#N canvas 723 227 349 246 ARGO 0;
+#X obj 101 101 cnv 20 104 34 empty ColorAmpli empty 20 12 0 14 -261299
+-1 1.04858e+06;
+#X obj 88 200 outlet~;
+#X obj 134 104 cnv 10 20 10 empty ColorAmpli Ampli. 1 5 1 14 -261299
+-1 1.04858e+06;
+#X obj 88 74 inlet~;
+#X obj 185 74 inlet~;
+#X obj 87 173 *~;
+#X obj 195 101 cnv 4 10 4 empty empty empty 20 12 0 14 -258113 -66577
+0;
+#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 101 131 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 103 118 hsl 101 12 0 1.25 0 1 \$0-A ColorAmpli empty 0 7 1 9
+-262144 -1 -1 2000 0;
+#X obj 103 118 hsl 101 12 0 1.25 0 0 \$0-A ColorAmpli -60dB 0 7 1 9
+-261299 -258049 -1 2000 0;
+#X text 211 127 2 HSLIDER superposés;
+#X text 210 116 <-- ATTENTION;
+#X obj 215 154 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 346 353 425 238 Help 0;
+#X text 11 19 Amplificateur à gain controlé logarithmiquement;
+#X text 10 45 Sensibilitée de l'entrée de contrôle du gain:;
+#X text 10 60 1 = +80 dB;
+#X text 11 74 Cela signifie par exemple:;
+#X text 189 86 1 = 0 dB;
+#X text 171 98 0.75 = -20 dB;
+#X text 171 111 0.5 = -40 dB;
+#X text 171 124 0.25 = -60 dB;
+#X text 171 74 1.25 = +20 dB (slider à droite);
+#X text 189 137 0 = -80 dB (slider à gauche);
+#X restore 222 160 pd Help;
+#N canvas 593 326 466 292 Ampli-v1-log 0;
+#X obj -53 31 loadbang;
+#X msg 208 178 set \$1;
+#X obj 86 71 +~;
+#X obj 206 121 snapshot~;
+#X obj 207 155 change;
+#X obj 276 33 inlet;
+#X obj 231 210 outlet;
+#X obj 85 31 inlet~;
+#X msg 275 177 label \$1;
+#X obj -46 59 metro 200;
+#X obj 6 31 r SendFluid;
+#X text 228 223 Hslider;
+#X text 271 5 Hslider;
+#X text 236 235 Over;
+#X text 276 16 Under;
+#X obj 85 207 outlet~;
+#X obj 85 158 /~ 10000;
+#X text 19 107 0..1.25 ->;
+#X text 8 138 1..100000 ->;
+#X text -82 173 0.0001..10 = -80dB..20dB ->;
+#X obj 276 60 * 80;
+#X obj 276 82 - 80;
+#X text 285 136 -> -80dB..20dB;
+#X text 282 100 -> -80 .. 20;
+#X text 224 248 0 .. 1.25;
+#X text 263 -7 0 .. 1.25;
+#X text 15 -20 Fluidité de;
+#X text 14 -9 l'affichage;
+#X text 15 2 des sliders;
+#X text -7 13 (200ms par défaut);
+#X obj 85 123 cyclone/pow~ 10000;
+#X text -57 123 compatibility 0.42.5 ->;
+#X obj 276 154 cyclone/tosymbol;
+#X obj 276 119 cyclone/sprintf %ddB;
+#X connect 0 0 9 0;
+#X connect 1 0 6 0;
+#X connect 2 0 3 0;
+#X connect 2 0 30 0;
+#X connect 3 0 4 0;
+#X connect 4 0 1 0;
+#X connect 5 0 2 1;
+#X connect 5 0 20 0;
+#X connect 7 0 2 0;
+#X connect 8 0 6 0;
+#X connect 9 0 3 0;
+#X connect 10 0 9 1;
+#X connect 16 0 15 0;
+#X connect 20 0 21 0;
+#X connect 21 0 33 0;
+#X connect 30 0 16 0;
+#X connect 32 0 8 0;
+#X connect 33 0 32 0;
+#X restore 102 149 pd Ampli-v1-log;
+#X text 22 33 Logarithmic Gain Controlled Amplifier;
+#X text 22 49 Amplificateur à gain controlé loogarithmiquement;
+#X obj 220 194 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 336 174 309 137 ?. 0;
+#X obj 3 83 cnv 15 300 46 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 3 6 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 26 26 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 64 26 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 7 37 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X text 8 85 Construit sous / Build under Pd 0.43.4-extended;
+#X obj 8 111 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 7 50 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X text 7 98 or Pd-0.46-7 + deken;
+#X restore 224 198 pd ?.;
+#X text 209 97 23 8 2018;
+#X connect 3 0 5 0;
+#X connect 4 0 15 0;
+#X connect 5 0 1 0;
+#X connect 9 0 15 1;
+#X connect 15 0 5 1;
+#X connect 15 1 10 0;
+#X coords 0 -1 1 1 106 36 1 100 100;
+#X restore 137 218 pd ARGO;
+#X obj 38 135 switch~;
+#N canvas 608 166 228 173 ARGOnOff 0;
+#X obj 100 100 tgl 18 1 \$0-SendOnOff \$0-ReceiveOnOff On/Off 20 11
+1 14 -4033 -1 -1 1 1;
+#X obj 99 10 loadbang;
+#X msg 99 33 \; pd dsp 1;
+#X obj 100 129 outlet;
+#X text -50 99 Audio On/Off du patch ->;
+#X text -22 45 Audio General On ->;
+#X text 107 82 17 3 2010;
+#X connect 0 0 3 0;
+#X connect 1 0 2 0;
+#X coords 0 -1 1 1 65 18 2 100 100;
+#X restore 38 117 pd ARGOnOff;
+#X text 43 101 V;
+#X text 43 94 |;
+#X text 31 83 On/Off Patch;
+#X text 61 95 (Audio);
+#N canvas 404 201 221 198 ARGO 0;
+#X obj 115 105 cnv 10 20 10 empty empty PinkNoise. 1 5 1 14 -262144
+-1 1.04858e+06;
+#X obj 101 113 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 90 155 outlet~;
+#X text 16 55 pink noise with -3 dB per octave;
+#X text 7 41 pink~ (iemlib);
+#X obj 90 124 iemlib/pink~;
+#X connect 5 0 2 0;
+#X coords 0 -1 1 1 95 18 2 100 100;
+#X restore 138 40 pd ARGO;
+#X connect 8 0 9 1;
+#X connect 9 0 1 1;
+#X connect 9 0 1 0;
+#X connect 11 0 10 0;
+#X connect 16 0 9 0;
