@@ -1,0 +1,122 @@
+#N canvas 450 23 344 394 10;
+#X obj 9 8 cnv 15 15 15 empty empty ExMM80b-MIDI-Visu.pd 0 8 1 14 -262144
+-66577 0;
+#X obj 259 348 cnv 15 48 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 350 196 308 136 ??? 0;
+#X obj -6 87 cnv 15 300 38 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj -6 10 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14
+-4033 -1 1.04858e+06;
+#X obj 13 31 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 55 30 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X text -1 89 Construit sous / Build under Pd 0.42.5-extended;
+#X obj 6 43 pddp/pddplink http://pagesperso-orange.fr/Paresys/ARGOPd/
+;
+#X obj 6 58 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 46 105 pddp/pddplink http://puredata.info/downloads;
+#X restore 263 352 pd ???;
+#X obj 76 315 unpack f f;
+#X floatatom 76 345 5 0 0 0 - - -;
+#X floatatom 141 345 5 0 0 0 - - -;
+#X text 75 361 pitch;
+#X text 140 362 velocity;
+#X text 158 315 note on messages;
+#X obj 92 246 unpack f f;
+#X floatatom 92 276 5 0 0 0 - - -;
+#X floatatom 157 276 5 0 0 0 - - -;
+#X text 91 291 aftert;
+#X text 157 293 pitch;
+#X text 170 246 poly aftertouch messages;
+#X obj 109 183 unpack f f;
+#X floatatom 109 213 5 0 0 0 - - -;
+#X floatatom 174 213 5 0 0 0 - - -;
+#X text 108 228 value;
+#X text 174 228 ctrl nr;
+#X text 188 183 controller messages;
+#X floatatom 125 159 5 0 0 0 - - -;
+#X floatatom 142 137 5 0 0 0 - - -;
+#X floatatom 158 114 5 0 0 0 - - -;
+#X floatatom 175 91 5 0 0 0 - - -;
+#X text 172 159 program change;
+#X text 203 115 pitch bend;
+#X text 187 139 aftertouch;
+#X text 212 90 channel number;
+#X text 15 32 On/Off ->;
+#X obj 76 65 cyclone/midiparse;
+#N canvas 435 86 446 184 MIDI 0;
+#X text 97 144 MIDI;
+#X obj 385 131 cnv 15 48 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 350 196 308 136 ??? 0;
+#X obj -6 87 cnv 15 300 38 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj -6 10 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14
+-4033 -1 1.04858e+06;
+#X obj 13 31 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 55 30 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X text -1 89 Construit sous / Build under Pd 0.42.5-extended;
+#X obj 6 43 pddp/pddplink http://pagesperso-orange.fr/Paresys/ARGOPd/
+;
+#X obj 6 58 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 46 105 pddp/pddplink http://puredata.info/downloads;
+#X restore 389 135 pd ???;
+#X obj 131 75 cyclone/speedlim 100;
+#X obj 101 101 cnv 5 125 15 empty ColorMIDI In 100 9 1 14 -262103 -1
+1.04858e+06;
+#X obj 131 103 bng 12 50 50 0 \$0-A \$0-B empty 6 9 0 9 -257985 -260097
+-1;
+#X obj 100 105 tgl 12 1 \$0-A \$0-B On 14 7 1 9 -257985 -1 -1 1 1;
+#X obj 101 112 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 91 46 spigot;
+#X obj 91 19 midiin;
+#X obj 91 127 outlet;
+#X text 9 22 MM MIDI-In;
+#X text 168 138 Object midiout;
+#X text 133 126 -> To MM-MIDI-Out;
+#X obj 139 -19 cnv 15 300 85 empty empty empty 20 12 0 14 -258113 -66577
+0;
+#X text 172 0 - Pd-0.42.5-extended + MacOS;
+#X text 172 47 - Pd-0.42.5-extended + Windows;
+#X text 145 -13 MIDI In fonctionne sous: works under:;
+#X text 144 34 MIDI In ne fonctionne pas: does not work under:;
+#X text 172 11 - Pd-0.42.5-extended + Ubuntu;
+#X obj 9 72 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 263 231 423 171 Help 0;
+#X obj 10 -36 cnv 15 400 100 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X text 13 -37 Citation;
+#X text 35 -18 This object is always omni and;
+#X text 34 -2 outputs the port number instead;
+#X text 35 16 of the channel.;
+#X text 8 -64 MM MIDI-In;
+#X text 10 73 cf ExMM80b-MIDI-Visu.pd;
+#X restore 16 78 pd Help;
+#X text 230 100 26 1 2012;
+#X connect 3 0 5 0;
+#X connect 6 0 8 1;
+#X connect 8 0 3 0;
+#X connect 8 0 10 0;
+#X connect 9 0 8 0;
+#X coords 0 -1 1 1 127 17 1 100 100;
+#X restore 76 31 pd MIDI;
+#X connect 3 0 4 0;
+#X connect 3 1 5 0;
+#X connect 9 0 10 0;
+#X connect 9 1 11 0;
+#X connect 15 0 16 0;
+#X connect 15 1 17 0;
+#X connect 30 0 3 0;
+#X connect 30 1 9 0;
+#X connect 30 2 15 0;
+#X connect 30 3 21 0;
+#X connect 30 4 22 0;
+#X connect 30 5 23 0;
+#X connect 30 6 24 0;
+#X connect 31 0 30 0;

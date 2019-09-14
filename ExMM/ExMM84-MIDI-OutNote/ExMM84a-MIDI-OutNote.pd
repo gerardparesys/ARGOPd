@@ -1,0 +1,740 @@
+#N canvas 176 23 720 501 10;
+#X obj 317 65 t b b;
+#X obj 14 244 cnv 15 685 250 empty empty empty 20 12 0 14 -262103 -66577
+0;
+#X text 21 267 MacOSX;
+#X text 22 384 Windows;
+#X text 73 385 Menu Media -> MIDI settings... -> output devices 1 ->
+;
+#X text 397 385 Synthe...;
+#X text 15 248 Pour entendre les notes MIDI générées (par exemple):
+;
+#X text 231 289 output devices 1 -> SimpleSynth virtual input;
+#X text 63 278 2 Lancer "SimpleSynth" avant de lancer Pd;
+#X text 63 267 1 Installer "SimpleSynth";
+#X text 45 312 ou 1 Installer ARGO Fluidsynth;
+#X text 63 334 3 Glisser une soundFont sur la fenêtre "ARGO Fluidsynth
+v9";
+#X text 74 345 par exemple;
+#X text 257 357 output devices 1 -> to ARGO APPLI Fluidsynth v9 1;
+#X text 353 59 <- d'abord la vélocité;
+#X obj 12 14 cnv 15 15 15 empty empty ExMM84a-MIDI-OutNote.pd 0 8 1
+14 -262144 -1 0;
+#X text 351 220 <- Note Duration;
+#X text 23 409 Linux Ubuntu 1 Installer QSynth et JACK Control;
+#X text 101 420 2 Lancer JACK Control (Driver Audio oss);
+#X text 101 464 6 JACK Control -> Setup... -> Connect -> ALSA ->;
+#X text 118 475 -> Relier PURE DATA Midi-Out et Synth input port;
+#X text 101 431 3 Lancer QSynth (MIDI Driver: alsa_seq - Audio driver:
+JACK);
+#X text 353 70 <- First: Velocity;
+#X text 101 442 4 QSynth -> Open a SoundFont -> Par ex:;
+#X text 63 289 3 Pd -> MIDI settings... ->;
+#X text 63 357 4 Menu Pd -> MIDI settings... ->;
+#N canvas 37 262 349 279 MIDICtrlChange 0;
+#X obj 101 101 cnv 10 125 43 empty ColorMIDI OutNote. 63 25 1 14 -262103
+-1 1.04858e+06;
+#X obj 204 106 nbx 2 12 1 16 0 1 \$0-A ColorMIDI empty 0 0 1 9 -262103
+-1 -1 1 256;
+#X obj 112 133 nbx 2 12 1 4 0 1 \$0-A ColorMIDI empty 0 0 1 9 -262103
+-1 -1 1 256;
+#X obj 137 134 cnv 9 9 9 empty ColorMIDI Port 0 5 1 9 -262103 -1 1.04858e+06
+;
+#X obj 100 106 nbx 3 12 0 127 0 1 \$0-A ColorMIDI empty 0 0 1 9 -208064
+-1 -1 76 256;
+#X text 92 30 Pitch;
+#X text 141 28 Velocity;
+#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 216 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 151 106 nbx 3 12 0 127 0 1 \$0-A ColorMIDI empty 0 0 1 9 -261299
+-1 -1 79 256;
+#X obj 100 133 bng 12 50 50 0 \$0-A \$0-B empty 6 9 0 9 -257985 -260097
+-1;
+#X text 88 45 0..127;
+#X obj 143 233 noteout;
+#X obj 117 195 makenote;
+#X text 236 132 Duration;
+#X obj 91 64 inlet;
+#X text 148 42 0..127;
+#X obj 151 61 inlet;
+#X obj 162 133 nbx 4 12 5 9999 0 1 \$0-A \$0-B ms 41 6 1 9 -208064
+-1 -1 5000 256;
+#X obj 182 195 expr 16*($f1-1) + ($f2);
+#X obj 204 157 t b f;
+#X obj 42 93 t b f;
+#X obj 54 172 int;
+#X obj 209 61 inlet;
+#X text 204 29 Channel;
+#X text 207 42 1..16;
+#X obj 159 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 13 38 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 539 88 425 435 Help 0;
+#X obj 10 37 cnv 15 400 360 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X text 13 39 Citation;
+#X text 10 14 MM MIDI-OutNote;
+#X text 26 58 - send note-on messages and schedule note-off for later
+;
+#X text 40 83 Makenote makes MIDI-style note-on/note-off pairs \, which
+you can use for MIDI output or to drive note-like processes within
+Pd.;
+#X text 41 133 numbers at left are "pitches" which may be integers
+or not.;
+#X restore 20 44 pd Help;
+#X text 237 113 8 6 2018;
+#X obj 285 225 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 336 174 316 152 ?. 0;
+#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X text 13 85 Construit sous / Build under Pd 0.43.4-extended;
+#X obj 13 111 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 12 53 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X text 12 98 or Pd-0.48;
+#X obj 13 124 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X restore 289 229 pd ?.;
+#X connect 1 0 20 0;
+#X connect 2 0 19 0;
+#X connect 4 0 13 0;
+#X connect 9 0 13 1;
+#X connect 10 0 22 0;
+#X connect 13 0 12 0;
+#X connect 13 1 12 1;
+#X connect 15 0 21 0;
+#X connect 17 0 9 0;
+#X connect 18 0 13 2;
+#X connect 19 0 12 2;
+#X connect 20 0 19 0;
+#X connect 20 1 19 1;
+#X connect 21 0 10 0;
+#X connect 21 1 22 1;
+#X connect 22 0 4 0;
+#X connect 23 0 1 0;
+#X coords 0 -1 1 1 127 45 1 100 100;
+#X restore 221 189 pd MIDICtrlChange;
+#N canvas 435 86 357 221 MIDICtrlChange 0;
+#X obj 101 101 cnv 5 125 22 empty ColorMIDI Silence. 75 8 1 14 -262103
+-1 1.04858e+06;
+#X obj 160 101 cnv 9 9 9 empty ColorMIDI Ch 0 5 1 9 -262103 -1 1.04858e+06
+;
+#X obj 153 112 nbx 2 12 1 16 0 1 \$0-A ColorMIDI empty 0 0 1 9 -262103
+-1 -1 1 256;
+#X obj 130 112 nbx 2 12 1 4 0 1 \$0-A ColorMIDI empty 0 0 1 9 -262103
+-1 -1 1 256;
+#X obj 134 101 cnv 9 9 9 empty ColorMIDI Port 0 5 1 9 -262103 -1 1.04858e+06
+;
+#X obj 170 158 expr 16*($f1-1) + ($f2);
+#X obj 170 133 t b f;
+#N canvas 506 239 187 273 silence 0;
+#X obj 106 145 + 1;
+#X obj 49 146 float;
+#X obj 49 120 until;
+#X msg 93 94 0;
+#X obj 66 65 t b b;
+#X msg 49 172 \$1 0;
+#X obj 67 31 inlet;
+#X obj 49 211 outlet;
+#X text 70 13 bang;
+#X text 45 230 noteout;
+#X msg 49 94 128;
+#X connect 0 0 1 1;
+#X connect 1 0 0 0;
+#X connect 1 0 5 0;
+#X connect 2 0 1 0;
+#X connect 3 0 1 1;
+#X connect 4 0 10 0;
+#X connect 4 1 3 0;
+#X connect 5 0 7 0;
+#X connect 6 0 4 0;
+#X connect 10 0 2 0;
+#X restore 100 159 pd silence;
+#X obj 100 196 noteout;
+#X obj 100 100 bng 24 50 50 0 \$0-A \$0-B empty 14 7 1 9 -257985 -260097
+-1;
+#X text 241 105 Silence = "Panic";
+#X text 46 71 MM MIDI-Silence;
+#X text 176 81 8 6 2018;
+#X obj 294 183 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 336 174 316 152 ?. 0;
+#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X text 13 85 Construit sous / Build under Pd 0.43.4-extended;
+#X obj 13 111 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 12 53 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X text 12 98 or Pd-0.48;
+#X obj 13 124 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X restore 298 187 pd ?.;
+#X connect 2 0 6 0;
+#X connect 3 0 5 0;
+#X connect 5 0 8 2;
+#X connect 6 0 5 0;
+#X connect 6 1 5 1;
+#X connect 7 0 8 0;
+#X connect 9 0 7 0;
+#X coords 0 -1 1 1 127 24 1 100 100;
+#X restore 530 208 pd MIDICtrlChange;
+#N canvas 383 56 490 481 ARGO 0;
+#X obj 254 39 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 402 65 405 152 Help 0;
+#X text 9 25 Nbr = Nombre - Number;
+#X text 10 52 Modif par rapport a la version precedente du MM Nbr:
+;
+#X text 33 71 - Ajout 3 x Inputs: min number max;
+#X restore 261 45 pd Help;
+#X obj -101 -23 cnv 15 170 24 empty empty empty 20 12 0 14 -261682
+-66577 0;
+#X obj 56 -20 inlet;
+#X obj 93 399 cnv 15 170 24 empty empty empty 20 12 0 14 -261682 -66577
+0;
+#X obj 98 403 outlet;
+#X obj 101 101 cnv 10 132 53 empty ColorForm Nbr. 106 10 1 14 -261476
+-1 1.04858e+06;
+#X obj 100 101 bng 12 50 50 0 \$0-A \$0-B empty 14 6 1 9 -262144 -1
+-1;
+#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 101 150 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 115 113 nbx 4 12 39 9999 0 1 \$0-A ColorTime max 40 7 1 9 -262144
+-1 -1 95 256;
+#X text -101 -16 Input anything message ->;
+#X text -101 -26 N'importe quel message ->;
+#X obj 115 137 nbx 4 12 -999 9999 0 1 \$0-A ColorTime min 40 7 1 9
+-262144 -1 -1 38 256;
+#X obj 232 270 random;
+#X obj 231 221 -;
+#X obj 191 166 + 1;
+#X obj 231 246 t b f;
+#X text 143 397 -> Nombre;
+#X text 144 407 -> Number;
+#X obj 264 320 +;
+#X msg 270 209 range \$1 9999;
+#X obj -46 162 + 1;
+#X obj -29 326 int;
+#X obj -69 326 + 1;
+#X obj -46 259 int;
+#X obj -46 185 t f f;
+#X obj -46 234 select 1;
+#X obj -46 210 >;
+#X obj 175 107 vradio 12 1 1 4 \$0-A \$0-B --> 16 6 1 9 -262144 -1
+-1 0;
+#X obj 189 119 cnv 5 5 5 empty empty <-- 0 6 1 9 -261476 -1 0;
+#X obj 189 132 cnv 5 5 5 empty empty <--> 0 6 1 9 -261476 -1 0;
+#X obj 189 144 cnv 5 5 5 empty empty Alea 0 6 1 9 -261476 -1 0;
+#X obj 61 331 int;
+#X obj 18 260 int;
+#X obj 18 186 t f f;
+#X obj 18 235 select 1;
+#X obj 18 163 - 1;
+#X obj 18 211 <;
+#X obj 110 190 + 1;
+#X obj 116 212 t f f;
+#X obj 113 265 select 1;
+#X obj 130 331 int;
+#X obj 110 237 >;
+#X msg 124 163 -1;
+#X obj 171 263 select 1;
+#X obj 171 239 <;
+#X msg 159 163 1;
+#X obj 109 291 t b b;
+#X obj 172 290 t b b;
+#X obj -42 64 >;
+#X obj -42 132 int;
+#X obj -42 87 select 1;
+#X obj -42 41 t b f;
+#X obj -103 131 int;
+#X obj -103 87 select 1;
+#X obj -103 42 t b f;
+#X obj -103 65 <;
+#X obj -103 108 delay 5;
+#X obj 229 161 t b f f f f f b f;
+#X obj -42 109 delay 5;
+#X obj 328 184 + 1;
+#X obj 100 125 nbx 4 12 -999 9999 0 1 \$0-A ColorTime empty 40 7 1
+9 -262144 -1 -1 76 256;
+#X msg 141 51 set \$1;
+#X msg 183 78 76;
+#X obj 111 -20 loadbang;
+#X msg 111 51 1;
+#X obj 98 377 spigot 0;
+#X obj 111 3 delay 300;
+#X obj 111 26 t b b b;
+#X obj 223 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 182 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 140 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 177 -32 cnv 15 40 24 empty empty empty 20 12 0 14 -261682 -66577
+0;
+#X obj 180 -20 inlet;
+#X text 186 -35 min;
+#X obj 223 -32 cnv 15 40 24 empty empty empty 20 12 0 14 -261682 -66577
+0;
+#X obj 226 -20 inlet;
+#X obj 269 -32 cnv 15 40 24 empty empty empty 20 12 0 14 -261682 -66577
+0;
+#X obj 272 -20 inlet;
+#X text 278 -35 max;
+#X text 224 -35 number;
+#X obj 15 357 cyclone/switch 4;
+#X text 235 114 22 11 2017;
+#X obj 315 397 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 336 174 309 137 ?. 0;
+#X obj 3 83 cnv 15 300 46 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 3 6 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 26 26 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 64 26 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 7 37 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X text 8 85 Construit sous / Build under Pd 0.43.4-extended;
+#X obj 8 111 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 7 50 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X text 7 98 or Pd-0.46-7 + deken;
+#X restore 319 401 pd ?.;
+#X connect 3 0 7 0;
+#X connect 7 0 14 0;
+#X connect 7 0 23 0;
+#X connect 7 0 33 0;
+#X connect 7 0 42 0;
+#X connect 10 0 16 0;
+#X connect 10 0 28 1;
+#X connect 10 0 34 1;
+#X connect 10 0 43 1;
+#X connect 10 0 51 1;
+#X connect 10 0 53 0;
+#X connect 13 0 59 0;
+#X connect 14 0 20 0;
+#X connect 15 0 17 0;
+#X connect 16 0 15 0;
+#X connect 17 0 14 0;
+#X connect 17 1 14 1;
+#X connect 20 0 82 4;
+#X connect 21 0 10 0;
+#X connect 22 0 26 0;
+#X connect 23 0 82 1;
+#X connect 24 0 82 0;
+#X connect 25 0 23 1;
+#X connect 26 0 28 0;
+#X connect 26 1 23 1;
+#X connect 27 0 25 0;
+#X connect 28 0 27 0;
+#X connect 29 0 24 0;
+#X connect 33 0 82 2;
+#X connect 34 0 33 1;
+#X connect 35 0 38 0;
+#X connect 35 1 33 1;
+#X connect 36 0 34 0;
+#X connect 37 0 35 0;
+#X connect 38 0 36 0;
+#X connect 39 0 40 0;
+#X connect 40 0 43 0;
+#X connect 40 0 46 0;
+#X connect 40 1 42 1;
+#X connect 41 0 48 0;
+#X connect 42 0 82 3;
+#X connect 43 0 41 0;
+#X connect 44 0 39 1;
+#X connect 45 0 49 0;
+#X connect 46 0 45 0;
+#X connect 47 0 39 1;
+#X connect 48 0 39 0;
+#X connect 48 1 44 0;
+#X connect 49 0 39 0;
+#X connect 49 1 47 0;
+#X connect 50 0 52 0;
+#X connect 51 0 62 0;
+#X connect 52 0 60 0;
+#X connect 53 0 50 0;
+#X connect 53 1 50 1;
+#X connect 54 0 62 0;
+#X connect 55 0 58 0;
+#X connect 56 0 57 0;
+#X connect 56 1 57 1;
+#X connect 57 0 55 0;
+#X connect 58 0 54 0;
+#X connect 59 0 15 0;
+#X connect 59 1 15 1;
+#X connect 59 2 20 1;
+#X connect 59 3 54 1;
+#X connect 59 4 56 0;
+#X connect 59 5 25 1;
+#X connect 59 5 46 1;
+#X connect 59 5 38 1;
+#X connect 59 6 10 0;
+#X connect 59 7 61 0;
+#X connect 60 0 51 0;
+#X connect 61 0 21 0;
+#X connect 62 0 22 0;
+#X connect 62 0 37 0;
+#X connect 62 0 39 0;
+#X connect 62 0 50 0;
+#X connect 62 0 57 0;
+#X connect 62 0 67 0;
+#X connect 63 0 64 0;
+#X connect 64 0 62 0;
+#X connect 65 0 68 0;
+#X connect 66 0 67 1;
+#X connect 67 0 5 0;
+#X connect 67 0 63 0;
+#X connect 68 0 69 0;
+#X connect 69 1 66 0;
+#X connect 69 2 64 0;
+#X connect 74 0 13 0;
+#X connect 77 0 62 0;
+#X connect 79 0 10 0;
+#X connect 82 0 62 0;
+#X coords 0 -1 1 1 134 55 2 100 100;
+#X restore 221 98 pd ARGO;
+#N canvas 383 56 490 481 ARGO 0;
+#X obj 254 39 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 402 65 405 152 Help 0;
+#X text 9 25 Nbr = Nombre - Number;
+#X text 10 52 Modif par rapport a la version precedente du MM Nbr:
+;
+#X text 33 71 - Ajout 3 x Inputs: min number max;
+#X restore 261 45 pd Help;
+#X obj -101 -23 cnv 15 170 24 empty empty empty 20 12 0 14 -261682
+-66577 0;
+#X obj 56 -20 inlet;
+#X obj 93 399 cnv 15 170 24 empty empty empty 20 12 0 14 -261682 -66577
+0;
+#X obj 98 403 outlet;
+#X obj 101 101 cnv 10 132 53 empty ColorForm Nbr. 106 10 1 14 -261476
+-1 1.04858e+06;
+#X obj 100 101 bng 12 50 50 0 \$0-A \$0-B empty 14 6 1 9 -262144 -1
+-1;
+#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 101 150 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 115 113 nbx 4 12 51 9999 0 1 \$0-A ColorTime max 40 7 1 9 -262144
+-1 -1 120 256;
+#X text -101 -16 Input anything message ->;
+#X text -101 -26 N'importe quel message ->;
+#X obj 115 137 nbx 4 12 -999 9999 0 1 \$0-A ColorTime min 40 7 1 9
+-262144 -1 -1 50 256;
+#X obj 232 270 random;
+#X obj 231 221 -;
+#X obj 191 166 + 1;
+#X obj 231 246 t b f;
+#X text 143 397 -> Nombre;
+#X text 144 407 -> Number;
+#X obj 264 320 +;
+#X msg 270 209 range \$1 9999;
+#X obj -46 162 + 1;
+#X obj -29 326 int;
+#X obj -69 326 + 1;
+#X obj -46 259 int;
+#X obj -46 185 t f f;
+#X obj -46 234 select 1;
+#X obj -46 210 >;
+#X obj 175 107 vradio 12 1 1 4 \$0-A \$0-B --> 16 6 1 9 -262144 -1
+-1 0;
+#X obj 189 119 cnv 5 5 5 empty empty <-- 0 6 1 9 -261476 -1 0;
+#X obj 189 132 cnv 5 5 5 empty empty <--> 0 6 1 9 -261476 -1 0;
+#X obj 189 144 cnv 5 5 5 empty empty Alea 0 6 1 9 -261476 -1 0;
+#X obj 61 331 int;
+#X obj 18 260 int;
+#X obj 18 186 t f f;
+#X obj 18 235 select 1;
+#X obj 18 163 - 1;
+#X obj 18 211 <;
+#X obj 110 190 + 1;
+#X obj 116 212 t f f;
+#X obj 113 265 select 1;
+#X obj 130 331 int;
+#X obj 110 237 >;
+#X msg 124 163 -1;
+#X obj 171 263 select 1;
+#X obj 171 239 <;
+#X msg 159 163 1;
+#X obj 109 291 t b b;
+#X obj 172 290 t b b;
+#X obj -42 64 >;
+#X obj -42 132 int;
+#X obj -42 87 select 1;
+#X obj -42 41 t b f;
+#X obj -103 131 int;
+#X obj -103 87 select 1;
+#X obj -103 42 t b f;
+#X obj -103 65 <;
+#X obj -103 108 delay 5;
+#X obj 229 161 t b f f f f f b f;
+#X obj -42 109 delay 5;
+#X obj 328 184 + 1;
+#X obj 100 125 nbx 4 12 -999 9999 0 1 \$0-A ColorTime empty 40 7 1
+9 -262144 -1 -1 79 256;
+#X msg 141 51 set \$1;
+#X msg 183 78 79;
+#X obj 111 -20 loadbang;
+#X msg 111 51 1;
+#X obj 98 377 spigot 0;
+#X obj 111 3 delay 300;
+#X obj 111 26 t b b b;
+#X obj 223 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 182 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 140 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 177 -32 cnv 15 40 24 empty empty empty 20 12 0 14 -261682 -66577
+0;
+#X obj 180 -20 inlet;
+#X text 186 -35 min;
+#X obj 223 -32 cnv 15 40 24 empty empty empty 20 12 0 14 -261682 -66577
+0;
+#X obj 226 -20 inlet;
+#X obj 269 -32 cnv 15 40 24 empty empty empty 20 12 0 14 -261682 -66577
+0;
+#X obj 272 -20 inlet;
+#X text 278 -35 max;
+#X text 224 -35 number;
+#X obj 15 357 cyclone/switch 4;
+#X text 235 114 22 11 2017;
+#X obj 315 397 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 336 174 309 137 ?. 0;
+#X obj 3 83 cnv 15 300 46 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 3 6 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 26 26 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 64 26 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 7 37 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X text 8 85 Construit sous / Build under Pd 0.43.4-extended;
+#X obj 8 111 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 7 50 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X text 7 98 or Pd-0.46-7 + deken;
+#X restore 319 401 pd ?.;
+#X connect 3 0 7 0;
+#X connect 7 0 14 0;
+#X connect 7 0 23 0;
+#X connect 7 0 33 0;
+#X connect 7 0 42 0;
+#X connect 10 0 16 0;
+#X connect 10 0 28 1;
+#X connect 10 0 34 1;
+#X connect 10 0 43 1;
+#X connect 10 0 51 1;
+#X connect 10 0 53 0;
+#X connect 13 0 59 0;
+#X connect 14 0 20 0;
+#X connect 15 0 17 0;
+#X connect 16 0 15 0;
+#X connect 17 0 14 0;
+#X connect 17 1 14 1;
+#X connect 20 0 82 4;
+#X connect 21 0 10 0;
+#X connect 22 0 26 0;
+#X connect 23 0 82 1;
+#X connect 24 0 82 0;
+#X connect 25 0 23 1;
+#X connect 26 0 28 0;
+#X connect 26 1 23 1;
+#X connect 27 0 25 0;
+#X connect 28 0 27 0;
+#X connect 29 0 24 0;
+#X connect 33 0 82 2;
+#X connect 34 0 33 1;
+#X connect 35 0 38 0;
+#X connect 35 1 33 1;
+#X connect 36 0 34 0;
+#X connect 37 0 35 0;
+#X connect 38 0 36 0;
+#X connect 39 0 40 0;
+#X connect 40 0 43 0;
+#X connect 40 0 46 0;
+#X connect 40 1 42 1;
+#X connect 41 0 48 0;
+#X connect 42 0 82 3;
+#X connect 43 0 41 0;
+#X connect 44 0 39 1;
+#X connect 45 0 49 0;
+#X connect 46 0 45 0;
+#X connect 47 0 39 1;
+#X connect 48 0 39 0;
+#X connect 48 1 44 0;
+#X connect 49 0 39 0;
+#X connect 49 1 47 0;
+#X connect 50 0 52 0;
+#X connect 51 0 62 0;
+#X connect 52 0 60 0;
+#X connect 53 0 50 0;
+#X connect 53 1 50 1;
+#X connect 54 0 62 0;
+#X connect 55 0 58 0;
+#X connect 56 0 57 0;
+#X connect 56 1 57 1;
+#X connect 57 0 55 0;
+#X connect 58 0 54 0;
+#X connect 59 0 15 0;
+#X connect 59 1 15 1;
+#X connect 59 2 20 1;
+#X connect 59 3 54 1;
+#X connect 59 4 56 0;
+#X connect 59 5 25 1;
+#X connect 59 5 46 1;
+#X connect 59 5 38 1;
+#X connect 59 6 10 0;
+#X connect 59 7 61 0;
+#X connect 60 0 51 0;
+#X connect 61 0 21 0;
+#X connect 62 0 22 0;
+#X connect 62 0 37 0;
+#X connect 62 0 39 0;
+#X connect 62 0 50 0;
+#X connect 62 0 57 0;
+#X connect 62 0 67 0;
+#X connect 63 0 64 0;
+#X connect 64 0 62 0;
+#X connect 65 0 68 0;
+#X connect 66 0 67 1;
+#X connect 67 0 5 0;
+#X connect 67 0 63 0;
+#X connect 68 0 69 0;
+#X connect 69 1 66 0;
+#X connect 69 2 64 0;
+#X connect 74 0 13 0;
+#X connect 77 0 62 0;
+#X connect 79 0 10 0;
+#X connect 82 0 62 0;
+#X coords 0 -1 1 1 134 55 2 100 100;
+#X restore 367 98 pd ARGO;
+#X text 321 168 <- Velocity 0..127;
+#X text 130 168 Pitch 0..127 ->;
+#X text 351 186 <- MIDI Channel;
+#N canvas 358 45 466 323 ARGO 0;
+#X obj 263 45 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 537 176 286 105 Help 0;
+#X text 15 20 Un "Bang" sort X fois par minute.;
+#X text 13 52 A "Bang" outputs X times per minute.;
+#X restore 270 51 pd Help;
+#X obj 200 32 inlet;
+#X obj 195 249 cnv 15 170 24 empty empty empty 20 12 0 14 -261682 -66577
+0;
+#X obj 200 253 outlet;
+#X obj 201 101 cnv 10 132 35 empty ColorForm Metronome. 53 9 1 14 -208064
+-1 1.04858e+06;
+#X obj 200 124 bng 12 50 10 0 \$0-A \$0-B empty 14 6 1 9 -262144 -1
+-1;
+#X obj 201 132 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 200 112 nbx 3 12 1 999 0 1 \$0-A ColorTime BPM 36 8 1 11 -208064
+-1 -1 300 256;
+#X obj 200 100 tgl 12 1 \$0-A \$0-B empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 7 96 cnv 15 190 20 empty empty empty 20 12 0 14 -261682 -66577
+0;
+#X text 8 97 1: Play 0: Stop bang: Change ->;
+#X obj 201 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 120 183 metro 300;
+#X obj 171 160 expr 60000 / $f1;
+#X text 205 286 Bang;
+#X text 213 272 |;
+#X text 213 277 v;
+#X obj 376 235 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 336 174 316 152 ?. 0;
+#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X text 13 85 Construit sous / Build under Pd 0.43.4-extended;
+#X obj 13 111 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 12 53 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X text 12 98 or Pd-0.48;
+#X obj 13 124 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X restore 380 239 pd ?.;
+#X text 277 83 8 6 2018;
+#X connect 2 0 9 0;
+#X connect 6 0 4 0;
+#X connect 8 0 14 0;
+#X connect 9 0 13 0;
+#X connect 13 0 6 0;
+#X connect 14 0 13 1;
+#X coords 0 -1 1 1 134 37 2 200 100;
+#X restore 317 12 pd ARGO;
+#X obj 647 470 cnv 15 52 22 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 353 174 321 152 ?... 0;
+#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 13 121 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 13 97 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X text 13 85 Construit sous / Build under Pd-0.49...;
+#X text 12 109 or Pd 0.43.4-extended;
+#X obj 12 53 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X restore 650 473 pd ?...;
+#X text 101 453 5 Pd -> Menu Media - ALSA-MIDI ->;
+#X obj 222 268 pddp/pddplink http://notahat.com/simplesynth/;
+#X obj 232 312 pddp/pddplink http://gerard.paresys.free.fr/ARGO/AppFluidsynth.html
+;
+#X obj 146 345 pddp/pddplink http://gerard.paresys.free.fr/File/Airfont310.sf2.zip
+;
+#X obj 337 443 pddp/pddplink http://gerard.paresys.free.fr/File/Airfont310.sf2.zip
+;
+#X text 63 323 2 Lancer "ARGO Appli Fluidsynth v9.app" avant de lancer
+Pd;
+#X connect 0 0 28 0;
+#X connect 0 1 29 0;
+#X connect 28 0 26 0;
+#X connect 29 0 26 1;
+#X connect 33 0 0 0;
