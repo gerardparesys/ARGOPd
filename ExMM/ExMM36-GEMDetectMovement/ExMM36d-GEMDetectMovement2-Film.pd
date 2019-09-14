@@ -1,0 +1,2505 @@
+#N canvas 643 23 486 732 10;
+#X declare -stdlib Gem;
+#X obj 9 13 cnv 15 15 15 empty empty ExMM36d-GEMDetectMovement2-Film.pd
+0 8 1 14 -262144 -1 0;
+#X text 357 355 <- Clic zero;
+#N canvas 411 36 480 582 ARGO 0;
+#X obj 101 101 cnv 10 249 95 empty ColorForm empty 20 12 0 14 -228856
+-1 1.04858e+06;
+#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -128992 -66577
+0;
+#X obj 224 104 cnv 10 20 10 empty ColorForm GEM-CenterGravity 1 5 1
+14 -228856 -1 1.04858e+06;
+#X text 84 83 gemlist;
+#X obj 96 -154 inlet;
+#X obj 39 315 cnv 15 430 80 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X text 40 317 [pix_blob];
+#X text 60 332 get the "center of gravity" of an image;
+#X obj 99 -75 - 0.5;
+#X obj 58 -31 - 128;
+#X obj 85 -52 f;
+#X obj 99 -97 change;
+#X obj 96 -131 pix_blob 4;
+#X obj 278 140 bng 12 250 50 0 \$0-A \$0-B Zero 15 7 1 9 -262144 -1
+-1;
+#X obj 101 192 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 340 192 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 225 192 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 92 291 outlet~;
+#X obj 210 290 outlet~;
+#X obj 331 289 outlet~;
+#X obj 270 121 nbx 4 12 0 9999 0 1 \$0-A \$0-B empty 0 0 1 9 -228856
+-1 -1 38 256;
+#X obj 309 123 cnv 10 8 8 empty empty Gliss(ms) 0 4 1 9 -228856 -1
+0;
+#X obj 191 -170 t b b b b b b;
+#X obj 220 152 hsl 129 12 -1 1 0 1 \$0-A ColorForm empty 0 6 1 9 -228856
+-1 -1 6607 0;
+#X obj 91 269 line~;
+#X obj 113 42 int;
+#X obj 86 20 t f b;
+#X obj 86 63 line;
+#X text 42 350 Pd-extended -> Browser ->;
+#X text 60 363 examples/Gem/04.Video/03.movement_detection.pd;
+#X text 59 375 examples/Gem/04.pix/23.gravity.pd;
+#X obj 118 247 int;
+#X obj 91 225 t f b;
+#X text 102 197 X;
+#X text 226 197 Y;
+#X text 334 196 Size;
+#X obj 185 135 cnv 5 8 8 empty empty 4 0 4 1 9 -228856 -1 0;
+#X obj 173 135 cnv 5 8 8 empty empty 2 0 4 1 9 -228856 -1 0;
+#X obj 197 135 cnv 5 8 8 empty empty 8 0 4 1 9 -228856 -1 0;
+#X obj 125 143 cnv 5 8 8 empty empty 8 0 4 1 9 -228856 -1 0;
+#X obj 121 152 hradio 12 1 1 7 \$0-A \$0-B empty 36 -5 1 9 -262144
+-1 -1 5;
+#X obj 161 135 cnv 5 8 8 empty empty 1 0 4 1 9 -228856 -1 0;
+#X obj 205 152 tgl 12 1 \$0-A \$0-B empty 0 0 1 9 -262144 -1 -1 0 1
+;
+#X obj 205 135 cnv 10 8 8 empty empty Inv 0 4 1 9 -228856 -1 0;
+#X obj 124 132 cnv 5 8 6 empty empty _ 0 4 1 9 -262144 -1 0;
+#X obj 137 143 cnv 5 8 8 empty empty 4 0 4 1 9 -228856 -1 0;
+#X obj 137 132 cnv 5 8 6 empty empty _ 0 4 1 9 -262144 -1 0;
+#X obj 149 143 cnv 5 8 8 empty empty 2 0 4 1 9 -228856 -1 0;
+#X obj 149 132 cnv 5 8 6 empty empty _ 0 4 1 9 -262144 -1 0;
+#X obj 149 131 cnv 5 8 8 empty empty 1 0 4 1 9 -228856 -1 0;
+#X obj 124 131 cnv 5 8 8 empty empty 1 0 4 1 9 -228856 -1 0;
+#X obj 137 131 cnv 5 8 8 empty empty 1 0 4 1 9 -228856 -1 0;
+#X obj 110 155 cnv 10 8 8 empty empty X 0 4 1 9 -228856 -1 0;
+#X obj 110 167 cnv 10 8 8 empty empty Y 0 4 1 9 -228856 -1 0;
+#X obj 102 178 cnv 10 8 8 empty empty Size 0 4 1 9 -228856 -1 0;
+#X obj 86 -4 * 1;
+#N canvas 360 174 219 279 GainInv 0;
+#X obj 25 118 pow 2;
+#X msg 25 95 2;
+#X obj 25 72 t b f;
+#X obj 57 144 * 1;
+#X obj 82 50 * -2;
+#X obj 83 70 + 1;
+#X obj 84 91 t b f;
+#X obj 25 16 inlet;
+#X obj 83 17 inlet;
+#X obj 57 170 outlet;
+#X obj 25 48 - 5;
+#X connect 0 0 3 0;
+#X connect 1 0 0 0;
+#X connect 2 0 1 0;
+#X connect 2 1 0 1;
+#X connect 3 0 9 0;
+#X connect 4 0 5 0;
+#X connect 5 0 6 0;
+#X connect 6 0 3 0;
+#X connect 6 1 3 1;
+#X connect 7 0 10 0;
+#X connect 8 0 4 0;
+#X connect 10 0 2 0;
+#X restore 112 -52 pd GainInv;
+#X obj 112 -29 t b f;
+#X obj 121 164 hradio 12 1 1 7 \$0-A \$0-B empty 36 -5 1 9 -262144
+-1 -1 5;
+#X obj 205 164 tgl 12 1 \$0-A \$0-B empty 0 0 1 9 -262144 -1 -1 0 1
+;
+#X obj 121 176 hradio 12 1 1 7 \$0-A \$0-B empty 36 -5 1 9 -262144
+-1 -1 6;
+#X obj 205 176 tgl 12 1 \$0-A \$0-B empty 0 0 1 9 -262144 -1 -1 0 1
+;
+#X obj 214 -74 - 0.5;
+#X obj 173 -30 - 128;
+#X obj 200 -51 f;
+#X obj 214 -96 change;
+#X obj 220 164 hsl 129 12 -1 1 0 1 \$0-A ColorForm empty 0 6 1 9 -228856
+-1 -1 5922 0;
+#X obj 228 43 int;
+#X obj 201 21 t f b;
+#X obj 201 64 line;
+#X obj 201 -3 * 1;
+#N canvas 360 174 219 279 GainInv 0;
+#X obj 25 118 pow 2;
+#X msg 25 95 2;
+#X obj 25 72 t b f;
+#X obj 57 144 * 1;
+#X obj 82 50 * -2;
+#X obj 83 70 + 1;
+#X obj 84 91 t b f;
+#X obj 25 16 inlet;
+#X obj 83 17 inlet;
+#X obj 57 170 outlet;
+#X obj 25 48 - 5;
+#X connect 0 0 3 0;
+#X connect 1 0 0 0;
+#X connect 2 0 1 0;
+#X connect 2 1 0 1;
+#X connect 3 0 9 0;
+#X connect 4 0 5 0;
+#X connect 5 0 6 0;
+#X connect 6 0 3 0;
+#X connect 6 1 3 1;
+#X connect 7 0 10 0;
+#X connect 8 0 4 0;
+#X connect 10 0 2 0;
+#X restore 227 -51 pd GainInv;
+#X obj 227 -28 t b f;
+#X obj 210 268 line~;
+#X obj 237 246 int;
+#X obj 210 224 t f b;
+#X obj 319 -75 - 0.5;
+#X obj 278 -31 - 128;
+#X obj 305 -52 f;
+#X obj 319 -97 change;
+#X obj 220 176 hsl 129 12 -1 1 0 1 \$0-A ColorForm empty 0 6 1 9 -228856
+-1 -1 6627 0;
+#X obj 333 42 int;
+#X obj 306 20 t f b;
+#X obj 306 63 line;
+#X obj 306 -4 * 1;
+#N canvas 360 174 219 279 GainInv 0;
+#X obj 25 118 pow 2;
+#X msg 25 95 2;
+#X obj 25 72 t b f;
+#X obj 57 144 * 1;
+#X obj 82 50 * -2;
+#X obj 83 70 + 1;
+#X obj 84 91 t b f;
+#X obj 25 16 inlet;
+#X obj 83 17 inlet;
+#X obj 57 170 outlet;
+#X obj 25 48 - 5;
+#X connect 0 0 3 0;
+#X connect 1 0 0 0;
+#X connect 2 0 1 0;
+#X connect 2 1 0 1;
+#X connect 3 0 9 0;
+#X connect 4 0 5 0;
+#X connect 5 0 6 0;
+#X connect 6 0 3 0;
+#X connect 6 1 3 1;
+#X connect 7 0 10 0;
+#X connect 8 0 4 0;
+#X connect 10 0 2 0;
+#X restore 332 -52 pd GainInv;
+#X obj 332 -29 t b f;
+#X obj 331 267 line~;
+#X obj 358 245 int;
+#X obj 331 223 t f b;
+#X obj 146 103 cnv 10 8 8 empty empty R 0 4 1 9 -228856 -1 0;
+#X obj 158 103 cnv 10 8 8 empty empty V 0 4 1 9 -228856 -1 0;
+#X obj 170 103 cnv 10 8 8 empty empty B 0 4 1 9 -228856 -1 0;
+#X obj 192 114 cnv 10 8 8 empty empty Alpha 0 4 1 9 -228856 -1 0;
+#X obj 109 114 cnv 10 8 8 empty empty Grey 0 4 1 9 -228856 -1 0;
+#X obj 130 112 hradio 12 1 1 5 \$0-A \$0-B empty 36 -5 1 9 -262144
+-1 -1 4;
+#X obj 347 -157 loadbang;
+#X obj 345 -132 delay 2000;
+#X text 355 102 7 12 2008;
+#X connect 4 0 12 0;
+#X connect 8 0 10 1;
+#X connect 8 0 9 0;
+#X connect 9 0 55 0;
+#X connect 10 0 9 1;
+#X connect 11 0 8 0;
+#X connect 12 1 11 0;
+#X connect 12 2 65 0;
+#X connect 12 3 79 0;
+#X connect 13 0 22 0;
+#X connect 20 0 25 0;
+#X connect 20 0 31 0;
+#X connect 20 0 74 0;
+#X connect 20 0 88 0;
+#X connect 20 0 67 0;
+#X connect 20 0 81 0;
+#X connect 22 0 9 0;
+#X connect 22 1 10 0;
+#X connect 22 2 63 0;
+#X connect 22 3 64 0;
+#X connect 22 4 77 0;
+#X connect 22 5 78 0;
+#X connect 23 0 32 0;
+#X connect 24 0 17 0;
+#X connect 25 0 27 1;
+#X connect 26 0 27 0;
+#X connect 26 1 25 0;
+#X connect 27 0 23 0;
+#X connect 31 0 24 1;
+#X connect 32 0 24 0;
+#X connect 32 1 31 0;
+#X connect 40 0 56 0;
+#X connect 42 0 56 1;
+#X connect 55 0 26 0;
+#X connect 56 0 57 0;
+#X connect 57 0 55 0;
+#X connect 57 1 55 1;
+#X connect 58 0 71 0;
+#X connect 59 0 71 1;
+#X connect 60 0 85 0;
+#X connect 61 0 85 1;
+#X connect 62 0 64 1;
+#X connect 62 0 63 0;
+#X connect 63 0 70 0;
+#X connect 64 0 63 1;
+#X connect 65 0 62 0;
+#X connect 66 0 75 0;
+#X connect 67 0 69 1;
+#X connect 68 0 69 0;
+#X connect 68 1 67 0;
+#X connect 69 0 66 0;
+#X connect 70 0 68 0;
+#X connect 71 0 72 0;
+#X connect 72 0 70 0;
+#X connect 72 1 70 1;
+#X connect 73 0 18 0;
+#X connect 74 0 73 1;
+#X connect 75 0 73 0;
+#X connect 75 1 74 0;
+#X connect 76 0 78 1;
+#X connect 76 0 77 0;
+#X connect 77 0 84 0;
+#X connect 78 0 77 1;
+#X connect 79 0 76 0;
+#X connect 80 0 89 0;
+#X connect 81 0 83 1;
+#X connect 82 0 83 0;
+#X connect 82 1 81 0;
+#X connect 83 0 80 0;
+#X connect 84 0 82 0;
+#X connect 85 0 86 0;
+#X connect 86 0 84 0;
+#X connect 86 1 84 1;
+#X connect 87 0 19 0;
+#X connect 88 0 87 1;
+#X connect 89 0 87 0;
+#X connect 89 1 88 0;
+#X connect 95 0 12 1;
+#X connect 96 0 97 0;
+#X connect 97 0 13 0;
+#X coords 0 -1 1 1 251 97 1 100 100;
+#X restore 105 320 pd ARGO;
+#X obj 152 479 *~ -1;
+#X obj 277 694 dac~;
+#X text 367 365 (initialize);
+#N canvas 413 140 402 279 ARGO 0;
+#X obj 101 101 cnv 10 95 41 \$0-A \$0-B empty 20 12 0 14 -1 -1 1.04858e+06
+;
+#X obj 101 109 nbx 4 12 0 1e+37 0 0 \$0 \$0-ReceiveCpuPeak CPUPeak
+45 7 1 11 -24198 -1 -24198 14 256;
+#X obj 101 122 nbx 4 12 0 1e+37 0 0 \$0 \$0-ReceiveCpuMean CPUMean
+45 7 1 11 -24198 -1 -24198 14.93 256;
+#X obj 145 -55 cputime;
+#X obj 145 -76 t b b;
+#X text 188 24 (c) musil@iem.kug.ac.at;
+#X text 230 37 IEM KUG;
+#X text 78 18 CPU-load;
+#X obj 144 -125 loadbang;
+#X text 205 48 graz \, austria 2001;
+#X obj 145 -100 metro 500;
+#X obj 145 -34 * 0.2;
+#X text 237 -88 -dsp-load in %;
+#X text 228 -101 measure average- and peak-;
+#X obj 37 18 * 100;
+#X obj 37 63 int;
+#X obj 37 41 + 0.499;
+#X obj 37 86 * 0.01;
+#N canvas 524 162 422 273 1p1zmodif 0;
+#X text 134 89 (c) musil@iem.kug.ac.at;
+#X text 179 99 IEM KUG;
+#X obj 14 195 +;
+#X text 151 108 graz \, austria 2001;
+#X text 135 71 y[n] = a0*x[n] + a1*x[n-1] + b1*y[n-1];
+#X text 18 13 x[n];
+#X text 16 244 y[n];
+#X text 84 111 y[n-1];
+#X text 134 56 <float> control-IIR-filter 1.order;
+#X obj 15 28 inlet;
+#X obj 14 228 outlet;
+#X obj 15 112 * 0.1;
+#X obj 59 156 * 0.9;
+#X text 139 144 a1 = 0;
+#X text 139 155 b1 = 0.9;
+#X text 139 133 a0 = 0.1;
+#X obj 15 50 t f b;
+#X text 135 40 Inspiré de 1p1z;
+#X obj 59 112 f 0;
+#X connect 2 0 10 0;
+#X connect 2 0 18 1;
+#X connect 9 0 16 0;
+#X connect 11 0 2 0;
+#X connect 12 0 2 1;
+#X connect 16 0 11 0;
+#X connect 16 1 18 0;
+#X connect 18 0 12 0;
+#X restore 37 -8 pd 1p1zmodif;
+#X text 146 9 Inspiré de 5.reference/iemabs/help-dsp.pd;
+#X text 141 83 25 3 2010;
+#X connect 3 0 11 0;
+#X connect 4 0 3 0;
+#X connect 4 1 3 1;
+#X connect 8 0 10 0;
+#X connect 10 0 4 0;
+#X connect 11 0 18 0;
+#X connect 11 0 1 0;
+#X connect 14 0 16 0;
+#X connect 15 0 17 0;
+#X connect 16 0 15 0;
+#X connect 17 0 2 0;
+#X connect 18 0 14 0;
+#X coords 0 -1 1 1 97 43 1 100 100;
+#X restore 29 121 pd ARGO;
+#N canvas 133 24 916 633 ARGO 0;
+#X obj 101 101 cnv 22 183 99 empty empty GEM. 5 12 1 18 -1 -262144
+1.04858e+06;
+#X obj 205 154 tgl 12 1 \$0-A \$0-ColorGEM (F)ullScreen 15 7 1 11 -24198
+-1 -24198 0 1;
+#X obj 103 124 tgl 12 1 \$0-A \$0-ColorGEM (G)EM 15 7 1 11 -24198 -1
+-24198 1 1;
+#X obj 191 105 nbx 2 12 1 30 0 1 \$0-A \$0-ColorGEM Frames/sec 29 7
+1 11 -24198 -1 -24198 15 256;
+#X obj 205 139 tgl 12 1 \$0-A \$0-ColorGEM KeyShortCut 15 7 1 11 -24198
+-1 -24198 0 1;
+#X obj 283 -26 key;
+#X msg 89 243 set \$1;
+#X msg 70 268 1;
+#X msg -65 506 frame \$1;
+#X obj 283 11 spigot;
+#X obj 70 -28 gemkeyname;
+#X obj 506 455 select 0 1;
+#X obj 80 217 t b f f f;
+#X msg 522 502 color 16 22 16;
+#X msg 507 479 color 0 22 0;
+#X obj 181 67 select 65 97 70 102 76 108 71 103 66 98;
+#X obj -25 -25 r SendGEM;
+#X obj 508 536 s \$0-ColorGEM;
+#X obj 205 124 tgl 12 1 SendMode \$0-ColorGEM Compatible 15 7 1 11
+-24198 -1 -24198 0 1;
+#X obj 53 68 select 27;
+#X msg -21 134 0;
+#X obj 103 184 hradio 12 1 1 4 \$0-A \$0-ColorGEM 640x480 51 7 1 11
+-24198 -1 -24198 2;
+#X obj 248 217 t b f;
+#N canvas 206 161 410 300 Dimension 0;
+#X msg 196 103 set dimen 1280 720;
+#X msg 180 145 set dimen 640 480;
+#X msg 162 187 set dimen 320 240;
+#X msg 191 124 label 640x480;
+#X msg 206 82 label 1280x720;
+#X msg 172 166 label 320x240;
+#X obj 162 12 inlet;
+#X obj 85 255 outlet;
+#X obj 306 264 outlet;
+#X obj 162 38 sel 0 1 2 3;
+#X msg 142 230 set dimen 480 640;
+#X msg 152 209 label 480x640;
+#X connect 0 0 8 0;
+#X connect 1 0 8 0;
+#X connect 2 0 8 0;
+#X connect 3 0 7 0;
+#X connect 4 0 7 0;
+#X connect 5 0 7 0;
+#X connect 6 0 9 0;
+#X connect 9 0 11 0;
+#X connect 9 0 10 0;
+#X connect 9 1 5 0;
+#X connect 9 1 2 0;
+#X connect 9 2 3 0;
+#X connect 9 2 1 0;
+#X connect 9 3 4 0;
+#X connect 9 3 0 0;
+#X connect 10 0 8 0;
+#X connect 11 0 7 0;
+#X restore 163 305 pd Dimension;
+#X text 150 -29 Sortir de fullscreen;
+#X text 146 -19 sous Linux avec Esc ->;
+#X text -72 37 Sortir de fullscreen;
+#X text -84 47 sous MacOS avec Esc ->;
+#X obj 189 217 t b f;
+#X obj 103 139 tgl 12 1 \$0-A \$0-ColorGEM (B)arMenu 15 7 1 11 -24198
+-1 -24198 1 1;
+#X obj 36 16 spigot;
+#X obj 69 -6 == 0;
+#X obj -47 68 sel f F g G b B;
+#X obj 293 217 t b f b;
+#X obj -21 112 t b b;
+#X msg 6 158 set 1;
+#X obj 103 154 tgl 12 1 \$0-A \$0-ColorGEM (L)ight 15 7 1 11 -24198
+-1 -24198 0 1;
+#X obj 103 169 nbx 3 12 0 100 0 1 \$0-A \$0-ColorGEM BackGround 37
+7 1 11 -24198 -1 -24198 36 256;
+#X obj 205 169 tgl 12 1 \$0-A \$0-ColorGEM Screen2 15 7 1 11 -24198
+-1 -24198 0 1;
+#X obj 205 184 bng 12 250 50 0 \$0-A \$0-ColorGEM Info 15 7 1 11 -24198
+-1 -24198;
+#X obj 351 217 t b f;
+#X obj 386 343 + 1;
+#X msg -105 505 print;
+#X msg -278 505 lighting \$1;
+#X msg -200 505 color \$1 \$1 \$1;
+#X obj -200 480 / 100;
+#X obj 297 473 * 2;
+#X obj -278 481 int;
+#X obj -243 149 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 403 109 421 480 Help 0;
+#X obj 11 -6 cnv 15 380 90 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X text 16 -8 Citation;
+#X text 15 5 "GEM is the Graphics Environment for Multimedia. It was
+originally written by Mark Danks to generate real-time computer graphics
+\, especially for audio-visual compositions.";
+#X text 15 55 "GEM is a collection of externals which allow the user
+to create OpenGL graphics within Pd";
+#X text 10 92 - Raccourcis clavier;
+#X text 12 148 - En "FullScreen" taper F ou Pomme + Tab sous MacOSX...
+;
+#X text 120 161 taper F ou Alt + Tab sous Windows...;
+#X text 120 173 taper F ou Alt + F4 sous Linux...;
+#X obj 10 425 cnv 15 400 190 empty empty empty 20 12 0 14 -258113 -66577
+0;
+#X text 13 431 Impossible de supprimer la barre de menu sous MacOSX.5
++ Pd-0.41.4-extended;
+#X text 13 457 Pas de probleme sous MacOSX.4 + Pd-0.41.4-extended;
+#X text 25 513 Solution: Quitter Pd et relancer;
+#X text 14 474 - Problème Windows: Quand on sort de fullscreen le dessin
+des objets dans les patches est buggé (taille du texte \, HSlider décalés...)
+;
+#X text 26 525 Vu avec carte Matrox + Windows XP SP2 + Pd-0.41.4-extended
+;
+#X text 18 582 Solution: cocher Compatible;
+#X text 35 317 Inconvenient: Charge CPU => la texture est calculée
+(objet pix_texture) par le processeur de l'ordinateur et pas par la
+carte video);
+#X text 18 559 GL: énumérant non valide (répété);
+#X text 18 570 OpenGL: invalid enumérant (repeat);
+#X text 14 545 - Erreur dans la fenêtre Pd:;
+#X text 12 265 Il faut cocher compatible avec certaines cartes video
+\, de certains PC \, sous Windows...;
+#X text 13 291 Compatible Off -> mode 1: TEXTURE_RECTANGLE;
+#X text 13 303 Compatible On -> mode 0: TEXTURE_2D;
+#X text 8 -31 - GEM On ouvre une fenetre;
+#X text 134 91 g / G -> GEM On/Off;
+#X text 135 105 f / F -> FullScreen On/Off;
+#X text 136 118 b /B -> Menu bar On/Off;
+#X text 136 132 Echap / Esc -> FullScreen Off;
+#X text 15 391 16/9 = 512/288 = 1024/576 = 1152/648 = 1280/720 = 1440/810
+;
+#X text 9 379 16/10 = 512/320 = 1024/640 = 1152/720 = 1280x800 = 1440/900
+;
+#X text 343 366 = 1280/960;
+#X text 20 367 4/3 = 160/120 = 320/240 = 512/384 = 640/480 = 1024x768
+;
+#X text 121 186 ou Echap / Esc...;
+#X text 11 239 - Compatible envoie le message mode 1 ou mode 0 à tous
+les objets pix_texture des autres modules;
+#X text 23 634 Suppression KeyShortCut On toujours;
+#X text 24 647 mrpeach/str to_list remplace par iemlib/iem_symtoalist
+;
+#X text 11 616 Change par rapport version precedente:;
+#X restore -236 155 pd Help;
+#X msg 23 506 create;
+#X msg 426 505 destroy;
+#X msg 386 505 reset;
+#X msg 297 505 fullscreen \$1;
+#X msg 481 505 0;
+#X obj 161 556 gemwin;
+#X obj 70 296 sel 1;
+#X msg 288 343 set \$1;
+#X obj 459 440 t b b;
+#X obj 426 463 delay 200;
+#X msg 70 505 dimen 640 480;
+#X msg -6 506 1;
+#X obj 70 370 select linux macos windows;
+#X msg 337 343 set \$1;
+#X msg 160 473 1;
+#X msg 160 505 border \$1 \, menubar \$1;
+#X obj -23 552 cnv 15 120 30 empty empty empty 20 12 0 14 -258113 -66577
+0;
+#X obj -6 559 s RenderGEM;
+#X obj 23 451 delay 300;
+#X obj -6 473 delay 300;
+#X msg 297 449 0;
+#X obj 70 427 delay 300;
+#X obj 121 398 t b b b;
+#X obj 70 398 t b b b;
+#X obj 84 450 spigot;
+#X obj 255 343 == 0;
+#X obj 70 320 t b b b b;
+#X obj 70 347 zexy/operating_system;
+#X text 289 115 27 3 2017;
+#X obj 53 42 iemlib/iem_symtoalist;
+#X obj 515 557 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 336 174 309 137 ?. 0;
+#X obj 3 83 cnv 15 300 46 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 3 6 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 26 26 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 64 26 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 7 37 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X text 8 85 Construit sous / Build under Pd 0.43.4-extended;
+#X obj 8 111 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 7 50 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X text 7 98 or Pd-0.46-7 + deken;
+#X restore 519 561 pd ?.;
+#X connect 1 0 33 0;
+#X connect 2 0 12 0;
+#X connect 3 0 8 0;
+#X connect 4 0 9 1;
+#X connect 5 0 9 0;
+#X connect 5 0 19 0;
+#X connect 6 0 7 0;
+#X connect 7 0 56 0;
+#X connect 8 0 55 0;
+#X connect 9 0 15 0;
+#X connect 10 0 31 0;
+#X connect 10 1 30 0;
+#X connect 11 0 14 0;
+#X connect 11 1 13 0;
+#X connect 12 0 7 0;
+#X connect 12 1 6 0;
+#X connect 12 3 11 0;
+#X connect 13 0 17 0;
+#X connect 14 0 17 0;
+#X connect 15 2 1 0;
+#X connect 15 3 1 0;
+#X connect 15 6 2 0;
+#X connect 15 7 2 0;
+#X connect 15 8 29 0;
+#X connect 15 9 29 0;
+#X connect 16 0 2 0;
+#X connect 19 0 34 0;
+#X connect 20 0 1 0;
+#X connect 21 0 22 0;
+#X connect 22 0 7 0;
+#X connect 22 1 23 0;
+#X connect 23 0 21 0;
+#X connect 23 1 60 0;
+#X connect 28 0 7 0;
+#X connect 28 1 63 0;
+#X connect 29 0 28 0;
+#X connect 30 0 32 0;
+#X connect 30 0 79 0;
+#X connect 31 0 30 1;
+#X connect 32 0 1 0;
+#X connect 32 1 1 0;
+#X connect 32 2 2 0;
+#X connect 32 3 2 0;
+#X connect 32 4 29 0;
+#X connect 32 5 29 0;
+#X connect 33 0 7 0;
+#X connect 33 1 75 0;
+#X connect 33 1 57 0;
+#X connect 34 0 20 0;
+#X connect 34 1 35 0;
+#X connect 35 0 29 0;
+#X connect 35 0 64 0;
+#X connect 36 0 47 0;
+#X connect 37 0 45 0;
+#X connect 38 0 40 0;
+#X connect 39 0 42 0;
+#X connect 40 0 7 0;
+#X connect 40 1 41 0;
+#X connect 41 0 46 1;
+#X connect 42 0 55 0;
+#X connect 43 0 55 0;
+#X connect 44 0 55 0;
+#X connect 45 0 44 0;
+#X connect 46 0 53 0;
+#X connect 47 0 43 0;
+#X connect 50 0 55 0;
+#X connect 51 0 55 0;
+#X connect 52 0 55 0;
+#X connect 53 0 55 0;
+#X connect 54 0 55 0;
+#X connect 56 0 76 0;
+#X connect 56 1 58 0;
+#X connect 57 0 70 0;
+#X connect 58 0 59 0;
+#X connect 58 1 54 0;
+#X connect 59 0 51 0;
+#X connect 60 0 55 0;
+#X connect 61 0 55 0;
+#X connect 61 0 67 0;
+#X connect 62 0 73 0;
+#X connect 62 1 72 0;
+#X connect 62 2 73 0;
+#X connect 63 0 64 0;
+#X connect 64 0 65 0;
+#X connect 65 0 55 0;
+#X connect 68 0 50 0;
+#X connect 68 0 69 0;
+#X connect 69 0 61 0;
+#X connect 69 0 47 0;
+#X connect 69 0 45 0;
+#X connect 70 0 46 0;
+#X connect 71 0 68 0;
+#X connect 71 0 60 0;
+#X connect 72 0 71 0;
+#X connect 72 1 64 0;
+#X connect 72 2 70 0;
+#X connect 73 0 68 0;
+#X connect 73 1 70 0;
+#X connect 73 2 74 0;
+#X connect 74 0 60 0;
+#X connect 75 0 74 1;
+#X connect 76 0 77 0;
+#X connect 76 1 52 0;
+#X connect 76 2 51 0;
+#X connect 76 3 54 0;
+#X connect 77 0 62 0;
+#X connect 79 0 19 0;
+#X coords 0 -1 1 1 185 101 1 100 100;
+#X restore 133 63 pd ARGO;
+#N canvas 492 109 885 558 ARGO 0;
+#X obj 201 201 cnv 7 298 76 \$0-A \$0-B empty 20 12 0 14 -228856 -1
+1.04858e+06;
+#X obj 201 273 cnv 4 10 4 empty empty empty 20 12 0 14 -128992 -66577
+0;
+#X obj 382 203 cnv 10 20 10 empty ColorGEM GEM-Film. 1 5 1 14 -228856
+-1 1.04858e+06;
+#X obj 278 201 nbx 3 12 1 100 0 1 \$0-A \$0-B Render 33 7 1 9 -262144
+-1 -1 50 256;
+#X obj 284 402 gemhead;
+#X msg 271 364 set \$1;
+#X obj 205 518 outlet;
+#X obj 63 24 loadbang;
+#X obj 81 80 delay 1000;
+#X obj 108 127 openpanel;
+#X msg 135 175 set \$1;
+#X msg 222 403 open \$1;
+#X obj 108 151 t b s;
+#X obj 289 252 tgl 12 1 \$0-A \$0-B PlayPause 15 7 1 9 -262144 -1 -1
+1 1;
+#X obj 227 257 cnv 10 20 10 empty empty YUV 0 4 1 9 -228856 -1 0;
+#X obj 393 252 tgl 12 1 \$0-A \$0-B Loop 15 6 1 9 -262144 -1 -1 1 1
+;
+#X obj 310 431 pix_film;
+#X msg 336 401 auto \$1;
+#X msg 60 445 colorspace RGBA;
+#X obj 60 345 change;
+#X msg 354 173 0;
+#X obj 672 108 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 429 53 634 626 Help 0;
+#X text 7 433 - Si le module est sauvé avec 1 nom de fichier \, Ce
+fichier sera lu automatiquement a la prochaine ouverture s'il n'a pas
+changé d'emplacement.;
+#X text 11 20 - Ouvre des fichiers Film (.mov .avi...);
+#X obj 5 121 cnv 15 400 310 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X text 14 134 the format [pix_film] is able to decode depends on the
+system you are running Gem.;
+#X text 12 182 Win32: [pix_film] should be able to decode AVIs (all
+installed codecs). If you are lucky and your version of Gem is compiled
+with quicktime-support and you have quicktime installed on your machine
+\, you might be able to play back quicktime MOVs.;
+#X text 10 248 linux: that's a bit tricky. Since there is no "native"
+video-format for linux it heavily depends on what you have installed
+on your machine and how Gem has been compiled. If your system supports
+it \, [pix_film] is able to use quicktime4linux/libquicktime to decode
+quicktime-MOVs \, libmpeg1/libmpeg3 to decode MPEG2-videos and libaviplay
+which opens a wide range of supported formats (with the possibility
+to install additional codec-plugins) \, from AVI via MPEG2 to DivX
+\, although i have found MPEG support rather unstable. libaviplay does
+not support quicktime decoding. There is also some ruddy ffmpeg support
+(apart from the one supplied by libaviplay).;
+#X text 10 403 although one wouldn't believe it \, but i have found
+that iunder linux i could play most formats...;
+#X text 13 162 macOS-X: [pix_film] should be able to decode quicktime
+MOVs.;
+#X text 8 120 Citation;
+#X obj 7 560 cnv 15 480 440 empty empty empty 20 12 0 14 -258113 -66577
+0;
+#X text 54 607 Se produit avec certaines cartes video \, de certains
+PC \, sous Windows...;
+#X text 54 632 Inconvenient: Charge CPU => la texture est calculée
+(objet pix_texture) par le processeur de l'ordinateur et pas par la
+carte video);
+#X text 28 572 GL: énumérant non valide (répété);
+#X text 11 560 - Erreur dans la fenêtre Pd:;
+#X text 28 584 OpenGL: invalid enumerant (repeated);
+#X text 28 673 GL: invalid value (répété repeated);
+#X text 28 697 Se produit avec certaines cartes video \, sous MacOSX...
+;
+#X text 54 596 Solution: cocher Compatible dans ARGOGeneral;
+#X text 28 685 Solution: décocher Compatible dans ARGOGeneral;
+#X text 29 61 YUV = Luma \, ChromaB \, ChromaR;
+#X text 28 738 Solution -> Changer le format du fichier (en .mp4 par
+ex);
+#X text 29 725 Le nombre "Frames" ne s'affiche pas (0 sous MacOSX).
+;
+#X text 7 474 - Peut Ouvrir automatiquement 1 fichier qui se trouve
+dans le même dossier que lui \, quelquesoit l'emplacement du dossier.
+Pour cela taper le nom du fichier (sans chemin d'accés) dans le message.
+Sauver le patch. Fermer le patch. Ré-ouvrir le patch. Le dossier contenant
+le patch ARGO et le fichier image est ainsi transportable.;
+#X text 11 712 - Problème fichier video-stream (par ex mpeg2 .m2v):
+;
+#X text 28 771 Si un fichier .mov ne s'ouvre pas et dans la fenetre
+Pd:;
+#X text 29 785 error: filmQT: Could not initialize quicktime: error
+-2093;
+#X text 28 794 ...;
+#X text 28 808 error: filmQT: object not correctly initialized;
+#X text 28 822 QuickTime failed ...[pix_filmNEW]: ...;
+#X text 28 836 SOLUTION: Installer Apple QuickTime;
+#X text 11 758 - Probleme sous Windows;
+#X text 8 996 ...;
+#X text 11 37 - RGBA = Red \, Green \, Blue \, Alpha;
+#X text 58 100 Prefer RGBA under Windows;
+#X text 64 76 Prefer YUV under MacOS;
+#X text 11 2 GEM-Film;
+#X text 29 49 RGB = Red \, Green \, Blue;
+#X text 76 88 Prefer ? under Linux;
+#X text 11 928 - Si le fichier a une piste Audio;
+#X text 29 940 On l'entend sous Windows;
+#X text 29 952 On l'entend sous MacOSX.3;
+#X text 29 975 On ne l'entend pas sous MacOSX.5;
+#X text 239 964 et Pd-0.40.3-extended ou 42.5-extended;
+#X text 29 964 On ne l'entend pas sous MacOSX.4;
+#X text 192 940 et Pd-0.40.3-extended;
+#X text 197 952 et Pd-0.40.3-extended;
+#X text 239 976 et Pd-0.40.3-extended;
+#X text 27 905 (les 4 colorspaces fonctionnent sous Linux);
+#X text 11 853 - Problem under MacOS;
+#X text 412 375 Le pb est rÃ©solu sous Pd-0.43.4-extended;
+#X text 244 866 Pd-0.42.5-extended & Pd-0.43.4-extended;
+#X text 29 866 colorspace RGB doesnot work under;
+#X text 244 888 Pd-0.42.5-extended & Pd-0.43.4-extended;
+#X text 29 888 colorspace Grey doesnot work under;
+#X text 29 877 colorspace YUV doesnot work under;
+#X text 244 877 Pd-0.43.4-extended;
+#X restore 679 114 pd Help;
+#X obj 400 490 spigot;
+#X msg 247 176 1;
+#X text 141 200 On/Off ->;
+#X msg 438 393 set \$1;
+#X obj 331 362 int;
+#X obj 227 269 cnv 8 8 8 empty empty Grey 0 4 1 9 -228856 -1 0;
+#X obj 70 288 cnv 15 400 50 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X text 72 289 Nom du fichier / File name;
+#X obj 108 103 bang;
+#X obj 212 230 vradio 12 1 1 4 \$0-A ColorGEM RGBA 15 7 1 9 -262144
+-1 -1 0;
+#X obj 200 24 inlet~;
+#X obj 200 48 threshold~ 0.5 5 0.49 5;
+#X text 181 181 Trig Decl;
+#X obj 200 200 bng 12 50 50 0 \$0-A \$0-B Start 15 7 1 9 -262144 -1
+-1;
+#X obj 201 201 cnv 2 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 202 202 cnv 2 8 2 empty empty empty 20 12 0 14 -262144 -66577
+0;
+#X obj 248 154 delay 100;
+#X obj 227 245 cnv 8 8 8 empty empty RGB 0 4 1 9 -228856 -1 0;
+#X obj 60 365 select 0 1 2 3;
+#X obj 63 48 t b b b;
+#X obj 249 112 t b b b;
+#X msg 323 174 1;
+#X obj 403 464 t b b b;
+#X text 501 389 Sous Linux & Windows la lecture de pix_film avec auto
+1 n'est pas bouclée \, ce qui est ecrit dans pix_film-help.pd;
+#X msg 100 405 colorspace YUV;
+#X msg 80 425 colorspace RGB;
+#X obj 266 201 tgl 12 1 \$0-A \$0-B empty 15 7 1 9 -262144 -1 -1 1
+1;
+#X obj 60 227 delay 1500;
+#X obj 483 514 cnv 15 240 24 empty empty empty 20 12 0 14 -261682 -66577
+0;
+#X obj 488 518 outlet;
+#X obj 488 266 bng 12 100 50 0 \$0-A \$0-B End -18 7 1 9 -262144 -1
+-1;
+#X obj 489 273 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X text 535 512 -> Bang à la fin du fichier;
+#X text 536 522 -> Bang at the end of the file;
+#X text 479 295 <- Ajouter ../ devant le nom du fichier \; pour remonter
+d'un dossier;
+#N canvas 797 429 421 289 info-label 0;
+#X obj 17 2 inlet;
+#X obj 17 228 outlet;
+#X text 20 243 label;
+#X msg 17 204 label \$1;
+#X text 207 157 <- ATTENTION jamais d'espace dans un label;
+#X obj 17 54 unpack 0 0 0;
+#X obj 131 107 t b f;
+#X obj 17 109 t b f;
+#X msg 58 26 0 0 0;
+#X obj 58 2 loadbang;
+#X obj 134 227 outlet;
+#X obj 17 82 change 1;
+#X obj 74 82 change 1;
+#X obj 131 82 change 1;
+#X obj 17 156 cyclone/sprintf %dx%d-%dFrames;
+#X obj 17 182 cyclone/tosymbol;
+#X connect 0 0 5 0;
+#X connect 3 0 1 0;
+#X connect 5 0 11 0;
+#X connect 5 1 12 0;
+#X connect 5 2 10 0;
+#X connect 5 2 13 0;
+#X connect 6 0 14 0;
+#X connect 6 1 14 1;
+#X connect 7 0 14 0;
+#X connect 7 1 14 2;
+#X connect 8 0 5 0;
+#X connect 9 0 8 0;
+#X connect 11 0 7 0;
+#X connect 12 0 14 0;
+#X connect 13 0 6 0;
+#X connect 14 0 15 0;
+#X connect 15 0 3 0;
+#X restore 298 463 pd info-label;
+#X obj 77 467 cnv 15 110 70 empty empty empty 20 12 0 14 -258113 -66577
+0;
+#X obj 84 471 t b a;
+#X obj 84 516 select macos;
+#X obj 488 200 bng 12 50 50 0 \$0-A \$0-B Start -22 7 1 9 -262144 -1
+-1;
+#X obj 489 201 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 487 27 cnv 15 190 24 empty empty empty 20 12 0 14 -261682 -66577
+0;
+#X text 524 25 <- N'importe quel message;
+#X text 524 35 <- Input anything message;
+#X obj 488 30 inlet;
+#N canvas 825 478 228 297 chrono 0;
+#X obj 22 93 metro 100;
+#X obj 74 141 float;
+#X obj 125 163 + 1;
+#X msg 85 93 0;
+#X obj 22 29 inlet;
+#X obj 74 166 / 10;
+#X obj 125 141 * 10;
+#X obj 85 29 inlet;
+#X text 95 9 0;
+#X msg 74 234 label \$1;
+#X obj 74 256 outlet;
+#X text 75 271 Time;
+#X text 5 9 Start/Stop;
+#X obj 22 60 spigot 0;
+#X obj 138 27 inlet;
+#X obj 74 188 cyclone/sprintf %s-sec;
+#X obj 74 210 cyclone/tosymbol;
+#X connect 0 0 1 0;
+#X connect 1 0 5 0;
+#X connect 2 0 1 1;
+#X connect 3 0 1 0;
+#X connect 4 0 13 0;
+#X connect 5 0 6 0;
+#X connect 5 0 15 0;
+#X connect 6 0 2 0;
+#X connect 7 0 3 0;
+#X connect 9 0 10 0;
+#X connect 13 0 0 0;
+#X connect 14 0 13 1;
+#X connect 15 0 16 0;
+#X connect 16 0 9 0;
+#X restore 322 491 pd chrono;
+#X obj 424 221 bng 8 250 50 0 empty empty 6.4-sec 0 18 1 11 -262144
+-1 -1;
+#X text 502 446 Donc sous Linux & Windows la lecture avec auto 1 doit
+Ãªtre relancée quand Loop est cochée.;
+#X text 501 349 Sous MacOSX sous Pd-0.42.5-extended la lecture de pix_film
+avec auto 1 est automatiquement bouclée contrairement a ce qui est
+ecrit dans pix_film-help.pd;
+#X text 502 473 Le pb est rÃ©solu sous Pd-0.43.4-extended;
+#X obj 160 364 zexy/list2symbol;
+#X obj 84 493 zexy/operating_system;
+#X text 493 184 25 5 2018;
+#X text 501 418 Donc sous MacOSX la lecture avec auto 1 doit Ãªre arrÃ©tée
+quand Loop est dÃ©cochée.;
+#X obj 203 214 hsl 285 14 0 127 0 0 \$0-A \$0-B 320x240-306Frames 85
+24 1 11 -262144 -262144 -1 0 1;
+#X symbolatom 200 214 49 0 0 0 - - -;
+#X obj 821 513 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 336 174 316 152 ?. 0;
+#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X text 13 85 Construit sous / Build under Pd 0.43.4-extended;
+#X obj 13 111 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 12 53 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X text 12 98 or Pd-0.48;
+#X obj 13 124 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X restore 825 517 pd ?.;
+#X msg -27 195 1.mov;
+#X msg 119 387 colorspace Grey;
+#X msg 73 313 Suede-3129-320x240.mp4;
+#X connect 3 0 5 0;
+#X connect 4 0 16 0;
+#X connect 5 0 4 0;
+#X connect 7 0 42 0;
+#X connect 8 0 83 0;
+#X connect 9 0 12 0;
+#X connect 10 0 83 0;
+#X connect 11 0 16 0;
+#X connect 12 0 83 0;
+#X connect 12 1 10 0;
+#X connect 13 0 17 0;
+#X connect 13 0 68 0;
+#X connect 15 0 23 1;
+#X connect 16 0 6 0;
+#X connect 16 1 58 0;
+#X connect 16 2 53 0;
+#X connect 16 2 45 0;
+#X connect 16 2 68 1;
+#X connect 17 0 16 0;
+#X connect 18 0 60 0;
+#X connect 19 0 41 0;
+#X connect 20 0 13 0;
+#X connect 23 0 43 0;
+#X connect 24 0 13 0;
+#X connect 26 0 49 0;
+#X connect 27 0 26 0;
+#X connect 27 0 4 0;
+#X connect 31 0 9 0;
+#X connect 32 0 19 0;
+#X connect 33 0 34 0;
+#X connect 34 0 36 0;
+#X connect 36 0 43 0;
+#X connect 39 0 24 0;
+#X connect 39 0 68 1;
+#X connect 41 0 18 0;
+#X connect 41 1 48 0;
+#X connect 41 2 47 0;
+#X connect 41 3 82 0;
+#X connect 42 0 50 0;
+#X connect 42 1 8 0;
+#X connect 42 2 83 0;
+#X connect 43 0 39 0;
+#X connect 43 1 44 0;
+#X connect 43 2 20 0;
+#X connect 44 0 16 1;
+#X connect 45 0 23 0;
+#X connect 45 1 44 0;
+#X connect 45 2 20 0;
+#X connect 47 0 60 0;
+#X connect 48 0 60 0;
+#X connect 49 0 27 0;
+#X connect 50 0 19 0;
+#X connect 53 0 52 0;
+#X connect 58 0 77 0;
+#X connect 58 1 68 2;
+#X connect 60 0 74 0;
+#X connect 60 1 16 0;
+#X connect 61 0 83 0;
+#X connect 62 0 43 0;
+#X connect 67 0 62 0;
+#X connect 68 0 69 0;
+#X connect 73 0 11 0;
+#X connect 73 0 78 0;
+#X connect 74 0 61 0;
+#X connect 77 0 31 0;
+#X connect 82 0 60 0;
+#X connect 83 0 73 0;
+#X coords 0 -1 1 1 300 78 1 200 200;
+#X restore 20 173 pd ARGO;
+#X obj 131 39 declare -stdlib Gem;
+#X obj 416 689 cnv 15 52 22 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 353 174 321 152 ?... 0;
+#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 13 121 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 13 97 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X text 13 85 Construit sous / Build under Pd-0.49...;
+#X text 12 109 or Pd 0.43.4-extended;
+#X obj 12 53 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X restore 419 692 pd ?...;
+#N canvas 510 188 348 345 ARGO 0;
+#X text 80 84 gemlist;
+#X obj 92 229 pix_texture;
+#X obj 92 37 inlet;
+#X msg 250 181 quality \$1;
+#X msg 48 108 set \$1;
+#X obj 101 101 cnv 10 144 40 empty ColorForm empty 20 12 0 14 -228856
+-1 1.04858e+06;
+#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -128992 -66577
+0;
+#X obj 164 105 cnv 10 20 10 empty ColorForm GEM-Direct. 1 5 1 14 -228856
+-1 1.04858e+06;
+#X obj 100 118 tgl 12 1 \$0-A ColorGEM Quality 15 6 1 9 -262144 -1
+-1 0 1;
+#X obj 100 106 tgl 12 1 \$0-A ColorGEM On/Off 15 6 1 9 -262144 -1 -1
+1 1;
+#X obj 151 182 int;
+#X obj 4 238 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 379 113 451 562 Help 0;
+#X obj 13 281 cnv 15 400 150 empty empty empty 20 12 0 14 -258113 -66577
+0;
+#X text 16 284 - Erreur dans la fenêtre Pd:;
+#X text 28 337 Se produit avec certaines cartes video \, de certains
+PC \, sous Windows...;
+#X text 28 365 Inconvenient: Charge CPU => la texture est calculée
+(objet pix_texture) par le processeur de l'ordinateur et pas par la
+carte video);
+#X text 28 302 GL: énumérant non valide (répété);
+#X text 28 313 OpenGL: invalid enumérant (repeat);
+#X obj 13 35 cnv 15 430 180 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X text 28 51 Description: apply texture mapping;
+#X text 27 69 Send a quality message to change the quality of the texture
+mapping. GL_LINEAR is better than GL_NEAREST (but also more computationally
+expensive). However \, on many machines (especially SGIs) \, there
+is no speed difference.;
+#X text 26 128 [pix_texture] tries to use the fastest way to get a
+pix onto a texture. This implies using "rectangle"-texturing if available.
+This \, in turn \, can lead to some problems with several geos. Try
+using "rectangle 0" if you experience problems. Rectangle textures
+cannot be REPEATed (they are always clamped-to-edge);
+#X text 17 35 Citation;
+#X text 15 -18 Envoie l'entrée remplir la fenêtre GEM;
+#X text 15 -5 Send the input fill the GEM window;
+#X text 4 -42 GEM-Direct;
+#X text 28 325 Solution: cocher Compatible dans MM-GEM;
+#X text 27 246 Utile avec certaines cartes video de certains PC sous
+Windows...;
+#X text 27 219 SendMode recu du MM GEM: Compatible = mode 0/1 = rectangle
+0/1;
+#X text 21 438 Nouveau depuis GEM-Direct 25 3 2010:;
+#X text 31 451 - Ajout spigot sur l'entrée;
+#X text 31 463 - Flip;
+#X text 31 474 - Neg;
+#X text 15 11 Neg = Négatif = Negative;
+#X text 18 488 Nouveau depuis GEM-Direct 18 8 2011:;
+#X text 32 504 - message rectangle au lieu de mode;
+#X restore 11 244 pd Help;
+#X obj 8 123 == 0;
+#X obj 8 37 r SendMode;
+#X obj 8 103 nbx 1 14 -1e+37 1e+37 0 1 empty empty empty 0 -6 0 10
+-262144 -1 -1 0 256;
+#X obj 92 180 spigot;
+#X obj 162 130 hradio 12 1 1 4 \$0-A \$0-B 4x3 51 7 1 11 -262144 -1
+-1 1;
+#N canvas 303 128 648 228 Dimension 0;
+#X obj 157 30 inlet;
+#X obj 215 196 outlet;
+#X obj -24 192 outlet;
+#X msg 213 113 label 4x3;
+#X msg 279 113 label 16x10;
+#X msg 358 114 label 16x9;
+#X text 248 25 4/3 = 5.33333333/4;
+#X text 236 37 16/10 = 6.4/4;
+#X text 242 49 16/9 = 7.11111111/4;
+#X msg -157 111 5.33333;
+#X msg -102 111 6.4;
+#X msg -70 111 7.11111;
+#X obj -41 29 inlet;
+#X obj 75 31 inlet;
+#X text -65 1 Flip Horizontal;
+#X text 54 3 Flip Vertical;
+#X obj 81 191 outlet;
+#X text -32 13 0/1;
+#X text 83 15 0/1;
+#X obj 75 55 select 0 1;
+#X msg 72 112 4;
+#X msg 109 112 -4;
+#X obj -24 166 *;
+#X obj -41 54 select 0 1;
+#X msg -14 111 1;
+#X msg 22 111 -1;
+#X text 248 61 3/4 = 3/4;
+#X msg 145 113 label 3x4;
+#X obj 157 56 sel 0 1 2 3;
+#X msg -188 111 3;
+#X obj -13 141 t b f;
+#X connect 0 0 28 0;
+#X connect 3 0 1 0;
+#X connect 4 0 1 0;
+#X connect 5 0 1 0;
+#X connect 9 0 22 0;
+#X connect 10 0 22 0;
+#X connect 11 0 22 0;
+#X connect 12 0 23 0;
+#X connect 13 0 19 0;
+#X connect 19 0 20 0;
+#X connect 19 1 21 0;
+#X connect 20 0 16 0;
+#X connect 21 0 16 0;
+#X connect 22 0 2 0;
+#X connect 23 0 24 0;
+#X connect 23 1 25 0;
+#X connect 24 0 30 0;
+#X connect 25 0 30 0;
+#X connect 27 0 1 0;
+#X connect 28 0 29 0;
+#X connect 28 0 27 0;
+#X connect 28 1 9 0;
+#X connect 28 1 3 0;
+#X connect 28 2 10 0;
+#X connect 28 2 4 0;
+#X connect 28 3 11 0;
+#X connect 28 3 5 0;
+#X connect 29 0 22 0;
+#X connect 30 0 22 0;
+#X connect 30 1 22 1;
+#X restore 133 257 pd Dimension;
+#X obj 92 284 rectangle 4 4;
+#X obj 100 130 tgl 12 1 \$0-A \$0-B empty 15 6 1 9 -262144 -1 -1 0
+1;
+#X obj 112 130 tgl 12 1 \$0-A \$0-B Flip 15 7 1 9 -262144 -1 -1 0 1
+;
+#X msg 8 180 rectangle \$1;
+#X obj 162 118 hradio 12 1 1 3 \$0-A \$0-B Normal 38 7 1 11 -262144
+-1 -1 0;
+#N canvas 588 245 450 300 env 0;
+#X msg 4 198 env 5;
+#X msg 49 197 env 2;
+#X obj 138 75 pipe 500;
+#X text 211 84 sous Linux;
+#X text 193 74 <- Sinon plantage;
+#X text 212 94 et Pd-extended-42.5;
+#X msg 342 93 env \$1;
+#X obj 341 72 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj 341 50 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 138 98 sel 0 1 2;
+#X msg 92 197 env 3;
+#X msg 174 198 label Normal;
+#X msg 260 199 label Negative;
+#X msg 357 200 label White;
+#X obj 140 19 inlet;
+#X obj 264 244 outlet;
+#X obj 88 241 outlet;
+#X connect 0 0 16 0;
+#X connect 1 0 16 0;
+#X connect 2 0 9 0;
+#X connect 6 0 16 0;
+#X connect 7 0 6 0;
+#X connect 8 0 7 0;
+#X connect 9 0 0 0;
+#X connect 9 0 11 0;
+#X connect 9 1 1 0;
+#X connect 9 1 12 0;
+#X connect 9 2 10 0;
+#X connect 9 2 13 0;
+#X connect 10 0 16 0;
+#X connect 11 0 15 0;
+#X connect 12 0 15 0;
+#X connect 13 0 15 0;
+#X connect 14 0 2 0;
+#X restore 198 180 pd env;
+#X obj 273 273 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 336 174 309 137 ?. 0;
+#X obj 3 83 cnv 15 300 46 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 3 6 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 26 26 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 64 26 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 7 37 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X text 8 85 Construit sous / Build under Pd 0.43.4-extended;
+#X obj 8 111 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 7 50 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X text 7 98 or Pd-0.46-7 + deken;
+#X restore 277 277 pd ?.;
+#X text 204 84 24 11 2017;
+#X connect 1 0 19 0;
+#X connect 2 0 16 0;
+#X connect 3 0 1 0;
+#X connect 4 0 9 0;
+#X connect 8 0 3 0;
+#X connect 9 0 10 0;
+#X connect 9 0 16 1;
+#X connect 10 0 1 0;
+#X connect 10 0 4 0;
+#X connect 13 0 22 0;
+#X connect 14 0 15 0;
+#X connect 15 0 13 0;
+#X connect 16 0 1 0;
+#X connect 17 0 18 2;
+#X connect 18 0 19 1;
+#X connect 18 1 19 2;
+#X connect 18 2 17 0;
+#X connect 20 0 18 0;
+#X connect 21 0 18 1;
+#X connect 22 0 1 0;
+#X connect 23 0 24 0;
+#X connect 24 0 1 0;
+#X connect 24 1 23 0;
+#X coords 0 -1 1 1 146 42 1 100 100;
+#X restore 20 597 pd ARGO;
+#X obj 46 91 switch~;
+#N canvas 608 166 228 173 ARGOnOff 0;
+#X obj 100 100 tgl 18 1 \$0-SendOnOff \$0-ReceiveOnOff On/Off 20 11
+1 14 -4033 -1 -1 1 1;
+#X obj 99 10 loadbang;
+#X msg 99 33 \; pd dsp 1;
+#X obj 100 129 outlet;
+#X text -50 99 Audio On/Off du patch ->;
+#X text -22 45 Audio General On ->;
+#X text 107 82 17 3 2010;
+#X connect 0 0 3 0;
+#X connect 1 0 2 0;
+#X coords 0 -1 1 1 65 18 2 100 100;
+#X restore 46 73 pd ARGOnOff;
+#X text 51 57 V;
+#X text 51 50 |;
+#X text 39 39 On/Off Patch;
+#X text 69 51 (Audio);
+#N canvas 175 68 381 386 ARGO 0;
+#X obj 101 101 cnv 20 116 34 empty ColorAmpli empty 20 12 0 14 -261299
+-1 1.04858e+06;
+#X obj 85 353 outlet~;
+#X obj 157 104 cnv 10 20 10 empty ColorAmpli Ampli. 1 5 1 14 -261299
+-1 1.04858e+06;
+#X obj 85 43 inlet~;
+#X obj 85 330 *~;
+#X obj 115 118 hsl 101 12 -80 20 0 1 \$0-A ColorAmpli 10dB 0 7 1 9
+-261299 -1 -1 9000 0;
+#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 101 131 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 207 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 207 131 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 222 352 outlet~;
+#X obj 222 42 inlet~;
+#X obj 222 329 *~;
+#X msg -42 138 label \$1;
+#X text 148 194 -> 0.0001..10 = -80dB..20dB;
+#X obj 142 175 expr (pow(10 \, $f1 / 20));
+#X obj 142 215 sel 0.0001;
+#X msg 100 244 0;
+#X obj 100 118 tgl 12 1 \$0-A \$0-B Mute 2 -5 1 9 -261299 -1 -1 0 1
+;
+#X obj 99 146 select 0 1;
+#X obj 140 295 line~;
+#X obj 140 275 pack 0 10;
+#X msg 123 74 set 0;
+#X obj -42 92 cyclone/sprintf %ddB;
+#X text 228 110 6 3 2016;
+#X obj -42 115 cyclone/tosymbol;
+#X obj 273 344 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 336 174 309 137 ?. 0;
+#X obj 3 83 cnv 15 300 46 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 3 6 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 26 26 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 64 26 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 7 37 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X text 8 85 Construit sous / Build under Pd 0.43.4-extended;
+#X obj 8 111 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 7 50 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X text 7 98 or Pd-0.46-7 + deken;
+#X restore 277 348 pd ?.;
+#X connect 3 0 4 0;
+#X connect 4 0 1 0;
+#X connect 5 0 15 0;
+#X connect 5 0 23 0;
+#X connect 11 0 12 0;
+#X connect 12 0 10 0;
+#X connect 13 0 5 0;
+#X connect 15 0 16 0;
+#X connect 16 0 17 0;
+#X connect 16 1 21 0;
+#X connect 16 1 22 0;
+#X connect 17 0 21 0;
+#X connect 17 0 25 0;
+#X connect 18 0 19 0;
+#X connect 19 0 5 0;
+#X connect 19 1 17 0;
+#X connect 20 0 12 1;
+#X connect 20 0 4 1;
+#X connect 21 0 20 0;
+#X connect 22 0 18 0;
+#X connect 23 0 25 0;
+#X connect 25 0 13 0;
+#X coords 0 -1 1 1 118 36 1 100 100;
+#X restore 227 647 pd ARGO;
+#N canvas 333 135 711 339 ARGO 0;
+#X obj 101 101 cnv 20 130 76 empty ColorForm empty 20 12 0 14 -188398
+-1 1.04858e+06;
+#X obj 162 104 cnv 10 40 10 empty ColorForm Freeverb. 1 5 1 14 -188398
+-1 1.04858e+06;
+#X obj 101 173 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 221 173 cnv 4 10 4 empty empty empty 0 0 0 9 -1 -66577 0;
+#X obj 87 74 inlet~;
+#X obj 211 74 inlet~;
+#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 97 310 outlet~;
+#X obj 208 310 outlet~;
+#X obj 221 101 cnv 4 10 4 empty empty empty 0 0 0 9 -1 -66577 0;
+#X obj 103 136 hsl 127 12 0 1 0 1 \$0-A ColorForm Brill 0 7 1 9 -188398
+-1 -1 8300 0;
+#X obj 103 124 hsl 127 12 0 1 0 1 \$0-A ColorForm Size 0 7 1 9 -188398
+-1 -1 9800 0;
+#X obj 103 160 hsl 127 12 0 1 0 1 \$0-A ColorAmpli Dir 0 7 1 9 -261299
+-1 -1 2800 0;
+#X obj 103 148 hsl 127 12 0 1 0 1 \$0-A ColorAmpli Stereo 0 7 1 9 -261299
+-1 -1 11700 0;
+#X msg 12 225 roomsize \$1;
+#X msg 328 225 damping \$1;
+#X msg 167 225 width \$1;
+#X msg 229 225 wet \$1;
+#X msg 277 225 dry \$1;
+#X obj 277 179 - 1;
+#X obj 277 202 * -1;
+#X obj 12 202 * 1.1;
+#X obj 328 179 * -2.3;
+#X obj 328 202 + 2.3;
+#X msg 100 225 freeze \$1;
+#X obj 113 100 tgl 12 1 \$0-A \$0-B Freeze 14 7 1 9 -262144 -1 -1 0
+1;
+#X obj 386 98 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 584 107 469 218 Help 0;
+#X obj 10 11 cnv 15 440 180 empty empty empty 20 12 0 14 -228856 -66577
+0;
+#X text 13 11 Citation;
+#X text 20 101 "freeverb~ is a simple implementation of the standard
+Schroeder/Moorer reverb model. It uses 8 comb filters in parallel on
+both channels. It then feeds the result of the reverb through 4 allpass
+filters in series on both channels. These "smooth" the sound. The filters
+on the right channel are slightly detuned compared to the left channel
+in order to create a stereo effect.";
+#X text 19 24 freeverb~ version 1.2 - reverb external for Pure Data
+and Max/MSP written by Olaf Matthes <olaf.matthes@gmx.de> - based on
+Freeverb \, the free \, studio-quality reverb SOURCE CODE in the public
+domain. Written by Jezar at Dreampoint - http://www.dreampoint.co.uk
+This software is published under GPL terms \, see file LICENSE.;
+#X restore 393 105 pd Help;
+#X obj 97 278 freeverb~/freeverb~;
+#X obj 647 289 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 336 174 316 152 ?. 0;
+#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X text 13 85 Construit sous / Build under Pd 0.43.4-extended;
+#X obj 13 111 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 12 53 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X text 12 98 or Pd-0.48;
+#X obj 13 124 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X restore 651 293 pd ?.;
+#X obj 578 79 cnv 15 100 70 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#X text 601 81 library:;
+#X text 582 92 freeverb~;
+#X msg 520 225 print;
+#X msg 567 225 bypass \$1;
+#X obj 567 179 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X text 583 106 pddp;
+#X msg 400 225 firstpassfilter \$1;
+#X msg 637 225 dry \$1;
+#X obj 638 202 / 100;
+#X obj 638 179 nbx 5 14 0 100 0 0 empty empty empty 0 -8 0 10 -262144
+-1 -1 0 256;
+#X text 139 83 21 7 2018;
+#X obj 113 112 tgl 12 1 \$0-A \$0-B FirstPass 14 7 1 9 -262144 -1 -1
+0 1;
+#X connect 4 0 28 0;
+#X connect 5 0 28 1;
+#X connect 10 0 22 0;
+#X connect 11 0 21 0;
+#X connect 12 0 19 0;
+#X connect 12 0 17 0;
+#X connect 13 0 16 0;
+#X connect 14 0 28 0;
+#X connect 15 0 28 0;
+#X connect 16 0 28 0;
+#X connect 17 0 28 0;
+#X connect 18 0 28 0;
+#X connect 19 0 20 0;
+#X connect 20 0 18 0;
+#X connect 21 0 14 0;
+#X connect 22 0 23 0;
+#X connect 23 0 15 0;
+#X connect 24 0 28 0;
+#X connect 25 0 24 0;
+#X connect 28 0 7 0;
+#X connect 28 1 8 0;
+#X connect 34 0 28 0;
+#X connect 35 0 28 0;
+#X connect 36 0 35 0;
+#X connect 38 0 28 0;
+#X connect 39 0 28 0;
+#X connect 40 0 39 0;
+#X connect 41 0 40 0;
+#X connect 43 0 38 0;
+#X coords 0 -1 1 1 132 78 1 100 100;
+#X restore 218 560 pd ARGO;
+#N canvas 175 68 374 396 ARGO 0;
+#X obj 101 101 cnv 20 116 34 empty ColorAmpli empty 20 12 0 14 -261299
+-1 1.04858e+06;
+#X obj 85 353 outlet~;
+#X obj 157 104 cnv 10 20 10 empty ColorAmpli Ampli. 1 5 1 14 -261299
+-1 1.04858e+06;
+#X obj 85 43 inlet~;
+#X obj 85 330 *~;
+#X obj 115 118 hsl 101 12 -80 20 0 1 \$0-A ColorAmpli -9dB 0 7 1 9
+-261299 -1 -1 7100 0;
+#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 101 131 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X msg -42 139 label \$1;
+#X text 148 194 -> 0.0001..10 = -80dB..20dB;
+#X obj 142 175 expr (pow(10 \, $f1 / 20));
+#X obj 142 215 sel 0.0001;
+#X msg 100 244 0;
+#X obj 100 118 tgl 12 1 \$0-A \$0-B Mute 2 -5 1 9 -261299 -1 -1 0 1
+;
+#X obj 99 146 select 0 1;
+#X obj 140 295 line~;
+#X obj 140 275 pack 0 10;
+#X msg 123 74 set 0;
+#X obj -42 93 cyclone/sprintf %ddB;
+#X obj -42 116 cyclone/tosymbol;
+#X obj 261 342 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 336 174 309 137 ?. 0;
+#X obj 3 83 cnv 15 300 46 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 3 6 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 26 26 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 64 26 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 7 37 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X text 8 85 Construit sous / Build under Pd 0.43.4-extended;
+#X obj 8 111 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 7 50 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X text 7 98 or Pd-0.46-7 + deken;
+#X restore 265 346 pd ?.;
+#X text 228 110 17 3 2016;
+#X connect 3 0 4 0;
+#X connect 4 0 1 0;
+#X connect 5 0 10 0;
+#X connect 5 0 18 0;
+#X connect 8 0 5 0;
+#X connect 10 0 11 0;
+#X connect 11 0 12 0;
+#X connect 11 1 16 0;
+#X connect 11 1 17 0;
+#X connect 12 0 16 0;
+#X connect 12 0 19 0;
+#X connect 13 0 14 0;
+#X connect 14 0 5 0;
+#X connect 14 1 12 0;
+#X connect 15 0 4 1;
+#X connect 16 0 15 0;
+#X connect 17 0 13 0;
+#X connect 18 0 19 0;
+#X connect 19 0 8 0;
+#X coords 0 -1 1 1 118 36 1 100 100;
+#X restore 152 435 pd ARGO;
+#N canvas 175 68 374 396 ARGO 0;
+#X obj 101 101 cnv 20 116 34 empty ColorAmpli empty 20 12 0 14 -261299
+-1 1.04858e+06;
+#X obj 85 353 outlet~;
+#X obj 157 104 cnv 10 20 10 empty ColorAmpli Ampli. 1 5 1 14 -261299
+-1 1.04858e+06;
+#X obj 85 43 inlet~;
+#X obj 85 330 *~;
+#X obj 115 118 hsl 101 12 -80 20 0 1 \$0-A ColorAmpli 6dB 0 7 1 9 -261299
+-1 -1 8600 0;
+#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 101 131 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X msg -42 139 label \$1;
+#X text 148 194 -> 0.0001..10 = -80dB..20dB;
+#X obj 142 175 expr (pow(10 \, $f1 / 20));
+#X obj 142 215 sel 0.0001;
+#X msg 100 244 0;
+#X obj 100 118 tgl 12 1 \$0-A \$0-B Mute 2 -5 1 9 -261299 -1 -1 0 1
+;
+#X obj 99 146 select 0 1;
+#X obj 140 295 line~;
+#X obj 140 275 pack 0 10;
+#X msg 123 74 set 0;
+#X obj -42 93 cyclone/sprintf %ddB;
+#X obj -42 116 cyclone/tosymbol;
+#X obj 261 342 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 336 174 309 137 ?. 0;
+#X obj 3 83 cnv 15 300 46 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 3 6 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 26 26 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 64 26 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 7 37 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X text 8 85 Construit sous / Build under Pd 0.43.4-extended;
+#X obj 8 111 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 7 50 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X text 7 98 or Pd-0.46-7 + deken;
+#X restore 265 346 pd ?.;
+#X text 228 110 17 3 2016;
+#X connect 3 0 4 0;
+#X connect 4 0 1 0;
+#X connect 5 0 10 0;
+#X connect 5 0 18 0;
+#X connect 8 0 5 0;
+#X connect 10 0 11 0;
+#X connect 11 0 12 0;
+#X connect 11 1 16 0;
+#X connect 11 1 17 0;
+#X connect 12 0 16 0;
+#X connect 12 0 19 0;
+#X connect 13 0 14 0;
+#X connect 14 0 5 0;
+#X connect 14 1 12 0;
+#X connect 15 0 4 1;
+#X connect 16 0 15 0;
+#X connect 17 0 13 0;
+#X connect 18 0 19 0;
+#X connect 19 0 8 0;
+#X coords 0 -1 1 1 118 36 1 100 100;
+#X restore 349 435 pd ARGO;
+#N canvas 404 201 221 198 ARGO 0;
+#X obj 136 105 cnv 10 20 10 empty empty PinkNoise. 1 5 1 14 -262144
+-1 1.04858e+06;
+#X obj 101 113 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 90 155 outlet~;
+#X text 16 55 pink noise with -3 dB per octave;
+#X text 7 41 pink~ (iemlib);
+#X obj 90 124 iemlib/pink~;
+#X obj 100 100 tgl 12 1 \$0-A \$0-B On 14 6 1 10 -262144 -1 -1 1 1
+;
+#X obj 159 155 switch~;
+#X connect 5 0 2 0;
+#X connect 6 0 7 0;
+#X coords 0 -1 1 1 110 18 2 100 100;
+#X restore 31 472 pd ARGO;
+#N canvas 89 65 452 333 ARGO 0;
+#X obj 101 101 cnv 20 215 34 empty ColorForm empty 20 12 0 14 -188398
+-1 1.04858e+06;
+#X obj 248 104 cnv 10 65 10 empty ColorForm Flt-BP. 1 5 1 14 -188398
+-1 1.04858e+06;
+#X obj 101 131 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 203 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1728 -66577
+0;
+#X obj 306 131 cnv 4 10 4 empty empty empty 0 0 0 9 -1 -66577 0;
+#X obj 87 44 inlet~;
+#X obj 209 289 outlet~;
+#X obj 271 289 outlet~;
+#X obj 100 106 nbx 7 12 0 20000 0 1 \$0-A ColorTime Hz 60 7 1 9 -208064
+-1 -1 329.628 256;
+#X obj 188 44 inlet~;
+#X obj 297 44 inlet~;
+#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 306 101 cnv 4 10 4 empty empty empty 20 12 0 14 -3522 -66577
+0;
+#X obj 87 180 vcf~;
+#X obj 149 203 vcf~;
+#X obj 209 232 vcf~;
+#X obj 271 262 vcf~;
+#X obj 87 289 outlet~;
+#X obj 149 289 outlet~;
+#X obj 241 131 cnv 4 10 4 empty empty empty 0 0 0 9 -1 -66577 0;
+#X obj 166 131 cnv 4 10 4 empty empty empty 0 0 0 9 -1 -66577 0;
+#X text 179 84 frequency;
+#X text 6 4 Controlled bandpass filter;
+#X text 80 136 1 filter;
+#X text 145 136 2 filters;
+#X text 218 136 3 filters;
+#X text 286 137 4 filters;
+#X text 282 81 Resonance;
+#X text 7 18 Filtre Passe-bande controllable;
+#X obj 103 118 hsl 127 12 0 1 0 0 \$0-A ColorTime empty 0 7 1 9 -262144
+-1 -1 5800 0;
+#X obj 103 118 hsl 127 12 0 1 0 0 \$0-A ColorTime E3 0 7 1 9 -208064
+-1728 -1 5162 0;
+#X obj 234 118 hsl 81 12 0 1 0 1 \$0-A ColorForm empty 0 7 1 9 -262144
+-1 -1 2000 0;
+#X obj 234 118 hsl 81 12 0 1 0 1 \$0-A ColorForm 25 0 7 1 9 -188398
+-3522 -1 2907 0;
+#X text 259 17 2 HSLIDER superposés;
+#X text 258 6 ATTENTION;
+#N canvas 110 253 424 342 Freq-v5-sig- 0;
+#X obj 354 179 ftom;
+#X obj 192 227 mtof;
+#X obj 267 96 +~;
+#X obj 30 142 snapshot~;
+#X obj 30 164 change;
+#X msg 30 249 set \$1;
+#X msg 193 249 set \$1;
+#X obj 192 180 * 126;
+#X obj 192 203 + 6;
+#X obj 356 224 / 126;
+#X obj 355 202 - 6;
+#X obj 215 56 *~ 1.90476;
+#X obj 284 29 inlet;
+#X obj 354 29 inlet;
+#X obj 56 276 outlet;
+#X obj 193 276 outlet;
+#X text 53 293 Hslider;
+#X text 279 3 Hslider;
+#X obj 215 31 inlet~;
+#X obj 30 87 metro 200;
+#X obj 30 30 loadbang;
+#X obj 192 152 change;
+#X obj 356 276 outlet;
+#X text 354 292 Hslider;
+#X text 193 292 Number;
+#X text 351 13 Number;
+#X text 58 305 Over;
+#X text 359 303 Under;
+#X text 284 14 Under;
+#X obj 260 249 clip~ 0 20000;
+#X obj 260 227 mtof~;
+#X obj 260 180 *~ 126;
+#X obj 260 202 +~ 6;
+#X obj 260 276 outlet~;
+#X obj 89 31 r SendFluid;
+#N canvas 763 337 583 317 pitchb-11-2010 0;
+#X obj 78 119 mod 12;
+#X obj 78 143 sel 0 1 2 3 4 5 6 7 8 9 10 11;
+#X msg 254 178 A;
+#X msg 308 178 B;
+#X msg 200 178 G;
+#X msg 11 178 C;
+#X msg 65 178 D;
+#X msg 119 178 E;
+#X msg 146 178 F;
+#X obj 212 9 inlet;
+#X obj 385 123 div 12;
+#X obj 212 87 t f f;
+#X text 394 215 -> Numero de l'octave;
+#X text 221 72 -> Numero MIDI de la note (69 = A3 = 440Hz);
+#X msg 268 268 label \$1;
+#X obj 268 291 outlet;
+#X msg 38 178 Db;
+#X msg 92 178 Eb;
+#X msg 173 178 Gb;
+#X msg 227 178 Ab;
+#X msg 281 178 Bb;
+#X text 377 86 (70 = A#3 = Bb3);
+#X obj 268 246 symbol;
+#X text 19 239 Impossible d'afficher # dans un label;
+#X text 19 251 donc j'affiche b;
+#X obj 212 59 int;
+#X text 263 31 -> pour corriger certaines erreurs de calcul;
+#X obj 385 152 - 12;
+#X text 263 43 et le pb du passage a zero de mod 12;
+#X obj 212 33 + 120.5;
+#X obj 268 221 cyclone/sprintf %s%d;
+#X connect 0 0 1 0;
+#X connect 1 0 5 0;
+#X connect 1 1 16 0;
+#X connect 1 2 6 0;
+#X connect 1 3 17 0;
+#X connect 1 4 7 0;
+#X connect 1 5 8 0;
+#X connect 1 6 18 0;
+#X connect 1 7 4 0;
+#X connect 1 8 19 0;
+#X connect 1 9 2 0;
+#X connect 1 10 20 0;
+#X connect 1 11 3 0;
+#X connect 2 0 30 0;
+#X connect 3 0 30 0;
+#X connect 4 0 30 0;
+#X connect 5 0 30 0;
+#X connect 6 0 30 0;
+#X connect 7 0 30 0;
+#X connect 8 0 30 0;
+#X connect 9 0 29 0;
+#X connect 10 0 27 0;
+#X connect 11 0 0 0;
+#X connect 11 1 10 0;
+#X connect 14 0 15 0;
+#X connect 16 0 30 0;
+#X connect 17 0 30 0;
+#X connect 18 0 30 0;
+#X connect 19 0 30 0;
+#X connect 20 0 30 0;
+#X connect 22 0 14 0;
+#X connect 25 0 11 0;
+#X connect 27 0 30 1;
+#X connect 29 0 25 0;
+#X connect 30 0 22 0;
+#X restore 78 248 pd pitchb-11-2010;
+#X connect 0 0 10 0;
+#X connect 1 0 6 0;
+#X connect 2 0 3 0;
+#X connect 2 0 31 0;
+#X connect 3 0 4 0;
+#X connect 4 0 5 0;
+#X connect 5 0 14 0;
+#X connect 6 0 15 0;
+#X connect 7 0 8 0;
+#X connect 8 0 1 0;
+#X connect 8 0 35 0;
+#X connect 9 0 22 0;
+#X connect 10 0 9 0;
+#X connect 11 0 2 0;
+#X connect 12 0 2 1;
+#X connect 12 0 21 0;
+#X connect 13 0 0 0;
+#X connect 18 0 11 0;
+#X connect 19 0 3 0;
+#X connect 20 0 19 0;
+#X connect 21 0 7 0;
+#X connect 29 0 33 0;
+#X connect 30 0 29 0;
+#X connect 31 0 32 0;
+#X connect 32 0 30 0;
+#X connect 34 0 19 1;
+#X connect 35 0 14 0;
+#X restore -11 114 pd Freq-v5-sig-;
+#X obj 346 176 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 161 113 427 375 Help 0;
+#X text 18 280 Resonance = "Q" = filter sharpness = Coefficient of
+Quality;
+#X text 18 293 http://en.wikipedia.org/wiki/Q_factor;
+#X text 19 305 http://fr.wikipedia.org/wiki/Facteur_de_qualité;
+#X text 17 6 Flt-BP = Filter BandPass = Filtre passe-bande;
+#X text 17 335 La résonance est controlée seulement 100 fois par seconde
+;
+#X obj 12 79 cnv 15 400 200 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X text 31 110 vcf~ is like bp~ except that it takes an audio signal
+to set center frequency \, which may thus change continuously in time.
+The "Q" or filter sharpness is still only set by messages. More expensive
+than bp~ in CPU time but more powerful too.;
+#X text 31 95 vcf~ = voltage-controlled bandpass filter;
+#X text 30 207 The left inlet is the incoming audio signal \, the middle
+control input sets center frequency and the rigth input sets "Q".;
+#X text 31 178 bp~ passes a sinusoid at the center frequency at unit
+gain (approximately). Other frequencies are attenuated.;
+#X text 16 81 Citation;
+#X text 15 42 1 = 240 1/2 ton = 20 octaves;
+#X text 15 30 Sensibilité de l'entrée de contrôle de la fréquence:
+;
+#X restore 353 182 pd Help;
+#X text 187 74 Center;
+#N canvas 375 291 336 327 Q-Ctrl 0;
+#X obj 73 278 line;
+#X obj 11 9 loadbang;
+#X msg 148 128 set \$1;
+#X obj 149 57 +~;
+#X obj 78 89 snapshot~;
+#X obj 78 109 change;
+#X obj 10 54 metro 10;
+#X obj 76 215 + 1;
+#X obj 75 236 clip 1 200;
+#X msg 74 257 \$1 100;
+#X obj 76 173 * 1;
+#X obj 77 152 * 1;
+#X obj 78 129 t f f f;
+#X obj 73 300 outlet;
+#X obj 75 194 * 200;
+#X obj 149 88 snapshot~;
+#X obj 149 108 change;
+#X obj 219 11 inlet;
+#X obj 148 300 outlet;
+#X obj 149 11 inlet~;
+#X msg 218 132 label \$1;
+#X obj 218 88 * 100;
+#X obj 67 54 metro 200;
+#X obj 70 9 r SendFluid;
+#X obj 218 110 cyclone/tosymbol;
+#X connect 0 0 13 0;
+#X connect 1 0 6 0;
+#X connect 1 0 22 0;
+#X connect 2 0 18 0;
+#X connect 3 0 4 0;
+#X connect 3 0 15 0;
+#X connect 4 0 5 0;
+#X connect 5 0 12 0;
+#X connect 6 0 4 0;
+#X connect 7 0 8 0;
+#X connect 8 0 9 0;
+#X connect 9 0 0 0;
+#X connect 10 0 14 0;
+#X connect 11 0 10 0;
+#X connect 12 0 11 0;
+#X connect 12 1 11 1;
+#X connect 12 2 10 1;
+#X connect 14 0 7 0;
+#X connect 15 0 16 0;
+#X connect 16 0 2 0;
+#X connect 17 0 3 1;
+#X connect 17 0 21 0;
+#X connect 19 0 3 0;
+#X connect 20 0 18 0;
+#X connect 21 0 24 0;
+#X connect 22 0 15 0;
+#X connect 23 0 22 1;
+#X connect 24 0 20 0;
+#X restore 354 114 pd Q-Ctrl;
+#X obj 348 278 cnv 15 52 22 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 353 174 321 152 ?... 0;
+#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 13 121 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 13 97 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X text 13 85 Construit sous / Build under Pd-0.49...;
+#X text 12 109 or Pd 0.43.4-extended;
+#X obj 12 53 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X restore 351 281 pd ?...;
+#X text 333 66 6 9 2019;
+#X connect 5 0 13 0;
+#X connect 8 0 35 2;
+#X connect 9 0 35 0;
+#X connect 10 0 39 0;
+#X connect 13 0 14 0;
+#X connect 13 0 17 0;
+#X connect 14 0 15 0;
+#X connect 14 0 18 0;
+#X connect 15 0 16 0;
+#X connect 15 0 6 0;
+#X connect 16 0 7 0;
+#X connect 29 0 35 1;
+#X connect 31 0 39 1;
+#X connect 35 0 30 0;
+#X connect 35 1 8 0;
+#X connect 35 2 13 1;
+#X connect 35 2 14 1;
+#X connect 35 2 15 1;
+#X connect 35 2 16 1;
+#X connect 35 3 29 0;
+#X connect 39 0 13 2;
+#X connect 39 0 14 2;
+#X connect 39 0 15 2;
+#X connect 39 0 16 2;
+#X connect 39 1 32 0;
+#X coords 0 -1 1 1 217 36 1 100 100;
+#X restore 31 514 pd ARGO;
+#N canvas 89 65 452 333 ARGO 0;
+#X obj 101 101 cnv 20 215 34 empty ColorForm empty 20 12 0 14 -188398
+-1 1.04858e+06;
+#X obj 248 104 cnv 10 65 10 empty ColorForm Flt-BP. 1 5 1 14 -188398
+-1 1.04858e+06;
+#X obj 101 131 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 203 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1728 -66577
+0;
+#X obj 306 131 cnv 4 10 4 empty empty empty 0 0 0 9 -1 -66577 0;
+#X obj 87 44 inlet~;
+#X obj 209 289 outlet~;
+#X obj 271 289 outlet~;
+#X obj 100 106 nbx 7 12 0 20000 0 1 \$0-A ColorTime Hz 60 7 1 9 -208064
+-1 -1 329.628 256;
+#X obj 188 44 inlet~;
+#X obj 297 44 inlet~;
+#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 306 101 cnv 4 10 4 empty empty empty 20 12 0 14 -3522 -66577
+0;
+#X obj 87 180 vcf~;
+#X obj 149 203 vcf~;
+#X obj 209 232 vcf~;
+#X obj 271 262 vcf~;
+#X obj 87 289 outlet~;
+#X obj 149 289 outlet~;
+#X obj 241 131 cnv 4 10 4 empty empty empty 0 0 0 9 -1 -66577 0;
+#X obj 166 131 cnv 4 10 4 empty empty empty 0 0 0 9 -1 -66577 0;
+#X text 179 84 frequency;
+#X text 6 4 Controlled bandpass filter;
+#X text 80 136 1 filter;
+#X text 145 136 2 filters;
+#X text 218 136 3 filters;
+#X text 286 137 4 filters;
+#X text 282 81 Resonance;
+#X text 7 18 Filtre Passe-bande controllable;
+#X obj 103 118 hsl 127 12 0 1 0 0 \$0-A ColorTime empty 0 7 1 9 -262144
+-1 -1 5800 0;
+#X obj 103 118 hsl 127 12 0 1 0 0 \$0-A ColorTime E3 0 7 1 9 -208064
+-1728 -1 6438 0;
+#X obj 234 118 hsl 81 12 0 1 0 1 \$0-A ColorForm empty 0 7 1 9 -262144
+-1 -1 2000 0;
+#X obj 234 118 hsl 81 12 0 1 0 1 \$0-A ColorForm 25 0 7 1 9 -188398
+-3522 -1 2907 0;
+#X text 259 17 2 HSLIDER superposés;
+#X text 258 6 ATTENTION;
+#N canvas 110 253 424 342 Freq-v5-sig- 0;
+#X obj 354 179 ftom;
+#X obj 192 227 mtof;
+#X obj 267 96 +~;
+#X obj 30 142 snapshot~;
+#X obj 30 164 change;
+#X msg 30 249 set \$1;
+#X msg 193 249 set \$1;
+#X obj 192 180 * 126;
+#X obj 192 203 + 6;
+#X obj 356 224 / 126;
+#X obj 355 202 - 6;
+#X obj 215 56 *~ 1.90476;
+#X obj 284 29 inlet;
+#X obj 354 29 inlet;
+#X obj 56 276 outlet;
+#X obj 193 276 outlet;
+#X text 53 293 Hslider;
+#X text 279 3 Hslider;
+#X obj 215 31 inlet~;
+#X obj 30 87 metro 200;
+#X obj 30 30 loadbang;
+#X obj 192 152 change;
+#X obj 356 276 outlet;
+#X text 354 292 Hslider;
+#X text 193 292 Number;
+#X text 351 13 Number;
+#X text 58 305 Over;
+#X text 359 303 Under;
+#X text 284 14 Under;
+#X obj 260 249 clip~ 0 20000;
+#X obj 260 227 mtof~;
+#X obj 260 180 *~ 126;
+#X obj 260 202 +~ 6;
+#X obj 260 276 outlet~;
+#X obj 89 31 r SendFluid;
+#N canvas 763 337 583 317 pitchb-11-2010 0;
+#X obj 78 119 mod 12;
+#X obj 78 143 sel 0 1 2 3 4 5 6 7 8 9 10 11;
+#X msg 254 178 A;
+#X msg 308 178 B;
+#X msg 200 178 G;
+#X msg 11 178 C;
+#X msg 65 178 D;
+#X msg 119 178 E;
+#X msg 146 178 F;
+#X obj 212 9 inlet;
+#X obj 385 123 div 12;
+#X obj 212 87 t f f;
+#X text 394 215 -> Numero de l'octave;
+#X text 221 72 -> Numero MIDI de la note (69 = A3 = 440Hz);
+#X msg 268 268 label \$1;
+#X obj 268 291 outlet;
+#X msg 38 178 Db;
+#X msg 92 178 Eb;
+#X msg 173 178 Gb;
+#X msg 227 178 Ab;
+#X msg 281 178 Bb;
+#X text 377 86 (70 = A#3 = Bb3);
+#X obj 268 246 symbol;
+#X text 19 239 Impossible d'afficher # dans un label;
+#X text 19 251 donc j'affiche b;
+#X obj 212 59 int;
+#X text 263 31 -> pour corriger certaines erreurs de calcul;
+#X obj 385 152 - 12;
+#X text 263 43 et le pb du passage a zero de mod 12;
+#X obj 212 33 + 120.5;
+#X obj 268 221 cyclone/sprintf %s%d;
+#X connect 0 0 1 0;
+#X connect 1 0 5 0;
+#X connect 1 1 16 0;
+#X connect 1 2 6 0;
+#X connect 1 3 17 0;
+#X connect 1 4 7 0;
+#X connect 1 5 8 0;
+#X connect 1 6 18 0;
+#X connect 1 7 4 0;
+#X connect 1 8 19 0;
+#X connect 1 9 2 0;
+#X connect 1 10 20 0;
+#X connect 1 11 3 0;
+#X connect 2 0 30 0;
+#X connect 3 0 30 0;
+#X connect 4 0 30 0;
+#X connect 5 0 30 0;
+#X connect 6 0 30 0;
+#X connect 7 0 30 0;
+#X connect 8 0 30 0;
+#X connect 9 0 29 0;
+#X connect 10 0 27 0;
+#X connect 11 0 0 0;
+#X connect 11 1 10 0;
+#X connect 14 0 15 0;
+#X connect 16 0 30 0;
+#X connect 17 0 30 0;
+#X connect 18 0 30 0;
+#X connect 19 0 30 0;
+#X connect 20 0 30 0;
+#X connect 22 0 14 0;
+#X connect 25 0 11 0;
+#X connect 27 0 30 1;
+#X connect 29 0 25 0;
+#X connect 30 0 22 0;
+#X restore 78 248 pd pitchb-11-2010;
+#X connect 0 0 10 0;
+#X connect 1 0 6 0;
+#X connect 2 0 3 0;
+#X connect 2 0 31 0;
+#X connect 3 0 4 0;
+#X connect 4 0 5 0;
+#X connect 5 0 14 0;
+#X connect 6 0 15 0;
+#X connect 7 0 8 0;
+#X connect 8 0 1 0;
+#X connect 8 0 35 0;
+#X connect 9 0 22 0;
+#X connect 10 0 9 0;
+#X connect 11 0 2 0;
+#X connect 12 0 2 1;
+#X connect 12 0 21 0;
+#X connect 13 0 0 0;
+#X connect 18 0 11 0;
+#X connect 19 0 3 0;
+#X connect 20 0 19 0;
+#X connect 21 0 7 0;
+#X connect 29 0 33 0;
+#X connect 30 0 29 0;
+#X connect 31 0 32 0;
+#X connect 32 0 30 0;
+#X connect 34 0 19 1;
+#X connect 35 0 14 0;
+#X restore -11 114 pd Freq-v5-sig-;
+#X obj 346 176 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 161 113 427 375 Help 0;
+#X text 18 280 Resonance = "Q" = filter sharpness = Coefficient of
+Quality;
+#X text 18 293 http://en.wikipedia.org/wiki/Q_factor;
+#X text 19 305 http://fr.wikipedia.org/wiki/Facteur_de_qualité;
+#X text 17 6 Flt-BP = Filter BandPass = Filtre passe-bande;
+#X text 17 335 La résonance est controlée seulement 100 fois par seconde
+;
+#X obj 12 79 cnv 15 400 200 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X text 31 110 vcf~ is like bp~ except that it takes an audio signal
+to set center frequency \, which may thus change continuously in time.
+The "Q" or filter sharpness is still only set by messages. More expensive
+than bp~ in CPU time but more powerful too.;
+#X text 31 95 vcf~ = voltage-controlled bandpass filter;
+#X text 30 207 The left inlet is the incoming audio signal \, the middle
+control input sets center frequency and the rigth input sets "Q".;
+#X text 31 178 bp~ passes a sinusoid at the center frequency at unit
+gain (approximately). Other frequencies are attenuated.;
+#X text 16 81 Citation;
+#X text 15 42 1 = 240 1/2 ton = 20 octaves;
+#X text 15 30 Sensibilité de l'entrée de contrôle de la fréquence:
+;
+#X restore 353 182 pd Help;
+#X text 187 74 Center;
+#N canvas 375 291 336 327 Q-Ctrl 0;
+#X obj 73 278 line;
+#X obj 11 9 loadbang;
+#X msg 148 128 set \$1;
+#X obj 149 57 +~;
+#X obj 78 89 snapshot~;
+#X obj 78 109 change;
+#X obj 10 54 metro 10;
+#X obj 76 215 + 1;
+#X obj 75 236 clip 1 200;
+#X msg 74 257 \$1 100;
+#X obj 76 173 * 1;
+#X obj 77 152 * 1;
+#X obj 78 129 t f f f;
+#X obj 73 300 outlet;
+#X obj 75 194 * 200;
+#X obj 149 88 snapshot~;
+#X obj 149 108 change;
+#X obj 219 11 inlet;
+#X obj 148 300 outlet;
+#X obj 149 11 inlet~;
+#X msg 218 132 label \$1;
+#X obj 218 88 * 100;
+#X obj 67 54 metro 200;
+#X obj 70 9 r SendFluid;
+#X obj 218 110 cyclone/tosymbol;
+#X connect 0 0 13 0;
+#X connect 1 0 6 0;
+#X connect 1 0 22 0;
+#X connect 2 0 18 0;
+#X connect 3 0 4 0;
+#X connect 3 0 15 0;
+#X connect 4 0 5 0;
+#X connect 5 0 12 0;
+#X connect 6 0 4 0;
+#X connect 7 0 8 0;
+#X connect 8 0 9 0;
+#X connect 9 0 0 0;
+#X connect 10 0 14 0;
+#X connect 11 0 10 0;
+#X connect 12 0 11 0;
+#X connect 12 1 11 1;
+#X connect 12 2 10 1;
+#X connect 14 0 7 0;
+#X connect 15 0 16 0;
+#X connect 16 0 2 0;
+#X connect 17 0 3 1;
+#X connect 17 0 21 0;
+#X connect 19 0 3 0;
+#X connect 20 0 18 0;
+#X connect 21 0 24 0;
+#X connect 22 0 15 0;
+#X connect 23 0 22 1;
+#X connect 24 0 20 0;
+#X restore 354 114 pd Q-Ctrl;
+#X obj 348 278 cnv 15 52 22 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 353 174 321 152 ?... 0;
+#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 13 121 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 13 97 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X text 13 85 Construit sous / Build under Pd-0.49...;
+#X text 12 109 or Pd 0.43.4-extended;
+#X obj 12 53 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X restore 351 281 pd ?...;
+#X text 333 66 6 9 2019;
+#X connect 5 0 13 0;
+#X connect 8 0 35 2;
+#X connect 9 0 35 0;
+#X connect 10 0 39 0;
+#X connect 13 0 14 0;
+#X connect 13 0 17 0;
+#X connect 14 0 15 0;
+#X connect 14 0 18 0;
+#X connect 15 0 16 0;
+#X connect 15 0 6 0;
+#X connect 16 0 7 0;
+#X connect 29 0 35 1;
+#X connect 31 0 39 1;
+#X connect 35 0 30 0;
+#X connect 35 1 8 0;
+#X connect 35 2 13 1;
+#X connect 35 2 14 1;
+#X connect 35 2 15 1;
+#X connect 35 2 16 1;
+#X connect 35 3 29 0;
+#X connect 39 0 13 2;
+#X connect 39 0 14 2;
+#X connect 39 0 15 2;
+#X connect 39 0 16 2;
+#X connect 39 1 32 0;
+#X coords 0 -1 1 1 217 36 1 100 100;
+#X restore 254 514 pd ARGO;
+#N canvas 446 64 251 267 ARGO 0;
+#X obj 101 104 cnv 30 49 130 empty ColorAmpli empty 20 12 0 14 -1 -258113
+0;
+#X obj 102 110 vu 8 120 \$0-B empty 0 0 1 11 -1 -4034 0 0;
+#X obj 49 35 inlet~;
+#X obj 22 108 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 300 65 442 264 Help 0;
+#X obj 12 48 cnv 15 400 150 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X text 16 50 Citation;
+#X text 28 67 peakamp~ tracks and outputs the absolute value of the
+peak amplitude of the incoming signal. It outputs when banged or using
+its own internal clock. The peak value is reset each time peakamp~
+outputs a value.;
+#X text 29 123 cyclone library;
+#X text 28 135 http://suita.chopin.edu.pl/~czaja/miXed/externs/cyclone.html
+;
+#X text 29 155 Voir doc Max/MSP MSP46ReferenceManual.pdf;
+#X text 18 14 MM-Vumetre;
+#X restore 29 114 pd Help;
+#N canvas 541 112 317 265 VuMetre 0;
+#X obj 48 19 inlet~;
+#X obj 41 54 *~;
+#X obj -25 132 snapshot~;
+#X obj -25 155 sqrt;
+#X obj -25 100 lop~ 10;
+#X obj -25 179 rmstodb;
+#X obj -88 19 loadbang;
+#X obj -25 202 - 100;
+#X obj 58 156 sqrt;
+#X obj 58 180 rmstodb;
+#X obj 58 203 - 100;
+#X obj -89 102 metro 200;
+#X obj -28 19 r SendFluid;
+#X obj 58 102 cyclone/peakamp~ 1000;
+#X obj -25 228 outlet;
+#X obj 58 227 outlet;
+#X connect 0 0 1 0;
+#X connect 0 0 1 1;
+#X connect 1 0 4 0;
+#X connect 1 0 13 0;
+#X connect 2 0 3 0;
+#X connect 3 0 5 0;
+#X connect 4 0 2 0;
+#X connect 5 0 7 0;
+#X connect 6 0 11 0;
+#X connect 7 0 14 0;
+#X connect 8 0 9 0;
+#X connect 9 0 10 0;
+#X connect 10 0 15 0;
+#X connect 11 0 2 0;
+#X connect 12 0 11 1;
+#X connect 13 0 8 0;
+#X restore 49 63 pd VuMetre;
+#X obj 172 211 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 336 174 309 137 ?. 0;
+#X obj 3 83 cnv 15 300 46 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 3 6 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 26 26 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 64 26 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 7 37 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X text 8 85 Construit sous / Build under Pd 0.43.4-extended;
+#X obj 8 111 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 7 50 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X text 7 98 or Pd-0.46-7 + deken;
+#X restore 176 215 pd ?.;
+#X obj 113 110 vu 8 120 \$0-B empty 0 0 1 11 -1 -4034 1 0;
+#X obj 126 35 inlet~;
+#N canvas 541 112 317 265 VuMetre 0;
+#X obj 48 19 inlet~;
+#X obj 41 54 *~;
+#X obj -25 132 snapshot~;
+#X obj -25 155 sqrt;
+#X obj -25 100 lop~ 10;
+#X obj -25 179 rmstodb;
+#X obj -88 19 loadbang;
+#X obj -25 202 - 100;
+#X obj 58 156 sqrt;
+#X obj 58 180 rmstodb;
+#X obj 58 203 - 100;
+#X obj -89 102 metro 200;
+#X obj -28 19 r SendFluid;
+#X obj 58 102 cyclone/peakamp~ 1000;
+#X obj -25 228 outlet;
+#X obj 58 227 outlet;
+#X connect 0 0 1 0;
+#X connect 0 0 1 1;
+#X connect 1 0 4 0;
+#X connect 1 0 13 0;
+#X connect 2 0 3 0;
+#X connect 3 0 5 0;
+#X connect 4 0 2 0;
+#X connect 5 0 7 0;
+#X connect 6 0 11 0;
+#X connect 7 0 14 0;
+#X connect 8 0 9 0;
+#X connect 9 0 10 0;
+#X connect 10 0 15 0;
+#X connect 11 0 2 0;
+#X connect 12 0 11 1;
+#X connect 13 0 8 0;
+#X restore 126 63 pd VuMetre;
+#X text 153 87 3 3 2019;
+#X connect 2 0 5 0;
+#X connect 5 0 1 0;
+#X connect 5 1 1 1;
+#X connect 9 0 10 0;
+#X connect 10 0 8 0;
+#X connect 10 1 8 1;
+#X coords 0 -1 1 1 51 135 2 100 100;
+#X restore 356 577 pd ARGO;
+#X text 105 415 X;
+#X text 229 415 Y;
+#X text 324 415 Size;
+#X text 181 304 get the "center of gravity" of an image;
+#N canvas 601 197 438 261 ARGO 0;
+#X obj 101 101 cnv 10 144 39 empty ColorForm empty 20 12 0 14 -228856
+-1 1.04858e+06;
+#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -128992 -66577
+0;
+#X obj 133 104 cnv 10 20 10 empty ColorForm GEM-Movement2 1 5 1 14
+-228856 -1 1.04858e+06;
+#X text 82 83 gemlist;
+#X obj 93 51 inlet;
+#X obj 101 136 cnv 4 10 4 empty empty empty 20 12 0 14 -128992 -66577
+0;
+#X text 83 140 gemlist;
+#X obj 93 235 outlet;
+#X obj 115 129 hsl 129 12 0 255 0 1 \$0-A ColorGEM 89 0 7 1 9 -228856
+-1 -1 4500 0;
+#X msg 13 214 label \$1;
+#X obj 12 191 tosymbol;
+#X obj 11 144 int;
+#X obj 12 168 change;
+#X obj 93 194 pix_movement2;
+#X obj 115 117 hsl 129 12 0 255 0 1 \$0-A ColorGEM 101 0 7 1 9 -228856
+-1 -1 5100 0;
+#X text 249 111 <- High Threshold / Seuil Haut;
+#X text 249 124 <- Low Threshold / Seuil Bas;
+#X obj 100 105 bng 12 250 50 0 \$0-A \$0-B Zero 15 7 1 9 -262144 -1
+-1;
+#X msg 8 120 label \$1;
+#X obj 7 97 tosymbol;
+#X obj 6 50 int;
+#X obj 7 74 change;
+#X obj 152 38 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#X obj 221 39 cnv 15 41 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 350 196 381 103 ? 0;
+#X obj 5 49 cnv 15 370 38 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X text 6 65 Voir/Look at: http://puredata.info/downloads;
+#X obj 4 12 cnv 18 370 30 empty empty ARGOPdMiniModules 1 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 7 31 cnv 10 10 10 empty empty Gerard 0 5 1 9 -4033 -1 1.04858e+06
+;
+#X obj 38 31 cnv 10 10 10 empty empty Paresys 0 5 1 9 -4033 -1 1.04858e+06
+;
+#X obj 175 20 cnv 10 10 10 empty empty http://pagesperso-orange.fr/Paresys/ARGOPd/
+0 5 1 9 -4033 -1 1.04858e+06;
+#X obj 175 31 cnv 10 10 10 empty empty http://gerard.paresys.free.fr/ARGOPd/
+0 5 1 9 -4033 -1 1.04858e+06;
+#X text 6 51 Construit sous / Build under Pd 0.41.4-extended;
+#X restore 227 46 pd ?;
+#N canvas 485 48 425 538 Help 0;
+#X obj -12 17 cnv 15 400 370 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X text -9 16 Citation;
+#X obj -11 395 cnv 15 400 100 empty empty empty 20 12 0 14 -258113
+-66577 0;
+#X text -7 395 - Erreur dans la fenêtre Pd:;
+#X text -11 -31 GEM-Movement2;
+#X text 4 32 Description: timebase IIR-filter for motion detection
+;
+#X text 12 103 since image-noise can disturb this processing \, changes
+between two corresponding pixels that are smaller than "threshold"
+are ignored. The "treshold" is initially set to <treshold> and adjusts
+itself dynamically downwards towards <lo_treshold> (which is the absolute
+minimum);
+#X text 13 51 [pix_movement] detects movement in a frame with respect
+to the 2 previous frames and a "background"-image and stores it as
+a b/w-image (greyscale).;
+#X text 15 180 Inlet 1: bang: set the current frame as "background"
+;
+#X text 15 197 Inlet 2: float: <lo_threshold> changes in the image
+that are smaller then <lo_threshold> are ignored (0..1);
+#X text 16 226 Inlet 3: float: <initial_threshold> (0..1);
+#X text 11 409 error: [pix_movement2]: low treshold (xx) must not be
+be greater than high treshold(yy);
+#X text 2 -14 Transforme le "colorspace" de l'image en Grey;
+#X text 8 245 pix_movement2 internally convert the image to greyscale
+and work on the grey channel directly.;
+#X text 19 294 [pix_movement] compares 2 adjacent frames based on a
+threshold.;
+#X text 18 321 [pix_movement2] compares the current frame against the
+last 2 ones and a static "background"-image (threshold-based) \; the
+threshold adjusts itself automatically \; so it is just an improved
+version of [pix_movement];
+#X text 6 282 IOhannes m zmoelnig;
+#X text 11 445 error: [pix_movement2]: no method for this kind of color
+;
+#X text 12 458 Ce MiniModule ne fonctionne pas en colorspace RGB;
+#X text 12 470 Vu sous Linux Ubuntu 8.04 + Pd-0.41.4-extended;
+#X restore 159 44 pd Help;
+#X obj 130 158 / 255;
+#X obj 168 159 / 255;
+#X text 213 83 27 3 2010;
+#X connect 4 0 13 0;
+#X connect 8 0 11 0;
+#X connect 8 0 26 0;
+#X connect 9 0 8 0;
+#X connect 10 0 9 0;
+#X connect 11 0 12 0;
+#X connect 12 0 10 0;
+#X connect 13 0 7 0;
+#X connect 14 0 20 0;
+#X connect 14 0 27 0;
+#X connect 17 0 13 0;
+#X connect 18 0 14 0;
+#X connect 19 0 18 0;
+#X connect 20 0 21 0;
+#X connect 21 0 19 0;
+#X connect 26 0 13 1;
+#X connect 27 0 13 2;
+#X coords 0 -1 1 1 146 41 1 100 100;
+#X restore 20 259 pd ARGO;
+#X text 167 272 <- Régler les seuils haut & bas;
+#X text 167 285 <- Adjust the high & low threshold;
+#X connect 2 0 21 0;
+#X connect 2 2 22 0;
+#X connect 3 0 24 1;
+#X connect 8 0 31 0;
+#X connect 14 0 13 0;
+#X connect 19 0 4 0;
+#X connect 19 0 26 0;
+#X connect 19 1 4 1;
+#X connect 19 1 26 1;
+#X connect 20 0 19 0;
+#X connect 20 1 19 1;
+#X connect 21 0 3 0;
+#X connect 21 0 25 1;
+#X connect 22 0 24 2;
+#X connect 22 0 25 2;
+#X connect 23 0 24 0;
+#X connect 23 0 25 0;
+#X connect 24 2 20 0;
+#X connect 25 2 20 1;
+#X connect 31 0 12 0;
+#X connect 31 0 2 0;
