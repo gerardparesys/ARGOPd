@@ -1,0 +1,1266 @@
+#N canvas 523 23 499 622 10;
+#N canvas 88 32 1048 603 Particlechamber 0;
+#X obj 667 259 s 1-zample_number;
+#X obj 201 145 cnv 15 450 125 empty empty file_granulator 300 113 0
+14 -71869 -66577 0;
+#X obj 208 171 hsl 100 15 2 200 1 1 1-zample_envelope_min empty envelope
+6 7 0 8 -262144 -1 -1 6900 1;
+#X obj 316 171 nbx 5 14 0 50 0 1 1-zample_envelope_sprd empty range
+60 8 0 10 -262144 -1 -1 50 256;
+#X obj 208 191 hsl 100 15 1 5000 1 1 1-zample_sustain_min empty length
+6 7 0 8 -262144 -1 -1 7500 1;
+#X obj 316 192 nbx 5 14 0 100 0 1 1-zample_sustain_sprd empty range
+60 8 0 10 -262144 -1 -1 100 256;
+#X obj 208 211 hsl 100 15 0 100 0 1 1-zample_gain_min 20-midi gain
+6 7 0 8 -262144 -1 -1 6200 1;
+#X obj 316 212 nbx 5 14 0 100 0 1 1-zample_gain_sprd empty range 60
+8 0 10 -262144 -1 -1 0 256;
+#X obj 319 231 hsl 75 15 1 32 0 1 1-zample_voices empty vox=10 15 9
+0 8 -258113 -1 -1 2200 1;
+#X obj 208 231 hsl 100 15 99 0 0 1 1-zample_asynch empty asynch 15
+9 0 8 -262144 -1 -1 8100 1;
+#X obj 412 151 hradio 15 1 1 8 empty empty sample_number -79 7 0 10
+-262144 -1 -1 1;
+#X obj 417 212 nbx 5 14 0 10000 0 1 readspread empty grain_spread 60
+7 0 10 -262144 -1 -1 965 256;
+#X obj 417 232 nbx 5 14 0 10000 0 0 empty ave_g_length ave_grain_length
+60 7 0 10 -62784 -1 -1 733.318 256;
+#N canvas 234 113 465 305 load 0;
+#N canvas 223 148 530 341 File 0;
+#X obj 33 30 openpanel;
+#X msg 100 75 set \$1;
+#X obj 182 8 loadbang;
+#X obj 34 50 t b s;
+#X msg 132 131 set \$1;
+#X obj 120 156 cnv 15 400 50 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X text 122 155 Nom du fichier / File name;
+#X obj 33 8 bang;
+#X obj 182 68 t b b b;
+#X obj 100 258 soundfiler;
+#X obj 100 314 s 1-zample_size;
+#X msg 110 279 \; 1-zample resize \$1;
+#X msg 100 236 read -resize -maxsize 1e+07 \$1 1-zample;
+#X obj 19 314 s FileLoaded;
+#X msg 18 291 bang;
+#N canvas 0 22 450 300 (subpatch) 0;
+#X array 1-zample 155944 float 2;
+#X coords 0 1 155944 -1 120 18 2 0 0;
+#X restore 398 100 graph;
+#X msg 132 171 bell2.aiff;
+#X obj 100 51 zexy/list2symbol;
+#X obj 100 213 zexy/list2symbol;
+#X obj 103 101 hsl 291 15 0 127 0 0 \$0-A \$0-B empty -2 -8 0 10 -262144
+-262144 -1 0 1;
+#X symbolatom 100 102 49 0 0 0 - - -;
+#X connect 0 0 3 0;
+#X connect 1 0 20 0;
+#X connect 2 0 8 0;
+#X connect 3 0 20 0;
+#X connect 3 1 1 0;
+#X connect 4 0 16 0;
+#X connect 7 0 0 0;
+#X connect 8 0 20 0;
+#X connect 8 1 16 0;
+#X connect 9 0 11 0;
+#X connect 9 0 10 0;
+#X connect 9 0 14 0;
+#X connect 12 0 9 0;
+#X connect 14 0 13 0;
+#X connect 16 0 17 0;
+#X connect 17 0 1 0;
+#X connect 18 0 12 0;
+#X connect 19 0 7 0;
+#X connect 20 0 4 0;
+#X connect 20 0 18 0;
+#X coords 0 -1 1 1 418 18 1 100 100;
+#X restore 12 11 pd File;
+#N canvas 223 148 530 341 File 0;
+#X obj 33 30 openpanel;
+#X msg 100 75 set \$1;
+#X obj 182 8 loadbang;
+#X obj 34 50 t b s;
+#X msg 132 131 set \$1;
+#X obj 120 156 cnv 15 400 50 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X text 122 155 Nom du fichier / File name;
+#X obj 33 8 bang;
+#X obj 182 68 t b b b;
+#X obj 100 258 soundfiler;
+#X obj 19 314 s FileLoaded;
+#X msg 18 291 bang;
+#N canvas 0 22 450 300 (subpatch) 0;
+#X array 2-zample 157076 float 2;
+#X coords 0 1 157076 -1 120 18 2 0 0;
+#X restore 398 100 graph;
+#X obj 100 51 zexy/list2symbol;
+#X obj 100 213 zexy/list2symbol;
+#X obj 103 101 hsl 291 15 0 127 0 0 \$0-A \$0-B empty -2 -8 0 10 -262144
+-262144 -1 0 1;
+#X symbolatom 100 102 49 0 0 0 - - -;
+#X msg 100 236 read -resize -maxsize 1e+07 \$1 2-zample;
+#X msg 132 171 cl.wav;
+#X msg 110 279 \; 2-zample resize \$1;
+#X obj 100 314 s 2-zample_size;
+#X connect 0 0 3 0;
+#X connect 1 0 16 0;
+#X connect 2 0 8 0;
+#X connect 3 0 16 0;
+#X connect 3 1 1 0;
+#X connect 4 0 18 0;
+#X connect 7 0 0 0;
+#X connect 8 0 16 0;
+#X connect 8 1 18 0;
+#X connect 9 0 19 0;
+#X connect 9 0 11 0;
+#X connect 9 0 20 0;
+#X connect 11 0 10 0;
+#X connect 13 0 1 0;
+#X connect 14 0 17 0;
+#X connect 15 0 7 0;
+#X connect 16 0 4 0;
+#X connect 16 0 14 0;
+#X connect 17 0 9 0;
+#X connect 18 0 13 0;
+#X coords 0 -1 1 1 418 18 1 100 100;
+#X restore 12 44 pd File;
+#N canvas 185 179 530 341 File 0;
+#X obj 33 30 openpanel;
+#X msg 100 75 set \$1;
+#X obj 182 8 loadbang;
+#X obj 34 50 t b s;
+#X msg 132 131 set \$1;
+#X obj 120 156 cnv 15 400 50 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X text 122 155 Nom du fichier / File name;
+#X obj 33 8 bang;
+#X obj 182 68 t b b b;
+#X obj 100 258 soundfiler;
+#X obj 19 314 s FileLoaded;
+#X msg 18 291 bang;
+#N canvas 0 23 450 300 (subpatch) 0;
+#X array 3-zample 264323 float 2;
+#X coords 0 1 264323 -1 120 18 2 0 0;
+#X restore 398 100 graph;
+#X obj 100 51 zexy/list2symbol;
+#X obj 100 213 zexy/list2symbol;
+#X obj 103 101 hsl 291 15 0 127 0 0 \$0-A \$0-B empty -2 -8 0 10 -262144
+-262144 -1 0 1;
+#X symbolatom 100 102 49 0 0 0 - - -;
+#X msg 100 236 read -resize -maxsize 1e+07 \$1 3-zample;
+#X msg 132 171 Madagaskar1Court.wav;
+#X msg 110 279 \; 3-zample resize \$1;
+#X obj 100 314 s 3-zample_size;
+#X connect 0 0 3 0;
+#X connect 1 0 16 0;
+#X connect 2 0 8 0;
+#X connect 3 0 16 0;
+#X connect 3 1 1 0;
+#X connect 4 0 18 0;
+#X connect 7 0 0 0;
+#X connect 8 0 16 0;
+#X connect 8 1 18 0;
+#X connect 9 0 19 0;
+#X connect 9 0 11 0;
+#X connect 9 0 20 0;
+#X connect 11 0 10 0;
+#X connect 13 0 1 0;
+#X connect 14 0 17 0;
+#X connect 15 0 7 0;
+#X connect 16 0 4 0;
+#X connect 16 0 14 0;
+#X connect 17 0 9 0;
+#X connect 18 0 13 0;
+#X coords 0 -1 1 1 418 18 1 100 100;
+#X restore 12 77 pd File;
+#N canvas 223 148 530 341 File 0;
+#X obj 33 30 openpanel;
+#X msg 100 75 set \$1;
+#X obj 182 8 loadbang;
+#X obj 34 50 t b s;
+#X msg 132 131 set \$1;
+#X obj 120 156 cnv 15 400 50 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X text 122 155 Nom du fichier / File name;
+#X obj 33 8 bang;
+#X obj 182 68 t b b b;
+#X obj 100 258 soundfiler;
+#X obj 19 314 s FileLoaded;
+#X msg 18 291 bang;
+#N canvas 0 22 450 300 (subpatch) 0;
+#X array 4-zample 155944 float 2;
+#X coords 0 1 155944 -1 120 18 2 0 0;
+#X restore 398 100 graph;
+#X msg 132 171 bell2.aiff;
+#X obj 100 51 zexy/list2symbol;
+#X obj 100 213 zexy/list2symbol;
+#X obj 103 101 hsl 291 15 0 127 0 0 \$0-A \$0-B empty -2 -8 0 10 -262144
+-262144 -1 0 1;
+#X symbolatom 100 102 49 0 0 0 - - -;
+#X msg 100 236 read -resize -maxsize 1e+07 \$1 4-zample;
+#X msg 110 279 \; 4-zample resize \$1;
+#X obj 100 314 s 4-zample_size;
+#X connect 0 0 3 0;
+#X connect 1 0 17 0;
+#X connect 2 0 8 0;
+#X connect 3 0 17 0;
+#X connect 3 1 1 0;
+#X connect 4 0 13 0;
+#X connect 7 0 0 0;
+#X connect 8 0 17 0;
+#X connect 8 1 13 0;
+#X connect 9 0 19 0;
+#X connect 9 0 11 0;
+#X connect 9 0 20 0;
+#X connect 11 0 10 0;
+#X connect 13 0 14 0;
+#X connect 14 0 1 0;
+#X connect 15 0 18 0;
+#X connect 16 0 7 0;
+#X connect 17 0 4 0;
+#X connect 17 0 15 0;
+#X connect 18 0 9 0;
+#X coords 0 -1 1 1 418 18 1 100 100;
+#X restore 12 110 pd File;
+#N canvas 223 148 530 341 File 0;
+#X obj 33 30 openpanel;
+#X msg 100 75 set \$1;
+#X obj 182 8 loadbang;
+#X obj 34 50 t b s;
+#X msg 132 131 set \$1;
+#X obj 120 156 cnv 15 400 50 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X text 122 155 Nom du fichier / File name;
+#X obj 33 8 bang;
+#X obj 182 68 t b b b;
+#X obj 100 258 soundfiler;
+#X obj 19 314 s FileLoaded;
+#X msg 18 291 bang;
+#N canvas 0 22 450 300 (subpatch) 0;
+#X array 5-zample 155944 float 2;
+#X coords 0 1 155944 -1 120 18 2 0 0;
+#X restore 398 100 graph;
+#X msg 132 171 bell2.aiff;
+#X obj 100 51 zexy/list2symbol;
+#X obj 100 213 zexy/list2symbol;
+#X obj 103 101 hsl 291 15 0 127 0 0 \$0-A \$0-B empty -2 -8 0 10 -262144
+-262144 -1 0 1;
+#X symbolatom 100 102 49 0 0 0 - - -;
+#X msg 100 236 read -resize -maxsize 1e+07 \$1 5-zample;
+#X msg 110 279 \; 5-zample resize \$1;
+#X obj 100 314 s 5-zample_size;
+#X connect 0 0 3 0;
+#X connect 1 0 17 0;
+#X connect 2 0 8 0;
+#X connect 3 0 17 0;
+#X connect 3 1 1 0;
+#X connect 4 0 13 0;
+#X connect 7 0 0 0;
+#X connect 8 0 17 0;
+#X connect 8 1 13 0;
+#X connect 9 0 19 0;
+#X connect 9 0 11 0;
+#X connect 9 0 20 0;
+#X connect 11 0 10 0;
+#X connect 13 0 14 0;
+#X connect 14 0 1 0;
+#X connect 15 0 18 0;
+#X connect 16 0 7 0;
+#X connect 17 0 4 0;
+#X connect 17 0 15 0;
+#X connect 18 0 9 0;
+#X coords 0 -1 1 1 418 18 1 100 100;
+#X restore 12 143 pd File;
+#N canvas 223 148 530 341 File 0;
+#X obj 33 30 openpanel;
+#X msg 100 75 set \$1;
+#X obj 182 8 loadbang;
+#X obj 34 50 t b s;
+#X msg 132 131 set \$1;
+#X obj 120 156 cnv 15 400 50 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X text 122 155 Nom du fichier / File name;
+#X obj 33 8 bang;
+#X obj 182 68 t b b b;
+#X obj 100 258 soundfiler;
+#X obj 19 314 s FileLoaded;
+#X msg 18 291 bang;
+#N canvas 0 22 450 300 (subpatch) 0;
+#X array 6-zample 155944 float 2;
+#X coords 0 1 155944 -1 120 18 2 0 0;
+#X restore 398 100 graph;
+#X msg 132 171 bell2.aiff;
+#X obj 100 51 zexy/list2symbol;
+#X obj 100 213 zexy/list2symbol;
+#X obj 103 101 hsl 291 15 0 127 0 0 \$0-A \$0-B empty -2 -8 0 10 -262144
+-262144 -1 0 1;
+#X symbolatom 100 102 49 0 0 0 - - -;
+#X msg 100 236 read -resize -maxsize 1e+07 \$1 6-zample;
+#X msg 110 279 \; 6-zample resize \$1;
+#X obj 100 314 s 6-zample_size;
+#X connect 0 0 3 0;
+#X connect 1 0 17 0;
+#X connect 2 0 8 0;
+#X connect 3 0 17 0;
+#X connect 3 1 1 0;
+#X connect 4 0 13 0;
+#X connect 7 0 0 0;
+#X connect 8 0 17 0;
+#X connect 8 1 13 0;
+#X connect 9 0 19 0;
+#X connect 9 0 11 0;
+#X connect 9 0 20 0;
+#X connect 11 0 10 0;
+#X connect 13 0 14 0;
+#X connect 14 0 1 0;
+#X connect 15 0 18 0;
+#X connect 16 0 7 0;
+#X connect 17 0 4 0;
+#X connect 17 0 15 0;
+#X connect 18 0 9 0;
+#X coords 0 -1 1 1 418 18 1 100 100;
+#X restore 12 176 pd File;
+#N canvas 223 148 530 341 File 0;
+#X obj 33 30 openpanel;
+#X msg 100 75 set \$1;
+#X obj 182 8 loadbang;
+#X obj 34 50 t b s;
+#X msg 132 131 set \$1;
+#X obj 120 156 cnv 15 400 50 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X text 122 155 Nom du fichier / File name;
+#X obj 33 8 bang;
+#X obj 182 68 t b b b;
+#X obj 100 258 soundfiler;
+#X obj 19 314 s FileLoaded;
+#X msg 18 291 bang;
+#N canvas 0 23 450 300 (subpatch) 0;
+#X array 7-zample 155944 float 2;
+#X coords 0 1 155944 -1 120 18 2 0 0;
+#X restore 398 100 graph;
+#X msg 132 171 bell2.aiff;
+#X obj 100 51 zexy/list2symbol;
+#X obj 100 213 zexy/list2symbol;
+#X obj 103 101 hsl 291 15 0 127 0 0 \$0-A \$0-B empty -2 -8 0 10 -262144
+-262144 -1 0 1;
+#X symbolatom 100 102 49 0 0 0 - - -;
+#X msg 100 236 read -resize -maxsize 1e+07 \$1 7-zample;
+#X msg 110 279 \; 7-zample resize \$1;
+#X obj 100 314 s 7-zample_size;
+#X connect 0 0 3 0;
+#X connect 1 0 17 0;
+#X connect 2 0 8 0;
+#X connect 3 0 17 0;
+#X connect 3 1 1 0;
+#X connect 4 0 13 0;
+#X connect 7 0 0 0;
+#X connect 8 0 17 0;
+#X connect 8 1 13 0;
+#X connect 9 0 19 0;
+#X connect 9 0 11 0;
+#X connect 9 0 20 0;
+#X connect 11 0 10 0;
+#X connect 13 0 14 0;
+#X connect 14 0 1 0;
+#X connect 15 0 18 0;
+#X connect 16 0 7 0;
+#X connect 17 0 4 0;
+#X connect 17 0 15 0;
+#X connect 18 0 9 0;
+#X coords 0 -1 1 1 418 18 1 100 100;
+#X restore 12 210 pd File;
+#N canvas 223 148 530 341 File 0;
+#X obj 33 30 openpanel;
+#X msg 100 75 set \$1;
+#X obj 182 8 loadbang;
+#X obj 34 50 t b s;
+#X msg 132 131 set \$1;
+#X obj 120 156 cnv 15 400 50 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X text 122 155 Nom du fichier / File name;
+#X obj 33 8 bang;
+#X obj 182 68 t b b b;
+#X obj 100 258 soundfiler;
+#X obj 19 314 s FileLoaded;
+#X msg 18 291 bang;
+#N canvas 0 22 450 300 (subpatch) 0;
+#X array 8-zample 155944 float 2;
+#X coords 0 1 155944 -1 120 18 2 0 0;
+#X restore 398 100 graph;
+#X msg 132 171 bell2.aiff;
+#X obj 100 51 zexy/list2symbol;
+#X obj 100 213 zexy/list2symbol;
+#X obj 103 101 hsl 291 15 0 127 0 0 \$0-A \$0-B empty -2 -8 0 10 -262144
+-262144 -1 0 1;
+#X symbolatom 100 102 49 0 0 0 - - -;
+#X msg 100 236 read -resize -maxsize 1e+07 \$1 8-zample;
+#X msg 110 279 \; 8-zample resize \$1;
+#X obj 100 314 s 8-zample_size;
+#X connect 0 0 3 0;
+#X connect 1 0 17 0;
+#X connect 2 0 8 0;
+#X connect 3 0 17 0;
+#X connect 3 1 1 0;
+#X connect 4 0 13 0;
+#X connect 7 0 0 0;
+#X connect 8 0 17 0;
+#X connect 8 1 13 0;
+#X connect 9 0 19 0;
+#X connect 9 0 11 0;
+#X connect 9 0 20 0;
+#X connect 11 0 10 0;
+#X connect 13 0 14 0;
+#X connect 14 0 1 0;
+#X connect 15 0 18 0;
+#X connect 16 0 7 0;
+#X connect 17 0 4 0;
+#X connect 17 0 15 0;
+#X connect 18 0 9 0;
+#X coords 0 -1 1 1 418 18 1 100 100;
+#X restore 12 243 pd File;
+#X restore 129 185 pd load;
+#X obj 208 251 hsl 100 15 0 500 0 1 jitter empty jitter 15 9 0 8 -262144
+-1 -1 8100 1;
+#X obj 417 193 nbx 5 14 -1e+37 1e+37 0 0 empty 1-zample_start_min current_position
+60 7 0 10 -62784 -1 -1 281.026 256;
+#X obj 201 275 cnv 15 450 150 empty empty empty 300 140 0 14 -71869
+-66577 0;
+#N canvas 20 23 838 660 README 0;
+#X text 453 209 The freeverb~ external can be downloaded here: http://www.akustische-kunst.org/puredata/main.html
+;
+#X text 7 320 Operation of Particlechamber:;
+#X text 452 341 Asynch randomizes which grains are passed through \,
+from almost none to all. Vox activates or deactivates each of the 32
+voices. Grain_spread makes small adjustments in the read position \,
+which can be used to either add a reverb- or chorus-like effect \,
+or to completely time-smear a file. Jitter makes larger adjustments
+in the read position \, resulting in various degrees of time-scrambling.
+;
+#X text 453 441 The XY controller at the bottom determines the read
+position in the sample. This controller has an interpolation scale
+\, adjustable by the gear-shift on the right. This means that Particlechamber
+will scan more slowly or quickly through the file depending on the
+cursor's Y position multiplied by the interpolation factor.;
+#X text 278 6 Particlechamber by Derek Holzer [Umatic.nl];
+#X text 241 565 Particlechamber is free software and comes without
+any warrenty that it will do ANYTHING like what I say it will. Enjoy
+it all the same.;
+#X text 535 623 derek@umatic.nl;
+#X text 28 398 The red buttons mute and unmute the file granulator
+and the reverb. The large vertical sliders are gain for each section.
+The reverb is post-fader from the file granulator \, and can be bypassed
+either by muting it or with the wet/dry slider.;
+#X text 29 341 Open the Load subpatch and click the bangs to load samples.
+It is better to do this before you start playing \, because loading
+soundfiles can cause audible glitches in PD's performance. Sorry...
+;
+#X text 28 468 The envelope is a linear ramp \, so a length of 0 means
+a pure triangular "window" for each grain. [(envelope x 2)+ length=
+average grain length in ms]. Stereo_spread randomly pans each grain
+to a wider or lesser field. The range feature randomizes each parameter
+as a percentage plus or minus the given number.;
+#X text 453 137 It would be best to take Grid from the PD External
+Repository: http://pure-data.sourceforge.net;
+#X text 453 172 However \, Yves Degoyon's Grid external can also be
+found here: http://ydegoyon.free.fr/software.html;
+#X text 453 35 Particlechamber requires a few externals to run. It
+uses Freeverb~ for its reverb section [although you could easily replace
+it with another reverb] \, and uses Grid as a major GUI element [although
+you could hack your way around it if you can't install Grid by sending
+numbers directly to the table_locator subpatch. Look inside for details...]
+;
+#X text 7 36 Particlechamber is a 32-voice asynchronous granular synthesizer
+for real-time transformation of a soundfile. It is loosely based on
+the famous Travelizer instrument from Reaktor 3 \, however I think
+it's much better because it is FREE!;
+#X text 6 112 This abstraction can be used to time-stretch or -compress
+a soundfile \, although there are other tools [such as Frank Barknecht's
+Synchgrain object] which do this "nicer" \, but it's main strength
+is in generating clouds of sonic particles \, time-scrambling a file
+\, or creating abstract textures. If one does a bit of reverse engineering
+\, it can also be used as a tool for learning about the techniques
+of granular synthesis. I have left a subpatch inside the granreader
+subpatch where others can add their own grain-level events \, such
+as randomized or constant-Q filters or windowed envelopes \, to see
+what is possible with this technique. Of course \, I can only highly
+recommend Curtis Road's amazing book "Microsound" for those interested
+in learning more.;
+#X restore 666 235 pd README;
+#X obj 201 101 cnv 15 450 40 empty empty Particlechamber 35 12 0 18
+-233017 -66577 0;
+#X text 393 120 32-voice asynchronous granular synthesizer;
+#X obj 641 421 cnv 4 10 4 empty empty empty 0 0 0 9 -1 -66577 0;
+#X obj 201 421 cnv 4 10 4 empty empty empty 0 0 0 9 -1 -66577 0;
+#X obj 207 151 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 128 140 vis 1;
+#X obj 129 163 s pd-load;
+#X msg 666 187 vis 1;
+#X obj 666 210 s pd-README;
+#X obj 587 151 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 605 150 README;
+#N canvas 72 146 549 322 scanner 0;
+#X obj 169 20 r readspread;
+#X obj 169 111 s 1-zample_start_sprd;
+#X obj 169 48 / 100;
+#X obj 351 17 r 1-zample_envelope_min;
+#X obj 391 55 r 1-zample_sustain_min;
+#X obj 351 56 * 2;
+#X obj 32 172 random_range 0 0;
+#X obj 85 105 * -1;
+#X obj 32 217 line;
+#X obj 32 266 +;
+#X obj 32 296 s 1-zample_start_min;
+#X obj 85 75 / 10;
+#X obj 85 48 r jitter;
+#X obj 32 139 metro 100;
+#X obj 32 195 pack 0 5;
+#X obj 48 20 r readpositionout;
+#X obj 351 149 f;
+#X obj 391 149 f;
+#X obj 391 118 t b f;
+#X obj 351 118 t b f;
+#X obj 351 171 +;
+#X obj 351 193 s ave_g_length;
+#X connect 0 0 2 0;
+#X connect 2 0 1 0;
+#X connect 3 0 5 0;
+#X connect 4 0 18 0;
+#X connect 5 0 19 0;
+#X connect 6 0 14 0;
+#X connect 7 0 6 1;
+#X connect 8 0 9 0;
+#X connect 9 0 10 0;
+#X connect 11 0 7 0;
+#X connect 11 0 6 2;
+#X connect 12 0 11 0;
+#X connect 13 0 6 0;
+#X connect 14 0 8 0;
+#X connect 15 0 9 1;
+#X connect 15 0 13 0;
+#X connect 16 0 20 0;
+#X connect 17 0 20 1;
+#X connect 18 0 17 0;
+#X connect 18 0 16 0;
+#X connect 18 1 17 1;
+#X connect 19 0 17 0;
+#X connect 19 0 16 0;
+#X connect 19 1 16 1;
+#X connect 20 0 21 0;
+#X restore 658 300 pd scanner;
+#N canvas 337 190 557 364 table_locator 0;
+#X obj 41 37 inlet;
+#X obj 255 35 inlet;
+#X obj 25 280 line;
+#X obj 25 260 pack 0 0;
+#X obj 67 203 t b f;
+#X obj 25 234 f;
+#X obj 255 303 s scan_speed;
+#X obj 25 303 s readpositionout;
+#X obj 175 303 s tableloc;
+#X text 13 16 x coordinates = read position;
+#X text 81 282 range = 0-1000;
+#X text 243 16 y coordinates = scan speed interpolation;
+#X text 187 234 If you do not have the Grid object \, you can hack
+this subpatch to control Particlechamber.;
+#X text 223 270 range = 1-1000000;
+#X obj 255 95 expr (pow(10 \, $f1 / 20));
+#X text 212 51 range = 1-120;
+#X connect 0 0 5 1;
+#X connect 0 0 8 0;
+#X connect 1 0 14 0;
+#X connect 2 0 7 0;
+#X connect 3 0 2 0;
+#X connect 4 0 5 0;
+#X connect 4 1 3 1;
+#X connect 5 0 3 0;
+#X connect 14 0 4 0;
+#X connect 14 0 6 0;
+#X restore 355 431 pd table_locator;
+#X text 223 150 load samples;
+#X msg 47 265 label \$1;
+#X obj 248 406 nbx 5 14 -1e+37 1e+37 0 0 readpositionin readpositionout
+Position 56 7 0 10 -62784 -1 -1 286 256;
+#X obj 446 406 nbx 6 14 -1e+37 1e+37 0 0 empty scan_speed Speed 64
+7 0 10 -62784 -1 -1 21.8779 256;
+#X obj 230 568 outlet~;
+#X obj 398 568 outlet~;
+#X obj 469 453 granreader 5 1;
+#X obj 562 453 granreader 6 1;
+#X obj 656 453 granreader 7 1;
+#X obj 748 453 granreader 8 1;
+#X obj 374 479 granreader 12 1;
+#X obj 279 479 granreader 11 1;
+#X obj 185 479 granreader 10 1;
+#X obj 91 479 granreader 9 1;
+#X obj 469 479 granreader 13 1;
+#X obj 562 479 granreader 14 1;
+#X obj 656 479 granreader 15 1;
+#X obj 748 479 granreader 16 1;
+#X obj 374 504 granreader 20 1;
+#X obj 279 504 granreader 19 1;
+#X obj 185 504 granreader 18 1;
+#X obj 92 504 granreader 17 1;
+#X obj 469 504 granreader 21 1;
+#X obj 562 504 granreader 22 1;
+#X obj 656 504 granreader 23 1;
+#X obj 748 504 granreader 24 1;
+#X obj 374 530 granreader 28 1;
+#X obj 748 530 granreader 32 1;
+#X obj 279 530 granreader 27 1;
+#X obj 656 530 granreader 31 1;
+#X obj 185 530 granreader 26 1;
+#X obj 562 530 granreader 30 1;
+#X obj 92 530 granreader 25 1;
+#X obj 469 530 granreader 29 1;
+#X obj 91 453 granreader 1 1;
+#X obj 185 453 granreader 2 1;
+#X obj 279 453 granreader 3 1;
+#X obj 374 453 granreader 4 1;
+#X obj 286 568 outlet~;
+#X obj 342 568 outlet~;
+#X obj 453 568 outlet~;
+#X obj 621 568 outlet~;
+#X obj 509 568 outlet~;
+#X obj 565 568 outlet~;
+#X obj 261 421 cnv 4 10 4 empty empty empty 0 0 0 9 -1 -66577 0;
+#X obj 325 421 cnv 4 10 4 empty empty empty 0 0 0 9 -1 -66577 0;
+#X obj 388 421 cnv 4 10 4 empty empty empty 0 0 0 9 -1 -66577 0;
+#X obj 450 421 cnv 4 10 4 empty empty empty 0 0 0 9 -1 -66577 0;
+#X obj 515 421 cnv 4 10 4 empty empty empty 0 0 0 9 -1 -66577 0;
+#X obj 579 421 cnv 4 10 4 empty empty empty 0 0 0 9 -1 -66577 0;
+#X obj 371 49 delay 300;
+#X obj 373 72 delay 300;
+#X obj 371 27 r FileLoaded;
+#X obj 209 270 hsl 435 12 0 1000 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 12412 1;
+#X obj 152 568 switch~;
+#X obj 201 101 tgl 12 1 \$0-A \$0-B On 14 6 1 10 -262144 -1 -1 1 1
+;
+#X obj 124 81 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 584 107 465 390 Help 0;
+#X obj 11 56 cnv 15 440 300 empty empty empty 20 12 0 14 -228856 -66577
+0;
+#X text 14 56 Citation;
+#X obj 54 35 pddp/pddplink http://macumbista.net/?page_id=514;
+#X text 18 7 Particlechamber;
+#X text 23 71 "Particlechamber is a 32-voice asynchronous granular
+synthesizer for real-time transformation of a soundfile. It is loosely
+based on the famous Travelizer instrument from Reaktor 3 \, however
+I think it's much better because it is FREE!";
+#X text 19 23 based on particlechamber by Derek Holzer;
+#X text 22 141 "This abstraction can be used to time-stretch or -compress
+a soundfile \, although there are other tools [such as Frank Barknecht's
+Synchgrain object] which do this "nicer" \, but it's main strength
+is in generating clouds of sonic particles \, time-scrambling a file
+\, or creating abstract textures. If one does a bit of reverse engineering
+\, it can also be used as a tool for learning about the techniques
+of granular synthesis. I have left a subpatch inside the granreader
+subpatch where others can add their own grain-level events \, such
+as randomized or constant-Q filters or windowed envelopes \, to see
+what is possible with this technique. Of course \, I can only highly
+recommend Curtis Road's amazing book "Microsound" for those interested
+in learning more.";
+#X restore 131 88 pd Help;
+#X obj 564 63 pddp/pddplink http://macumbista.net/?page_id=514;
+#X text 529 51 based on particlechamber by Derek Holzer;
+#X obj 660 326 cnv 15 370 110 empty empty empty 20 12 0 14 -4033 -66577
+0;
+#X text 729 384 granreader.pd;
+#X text 729 397 random_range.pd;
+#X text 668 329 ATTENTION Particlechamber exige la prÃ©sence de 2 fichiers
+dans le mÃªme dossier que le patch:;
+#X text 668 357 WARNING Particlechamber requires 2 files in the same
+folder as the patch:;
+#X text 667 417 cf ExMM202-Particlechamber;
+#X obj 47 218 cyclone/sprintf vox=%d;
+#X obj 47 242 cyclone/tosymbol;
+#X obj 206 280 unauthorized/grid grid1 440 0 1000 125 0 120 1 1 0.1
+30 20 156 322;
+#X text 589 83 22 8 2019;
+#X obj 942 557 cnv 15 52 22 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 353 174 321 152 ?... 0;
+#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 13 121 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 13 97 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X text 13 85 Construit sous / Build under Pd-0.49...;
+#X text 12 109 or Pd 0.43.4-extended;
+#X obj 12 53 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X restore 945 560 pd ?...;
+#X connect 8 0 97 0;
+#X connect 10 0 0 0;
+#X connect 22 0 23 0;
+#X connect 23 0 24 0;
+#X connect 25 0 26 0;
+#X connect 27 0 25 0;
+#X connect 32 0 8 0;
+#X connect 33 0 84 0;
+#X connect 37 0 71 0;
+#X connect 38 0 73 0;
+#X connect 39 0 74 0;
+#X connect 40 0 72 0;
+#X connect 41 0 36 0;
+#X connect 42 0 70 0;
+#X connect 43 0 69 0;
+#X connect 44 0 35 0;
+#X connect 45 0 71 0;
+#X connect 46 0 73 0;
+#X connect 47 0 74 0;
+#X connect 48 0 72 0;
+#X connect 49 0 36 0;
+#X connect 50 0 70 0;
+#X connect 51 0 69 0;
+#X connect 52 0 35 0;
+#X connect 53 0 71 0;
+#X connect 54 0 73 0;
+#X connect 55 0 74 0;
+#X connect 56 0 72 0;
+#X connect 57 0 36 0;
+#X connect 58 0 72 0;
+#X connect 59 0 70 0;
+#X connect 60 0 74 0;
+#X connect 61 0 69 0;
+#X connect 62 0 73 0;
+#X connect 63 0 35 0;
+#X connect 64 0 71 0;
+#X connect 65 0 35 0;
+#X connect 66 0 69 0;
+#X connect 67 0 70 0;
+#X connect 68 0 36 0;
+#X connect 81 0 82 0;
+#X connect 81 0 10 0;
+#X connect 82 0 4 0;
+#X connect 83 0 81 0;
+#X connect 86 0 85 0;
+#X connect 97 0 98 0;
+#X connect 98 0 32 0;
+#X connect 99 0 30 0;
+#X connect 99 1 30 1;
+#X coords 0 -1 1 1 452 326 2 200 100;
+#X restore 24 45 pd Particlechamber;
+#X text 5 393 1 Clic "load samples";
+#N canvas 468 95 442 412 ARGO 0;
+#X obj 101 101 cnv 20 104 34 empty ColorAmpli empty 20 12 0 14 -261299
+-1 1.04858e+06;
+#X obj 157 367 outlet~;
+#X obj 152 106 cnv 10 20 10 empty ColorAmpli Ampli 1 5 1 14 -261299
+-1 1.04858e+06;
+#X obj 86 49 inlet~;
+#X obj 86 330 *~;
+#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 101 131 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 195 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 195 131 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 211 48 inlet~;
+#X obj 157 328 *~;
+#X obj 296 370 outlet~;
+#X obj 364 50 inlet~;
+#X obj 364 305 *~;
+#X obj 130 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 286 50 inlet~;
+#X obj 262 331 *~;
+#X obj 163 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 212 329 *~;
+#X obj 296 330 *~;
+#X obj 222 292 * 0.85;
+#X obj 277 293 * 0.53;
+#X text 77 386 0.85^2 + 0.53^2 = 0.72 + 0.28 = 1 environ;
+#X text 220 109 1 6 2011;
+#X obj 356 357 cnv 15 41 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 350 196 308 136 ?? 0;
+#X obj -9 87 cnv 15 300 38 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj -9 10 cnv 18 300 70 empty empty ARGOPdMiniModules 1 10 1 14
+-4033 -1 1.04858e+06;
+#X obj 9 29 cnv 10 10 10 empty empty Gerard 0 5 1 9 -4033 -1 1.04858e+06
+;
+#X obj 40 29 cnv 10 10 10 empty empty Paresys 0 5 1 9 -4033 -1 1.04858e+06
+;
+#X text -8 89 Construit sous / Build under Pd 0.42.5-extended;
+#X obj 39 105 pddplink http://puredata.info/downloads;
+#X obj 3 42 pddplink http://pagesperso-orange.fr/Paresys/ARGOPd/;
+#X obj 3 57 pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X restore 360 364 pd ??;
+#X obj 103 118 hsl 101 12 -80 20 0 1 \$0-A ColorAmpli -23dB 0 7 1 9
+-261299 -1 -1 5700 0;
+#X msg -24 161 label \$1;
+#X obj -25 138 tosymbol;
+#X obj -25 103 sprintf %ddB;
+#X text 106 182 -> 0.0001..10 = -80dB..20dB;
+#X obj 100 163 expr (pow(10 \, $f1 / 20));
+#X obj 100 206 sel 0.0001;
+#X msg 100 234 0;
+#X connect 3 0 4 0;
+#X connect 4 0 1 0;
+#X connect 9 0 10 0;
+#X connect 9 0 18 0;
+#X connect 10 0 1 0;
+#X connect 12 0 13 0;
+#X connect 13 0 11 0;
+#X connect 15 0 16 0;
+#X connect 15 0 19 0;
+#X connect 16 0 1 0;
+#X connect 18 0 11 0;
+#X connect 19 0 11 0;
+#X connect 20 0 10 1;
+#X connect 20 0 19 1;
+#X connect 21 0 18 1;
+#X connect 21 0 16 1;
+#X connect 26 0 29 0;
+#X connect 26 0 31 0;
+#X connect 27 0 26 0;
+#X connect 28 0 27 0;
+#X connect 29 0 28 0;
+#X connect 31 0 32 0;
+#X connect 32 0 33 0;
+#X connect 32 1 4 1;
+#X connect 32 1 20 0;
+#X connect 32 1 21 0;
+#X connect 32 1 13 1;
+#X connect 33 0 28 0;
+#X connect 33 0 4 1;
+#X connect 33 0 20 0;
+#X connect 33 0 21 0;
+#X connect 33 0 13 1;
+#X coords 0 -1 1 1 106 36 1 100 100;
+#X restore 230 424 pd ARGO;
+#X obj 266 28 pddp/pddplink http://macumbista.net/?page_id=514;
+#X obj 12 14 cnv 15 15 15 empty empty ExMM202a-Particlechamber.pd 0
+8 1 14 -262144 -66577 0;
+#X text 231 16 based on particlechamber by Derek Holzer;
+#X obj 282 595 dac~ 1 2;
+#X text 71 596 .wav file format recorder;
+#X text 69 584 Enregistreur audio au format .wav;
+#X text 124 434 Niveau general ->;
+#X text 130 444 General level ->;
+#X text 165 573 |;
+#X text 165 568 ^;
+#N canvas 413 140 402 279 ARGO 0;
+#X obj 101 101 cnv 10 95 41 \$0-A \$0-B empty 20 12 0 14 -1 -1 1.04858e+06
+;
+#X obj 101 109 nbx 4 12 0 1e+37 0 0 \$0 \$0-ReceiveCpuPeak CPUPeak
+45 7 1 11 -24198 -1 -24198 4 256;
+#X obj 101 122 nbx 4 12 0 1e+37 0 0 \$0 \$0-ReceiveCpuMean CPUMean
+45 7 1 11 -24198 -1 -24198 3.93 256;
+#X obj 145 -55 cputime;
+#X obj 145 -76 t b b;
+#X text 188 24 (c) musil@iem.kug.ac.at;
+#X text 230 37 IEM KUG;
+#X text 78 18 CPU-load;
+#X obj 144 -125 loadbang;
+#X text 205 48 graz \, austria 2001;
+#X obj 145 -100 metro 500;
+#X obj 145 -34 * 0.2;
+#X text 237 -88 -dsp-load in %;
+#X text 228 -101 measure average- and peak-;
+#X obj 37 18 * 100;
+#X obj 37 63 int;
+#X obj 37 41 + 0.499;
+#X obj 37 86 * 0.01;
+#N canvas 524 162 422 273 1p1zmodif 0;
+#X text 134 89 (c) musil@iem.kug.ac.at;
+#X text 179 99 IEM KUG;
+#X obj 14 195 +;
+#X text 151 108 graz \, austria 2001;
+#X text 135 71 y[n] = a0*x[n] + a1*x[n-1] + b1*y[n-1];
+#X text 18 13 x[n];
+#X text 16 244 y[n];
+#X text 84 111 y[n-1];
+#X text 134 56 <float> control-IIR-filter 1.order;
+#X obj 15 28 inlet;
+#X obj 14 228 outlet;
+#X obj 15 112 * 0.1;
+#X obj 59 156 * 0.9;
+#X text 139 144 a1 = 0;
+#X text 139 155 b1 = 0.9;
+#X text 139 133 a0 = 0.1;
+#X obj 15 50 t f b;
+#X text 135 40 Inspiré de 1p1z;
+#X obj 59 112 f 0;
+#X connect 2 0 10 0;
+#X connect 2 0 18 1;
+#X connect 9 0 16 0;
+#X connect 11 0 2 0;
+#X connect 12 0 2 1;
+#X connect 16 0 11 0;
+#X connect 16 1 18 0;
+#X connect 18 0 12 0;
+#X restore 37 -8 pd 1p1zmodif;
+#X text 146 9 Inspiré de 5.reference/iemabs/help-dsp.pd;
+#X text 141 83 25 3 2010;
+#X connect 3 0 11 0;
+#X connect 4 0 3 0;
+#X connect 4 1 3 1;
+#X connect 8 0 10 0;
+#X connect 10 0 4 0;
+#X connect 11 0 18 0;
+#X connect 11 0 1 0;
+#X connect 14 0 16 0;
+#X connect 15 0 17 0;
+#X connect 16 0 15 0;
+#X connect 17 0 2 0;
+#X connect 18 0 14 0;
+#X coords 0 -1 1 1 97 43 1 100 100;
+#X restore 366 419 pd ARGO;
+#X obj 25 486 switch~;
+#N canvas 608 166 228 173 ARGOnOff 0;
+#X obj 100 100 tgl 18 1 \$0-SendOnOff \$0-ReceiveOnOff On/Off 20 11
+1 14 -4033 -1 -1 1 1;
+#X obj 99 10 loadbang;
+#X msg 99 33 \; pd dsp 1;
+#X obj 100 129 outlet;
+#X text -50 99 Audio On/Off du patch ->;
+#X text -22 45 Audio General On ->;
+#X text 107 82 17 3 2010;
+#X connect 0 0 3 0;
+#X connect 1 0 2 0;
+#X coords 0 -1 1 1 65 18 2 100 100;
+#X restore 25 468 pd ARGOnOff;
+#X text 30 452 V;
+#X text 30 445 |;
+#X text 18 434 On/Off Patch;
+#X text 48 446 (Audio);
+#N canvas 286 45 728 239 ARGO 0;
+#X obj 239 36 inlet~;
+#X text 77 17 Left input;
+#X text 224 17 Right input;
+#X text 356 37 Stereo wav file format recorder;
+#X text 356 52 Enregistreur de fichier audio wav à 2 canaux (stereo)
+;
+#X obj 88 36 inlet~;
+#X obj 171 198 writesf~ 2;
+#X text 356 67 L'extension .wav est ajoutée au nom du fichier automatiquement
+;
+#X obj 103 100 hsl 161 17 0 127 0 0 \$0-A \$0-B Record. 103 10 1 14
+-261299 -261299 -1 0 1;
+#X obj 255 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 112 100 nbx 4 17 0 9999 0 0 \$0-A ColorTime sec 59 9 1 15 -208064
+-1 -1 0 256;
+#X text 355 103 Clic n'importe où pour commencer un enregistrement
+Audio -> Clic encore pour arrêter l'enregistrement;
+#X text 456 130 Click anywhere to start recording Audio ->;
+#X text 455 142 Click again to stop recording;
+#X text 121 122 Hslider caché transformé en bouton;
+#N canvas 415 66 351 399 record2 0;
+#X obj 136 95 sel 0 1;
+#X msg 171 260 start;
+#X msg 107 259 stop;
+#X msg 155 150 open \$1;
+#X obj 155 126 savepanel;
+#X obj 165 203 delay 1000;
+#X obj 245 323 float;
+#X obj 291 322 + 1;
+#X obj 223 295 metro 1000;
+#X msg 291 296 -1;
+#X msg 11 257 0;
+#X msg 42 257 1;
+#X obj 66 210 t b b;
+#X obj 165 229 t b b b b;
+#N canvas 317 143 290 366 CouleurRecord2 0;
+#X obj 122 -19 +;
+#X obj 122 37 +;
+#X obj 61 -75 * -65536;
+#X obj 117 -75 * -256;
+#X obj 163 -77 * -1;
+#X obj 122 68 - 1;
+#X obj 115 -202 inlet;
+#X text 77 -97 R;
+#X text 123 -99 G;
+#X text 172 -98 B;
+#X obj 122 123 outlet;
+#X text 170 -169 Rouge;
+#X msg 134 -121 255;
+#X msg 167 -121 0;
+#X obj 115 -178 sel 0 1;
+#X text 56 -170 Rose;
+#X msg 73 -121 200;
+#X msg 40 -121 252;
+#X obj 134 -148 t b b b;
+#X msg 198 -121 0;
+#X msg 104 -121 200;
+#X obj 40 -148 t b b b;
+#X msg 122 96 color \$1 \$1 -1;
+#X connect 0 0 1 1;
+#X connect 1 0 5 0;
+#X connect 2 0 1 0;
+#X connect 3 0 0 0;
+#X connect 4 0 0 1;
+#X connect 5 0 22 0;
+#X connect 6 0 14 0;
+#X connect 12 0 2 0;
+#X connect 13 0 3 0;
+#X connect 14 0 21 0;
+#X connect 14 1 18 0;
+#X connect 16 0 3 0;
+#X connect 17 0 2 0;
+#X connect 18 0 12 0;
+#X connect 18 1 13 0;
+#X connect 18 2 19 0;
+#X connect 19 0 4 0;
+#X connect 20 0 4 0;
+#X connect 21 0 17 0;
+#X connect 21 1 16 0;
+#X connect 21 2 20 0;
+#X connect 22 0 10 0;
+#X restore 25 326 pd CouleurRecord2;
+#X obj 136 75 tgl 15 0 \$0-A \$0-B empty 19 9 1 12 -262144 -258113
+-1 0 1;
+#X obj 136 30 b;
+#X obj 136 52 delay 200;
+#X obj 136 8 inlet;
+#X obj 25 356 outlet;
+#X text 22 372 Couleur;
+#X obj 291 356 outlet;
+#X text 288 372 Compteur;
+#X obj 155 356 outlet;
+#X text 152 372 writesf;
+#X obj 199 176 t b b;
+#X msg 72 33 0;
+#X obj 72 8 loadbang;
+#X msg 260 124 set 0;
+#X msg 261 173 set 1;
+#X obj 261 149 b;
+#X connect 0 0 12 0;
+#X connect 0 1 4 0;
+#X connect 0 1 28 0;
+#X connect 1 0 23 0;
+#X connect 2 0 8 0;
+#X connect 2 0 23 0;
+#X connect 3 0 23 0;
+#X connect 3 0 25 0;
+#X connect 4 0 3 0;
+#X connect 4 0 30 0;
+#X connect 5 0 13 0;
+#X connect 6 0 7 0;
+#X connect 7 0 6 1;
+#X connect 7 0 21 0;
+#X connect 8 0 6 0;
+#X connect 9 0 7 0;
+#X connect 10 0 14 0;
+#X connect 11 0 14 0;
+#X connect 12 0 10 0;
+#X connect 12 1 2 0;
+#X connect 13 0 11 0;
+#X connect 13 1 1 0;
+#X connect 13 2 8 0;
+#X connect 13 3 9 0;
+#X connect 14 0 19 0;
+#X connect 15 0 0 0;
+#X connect 16 0 17 0;
+#X connect 17 0 15 0;
+#X connect 18 0 16 0;
+#X connect 25 0 5 0;
+#X connect 25 1 9 0;
+#X connect 26 0 15 0;
+#X connect 27 0 26 0;
+#X connect 28 0 15 0;
+#X connect 29 0 15 0;
+#X connect 30 0 29 0;
+#X restore 56 147 pd record2;
+#X obj 636 186 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 336 174 309 137 ?. 0;
+#X obj 3 83 cnv 15 300 46 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 3 6 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 26 26 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 64 26 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 7 37 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X text 8 85 Construit sous / Build under Pd 0.43.4-extended;
+#X obj 8 111 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 7 50 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X text 7 98 or Pd-0.46-7 + deken;
+#X restore 640 190 pd ?.;
+#X text 175 81 7 3 2016;
+#X connect 0 0 6 1;
+#X connect 5 0 6 0;
+#X connect 8 0 16 0;
+#X connect 16 0 8 0;
+#X connect 16 1 6 0;
+#X connect 16 2 11 0;
+#X coords 0 -1 1 1 166 17 1 100 100;
+#X restore 87 548 pd ARGO;
+#N canvas 446 64 251 267 ARGO 0;
+#X obj 101 104 cnv 30 49 130 empty ColorAmpli empty 20 12 0 14 -1 -258113
+0;
+#X obj 102 110 vu 8 120 \$0-B empty 0 0 1 11 -1 -4034 0 0;
+#X obj 49 35 inlet~;
+#X obj 22 108 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 300 65 442 264 Help 0;
+#X obj 12 48 cnv 15 400 150 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X text 16 50 Citation;
+#X text 28 67 peakamp~ tracks and outputs the absolute value of the
+peak amplitude of the incoming signal. It outputs when banged or using
+its own internal clock. The peak value is reset each time peakamp~
+outputs a value.;
+#X text 29 123 cyclone library;
+#X text 28 135 http://suita.chopin.edu.pl/~czaja/miXed/externs/cyclone.html
+;
+#X text 29 155 Voir doc Max/MSP MSP46ReferenceManual.pdf;
+#X text 18 14 MM-Vumetre;
+#X restore 29 114 pd Help;
+#N canvas 541 112 317 265 VuMetre 0;
+#X obj 48 19 inlet~;
+#X obj 41 54 *~;
+#X obj -25 132 snapshot~;
+#X obj -25 155 sqrt;
+#X obj -25 100 lop~ 10;
+#X obj -25 179 rmstodb;
+#X obj -88 19 loadbang;
+#X obj -25 202 - 100;
+#X obj 58 156 sqrt;
+#X obj 58 180 rmstodb;
+#X obj 58 203 - 100;
+#X obj -89 102 metro 200;
+#X obj -28 19 r SendFluid;
+#X obj 58 102 cyclone/peakamp~ 1000;
+#X obj -25 228 outlet;
+#X obj 58 227 outlet;
+#X connect 0 0 1 0;
+#X connect 0 0 1 1;
+#X connect 1 0 4 0;
+#X connect 1 0 13 0;
+#X connect 2 0 3 0;
+#X connect 3 0 5 0;
+#X connect 4 0 2 0;
+#X connect 5 0 7 0;
+#X connect 6 0 11 0;
+#X connect 7 0 14 0;
+#X connect 8 0 9 0;
+#X connect 9 0 10 0;
+#X connect 10 0 15 0;
+#X connect 11 0 2 0;
+#X connect 12 0 11 1;
+#X connect 13 0 8 0;
+#X restore 49 63 pd VuMetre;
+#X obj 172 211 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 336 174 309 137 ?. 0;
+#X obj 3 83 cnv 15 300 46 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 3 6 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 26 26 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 64 26 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 7 37 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X text 8 85 Construit sous / Build under Pd 0.43.4-extended;
+#X obj 8 111 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 7 50 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X text 7 98 or Pd-0.46-7 + deken;
+#X restore 176 215 pd ?.;
+#X obj 113 110 vu 8 120 \$0-B empty 0 0 1 11 -1 -4034 1 0;
+#X obj 126 35 inlet~;
+#N canvas 541 112 317 265 VuMetre 0;
+#X obj 48 19 inlet~;
+#X obj 41 54 *~;
+#X obj -25 132 snapshot~;
+#X obj -25 155 sqrt;
+#X obj -25 100 lop~ 10;
+#X obj -25 179 rmstodb;
+#X obj -88 19 loadbang;
+#X obj -25 202 - 100;
+#X obj 58 156 sqrt;
+#X obj 58 180 rmstodb;
+#X obj 58 203 - 100;
+#X obj -89 102 metro 200;
+#X obj -28 19 r SendFluid;
+#X obj 58 102 cyclone/peakamp~ 1000;
+#X obj -25 228 outlet;
+#X obj 58 227 outlet;
+#X connect 0 0 1 0;
+#X connect 0 0 1 1;
+#X connect 1 0 4 0;
+#X connect 1 0 13 0;
+#X connect 2 0 3 0;
+#X connect 3 0 5 0;
+#X connect 4 0 2 0;
+#X connect 5 0 7 0;
+#X connect 6 0 11 0;
+#X connect 7 0 14 0;
+#X connect 8 0 9 0;
+#X connect 9 0 10 0;
+#X connect 10 0 15 0;
+#X connect 11 0 2 0;
+#X connect 12 0 11 1;
+#X connect 13 0 8 0;
+#X restore 126 63 pd VuMetre;
+#X text 153 87 3 3 2019;
+#X connect 2 0 5 0;
+#X connect 5 0 1 0;
+#X connect 5 1 1 1;
+#X connect 9 0 10 0;
+#X connect 10 0 8 0;
+#X connect 10 1 8 1;
+#X coords 0 -1 1 1 51 135 2 100 100;
+#X restore 339 477 pd ARGO;
+#X obj 417 587 cnv 15 52 22 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 353 174 321 152 ?... 0;
+#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 13 121 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 13 97 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X text 13 85 Construit sous / Build under Pd-0.49...;
+#X text 12 109 or Pd 0.43.4-extended;
+#X obj 12 53 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X restore 420 590 pd ?...;
+#X connect 0 0 2 1;
+#X connect 0 1 2 2;
+#X connect 0 2 2 0;
+#X connect 0 3 2 3;
+#X connect 0 4 2 2;
+#X connect 0 5 2 1;
+#X connect 0 6 2 3;
+#X connect 0 7 2 0;
+#X connect 2 0 20 0;
+#X connect 2 0 6 0;
+#X connect 2 0 21 0;
+#X connect 2 1 20 1;
+#X connect 2 1 6 1;
+#X connect 2 1 21 1;
+#X connect 15 0 14 0;

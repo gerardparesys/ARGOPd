@@ -1,0 +1,38 @@
+#N canvas 670 22 488 399 10;
+#X text 16 20 for use with pix_freenect or pix_openni;
+#X obj 288 105 gemwin;
+#X obj 123 152 tgl 15 0 empty empty mode 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 83 267 pix_texture;
+#X obj 83 305 alpha;
+#X msg 243 59 destroy;
+#X obj 29 191 tgl 15 0 empty empty on/off 17 7 0 10 -262144 -1 -1 0
+1;
+#X msg 288 35 dimen 640 480 \, create \, 1;
+#X obj 83 348 rectangle 4 3;
+#X text 10 5 convert raw depth values into human viewable colorspace
+;
+#X text 170 144 0 -> 11 bit raw kinect data;
+#X text 170 158 1 (default) -> 16 bit mm depth data;
+#X obj 307 78 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 194 203 nbx 5 14 -1e+37 1e+37 0 0 empty empty max-distance-in-mm
+0 -8 0 10 -262144 -1 -1 0 256;
+#X obj 83 226 pix_depth2rgba 5000;
+#X text 220 230 arg: max distance to display in color;
+#X text 231 250 use it to scale color gradient;
+#X text 297 371 (C)2012 Matthias Kronlachner;
+#X text 232 266 in mm!;
+#X obj 136 83 gemhead;
+#X obj 31 118 pix_freenect 0 0 1;
+#X connect 2 0 14 1;
+#X connect 3 0 4 0;
+#X connect 4 0 8 0;
+#X connect 5 0 1 0;
+#X connect 6 0 14 0;
+#X connect 7 0 1 0;
+#X connect 12 0 1 0;
+#X connect 13 0 14 2;
+#X connect 14 0 3 0;
+#X connect 19 0 20 1;
+#X connect 20 1 14 0;

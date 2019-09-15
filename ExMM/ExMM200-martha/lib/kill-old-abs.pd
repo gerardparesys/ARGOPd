@@ -1,0 +1,27 @@
+#N canvas 491 91 546 497 10;
+#X obj 45 31 inlet;
+#X obj 53 89 f;
+#X text 33 384 Need to say that this track has no assigned voice by
+writing a -1 to the slot associated with cur-peak-idx;
+#X msg 40 321 -1;
+#X obj 217 319 f;
+#X obj 53 133 t b b f;
+#X obj 162 164 moses 0;
+#X obj 248 292 r \$1-martha-cur-peak-idx;
+#X obj 40 349 tabwrite \$1-martha-trackVoices;
+#X obj 53 111 tabread \$1-martha-trackVoices;
+#X obj 84 62 r \$1-martha-cur-peak-idx;
+#X msg 224 232 \; \$2-martha-kill-\$1 bang \;;
+#X obj 223 201 pack f \$1;
+#X connect 0 0 1 0;
+#X connect 1 0 9 0;
+#X connect 3 0 8 0;
+#X connect 4 0 8 1;
+#X connect 5 0 3 0;
+#X connect 5 1 4 0;
+#X connect 5 2 6 0;
+#X connect 6 1 12 0;
+#X connect 7 0 4 1;
+#X connect 9 0 5 0;
+#X connect 10 0 1 1;
+#X connect 12 0 11 0;
