@@ -14,6 +14,8 @@ http://puredata.info/downloads/pd-extended
 
 For MacOSX, Linux, Windows.
 
+A Module (or MiniModule MM) is a "subpatch" (not an "abstraction") with the property "graph on parent". 
+
 ARGOPd is for users who have never programmed with Pure Data.
 
 Under Creative Commons license  
