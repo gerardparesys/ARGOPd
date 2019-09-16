@@ -29,7 +29,7 @@ https://paresys.pagesperso-orange.fr/ARGOPd/
 email: gerard.paresys@free.fr
 
 __________________________________________________________________
-Based on the works of:
+Based on the works of:  
 - Algorithmic Composer  
    http://algorithmiccomposer.com/
 - Ben Bogart: chaos library: lorenz  
