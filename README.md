@@ -1,5 +1,5 @@
 # ARGOPd
-A collection of abstractions for Pure Data
+A collection of patches for Pure Data
 
 ARGOPd is made of real-time sound and visual synthesis modules (MM) and patches (ExMM).
 
