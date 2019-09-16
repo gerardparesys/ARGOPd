@@ -8,6 +8,7 @@ It runs on Pd Vanilla 0.47 or later.
 http://puredata.info/downloads/pure-data 
 
 It needs libraries, all available on Deken.
+[ARGOPd-libraries.txt](ARGOPd-libraries.txt "texte pour le titre, facultatif")
 
 Most patches also work under Pd-0.43.4-extended  
 http://puredata.info/downloads/pd-extended
