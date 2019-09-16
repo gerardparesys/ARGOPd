@@ -4,7 +4,7 @@ A collection of abstractions for Pure Data
 
 ARGOPd is made of real-time sound and visual synthesis modules (MM) and patches (ExMM).
 
-It runs on Pd Vanilla 0.47 or later. 
+It runs on Pd Vanilla 0.47 or later.  
 http://puredata.info/downloads/pure-data 
 
 It needs libraries, all available on Deken.
