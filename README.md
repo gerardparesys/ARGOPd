@@ -21,7 +21,7 @@ ARGOPd is for users who have never programmed with Pure Data.
 Under Creative Commons license  
 https://creativecommons.org/licenses/by-nc-sa/2.0/
 
-The documentation ARGOPdManuv051.pdf must be updated:  
+The documentation [ARGOPdManuv051.pdf](ARGOPdManuv051.pdf) must be updated:  
 replace: Pd-0.41.4-extended by: Pd-0.43.4-extended or Pd-0.49 + libraries, but remains valid.
 
 http://gerard.paresys.free.fr/ARGOPd/  
