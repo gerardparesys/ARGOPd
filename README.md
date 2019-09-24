@@ -33,7 +33,7 @@ email: gerard.paresys@free.fr
 __________________________________________________________________
 Based on the works of:  
 - Algorithmic Composer  
-   http://algorithmiccomposer.com/
+   http://www.algorithmiccomposer.com/
 - Ben Bogart: chaos library: lorenz  
    http://puredata.info/downloads/chaos/
 - William Brent: streamStretch~, spectrogram, dryUp~, pitchHeight, martha~, convolve~...  
