@@ -71,7 +71,7 @@ Based on the works of:
 - Leonard J. Paul: Surround Granulation  
    http://www.videogameaudio.com/
 - Berenger Recoules  
-   http://code.google.com/p/pdlive/
+   http://code.google.com/p/pdlive/  
    https://github.com/b2renger
 - Spencer Russell: gendy~, sfr-granulator...  
    http://ssfrr.com/
