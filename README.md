@@ -37,7 +37,8 @@ Based on the works of:
 - Ben Bogart: chaos library: lorenz  
    http://puredata.info/downloads/chaos/
 - William Brent: streamStretch~, spectrogram, dryUp~, pitchHeight, martha~, convolve~...  
-   http://williambrent.conflations.com/pages/research.html
+   http://williambrent.conflations.com/pages/research.html  
+   https://github.com/wbrent
 - Martin Brinkmann: vowelfilter...  
    http://www.martin-brinkmann.de/pd-patches.html
 - Nicolas d’Alessandro: mbrola~...  
