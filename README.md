@@ -75,7 +75,8 @@ Based on the works of:
    http://code.google.com/p/pdlive/  
    https://github.com/b2renger
 - Spencer Russell: gendy~, sfr-granulator...  
-   http://ssfrr.com/
+   http://ssfrr.com/  
+   https://github.com/ssfrr
 - Ben Saylor: partconv~, zhzxh~, pvoc~ ...  
    http://puredata.info/downloads/bsaylor
 - Hans-Christoph Steiner: filterview...  
