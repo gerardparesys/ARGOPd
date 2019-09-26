@@ -71,6 +71,8 @@ Based on the works of:
    https://github.com/patricksebastien/mtl
 - Leonard J. Paul: Surround Granulation  
    http://www.videogameaudio.com/
+- Ville Pulkki: vbap  
+   http://legacy.spa.aalto.fi/research/cat/vbap/
 - Berenger Recoules  
    http://code.google.com/p/pdlive/  
    https://github.com/b2renger
