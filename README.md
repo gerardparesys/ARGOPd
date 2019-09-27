@@ -32,7 +32,7 @@ email: gerard.paresys@free.fr
 
 __________________________________________________________________
 Based on the works of:  
-- Algorithmic Composer  
+- Algorithmic Composer: Markov chains  
    http://www.algorithmiccomposer.com/
 - Ben Bogart: chaos library: lorenz  
    http://puredata.info/downloads/chaos/
