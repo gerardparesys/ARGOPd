@@ -94,6 +94,6 @@ Based on the works of:
 - Katja Vetter: octave-harmonizer, soundtouch~...   
    http://www.katjaas.nl
 - ... Thomas Musil ... IOhannes M Zmölnig ... Miller Puckette...  
-   https://git.iem.at/zmoelnig
+   https://git.iem.at/zmoelnig  
    https://github.com/millerpuckette
 __________________________________________________________________
