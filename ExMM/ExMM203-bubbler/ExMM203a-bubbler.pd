@@ -1,16 +1,16 @@
-#N canvas 219 22 738 559 10;
-#X obj 11 143 cnv 15 15 15 empty empty ExMM203a-bubbler.pd 0 8 1 14
--262144 -66577 0;
+#N canvas 347 23 599 454 10;
+#X obj 5 6 cnv 15 15 15 empty empty ExMM203a-bubbler.pd 0 8 1 14 -262144
+-66577 0;
 #N canvas 259 24 819 651 ARGO 0;
-#X obj 301 251 cnv 20 142 172 empty ColorForm +bubbler. 81 10 1 14
+#X obj 301 251 cnv 20 142 172 empty ColorForm +bubbler. 75 10 1 14
 -188398 -1 1.04858e+06;
 #X obj 301 419 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
 ;
 #X obj 433 419 cnv 4 10 4 empty empty empty 0 0 0 9 -1 -66577 0;
-#X obj 267 177 inlet~;
-#X obj 424 177 inlet~;
-#X obj 266 627 outlet~;
-#X obj 393 627 outlet~;
+#X obj 267 152 inlet~;
+#X obj 424 152 inlet~;
+#X obj 304 627 outlet~;
+#X obj 451 627 outlet~;
 #X obj 303 274 hsl 139 12 1 10000 1 1 \$0-A ColorForm Time=2632ms 3
 6 1 9 -208064 -262144 -1 11800 0;
 #X obj 43 176 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
@@ -18,7 +18,7 @@
 #N canvas 433 87 466 216 Help 0;
 #X obj 8 67 cnv 15 440 130 empty empty empty 20 12 0 14 -228856 -66577
 0;
-#N canvas 233 260 1035 558 bubbler 0;
+#N canvas 233 220 1035 558 bubbler 0;
 #X text 19 160 time \, feedback \, filter freq \, resonance- these
 are identical in function to the same parameters in "+delay~". The
 only exception is that the range of time is from 20 milliseconds to
@@ -70,11 +70,11 @@ delay output. Various parameters such as playback direction and pitch
 of each grain can be controlled.;
 #X text 11 67 Citation +bubbler;
 #X text 32 158 Tom Erbe 2012;
-#X obj 9 42 pddp/pddplink http://soundhack.henfast.com/freeware/;
 #X text 9 27 a pd external in soundhack-0.0.8-pd;
 #X text 8 2 MM +bubbler;
 #X text 9 15 Based on Tom Erbe's work: "+bubbler~";
 #X obj 32 172 pddp/pddplink http://music.ucsd.edu/b/Tom+Erbe;
+#X obj 10 42 pddp/pddplink http://www.soundhack.com/freeware/;
 #X restore 50 183 pd Help;
 #X obj 300 382 hradio 12 1 1 9 \$0-A ColorForm 0Oct 110 6 1 10 -208064
 -1 -1 4;
@@ -142,6 +142,7 @@ of each grain can be controlled.;
 #X connect 17 0 11 1;
 #X connect 17 0 12 1;
 #X restore 304 601 pd DirEffect;
+#X f 25;
 #X obj 301 251 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
 ;
 #X obj 433 251 cnv 4 10 4 empty empty empty 0 0 0 9 -1 -66577 0;
@@ -162,7 +163,6 @@ of each grain can be controlled.;
 #X restore 189 228 pd label;
 #X obj 318 262 bng 12 50 50 0 \$0-A \$0-B Silence 14 6 1 10 -262144
 -1 -1;
-#X obj 316 570 +bubbler~;
 #X obj 344 538 t a;
 #X msg 87 446 timeVariation \$1;
 #X msg 34 446 time \$1;
@@ -323,208 +323,177 @@ of each grain can be controlled.;
 #X restore 194 402 pd label;
 #X obj 366 251 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
 0;
-#X obj 348 177 inlet;
-#X text 352 161 MIDI;
-#X obj 53 29 cnv 15 730 130 empty empty empty 20 12 0 14 -4033 -66577
-0;
-#X obj 188 95 pddp/pddplink http://puredata.info/docs/faq/how-do-i-install-externals-and-help-files
-;
-#X text 57 31 ATTENTION ce MiniModule utilise des objets qui ne sont
-pas inclus dans Pd-extended.;
-#X text 425 31 WARNING this MiniModule uses objects that are not included
-in Pd-extended.;
-#X text 59 67 Placer les fichiers correpondants dans le même dossier
-que le patch contenant le MiniModule ou dans un dosier spécial:;
-#X text 425 67 Put the corresponding files in the same folder as the
-patch containing the MiniModule or in a special folder:;
-#X text 330 109 MacOS: +bubbler~.pd_darwin;
-#X text 318 120 Windows: +bubbler~.dll;
-#X text 312 131 Linux32b: +bubbler~.pd_linux;
-#X text 312 142 Linux64b: linux64/+bubbler~.pd_linux;
-#X text 630 141 cf ExMM203-Bubbler;
+#X obj 348 152 inlet;
+#X text 352 136 MIDI;
 #X msg 126 344 0;
 #X obj 80 242 delay 100;
 #X obj 137 263 * 2;
 #X msg 36 341 50;
-#X obj 382 570 +bubbler~;
 #X msg 491 402 time 100;
-#X obj 486 177 loadbang;
-#X obj 486 202 delay 100;
-#X obj 427 227 delay 100;
-#X text 549 199 pour un effet stereo;
+#X obj 486 152 loadbang;
+#X obj 486 181 delay 100;
+#X obj 306 218 delay 100;
+#X text 549 181 pour un effet stereo;
 #X msg 445 479 60 0 \, 61 0 \, 62 0 \, 63 0 \, 64 0 \, 65 0 \, 66 0
 \, 67 0 \, 68 0 \, 69 0 \, 70 0 \, 71 0;
 #X msg 445 440 60 1 \, 61 1 \, 62 1 \, 63 1 \, 64 1 \, 65 1 \, 66 1
 \, 67 1 \, 68 1 \, 69 1 \, 70 1 \, 71 1;
-#X obj 417 538 t a;
+#X obj 486 538 t a;
 #X obj 137 285 max 300;
-#X obj 701 593 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
+#X text 435 235 12 11 2019;
+#X obj 451 570 soundhack/+bubbler~;
+#X obj 316 570 soundhack/+bubbler~;
+#X obj 762 607 cnv 15 34 16 empty empty empty 20 12 0 14 -24198 -66577
 0;
-#N canvas 336 174 309 137 ?. 0;
-#X obj 3 83 cnv 15 300 46 empty empty empty 20 12 0 14 -224896 -66577
+#N canvas 353 174 333 161 ?? 0;
+#X obj 17 89 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
 0;
-#X obj 3 6 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
--1 1.04858e+06;
-#X obj 26 26 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+#X obj 17 12 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14
+-4033 -1 1.04858e+06;
+#X obj 40 32 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
 ;
-#X obj 64 26 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+#X obj 78 32 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
 ;
-#X obj 7 37 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
-#X text 8 85 Construit sous / Build under Pd 0.43.4-extended;
-#X obj 8 111 pddp/pddplink http://puredata.info/downloads/pd-extended
+#X obj 20 54 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 22 126 pddp/pddplink http://puredata.info/downloads/pd-extended
 ;
-#X obj 7 50 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
+#X obj 22 102 pddp/pddplink http://puredata.info/downloads/pure-data
 ;
-#X text 7 98 or Pd-0.46-7 + deken;
-#X restore 705 597 pd ?.;
-#X text 493 252 13 2 2018;
+#X text 22 90 Construit sous / Build under Pd-0.49...;
+#X text 21 114 or Pd 0.43.4-extended;
+#X obj 20 66 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X obj 20 42 pddp/pddplink https://github.com/gerardparesys/ARGOPd
+;
+#X restore 762 607 pd ??;
 #X connect 3 0 14 0;
-#X connect 3 0 21 0;
+#X connect 3 0 80 0;
 #X connect 4 0 14 3;
-#X connect 4 0 81 0;
+#X connect 4 0 79 0;
 #X connect 7 0 12 0;
-#X connect 7 0 24 0;
-#X connect 7 0 79 0;
+#X connect 7 0 23 0;
+#X connect 7 0 67 0;
 #X connect 10 0 11 0;
 #X connect 11 0 10 0;
-#X connect 11 1 54 0;
+#X connect 11 1 53 0;
 #X connect 12 0 7 0;
 #X connect 13 0 14 2;
-#X connect 13 0 53 0;
+#X connect 13 0 52 0;
 #X connect 14 0 5 0;
 #X connect 14 1 6 0;
-#X connect 17 0 31 0;
+#X connect 17 0 30 0;
 #X connect 18 0 19 0;
-#X connect 18 0 35 0;
+#X connect 18 0 34 0;
 #X connect 19 0 18 0;
-#X connect 20 0 43 0;
-#X connect 21 0 14 1;
+#X connect 20 0 42 0;
+#X connect 21 0 79 0;
+#X connect 21 0 80 0;
 #X connect 22 0 21 0;
-#X connect 22 0 81 0;
-#X connect 23 0 22 0;
-#X connect 24 0 22 0;
-#X connect 25 0 38 0;
-#X connect 26 0 18 0;
-#X connect 26 0 51 0;
-#X connect 26 0 57 0;
-#X connect 26 0 59 0;
-#X connect 26 0 61 0;
-#X connect 27 0 7 0;
-#X connect 28 0 33 0;
-#X connect 28 0 40 0;
-#X connect 28 0 13 0;
-#X connect 29 0 47 0;
-#X connect 30 0 49 0;
-#X connect 31 0 87 0;
-#X connect 31 1 88 0;
-#X connect 31 2 26 0;
-#X connect 31 3 29 0;
-#X connect 31 4 30 0;
-#X connect 31 6 25 0;
-#X connect 31 7 27 0;
-#X connect 31 8 28 0;
-#X connect 31 9 32 0;
-#X connect 32 0 10 0;
-#X connect 33 0 34 0;
-#X connect 33 0 23 0;
-#X connect 34 0 33 0;
-#X connect 35 0 22 0;
-#X connect 36 0 22 0;
-#X connect 37 0 22 0;
-#X connect 38 0 39 0;
+#X connect 23 0 21 0;
+#X connect 24 0 37 0;
+#X connect 25 0 18 0;
+#X connect 25 0 50 0;
+#X connect 25 0 56 0;
+#X connect 25 0 58 0;
+#X connect 25 0 60 0;
+#X connect 26 0 7 0;
+#X connect 27 0 32 0;
+#X connect 27 0 39 0;
+#X connect 27 0 13 0;
+#X connect 28 0 46 0;
+#X connect 29 0 48 0;
+#X connect 30 0 74 0;
+#X connect 30 1 75 0;
+#X connect 30 2 25 0;
+#X connect 30 3 28 0;
+#X connect 30 4 29 0;
+#X connect 30 6 24 0;
+#X connect 30 7 26 0;
+#X connect 30 8 27 0;
+#X connect 30 9 31 0;
+#X connect 31 0 10 0;
+#X connect 32 0 33 0;
+#X connect 32 0 22 0;
+#X connect 33 0 32 0;
+#X connect 34 0 21 0;
+#X connect 35 0 21 0;
+#X connect 36 0 21 0;
+#X connect 37 0 38 0;
+#X connect 37 0 36 0;
 #X connect 38 0 37 0;
-#X connect 39 0 38 0;
-#X connect 40 0 41 0;
-#X connect 40 0 36 0;
-#X connect 41 0 40 0;
-#X connect 42 0 7 0;
-#X connect 42 0 18 0;
-#X connect 43 1 78 0;
-#X connect 43 2 77 0;
-#X connect 44 0 22 0;
-#X connect 45 0 22 0;
-#X connect 46 0 22 0;
-#X connect 47 0 48 0;
-#X connect 47 0 44 0;
-#X connect 48 0 47 0;
-#X connect 49 0 50 0;
-#X connect 49 0 45 0;
-#X connect 50 0 49 0;
-#X connect 51 0 52 0;
-#X connect 51 0 46 0;
-#X connect 52 0 51 0;
-#X connect 53 0 13 0;
-#X connect 54 0 22 0;
-#X connect 55 0 22 0;
-#X connect 56 0 22 0;
-#X connect 57 0 58 0;
-#X connect 57 0 55 0;
-#X connect 58 0 57 0;
-#X connect 59 0 60 0;
-#X connect 59 0 56 0;
-#X connect 60 0 59 0;
-#X connect 61 0 62 0;
-#X connect 62 0 61 0;
-#X connect 62 1 22 0;
-#X connect 64 0 89 0;
-#X connect 77 0 35 0;
-#X connect 78 0 80 0;
-#X connect 78 0 42 0;
-#X connect 79 0 90 0;
-#X connect 80 0 24 0;
-#X connect 81 0 14 4;
-#X connect 82 0 81 0;
-#X connect 83 0 84 0;
-#X connect 84 0 82 0;
-#X connect 84 0 85 0;
-#X connect 85 0 7 0;
-#X connect 87 0 89 0;
-#X connect 88 0 89 0;
-#X connect 89 0 81 1;
-#X connect 89 0 21 1;
-#X connect 90 0 42 1;
+#X connect 39 0 40 0;
+#X connect 39 0 35 0;
+#X connect 40 0 39 0;
+#X connect 41 0 7 0;
+#X connect 41 0 18 0;
+#X connect 42 1 66 0;
+#X connect 42 2 65 0;
+#X connect 43 0 21 0;
+#X connect 44 0 21 0;
+#X connect 45 0 21 0;
+#X connect 46 0 47 0;
+#X connect 46 0 43 0;
+#X connect 47 0 46 0;
+#X connect 48 0 49 0;
+#X connect 48 0 44 0;
+#X connect 49 0 48 0;
+#X connect 50 0 51 0;
+#X connect 50 0 45 0;
+#X connect 51 0 50 0;
+#X connect 52 0 13 0;
+#X connect 53 0 21 0;
+#X connect 54 0 21 0;
+#X connect 55 0 21 0;
+#X connect 56 0 57 0;
+#X connect 56 0 54 0;
+#X connect 57 0 56 0;
+#X connect 58 0 59 0;
+#X connect 58 0 55 0;
+#X connect 59 0 58 0;
+#X connect 60 0 61 0;
+#X connect 61 0 60 0;
+#X connect 61 1 21 0;
+#X connect 63 0 76 0;
+#X connect 65 0 34 0;
+#X connect 66 0 68 0;
+#X connect 66 0 41 0;
+#X connect 67 0 77 0;
+#X connect 68 0 23 0;
+#X connect 69 0 79 0;
+#X connect 70 0 71 0;
+#X connect 71 0 69 0;
+#X connect 71 0 72 0;
+#X connect 72 0 7 0;
+#X connect 74 0 76 0;
+#X connect 75 0 76 0;
+#X connect 76 0 79 1;
+#X connect 76 0 80 1;
+#X connect 77 0 41 1;
+#X connect 79 0 14 4;
+#X connect 80 0 14 1;
 #X coords 0 -1 1 1 144 174 1 300 250;
-#X restore 388 188 pd ARGO;
-#X obj 62 206 pddp/pddplink http://soundhack.henfast.com/freeware/
-;
-#X text 62 191 a pd external in soundhack-0.0.8-pd;
-#X text 61 166 MM +bubbler;
-#X text 62 179 Based on Tom Erbe's work: "+bubbler~";
-#X obj 4 6 cnv 15 730 130 empty empty empty 20 12 0 14 -4033 -66577
+#X restore 283 63 pd ARGO;
+#X text 13 75 a pd external in soundhack-0.0.8-pd;
+#X text 12 50 MM +bubbler;
+#X text 13 63 Based on Tom Erbe's work: "+bubbler~";
+#X obj 221 13 cnv 15 54 25 empty empty empty 20 12 0 14 -24198 -66577
 0;
-#X obj 139 72 pddp/pddplink http://puredata.info/docs/faq/how-do-i-install-externals-and-help-files
-;
-#X text 10 44 Placer les fichiers correpondants dans le même dossier
-que le patch contenant le MiniModule ou dans un dosier spécial:;
-#X text 376 44 Put the corresponding files in the same folder as the
-patch containing the MiniModule or in a special folder:;
-#X text 281 86 MacOS: +bubbler~.pd_darwin;
-#X text 269 97 Windows: +bubbler~.dll;
-#X text 263 108 Linux32b: +bubbler~.pd_linux;
-#X text 263 119 Linux64b: linux64/+bubbler~.pd_linux;
-#X text 623 116 cf ExMM203-Bubbler;
-#X text 8 8 ATTENTION +bubbler utilise des objets qui ne sont pas inclus
-dans Pd-extended.;
-#X text 376 8 WARNING +bubbler uses objects that are not included in
-Pd-extended.;
-#X obj 326 138 cnv 15 54 25 empty empty empty 20 12 0 14 -24198 -66577
-0;
-#X text 331 140 Clic ->;
-#X text 59 220 "This is a delay using granular synthesis.";
-#X obj 467 535 dac~ 1 2;
-#X text 247 539 .wav file format recorder;
-#X text 245 527 Enregistreur audio au format .wav;
-#X text 293 375 Niveau general ->;
-#X text 299 385 General level ->;
-#X text 341 516 |;
-#X text 341 511 ^;
+#X text 226 15 Clic ->;
+#X text 10 104 "This is a delay using granular synthesis.";
+#X obj 362 410 dac~ 1 2;
+#X text 142 414 .wav file format recorder;
+#X text 140 402 Enregistreur audio au format .wav;
+#X text 188 250 Niveau general ->;
+#X text 194 260 General level ->;
+#X text 236 391 |;
+#X text 236 386 ^;
 #N canvas 413 140 402 279 ARGO 0;
 #X obj 101 101 cnv 10 95 41 \$0-A \$0-B empty 20 12 0 14 -1 -1 1.04858e+06
 ;
 #X obj 101 109 nbx 4 12 0 1e+37 0 0 \$0 \$0-ReceiveCpuPeak CPUPeak
-45 7 1 11 -24198 -1 -24198 14 256;
+45 7 1 11 -24198 -1 -24198 6 256;
 #X obj 101 122 nbx 4 12 0 1e+37 0 0 \$0 \$0-ReceiveCpuMean CPUMean
-45 7 1 11 -24198 -1 -24198 13.5 256;
+45 7 1 11 -24198 -1 -24198 5.97 256;
 #X obj 145 -55 cputime;
 #X obj 145 -76 t b b;
 #X text 188 24 (c) musil@iem.kug.ac.at;
@@ -584,8 +553,8 @@ Pd-extended.;
 #X connect 17 0 2 0;
 #X connect 18 0 14 0;
 #X coords 0 -1 1 1 97 43 1 100 100;
-#X restore 75 372 pd ARGO;
-#X obj 91 307 switch~;
+#X restore 26 256 pd ARGO;
+#X obj 42 191 switch~;
 #N canvas 608 166 228 173 ARGOnOff 0;
 #X obj 100 100 tgl 18 1 \$0-SendOnOff \$0-ReceiveOnOff On/Off 20 11
 1 14 -4033 -1 -1 1 1;
@@ -598,11 +567,11 @@ Pd-extended.;
 #X connect 0 0 3 0;
 #X connect 1 0 2 0;
 #X coords 0 -1 1 1 65 18 2 100 100;
-#X restore 91 289 pd ARGOnOff;
-#X text 96 273 V;
-#X text 96 266 |;
-#X text 84 255 On/Off Patch;
-#X text 114 267 (Audio);
+#X restore 42 173 pd ARGOnOff;
+#X text 47 157 V;
+#X text 47 150 |;
+#X text 35 139 On/Off Patch;
+#X text 65 151 (Audio);
 #N canvas 194 101 772 490 ARGO 0;
 #X obj 360 103 cnv 10 20 10 empty empty Play. 1 5 1 14 -262144 -1 1.04858e+06
 ;
@@ -623,7 +592,7 @@ Pd-extended.;
 ;
 #X obj 311 101 bng 12 250 50 0 \$0-A \$0-B Stop 14 6 1 9 -262144 -1
 -1;
-#X obj 249 101 tgl 12 1 \$0-A \$0-B Loop 15 6 1 9 -262144 -1 -1 0 1
+#X obj 249 101 tgl 12 1 \$0-A \$0-B Loop 15 6 1 9 -262144 -1 -1 1 1
 ;
 #X obj 100 101 bng 12 250 50 0 \$0-A \$0-B empty 14 6 1 9 -262144 -1
 -1;
@@ -725,7 +694,7 @@ format..;
 #X restore 638 438 pd ????;
 #X obj 103 114 hsl 275 14 0 127 0 0 \$0-A \$0-B empty -2 -8 0 10 -262144
 -262144 -1 0 1;
-#X symbolatom 100 114 47 0 0 0 - - #0-A, f 47;
+#X symbolatom 100 114 47 0 0 0 - - #0-A;
 #X obj 380 116 bng 12 50 20 0 \$0-A \$0-B empty 14 6 1 9 -262144 -1
 -1;
 #X obj 223 444 outlet~;
@@ -776,26 +745,7 @@ format..;
 #X connect 44 0 37 0;
 #X connect 49 0 38 0;
 #X coords 0 -1 1 1 292 34 2 100 100;
-#X restore 388 140 pd ARGO;
-#X obj 683 521 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
-0;
-#N canvas 336 174 309 137 ?. 0;
-#X obj 3 83 cnv 15 300 46 empty empty empty 20 12 0 14 -224896 -66577
-0;
-#X obj 3 6 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
--1 1.04858e+06;
-#X obj 26 26 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
-;
-#X obj 64 26 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
-;
-#X obj 7 37 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
-#X text 8 85 Construit sous / Build under Pd 0.43.4-extended;
-#X obj 8 111 pddp/pddplink http://puredata.info/downloads/pd-extended
-;
-#X obj 7 50 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
-;
-#X text 7 98 or Pd-0.46-7 + deken;
-#X restore 687 525 pd ?.;
+#X restore 283 15 pd ARGO;
 #N canvas 175 68 381 386 ARGO 0;
 #X obj 101 101 cnv 20 116 34 empty ColorAmpli empty 20 12 0 14 -261299
 -1 1.04858e+06;
@@ -873,7 +823,7 @@ format..;
 #X connect 23 0 25 0;
 #X connect 25 0 13 0;
 #X coords 0 -1 1 1 118 36 1 100 100;
-#X restore 401 370 pd ARGO;
+#X restore 296 245 pd ARGO;
 #N canvas 286 45 728 239 ARGO 0;
 #X obj 239 36 inlet~;
 #X text 77 17 Left input;
@@ -1041,7 +991,7 @@ Audio -> Clic encore pour arrêter l'enregistrement;
 #X connect 16 1 6 0;
 #X connect 16 2 11 0;
 #X coords 0 -1 1 1 166 17 1 100 100;
-#X restore 251 495 pd ARGO;
+#X restore 146 370 pd ARGO;
 #N canvas 540 393 251 267 ARGO 0;
 #X obj 101 101 cnv 30 49 130 empty ColorAmpli empty 20 12 0 14 -1 -258113
 0;
@@ -1160,15 +1110,39 @@ outputs a value.;
 #X connect 10 0 8 0;
 #X connect 10 1 8 1;
 #X coords 0 -1 1 1 51 132 2 100 100;
-#X restore 530 420 pd ARGO;
-#X connect 1 0 37 0;
-#X connect 1 1 37 1;
-#X connect 29 0 28 0;
-#X connect 34 0 1 0;
-#X connect 34 1 1 2;
-#X connect 37 0 20 0;
-#X connect 37 0 38 0;
-#X connect 37 0 39 0;
-#X connect 37 1 20 1;
-#X connect 37 1 38 1;
-#X connect 37 1 39 1;
+#X restore 425 295 pd ARGO;
+#X obj 534 410 cnv 15 34 16 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 353 174 333 161 ?? 0;
+#X obj 17 89 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 17 12 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14
+-4033 -1 1.04858e+06;
+#X obj 40 32 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 78 32 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 20 54 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 22 126 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 22 102 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X text 22 90 Construit sous / Build under Pd-0.49...;
+#X text 21 114 or Pd 0.43.4-extended;
+#X obj 20 66 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X obj 20 42 pddp/pddplink https://github.com/gerardparesys/ARGOPd
+;
+#X restore 534 410 pd ??;
+#X obj 13 89 pddp/pddplink http://www.soundhack.com/freeware/;
+#X connect 1 0 23 0;
+#X connect 1 1 23 1;
+#X connect 17 0 16 0;
+#X connect 22 0 1 0;
+#X connect 22 1 1 2;
+#X connect 23 0 8 0;
+#X connect 23 0 24 0;
+#X connect 23 0 25 0;
+#X connect 23 1 8 1;
+#X connect 23 1 24 1;
+#X connect 23 1 25 1;
