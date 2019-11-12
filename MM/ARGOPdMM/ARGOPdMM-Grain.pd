@@ -1,4 +1,4 @@
-#N canvas 104 65 1068 579 10;
+#N canvas 96 65 1012 581 10;
 #X text 67 548 ExMM178-SFR-Granulator;
 #X obj 778 361 cnv 15 210 130 empty empty empty 20 12 0 14 -4033 -66577
 0;
@@ -11,502 +11,6 @@
 #X text 784 421 as the patch:;
 #X text 780 374 la présence de fichiers dans;
 #X text 783 410 files in the same folder;
-#X obj 844 61 cnv 15 210 130 empty empty empty 20 12 0 14 -4033 -66577
-0;
-#X text 846 86 le même dossier que le patch:;
-#X text 866 124 as the patch:;
-#X text 846 75 la présence de fichiers dans;
-#X text 865 113 files in the same folder;
-#X text 848 64 ATTENTION +bubbler exige;
-#X text 850 174 cf ExMM203-bubbler;
-#X text 899 137 +bubbler~.pd_linux;
-#X text 899 147 +bubbler~.pd_darwin;
-#X text 899 157 +bubbler~.dll;
-#X text 864 102 WARNING +bubbler requires;
-#N canvas 259 24 819 651 ARGO 0;
-#X obj 301 251 cnv 20 142 172 empty ColorForm +bubbler. 81 10 1 14
--188398 -1 1.04858e+06;
-#X obj 301 419 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
-;
-#X obj 433 419 cnv 4 10 4 empty empty empty 0 0 0 9 -1 -66577 0;
-#X obj 267 177 inlet~;
-#X obj 424 177 inlet~;
-#X obj 266 627 outlet~;
-#X obj 393 627 outlet~;
-#X obj 303 274 hsl 139 12 1 10000 1 1 \$0-A ColorForm Time=2632ms 3
-6 1 9 -208064 -262144 -1 11800 0;
-#X obj 43 176 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
-0;
-#N canvas 433 87 466 216 Help 0;
-#X obj 8 67 cnv 15 440 130 empty empty empty 20 12 0 14 -228856 -66577
-0;
-#N canvas 233 260 1035 558 bubbler 0;
-#X text 19 160 time \, feedback \, filter freq \, resonance- these
-are identical in function to the same parameters in "+delay~". The
-only exception is that the range of time is from 20 milliseconds to
-10 seconds.;
-#X text 17 233 time variation - this will select a random delay time
-for each grain from time - (time vari * time) to time + (time vari
-* time). This control has a range from 0% to 100%.;
-#X text 15 294 density - this controls the number of grains present
-at any given moment. It varies from 0% to 200%. At 100% \, grains are
-created at a rate so that two grains are present (on average). This
-is done because each grain is enveloped \, and it is necessary to overlap
-grains for smooth audio.;
-#X text 17 391 grain size - this is the size of each grain as a percentage
-of the delay time. This control varies from 0% to 50%.;
-#X text 521 27 g start vari - this control varies from 0% to 100%.
-At 0% grains will be created at a fixed frequency (grain rate) dependent
-on the grain size and density \, for synchronous granular synthesis.
-When the g start vari is increased \, the grain start time will deviate
-from this fixed frequency.;
-#X text 519 280 grain reversal - this will randomly reverse the grain.
-At 0% \, none of the grains will be reversed \, at 100% \, all of the
-grains will be reversed. This is especially effective when the grain
-size and delay time is large.;
-#X text 522 230 octave variation - this will add a random octave pitch
-shift to each grain.;
-#X text 20 31 This is a granular delay. That is \, small or large bits
-of sound (grains) are read from the delay \, and are recombined before
-sending to the output and feedback. The grains of sound are given smooth
-envelopes \, so that they can be recombined without transient distortion.
-The start of the grain \, the delay in each grain \, the playback direction
-and the pitch of each grain can be randomized.;
-#X text 16 437 Dry/Delay volume-controls the volume of the original
-signal (dry) or the delayed signal (delay);
-#X text 16 480 Mix-controls the ratio of dry-delay in the output. Ranges
-from 0 to 100% (0% all dry \, 100% all delay). Adjust mix \, then adjust
-volumes as desired.;
-#X text 17 5 +bubbler~;
-#X text 522 127 pitch shift/octave - these controls give each grain
-a pitch shift. Pitch shifting is controlled via MIDI input to the right
-inlet \, given as a note/velocity pair. When multiple MIDI notes are
-held \, the pitch shift values are randomly selected from the collection
-for each grain. The octave value is added to the pitch shift.;
-#X text 520 362 12tet/just - this button sets the pitch shifting to
-12 tone equal temperament \, or to just intonation.;
-#X restore 34 138 pd bubbler details;
-#X text 31 81 This is a delay using granular synthesis. Small clips
-(grains) of audio are read and re-ordered before being sent to the
-delay output. Various parameters such as playback direction and pitch
-of each grain can be controlled.;
-#X text 11 67 Citation +bubbler;
-#X text 32 158 Tom Erbe 2012;
-#X obj 9 42 pddp/pddplink http://soundhack.henfast.com/freeware/;
-#X text 9 27 a pd external in soundhack-0.0.8-pd;
-#X text 8 2 MM +bubbler;
-#X text 9 15 Based on Tom Erbe's work: "+bubbler~";
-#X obj 32 172 pddp/pddplink http://music.ucsd.edu/b/Tom+Erbe;
-#X restore 50 183 pd Help;
-#X obj 300 382 hradio 12 1 1 9 \$0-A ColorForm 0Oct 110 6 1 10 -208064
--1 -1 4;
-#N canvas 406 211 214 168 label 0;
-#X msg 38 108 label \$1;
-#X obj 38 14 inlet;
-#X obj 38 136 outlet;
-#X obj 38 40 - 4;
-#X obj 126 135 outlet;
-#X obj 38 64 cyclone/sprintf %dOct;
-#X obj 38 86 symbol;
-#X connect 0 0 2 0;
-#X connect 1 0 3 0;
-#X connect 3 0 4 0;
-#X connect 3 0 5 0;
-#X connect 5 0 6 0;
-#X connect 6 0 0 0;
-#X restore 193 363 pd label;
-#N canvas 251 216 292 221 label 0;
-#X msg 119 118 label \$1;
-#X obj 119 46 inlet;
-#X obj 118 146 outlet;
-#X obj 119 74 cyclone/sprintf Time=%dms;
-#X obj 119 96 symbol;
-#X connect 0 0 2 0;
-#X connect 1 0 3 0;
-#X connect 3 0 4 0;
-#X connect 4 0 0 0;
-#X restore 189 188 pd label;
-#X obj 303 406 hsl 139 12 0 100 0 1 \$0-A ColorAmpli Effect=50% 0 7
-1 9 -261299 -262144 -1 7000 0;
-#N canvas 560 290 286 223 DirEffect 0;
-#X obj 19 -3 inlet~;
-#X obj 232 -3 inlet~;
-#X obj 68 -3 inlet~;
-#X obj 183 -3 inlet~;
-#X obj 19 160 outlet~;
-#X obj 183 160 outlet~;
-#X text 27 -22 Dir1;
-#X text 190 -22 Dir2;
-#X text 230 -22 Effect2;
-#X text 66 -22 Effect1;
-#X obj 183 113 *~;
-#X obj 68 113 *~;
-#X obj 232 113 *~;
-#X obj 130 56 - 1;
-#X obj 130 82 * -1;
-#X obj 19 113 *~;
-#X obj 130 -3 inlet;
-#X obj 130 21 / 100;
-#X text 127 -22 0...100;
-#X connect 0 0 15 0;
-#X connect 1 0 12 0;
-#X connect 2 0 11 0;
-#X connect 3 0 10 0;
-#X connect 10 0 5 0;
-#X connect 11 0 4 0;
-#X connect 12 0 5 0;
-#X connect 13 0 14 0;
-#X connect 14 0 10 1;
-#X connect 14 0 15 1;
-#X connect 15 0 4 0;
-#X connect 16 0 17 0;
-#X connect 17 0 13 0;
-#X connect 17 0 11 1;
-#X connect 17 0 12 1;
-#X restore 304 601 pd DirEffect;
-#X obj 301 251 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
-;
-#X obj 433 251 cnv 4 10 4 empty empty empty 0 0 0 9 -1 -66577 0;
-#X obj 318 250 bng 12 50 50 0 \$0-A \$0-B Init 14 6 1 10 -262144 -1
--1;
-#X obj 303 298 hsl 139 12 0 200 0 1 \$0-A ColorForm Feedback=65% 3
-6 1 9 -261299 -262144 -1 4500 0;
-#N canvas 406 211 292 221 label 0;
-#X msg 119 118 label \$1;
-#X obj 119 46 inlet;
-#X obj 119 146 outlet;
-#X obj 119 74 cyclone/sprintf Feedback=%d%%;
-#X obj 119 96 symbol;
-#X connect 0 0 2 0;
-#X connect 1 0 3 0;
-#X connect 3 0 4 0;
-#X connect 4 0 0 0;
-#X restore 189 228 pd label;
-#X obj 318 262 bng 12 50 50 0 \$0-A \$0-B Silence 14 6 1 10 -262144
--1 -1;
-#X obj 316 570 +bubbler~;
-#X obj 344 538 t a;
-#X msg 87 446 timeVariation \$1;
-#X msg 34 446 time \$1;
-#X msg 569 376 20000;
-#X msg 512 348 0;
-#X msg 594 348 832.6;
-#X msg 616 376 50;
-#X msg 540 376 80;
-#X msg 553 348 10;
-#X obj 501 309 t b b b b b b b b b b;
-#X msg 638 348 4;
-#X obj 303 286 hsl 139 12 0 100 0 1 \$0-A ColorForm TimeVariation=100%
-3 6 1 9 -208064 -262144 -1 13800 0;
-#N canvas 285 316 292 221 label 0;
-#X msg 119 118 label \$1;
-#X obj 119 46 inlet;
-#X obj 118 146 outlet;
-#X obj 119 74 cyclone/sprintf TimeVariation=%d%%;
-#X obj 119 96 symbol;
-#X connect 0 0 2 0;
-#X connect 1 0 3 0;
-#X connect 3 0 4 0;
-#X connect 4 0 0 0;
-#X restore 189 208 pd label;
-#X msg 195 446 feedback \$1;
-#X msg 360 446 resonance \$1;
-#X msg 271 446 filterFreq \$1;
-#X obj 303 310 hsl 139 12 20 20000 1 1 \$0-A ColorForm FilterFreq=13400Hz
-3 6 1 9 -188398 -262144 -1 13000 0;
-#N canvas 406 211 292 221 label 0;
-#X msg 119 118 label \$1;
-#X obj 119 46 inlet;
-#X obj 119 146 outlet;
-#X obj 119 74 cyclone/sprintf FilterFreq=%dHz;
-#X obj 119 96 symbol;
-#X connect 0 0 2 0;
-#X connect 1 0 3 0;
-#X connect 3 0 4 0;
-#X connect 4 0 0 0;
-#X restore 190 248 pd label;
-#X obj 303 322 hsl 139 12 0 100 0 1 \$0-A ColorForm FilterReso=0% 3
-6 1 9 -188398 -262144 -1 0 0;
-#N canvas 406 211 292 221 label 0;
-#X msg 119 118 label \$1;
-#X obj 119 46 inlet;
-#X obj 119 146 outlet;
-#X obj 119 74 cyclone/sprintf FilterReso=%d%%;
-#X obj 119 96 symbol;
-#X connect 0 0 2 0;
-#X connect 1 0 3 0;
-#X connect 3 0 4 0;
-#X connect 4 0 0 0;
-#X restore 190 267 pd label;
-#X obj 80 308 delay 1000;
-#X obj 61 220 t b b b;
-#X msg 34 473 density \$1;
-#X msg 105 473 grainSize \$1;
-#X msg 191 473 grainStartVariation \$1;
-#X obj 303 334 hsl 139 12 0 200 0 1 \$0-A ColorForm GrainDensity=150%
-3 6 1 9 -212212 -262144 -1 10400 0;
-#N canvas 251 216 292 221 label 0;
-#X msg 119 118 label \$1;
-#X obj 119 46 inlet;
-#X obj 118 146 outlet;
-#X obj 119 74 cyclone/sprintf GrainDensity=%d%%;
-#X obj 119 96 symbol;
-#X connect 0 0 2 0;
-#X connect 1 0 3 0;
-#X connect 3 0 4 0;
-#X connect 4 0 0 0;
-#X restore 190 286 pd label;
-#X obj 303 346 hsl 139 12 0 50 0 1 \$0-A ColorForm GrainSize=50% 3
-6 1 9 -212212 -262144 -1 13800 0;
-#N canvas 251 216 292 221 label 0;
-#X msg 119 118 label \$1;
-#X obj 119 46 inlet;
-#X obj 118 146 outlet;
-#X obj 119 74 cyclone/sprintf GrainSize=%d%%;
-#X obj 119 96 symbol;
-#X connect 0 0 2 0;
-#X connect 1 0 3 0;
-#X connect 3 0 4 0;
-#X connect 4 0 0 0;
-#X restore 191 305 pd label;
-#X obj 303 358 hsl 139 12 0 100 0 1 \$0-A ColorForm GrainStart=46%
-3 6 1 9 -212212 -262144 -1 6400 0;
-#N canvas 251 216 292 221 label 0;
-#X msg 119 118 label \$1;
-#X obj 119 46 inlet;
-#X obj 118 146 outlet;
-#X obj 120 74 cyclone/sprintf GrainStart=%d%%;
-#X obj 119 96 symbol;
-#X connect 0 0 2 0;
-#X connect 1 0 3 0;
-#X connect 3 0 4 0;
-#X connect 4 0 0 0;
-#X restore 191 324 pd label;
-#N canvas 251 216 292 221 label 0;
-#X msg 119 118 label \$1;
-#X obj 119 46 inlet;
-#X obj 118 146 outlet;
-#X obj 120 74 cyclone/sprintf Effect=%d%%;
-#X obj 119 96 symbol;
-#X connect 0 0 2 0;
-#X connect 1 0 3 0;
-#X connect 3 0 4 0;
-#X connect 4 0 0 0;
-#X restore 194 422 pd label;
-#X msg 35 497 octave \$1;
-#X msg 336 474 grainReversal \$1;
-#X msg 108 497 octaveVariation \$1;
-#X obj 303 370 hsl 139 12 0 100 0 1 \$0-A ColorForm GrainReversal=0%
-3 6 1 9 -212212 -262144 -1 100 0;
-#N canvas 251 216 292 221 label 0;
-#X msg 119 118 label \$1;
-#X obj 119 46 inlet;
-#X obj 118 146 outlet;
-#X obj 120 74 cyclone/sprintf GrainReversal=%d%%;
-#X obj 119 96 symbol;
-#X connect 0 0 2 0;
-#X connect 1 0 3 0;
-#X connect 3 0 4 0;
-#X connect 4 0 0 0;
-#X restore 193 342 pd label;
-#X obj 300 394 hradio 12 1 1 3 \$0-A ColorForm Var=1Oct 38 6 1 10 -208064
--1 -1 1;
-#N canvas 406 211 214 168 label 0;
-#X msg 38 108 label \$1;
-#X obj 38 14 inlet;
-#X obj 38 136 outlet;
-#X obj 38 64 cyclone/sprintf Var=%dOct;
-#X obj 38 86 symbol;
-#X connect 0 0 2 0;
-#X connect 1 0 3 0;
-#X connect 3 0 4 0;
-#X connect 4 0 0 0;
-#X restore 194 383 pd label;
-#X obj 384 394 hradio 12 1 1 2 \$0-A ColorForm 12tet 26 6 1 10 -208064
--1 -1 0;
-#N canvas 539 257 201 248 label 0;
-#X msg 30 136 label \$1;
-#X obj 38 14 inlet;
-#X obj 30 164 outlet;
-#X obj 38 37 select 0 1;
-#X obj 112 164 outlet;
-#X msg 78 72 just;
-#X msg 38 71 12tet;
-#X obj 30 114 symbol;
-#X connect 0 0 2 0;
-#X connect 1 0 3 0;
-#X connect 3 0 6 0;
-#X connect 3 1 5 0;
-#X connect 5 0 4 0;
-#X connect 5 0 7 0;
-#X connect 6 0 4 0;
-#X connect 6 0 7 0;
-#X connect 7 0 0 0;
-#X restore 194 402 pd label;
-#X obj 366 251 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
-0;
-#X obj 348 177 inlet;
-#X text 352 161 MIDI;
-#X obj 53 29 cnv 15 730 130 empty empty empty 20 12 0 14 -4033 -66577
-0;
-#X obj 188 95 pddp/pddplink http://puredata.info/docs/faq/how-do-i-install-externals-and-help-files
-;
-#X text 57 31 ATTENTION ce MiniModule utilise des objets qui ne sont
-pas inclus dans Pd-extended.;
-#X text 425 31 WARNING this MiniModule uses objects that are not included
-in Pd-extended.;
-#X text 59 67 Placer les fichiers correpondants dans le m�me dossier
-que le patch contenant le MiniModule ou dans un dosier sp�cial:;
-#X text 425 67 Put the corresponding files in the same folder as the
-patch containing the MiniModule or in a special folder:;
-#X text 330 109 MacOS: +bubbler~.pd_darwin;
-#X text 318 120 Windows: +bubbler~.dll;
-#X text 312 131 Linux32b: +bubbler~.pd_linux;
-#X text 312 142 Linux64b: linux64/+bubbler~.pd_linux;
-#X text 630 141 cf ExMM203-Bubbler;
-#X msg 126 344 0;
-#X obj 80 242 delay 100;
-#X obj 137 263 * 2;
-#X msg 36 341 50;
-#X obj 382 570 +bubbler~;
-#X msg 491 402 time 100;
-#X obj 486 177 loadbang;
-#X obj 486 202 delay 100;
-#X obj 427 227 delay 100;
-#X text 549 199 pour un effet stereo;
-#X msg 445 479 60 0 \, 61 0 \, 62 0 \, 63 0 \, 64 0 \, 65 0 \, 66 0
-\, 67 0 \, 68 0 \, 69 0 \, 70 0 \, 71 0;
-#X msg 445 440 60 1 \, 61 1 \, 62 1 \, 63 1 \, 64 1 \, 65 1 \, 66 1
-\, 67 1 \, 68 1 \, 69 1 \, 70 1 \, 71 1;
-#X obj 417 538 t a;
-#X obj 137 285 max 300;
-#X obj 701 593 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
-0;
-#N canvas 336 174 309 137 ?. 0;
-#X obj 3 83 cnv 15 300 46 empty empty empty 20 12 0 14 -224896 -66577
-0;
-#X obj 3 6 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
--1 1.04858e+06;
-#X obj 26 26 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
-;
-#X obj 64 26 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
-;
-#X obj 7 37 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
-#X text 8 85 Construit sous / Build under Pd 0.43.4-extended;
-#X obj 8 111 pddp/pddplink http://puredata.info/downloads/pd-extended
-;
-#X obj 7 50 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
-;
-#X text 7 98 or Pd-0.46-7 + deken;
-#X restore 705 597 pd ?.;
-#X text 493 252 13 2 2018;
-#X connect 3 0 14 0;
-#X connect 3 0 21 0;
-#X connect 4 0 14 3;
-#X connect 4 0 81 0;
-#X connect 7 0 12 0;
-#X connect 7 0 24 0;
-#X connect 7 0 79 0;
-#X connect 10 0 11 0;
-#X connect 11 0 10 0;
-#X connect 11 1 54 0;
-#X connect 12 0 7 0;
-#X connect 13 0 14 2;
-#X connect 13 0 53 0;
-#X connect 14 0 5 0;
-#X connect 14 1 6 0;
-#X connect 17 0 31 0;
-#X connect 18 0 19 0;
-#X connect 18 0 35 0;
-#X connect 19 0 18 0;
-#X connect 20 0 43 0;
-#X connect 21 0 14 1;
-#X connect 22 0 21 0;
-#X connect 22 0 81 0;
-#X connect 23 0 22 0;
-#X connect 24 0 22 0;
-#X connect 25 0 38 0;
-#X connect 26 0 18 0;
-#X connect 26 0 51 0;
-#X connect 26 0 57 0;
-#X connect 26 0 59 0;
-#X connect 26 0 61 0;
-#X connect 27 0 7 0;
-#X connect 28 0 33 0;
-#X connect 28 0 40 0;
-#X connect 28 0 13 0;
-#X connect 29 0 47 0;
-#X connect 30 0 49 0;
-#X connect 31 0 87 0;
-#X connect 31 1 88 0;
-#X connect 31 2 26 0;
-#X connect 31 3 29 0;
-#X connect 31 4 30 0;
-#X connect 31 6 25 0;
-#X connect 31 7 27 0;
-#X connect 31 8 28 0;
-#X connect 31 9 32 0;
-#X connect 32 0 10 0;
-#X connect 33 0 34 0;
-#X connect 33 0 23 0;
-#X connect 34 0 33 0;
-#X connect 35 0 22 0;
-#X connect 36 0 22 0;
-#X connect 37 0 22 0;
-#X connect 38 0 39 0;
-#X connect 38 0 37 0;
-#X connect 39 0 38 0;
-#X connect 40 0 41 0;
-#X connect 40 0 36 0;
-#X connect 41 0 40 0;
-#X connect 42 0 7 0;
-#X connect 42 0 18 0;
-#X connect 43 1 78 0;
-#X connect 43 2 77 0;
-#X connect 44 0 22 0;
-#X connect 45 0 22 0;
-#X connect 46 0 22 0;
-#X connect 47 0 48 0;
-#X connect 47 0 44 0;
-#X connect 48 0 47 0;
-#X connect 49 0 50 0;
-#X connect 49 0 45 0;
-#X connect 50 0 49 0;
-#X connect 51 0 52 0;
-#X connect 51 0 46 0;
-#X connect 52 0 51 0;
-#X connect 53 0 13 0;
-#X connect 54 0 22 0;
-#X connect 55 0 22 0;
-#X connect 56 0 22 0;
-#X connect 57 0 58 0;
-#X connect 57 0 55 0;
-#X connect 58 0 57 0;
-#X connect 59 0 60 0;
-#X connect 59 0 56 0;
-#X connect 60 0 59 0;
-#X connect 61 0 62 0;
-#X connect 62 0 61 0;
-#X connect 62 1 22 0;
-#X connect 64 0 89 0;
-#X connect 77 0 35 0;
-#X connect 78 0 80 0;
-#X connect 78 0 42 0;
-#X connect 79 0 90 0;
-#X connect 80 0 24 0;
-#X connect 81 0 14 4;
-#X connect 82 0 81 0;
-#X connect 83 0 84 0;
-#X connect 84 0 82 0;
-#X connect 84 0 85 0;
-#X connect 85 0 7 0;
-#X connect 87 0 89 0;
-#X connect 88 0 89 0;
-#X connect 89 0 81 1;
-#X connect 89 0 21 1;
-#X connect 90 0 42 1;
-#X coords 0 -1 1 1 144 174 1 300 250;
-#X restore 694 36 pd ARGO;
 #N canvas 259 163 1009 559 ARGO 0;
 #X obj 290 518 outlet~;
 #X obj 285 40 openpanel;
@@ -617,16 +121,16 @@ un ou plusieurs arrays;
 #X obj 59 154 t a a b a;
 #X text 23 66 cosine window;
 #N canvas 0 22 450 300 (subpatch) 0;
-#X array B9897 515 float 0;
+#X array B9256 515 float 0;
 #X coords 0 1 514 -1 50 35 1;
 #X restore 39 35 graph;
-#X msg 101 222 A9897;
+#X msg 101 222 A9256;
 #X msg 321 244 512;
 #X msg 212 309 \; \$1 cosinesum \$2 0.5 -0.5;
 #X obj 212 188 t b b;
 #X obj 212 270 pack s f;
-#X msg 212 222 B9897;
-#X msg 418 222 B9897;
+#X msg 212 222 B9256;
+#X msg 418 222 B9256;
 #X obj 59 133 cyclone/tosymbol;
 #X obj 335 133 cyclone/tosymbol;
 #X obj 101 244 cyclone/tosymbol;
@@ -683,7 +187,7 @@ un ou plusieurs arrays;
 #X obj 403 137 hsl 295 40 0 127 0 1 \$0-A \$0-B 0sec 254 35 1 9 -188398
 -1728 -1 13000 0;
 #N canvas 0 22 844 357 (subpatch) 0;
-#X array A9897 10401 float 2;
+#X array A9256 10401 float 2;
 #X coords 0 1 10401 -1 300 40 2 0 0;
 #X restore 400 137 graph;
 #X obj 624 108 cnv 10 20 10 empty empty PlayGrain2. 1 5 1 14 -262144
@@ -1665,16 +1169,16 @@ un ou plusieurs arrays;
 #X obj 59 154 t a a b a;
 #X text 23 66 cosine window;
 #N canvas 0 22 450 300 (subpatch) 0;
-#X array B9880 515 float 0;
+#X array B9212 515 float 0;
 #X coords 0 1 514 -1 50 35 1;
 #X restore 39 35 graph;
-#X msg 101 222 A9880;
+#X msg 101 222 A9212;
 #X msg 321 244 512;
 #X msg 212 309 \; \$1 cosinesum \$2 0.5 -0.5;
 #X obj 212 188 t b b;
 #X obj 212 270 pack s f;
-#X msg 212 222 B9880;
-#X msg 418 222 B9880;
+#X msg 212 222 B9212;
+#X msg 418 222 B9212;
 #X obj 59 133 cyclone/tosymbol;
 #X obj 335 133 cyclone/tosymbol;
 #X obj 101 244 cyclone/tosymbol;
@@ -1731,7 +1235,7 @@ un ou plusieurs arrays;
 #X obj 403 137 hsl 295 40 0 127 0 1 \$0-A \$0-B 0sec 254 35 1 9 -188398
 -1728 -1 19000 0;
 #N canvas 0 22 844 357 (subpatch) 0;
-#X array A9880 845103 float 2;
+#X array A9212 845103 float 2;
 #X coords 0 1 845103 -1 300 40 2 0 0;
 #X restore 400 137 graph;
 #X obj 618 108 cnv 10 20 10 empty empty PlayGrain3. 1 5 1 14 -262144
@@ -2566,16 +2070,16 @@ un ou plusieurs arrays;
 #X obj 59 154 t a a b a;
 #X text 23 66 cosine window;
 #N canvas 0 22 450 300 (subpatch) 0;
-#X array B9229 515 float 0;
+#X array B8759 515 float 0;
 #X coords 0 1 514 -1 50 35 1;
 #X restore 39 35 graph;
-#X msg 101 222 A9229;
+#X msg 101 222 A8759;
 #X msg 321 244 512;
 #X msg 212 309 \; \$1 cosinesum \$2 0.5 -0.5;
 #X obj 212 188 t b b;
 #X obj 212 270 pack s f;
-#X msg 212 222 B9229;
-#X msg 418 222 B9229;
+#X msg 212 222 B8759;
+#X msg 418 222 B8759;
 #X obj 59 133 cyclone/tosymbol;
 #X obj 335 133 cyclone/tosymbol;
 #X obj 101 244 cyclone/tosymbol;
@@ -2632,7 +2136,7 @@ un ou plusieurs arrays;
 #X obj 403 137 hsl 295 40 0 127 0 1 \$0-A \$0-B 0sec 254 35 1 9 -188398
 -1728 -1 0 0;
 #N canvas 0 22 844 357 (subpatch) 0;
-#X array A9229 845103 float 2;
+#X array A8759 845103 float 2;
 #X coords 0 1 845103 -1 300 40 2 0 0;
 #X restore 400 137 graph;
 #X obj 573 108 cnv 10 20 10 empty empty PlayGrain3. 1 5 1 14 -262144
@@ -7093,7 +6597,7 @@ max_delay grain_length envelope_sharpness;
 #X coords 0 -1 1 1 176 107 2 200 100;
 #X restore 70 442 pd SFR-granulator~;
 #X text 318 553 ExMM202-Particlechamber;
-#X text 692 208 ExMM203-bubbler;
+#X text 711 208 ExMM203-bubbler;
 #N canvas 138 50 856 720 ARGO 0;
 #X obj 301 251 cnv 20 142 196 empty ColorForm munger. 78 4 1 14 -188398
 -1 1.04858e+06;
@@ -7650,7 +7154,7 @@ that;
 #X coords 0 -1 1 1 144 198 1 300 250;
 #X restore 320 12 pd ARGO;
 #X text 318 208 ExMM208-munger;
-#X obj 1011 538 cnv 15 34 16 empty empty empty 20 12 0 14 -24198 -66577
+#X obj 949 537 cnv 15 34 16 empty empty empty 20 12 0 14 -24198 -66577
 0;
 #N canvas 353 174 333 161 ?? 0;
 #X obj 17 89 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
@@ -7672,7 +7176,7 @@ that;
 ;
 #X obj 20 42 pddp/pddplink https://github.com/gerardparesys/ARGOPd
 ;
-#X restore 1011 538 pd ??;
+#X restore 949 537 pd ??;
 #X obj 469 50 cnv 15 210 130 empty empty empty 20 12 0 14 -4033 -66577
 0;
 #X text 471 75 le même dossier que le patch:;
@@ -7685,3 +7189,475 @@ that;
 #X text 524 136 disis_munger~.pd_darwin;
 #X text 524 146 disis_munger~.dll;
 #X text 475 163 cf ExMM208-munger;
+#N canvas 259 24 819 651 ARGO 0;
+#X obj 301 251 cnv 20 142 172 empty ColorForm +bubbler. 75 10 1 14
+-188398 -1 1.04858e+06;
+#X obj 301 419 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 433 419 cnv 4 10 4 empty empty empty 0 0 0 9 -1 -66577 0;
+#X obj 267 152 inlet~;
+#X obj 424 152 inlet~;
+#X obj 304 627 outlet~;
+#X obj 451 627 outlet~;
+#X obj 303 274 hsl 139 12 1 10000 1 1 \$0-A ColorForm Time=832ms 3
+6 1 9 -208064 -262144 -1 10076 0;
+#X obj 43 176 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 433 87 466 216 Help 0;
+#X obj 8 67 cnv 15 440 130 empty empty empty 20 12 0 14 -228856 -66577
+0;
+#N canvas 233 220 1035 558 bubbler 0;
+#X text 19 160 time \, feedback \, filter freq \, resonance- these
+are identical in function to the same parameters in "+delay~". The
+only exception is that the range of time is from 20 milliseconds to
+10 seconds.;
+#X text 17 233 time variation - this will select a random delay time
+for each grain from time - (time vari * time) to time + (time vari
+* time). This control has a range from 0% to 100%.;
+#X text 15 294 density - this controls the number of grains present
+at any given moment. It varies from 0% to 200%. At 100% \, grains are
+created at a rate so that two grains are present (on average). This
+is done because each grain is enveloped \, and it is necessary to overlap
+grains for smooth audio.;
+#X text 17 391 grain size - this is the size of each grain as a percentage
+of the delay time. This control varies from 0% to 50%.;
+#X text 521 27 g start vari - this control varies from 0% to 100%.
+At 0% grains will be created at a fixed frequency (grain rate) dependent
+on the grain size and density \, for synchronous granular synthesis.
+When the g start vari is increased \, the grain start time will deviate
+from this fixed frequency.;
+#X text 519 280 grain reversal - this will randomly reverse the grain.
+At 0% \, none of the grains will be reversed \, at 100% \, all of the
+grains will be reversed. This is especially effective when the grain
+size and delay time is large.;
+#X text 522 230 octave variation - this will add a random octave pitch
+shift to each grain.;
+#X text 20 31 This is a granular delay. That is \, small or large bits
+of sound (grains) are read from the delay \, and are recombined before
+sending to the output and feedback. The grains of sound are given smooth
+envelopes \, so that they can be recombined without transient distortion.
+The start of the grain \, the delay in each grain \, the playback direction
+and the pitch of each grain can be randomized.;
+#X text 16 437 Dry/Delay volume-controls the volume of the original
+signal (dry) or the delayed signal (delay);
+#X text 16 480 Mix-controls the ratio of dry-delay in the output. Ranges
+from 0 to 100% (0% all dry \, 100% all delay). Adjust mix \, then adjust
+volumes as desired.;
+#X text 17 5 +bubbler~;
+#X text 522 127 pitch shift/octave - these controls give each grain
+a pitch shift. Pitch shifting is controlled via MIDI input to the right
+inlet \, given as a note/velocity pair. When multiple MIDI notes are
+held \, the pitch shift values are randomly selected from the collection
+for each grain. The octave value is added to the pitch shift.;
+#X text 520 362 12tet/just - this button sets the pitch shifting to
+12 tone equal temperament \, or to just intonation.;
+#X restore 34 138 pd bubbler details;
+#X text 31 81 This is a delay using granular synthesis. Small clips
+(grains) of audio are read and re-ordered before being sent to the
+delay output. Various parameters such as playback direction and pitch
+of each grain can be controlled.;
+#X text 11 67 Citation +bubbler;
+#X text 32 158 Tom Erbe 2012;
+#X text 9 27 a pd external in soundhack-0.0.8-pd;
+#X text 8 2 MM +bubbler;
+#X text 9 15 Based on Tom Erbe's work: "+bubbler~";
+#X obj 32 172 pddp/pddplink http://music.ucsd.edu/b/Tom+Erbe;
+#X obj 10 42 pddp/pddplink http://www.soundhack.com/freeware/;
+#X restore 50 183 pd Help;
+#X obj 300 382 hradio 12 1 1 9 \$0-A ColorForm 0Oct 110 6 1 10 -208064
+-1 -1 4;
+#N canvas 406 211 214 168 label 0;
+#X msg 38 108 label \$1;
+#X obj 38 14 inlet;
+#X obj 38 136 outlet;
+#X obj 38 40 - 4;
+#X obj 126 135 outlet;
+#X obj 38 64 cyclone/sprintf %dOct;
+#X obj 38 86 symbol;
+#X connect 0 0 2 0;
+#X connect 1 0 3 0;
+#X connect 3 0 4 0;
+#X connect 3 0 5 0;
+#X connect 5 0 6 0;
+#X connect 6 0 0 0;
+#X restore 193 363 pd label;
+#N canvas 251 216 292 221 label 0;
+#X msg 119 118 label \$1;
+#X obj 119 46 inlet;
+#X obj 118 146 outlet;
+#X obj 119 74 cyclone/sprintf Time=%dms;
+#X obj 119 96 symbol;
+#X connect 0 0 2 0;
+#X connect 1 0 3 0;
+#X connect 3 0 4 0;
+#X connect 4 0 0 0;
+#X restore 189 188 pd label;
+#X obj 303 406 hsl 139 12 0 100 0 1 \$0-A ColorAmpli Effect=50% 0 7
+1 9 -261299 -262144 -1 6900 0;
+#N canvas 560 290 286 223 DirEffect 0;
+#X obj 19 -3 inlet~;
+#X obj 232 -3 inlet~;
+#X obj 68 -3 inlet~;
+#X obj 183 -3 inlet~;
+#X obj 19 160 outlet~;
+#X obj 183 160 outlet~;
+#X text 27 -22 Dir1;
+#X text 190 -22 Dir2;
+#X text 230 -22 Effect2;
+#X text 66 -22 Effect1;
+#X obj 183 113 *~;
+#X obj 68 113 *~;
+#X obj 232 113 *~;
+#X obj 130 56 - 1;
+#X obj 130 82 * -1;
+#X obj 19 113 *~;
+#X obj 130 -3 inlet;
+#X obj 130 21 / 100;
+#X text 127 -22 0...100;
+#X connect 0 0 15 0;
+#X connect 1 0 12 0;
+#X connect 2 0 11 0;
+#X connect 3 0 10 0;
+#X connect 10 0 5 0;
+#X connect 11 0 4 0;
+#X connect 12 0 5 0;
+#X connect 13 0 14 0;
+#X connect 14 0 10 1;
+#X connect 14 0 15 1;
+#X connect 15 0 4 0;
+#X connect 16 0 17 0;
+#X connect 17 0 13 0;
+#X connect 17 0 11 1;
+#X connect 17 0 12 1;
+#X restore 304 601 pd DirEffect;
+#X f 25;
+#X obj 301 251 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 433 251 cnv 4 10 4 empty empty empty 0 0 0 9 -1 -66577 0;
+#X obj 318 250 bng 12 50 50 0 \$0-A \$0-B Init 14 6 1 10 -262144 -1
+-1;
+#X obj 303 298 hsl 139 12 0 200 0 1 \$0-A ColorForm Feedback=0% 3 6
+1 9 -261299 -262144 -1 0 0;
+#N canvas 406 211 292 221 label 0;
+#X msg 119 118 label \$1;
+#X obj 119 46 inlet;
+#X obj 119 146 outlet;
+#X obj 119 74 cyclone/sprintf Feedback=%d%%;
+#X obj 119 96 symbol;
+#X connect 0 0 2 0;
+#X connect 1 0 3 0;
+#X connect 3 0 4 0;
+#X connect 4 0 0 0;
+#X restore 189 228 pd label;
+#X obj 318 262 bng 12 50 50 0 \$0-A \$0-B Silence 14 6 1 10 -262144
+-1 -1;
+#X obj 344 538 t a;
+#X msg 87 446 timeVariation \$1;
+#X msg 34 446 time \$1;
+#X msg 569 376 20000;
+#X msg 512 348 0;
+#X msg 594 348 832.6;
+#X msg 616 376 50;
+#X msg 540 376 80;
+#X msg 553 348 10;
+#X obj 501 309 t b b b b b b b b b b;
+#X msg 638 348 4;
+#X obj 303 286 hsl 139 12 0 100 0 1 \$0-A ColorForm TimeVariation=50%
+3 6 1 9 -208064 -262144 -1 6900 0;
+#N canvas 285 316 292 221 label 0;
+#X msg 119 118 label \$1;
+#X obj 119 46 inlet;
+#X obj 118 146 outlet;
+#X obj 119 74 cyclone/sprintf TimeVariation=%d%%;
+#X obj 119 96 symbol;
+#X connect 0 0 2 0;
+#X connect 1 0 3 0;
+#X connect 3 0 4 0;
+#X connect 4 0 0 0;
+#X restore 189 208 pd label;
+#X msg 195 446 feedback \$1;
+#X msg 360 446 resonance \$1;
+#X msg 271 446 filterFreq \$1;
+#X obj 303 310 hsl 139 12 20 20000 1 1 \$0-A ColorForm FilterFreq=20000Hz
+3 6 1 9 -188398 -262144 -1 13800 0;
+#N canvas 406 211 292 221 label 0;
+#X msg 119 118 label \$1;
+#X obj 119 46 inlet;
+#X obj 119 146 outlet;
+#X obj 119 74 cyclone/sprintf FilterFreq=%dHz;
+#X obj 119 96 symbol;
+#X connect 0 0 2 0;
+#X connect 1 0 3 0;
+#X connect 3 0 4 0;
+#X connect 4 0 0 0;
+#X restore 190 248 pd label;
+#X obj 303 322 hsl 139 12 0 100 0 1 \$0-A ColorForm FilterReso=50%
+3 6 1 9 -188398 -262144 -1 6900 0;
+#N canvas 406 211 292 221 label 0;
+#X msg 119 118 label \$1;
+#X obj 119 46 inlet;
+#X obj 119 146 outlet;
+#X obj 119 74 cyclone/sprintf FilterReso=%d%%;
+#X obj 119 96 symbol;
+#X connect 0 0 2 0;
+#X connect 1 0 3 0;
+#X connect 3 0 4 0;
+#X connect 4 0 0 0;
+#X restore 190 267 pd label;
+#X obj 80 308 delay 1000;
+#X obj 61 220 t b b b;
+#X msg 34 473 density \$1;
+#X msg 105 473 grainSize \$1;
+#X msg 191 473 grainStartVariation \$1;
+#X obj 303 334 hsl 139 12 0 200 0 1 \$0-A ColorForm GrainDensity=80%
+3 6 1 9 -212212 -262144 -1 5520 0;
+#N canvas 251 216 292 221 label 0;
+#X msg 119 118 label \$1;
+#X obj 119 46 inlet;
+#X obj 118 146 outlet;
+#X obj 119 74 cyclone/sprintf GrainDensity=%d%%;
+#X obj 119 96 symbol;
+#X connect 0 0 2 0;
+#X connect 1 0 3 0;
+#X connect 3 0 4 0;
+#X connect 4 0 0 0;
+#X restore 190 286 pd label;
+#X obj 303 346 hsl 139 12 0 50 0 1 \$0-A ColorForm GrainSize=10% 3
+6 1 9 -212212 -262144 -1 2760 0;
+#N canvas 251 216 292 221 label 0;
+#X msg 119 118 label \$1;
+#X obj 119 46 inlet;
+#X obj 118 146 outlet;
+#X obj 119 74 cyclone/sprintf GrainSize=%d%%;
+#X obj 119 96 symbol;
+#X connect 0 0 2 0;
+#X connect 1 0 3 0;
+#X connect 3 0 4 0;
+#X connect 4 0 0 0;
+#X restore 191 305 pd label;
+#X obj 303 358 hsl 139 12 0 100 0 1 \$0-A ColorForm GrainStart=0% 3
+6 1 9 -212212 -262144 -1 0 0;
+#N canvas 251 216 292 221 label 0;
+#X msg 119 118 label \$1;
+#X obj 119 46 inlet;
+#X obj 118 146 outlet;
+#X obj 120 74 cyclone/sprintf GrainStart=%d%%;
+#X obj 119 96 symbol;
+#X connect 0 0 2 0;
+#X connect 1 0 3 0;
+#X connect 3 0 4 0;
+#X connect 4 0 0 0;
+#X restore 191 324 pd label;
+#N canvas 251 216 292 221 label 0;
+#X msg 119 118 label \$1;
+#X obj 119 46 inlet;
+#X obj 118 146 outlet;
+#X obj 120 74 cyclone/sprintf Effect=%d%%;
+#X obj 119 96 symbol;
+#X connect 0 0 2 0;
+#X connect 1 0 3 0;
+#X connect 3 0 4 0;
+#X connect 4 0 0 0;
+#X restore 194 422 pd label;
+#X msg 35 497 octave \$1;
+#X msg 336 474 grainReversal \$1;
+#X msg 108 497 octaveVariation \$1;
+#X obj 303 370 hsl 139 12 0 100 0 1 \$0-A ColorForm GrainReversal=0%
+3 6 1 9 -212212 -262144 -1 0 0;
+#N canvas 251 216 292 221 label 0;
+#X msg 119 118 label \$1;
+#X obj 119 46 inlet;
+#X obj 118 146 outlet;
+#X obj 120 74 cyclone/sprintf GrainReversal=%d%%;
+#X obj 119 96 symbol;
+#X connect 0 0 2 0;
+#X connect 1 0 3 0;
+#X connect 3 0 4 0;
+#X connect 4 0 0 0;
+#X restore 193 342 pd label;
+#X obj 300 394 hradio 12 1 1 3 \$0-A ColorForm Var=0Oct 38 6 1 10 -208064
+-1 -1 0;
+#N canvas 406 211 214 168 label 0;
+#X msg 38 108 label \$1;
+#X obj 38 14 inlet;
+#X obj 38 136 outlet;
+#X obj 38 64 cyclone/sprintf Var=%dOct;
+#X obj 38 86 symbol;
+#X connect 0 0 2 0;
+#X connect 1 0 3 0;
+#X connect 3 0 4 0;
+#X connect 4 0 0 0;
+#X restore 194 383 pd label;
+#X obj 384 394 hradio 12 1 1 2 \$0-A ColorForm 12tet 26 6 1 10 -208064
+-1 -1 0;
+#N canvas 539 257 201 248 label 0;
+#X msg 30 136 label \$1;
+#X obj 38 14 inlet;
+#X obj 30 164 outlet;
+#X obj 38 37 select 0 1;
+#X obj 112 164 outlet;
+#X msg 78 72 just;
+#X msg 38 71 12tet;
+#X obj 30 114 symbol;
+#X connect 0 0 2 0;
+#X connect 1 0 3 0;
+#X connect 3 0 6 0;
+#X connect 3 1 5 0;
+#X connect 5 0 4 0;
+#X connect 5 0 7 0;
+#X connect 6 0 4 0;
+#X connect 6 0 7 0;
+#X connect 7 0 0 0;
+#X restore 194 402 pd label;
+#X obj 366 251 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 348 152 inlet;
+#X text 352 136 MIDI;
+#X msg 126 344 0;
+#X obj 80 242 delay 100;
+#X obj 137 263 * 2;
+#X msg 36 341 50;
+#X msg 491 402 time 100;
+#X obj 486 152 loadbang;
+#X obj 486 181 delay 100;
+#X obj 306 218 delay 100;
+#X text 549 181 pour un effet stereo;
+#X msg 445 479 60 0 \, 61 0 \, 62 0 \, 63 0 \, 64 0 \, 65 0 \, 66 0
+\, 67 0 \, 68 0 \, 69 0 \, 70 0 \, 71 0;
+#X msg 445 440 60 1 \, 61 1 \, 62 1 \, 63 1 \, 64 1 \, 65 1 \, 66 1
+\, 67 1 \, 68 1 \, 69 1 \, 70 1 \, 71 1;
+#X obj 486 538 t a;
+#X obj 137 285 max 300;
+#X text 435 235 12 11 2019;
+#X obj 451 570 soundhack/+bubbler~;
+#X obj 316 570 soundhack/+bubbler~;
+#X obj 762 607 cnv 15 34 16 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 353 174 333 161 ?? 0;
+#X obj 17 89 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 17 12 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14
+-4033 -1 1.04858e+06;
+#X obj 40 32 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 78 32 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 20 54 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 22 126 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 22 102 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X text 22 90 Construit sous / Build under Pd-0.49...;
+#X text 21 114 or Pd 0.43.4-extended;
+#X obj 20 66 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X obj 20 42 pddp/pddplink https://github.com/gerardparesys/ARGOPd
+;
+#X restore 762 607 pd ??;
+#X connect 3 0 14 0;
+#X connect 3 0 80 0;
+#X connect 4 0 14 3;
+#X connect 4 0 79 0;
+#X connect 7 0 12 0;
+#X connect 7 0 23 0;
+#X connect 7 0 67 0;
+#X connect 10 0 11 0;
+#X connect 11 0 10 0;
+#X connect 11 1 53 0;
+#X connect 12 0 7 0;
+#X connect 13 0 14 2;
+#X connect 13 0 52 0;
+#X connect 14 0 5 0;
+#X connect 14 1 6 0;
+#X connect 17 0 30 0;
+#X connect 18 0 19 0;
+#X connect 18 0 34 0;
+#X connect 19 0 18 0;
+#X connect 20 0 42 0;
+#X connect 21 0 79 0;
+#X connect 21 0 80 0;
+#X connect 22 0 21 0;
+#X connect 23 0 21 0;
+#X connect 24 0 37 0;
+#X connect 25 0 18 0;
+#X connect 25 0 50 0;
+#X connect 25 0 56 0;
+#X connect 25 0 58 0;
+#X connect 25 0 60 0;
+#X connect 26 0 7 0;
+#X connect 27 0 32 0;
+#X connect 27 0 39 0;
+#X connect 27 0 13 0;
+#X connect 28 0 46 0;
+#X connect 29 0 48 0;
+#X connect 30 0 74 0;
+#X connect 30 1 75 0;
+#X connect 30 2 25 0;
+#X connect 30 3 28 0;
+#X connect 30 4 29 0;
+#X connect 30 6 24 0;
+#X connect 30 7 26 0;
+#X connect 30 8 27 0;
+#X connect 30 9 31 0;
+#X connect 31 0 10 0;
+#X connect 32 0 33 0;
+#X connect 32 0 22 0;
+#X connect 33 0 32 0;
+#X connect 34 0 21 0;
+#X connect 35 0 21 0;
+#X connect 36 0 21 0;
+#X connect 37 0 38 0;
+#X connect 37 0 36 0;
+#X connect 38 0 37 0;
+#X connect 39 0 40 0;
+#X connect 39 0 35 0;
+#X connect 40 0 39 0;
+#X connect 41 0 7 0;
+#X connect 41 0 18 0;
+#X connect 42 1 66 0;
+#X connect 42 2 65 0;
+#X connect 43 0 21 0;
+#X connect 44 0 21 0;
+#X connect 45 0 21 0;
+#X connect 46 0 47 0;
+#X connect 46 0 43 0;
+#X connect 47 0 46 0;
+#X connect 48 0 49 0;
+#X connect 48 0 44 0;
+#X connect 49 0 48 0;
+#X connect 50 0 51 0;
+#X connect 50 0 45 0;
+#X connect 51 0 50 0;
+#X connect 52 0 13 0;
+#X connect 53 0 21 0;
+#X connect 54 0 21 0;
+#X connect 55 0 21 0;
+#X connect 56 0 57 0;
+#X connect 56 0 54 0;
+#X connect 57 0 56 0;
+#X connect 58 0 59 0;
+#X connect 58 0 55 0;
+#X connect 59 0 58 0;
+#X connect 60 0 61 0;
+#X connect 61 0 60 0;
+#X connect 61 1 21 0;
+#X connect 63 0 76 0;
+#X connect 65 0 34 0;
+#X connect 66 0 68 0;
+#X connect 66 0 41 0;
+#X connect 67 0 77 0;
+#X connect 68 0 23 0;
+#X connect 69 0 79 0;
+#X connect 70 0 71 0;
+#X connect 71 0 69 0;
+#X connect 71 0 72 0;
+#X connect 72 0 7 0;
+#X connect 74 0 76 0;
+#X connect 75 0 76 0;
+#X connect 76 0 79 1;
+#X connect 76 0 80 1;
+#X connect 77 0 41 1;
+#X connect 79 0 14 4;
+#X connect 80 0 14 1;
+#X coords 0 -1 1 1 144 174 1 300 250;
+#X restore 713 36 pd ARGO;
