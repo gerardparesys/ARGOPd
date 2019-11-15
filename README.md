@@ -1,6 +1,8 @@
 # ARGOPd
 A collection of patches for Pure Data
 
+![ExMM36d-GEMDetectMovement.png](ExMM36d-GEMDetectMovement.png)
+
 ARGOPd is made of real-time sound and visual synthesis modules (MM) and patches (ExMM).
 
 It runs on Pd Vanilla 0.47 or later.  
