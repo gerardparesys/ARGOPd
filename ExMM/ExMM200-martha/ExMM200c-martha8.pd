@@ -7,9 +7,9 @@
 #X obj 101 101 cnv 10 95 41 \$0-A \$0-B empty 20 12 0 14 -1 -1 1.04858e+06
 ;
 #X obj 101 109 nbx 4 12 0 1e+37 0 0 \$0 \$0-ReceiveCpuPeak CPUPeak
-45 7 1 11 -24198 -1 -24198 12 256;
+45 7 1 11 -24198 -1 -24198 14 256;
 #X obj 101 122 nbx 4 12 0 1e+37 0 0 \$0 \$0-ReceiveCpuMean CPUMean
-45 7 1 11 -24198 -1 -24198 12.75 256;
+45 7 1 11 -24198 -1 -24198 12.32 256;
 #X obj 145 -55 cputime;
 #X obj 145 -76 t b b;
 #X text 188 24 (c) musil@iem.kug.ac.at;
@@ -354,8 +354,8 @@ au changement brusque de frequence;
 0;
 #X obj 201 165 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
 ;
-#X obj 203 117 hsl 129 12 0 128 0 1 \$0-A ColorTime B7 0 7 1 9 -208064
--1 -1 11900 0;
+#X obj 203 117 hsl 129 12 0 128 0 1 \$0-A ColorTime B5 0 7 1 9 -208064
+-1 -1 9500 0;
 #X obj 246 69 t b f;
 #X obj 202 143 cnv 6 2 2 empty ColorForm Decay 0 4 1 9 -262144 -1 1.04858e+06
 ;
@@ -520,9 +520,9 @@ au changement brusque de frequence;
 #X coords 0 -1 1 1 134 70 2 200 100;
 #X restore 149 188 pd ARGO;
 #X obj 149 165 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 119 256;
+-262144 -1 -1 95 256;
 #X obj 152 143 hsl 256 15 0 127 0 1 empty empty empty -2 -8 0 10 -257983
--1 -1 23894 0;
+-1 -1 19075 0;
 #N canvas 390 86 605 378 ARGO 0;
 #X obj 201 101 cnv 20 131 55 empty ColorForm Alea. 98 8 1 14 -261476
 -1 1.04858e+06;
@@ -546,8 +546,8 @@ N-1.;
 0;
 #X obj 201 182 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
 0;
-#X obj 203 163 hsl 128 12 0 127 0 1 \$0-A ColorForm Out=119 0 7 1 9
--262144 -1 -1 11900 0;
+#X obj 203 163 hsl 128 12 0 127 0 1 \$0-A ColorForm Out=95 0 7 1 9
+-262144 -1 -1 9500 0;
 #N canvas 891 377 212 161 labelX 0;
 #X msg 15 103 label \$1;
 #X obj 14 36 expr (int(1000 * $f1) / 1000) \;;
@@ -1105,9 +1105,9 @@ outputs a value.;
 -1;
 #X obj 303 142 hsl 127 12 -63 63 0 1 \$0-A ColorForm Transpo=0 0 6
 1 9 -208064 -1 -1 6300 0;
-#X text 462 410 Creation arguments;
-#X text 461 422 \$1: -npeak value used for the attached sigmund~;
-#X text 461 435 \$2: desired number of voices in the oscillator bank
+#X text 498 414 Creation arguments;
+#X text 497 426 \$1: -npeak value used for the attached sigmund~;
+#X text 497 439 \$2: desired number of voices in the oscillator bank
 (how many can your CPU handle?);
 #X obj 719 247 hradio 15 1 1 4 empty empty empty 0 -8 0 10 -262144
 -1 -1 0;
@@ -1226,8 +1226,6 @@ outputs a value.;
 #X text 390 510 Right;
 #X text 259 496 Out Audio;
 #X text 381 496 Out Audio;
-#X obj 375 414 martha~ 8 8;
-#X obj 198 414 martha~ 8 8;
 #X obj 303 118 hsl 127 12 200 20000 1 1 \$0-A ColorForm FMax=13379Hz
 0 6 1 9 -208064 -1 -1 11500 0;
 #X msg 519 205 maxfreq \$1;
@@ -1482,12 +1480,14 @@ oscillators. This consumes a lot of CPU. Choose martha8 if consumption
 #X obj 20 42 pddp/pddplink https://github.com/gerardparesys/ARGOPd
 ;
 #X restore 859 480 pd ??;
-#X text 713 99 martha;
 #X text 436 98 27 11 2019;
+#X obj 198 414 martha~/martha~ 8 8;
+#X obj 375 414 martha~/martha~ 8 8;
+#X text 713 99 martha~;
 #X connect 3 0 10 0;
-#X connect 3 0 63 0;
+#X connect 3 0 61 0;
 #X connect 4 0 10 1;
-#X connect 4 0 64 0;
+#X connect 4 0 62 0;
 #X connect 8 0 30 0;
 #X connect 8 0 31 1;
 #X connect 8 0 32 0;
@@ -1496,30 +1496,30 @@ oscillators. This consumes a lot of CPU. Choose martha8 if consumption
 #X connect 10 1 6 0;
 #X connect 11 0 22 0;
 #X connect 11 0 46 0;
-#X connect 11 0 73 0;
+#X connect 11 0 71 0;
 #X connect 11 0 47 0;
-#X connect 11 0 65 0;
+#X connect 11 0 63 0;
+#X connect 11 0 70 0;
 #X connect 11 0 72 0;
-#X connect 11 0 74 0;
 #X connect 12 0 20 0;
 #X connect 12 0 21 0;
-#X connect 16 0 75 0;
-#X connect 19 0 63 0;
-#X connect 19 0 64 0;
+#X connect 16 0 73 0;
+#X connect 19 0 61 0;
+#X connect 19 0 62 0;
 #X connect 20 0 12 0;
-#X connect 21 0 58 1;
-#X connect 21 0 59 1;
+#X connect 21 0 85 1;
+#X connect 21 0 86 1;
 #X connect 22 0 12 0;
 #X connect 22 0 8 0;
-#X connect 22 0 70 0;
-#X connect 23 0 58 1;
-#X connect 23 0 59 1;
+#X connect 22 0 68 0;
+#X connect 23 0 85 1;
+#X connect 23 0 86 1;
 #X connect 24 0 25 0;
 #X connect 24 0 23 0;
 #X connect 25 0 24 0;
 #X connect 26 0 27 0;
-#X connect 29 0 58 1;
-#X connect 29 0 59 1;
+#X connect 29 0 85 1;
+#X connect 29 0 86 1;
 #X connect 30 0 8 0;
 #X connect 31 0 29 0;
 #X connect 32 0 31 0;
@@ -1529,53 +1529,53 @@ oscillators. This consumes a lot of CPU. Choose martha8 if consumption
 #X connect 34 0 33 0;
 #X connect 35 0 37 0;
 #X connect 36 0 35 1;
-#X connect 37 0 58 1;
-#X connect 37 0 59 1;
-#X connect 38 0 79 0;
-#X connect 39 0 58 1;
-#X connect 39 0 59 1;
+#X connect 37 0 85 1;
+#X connect 37 0 86 1;
+#X connect 38 0 77 0;
+#X connect 39 0 85 1;
+#X connect 39 0 86 1;
 #X connect 40 0 39 0;
 #X connect 41 0 40 1;
-#X connect 43 0 58 1;
-#X connect 43 0 59 1;
+#X connect 43 0 85 1;
+#X connect 43 0 86 1;
 #X connect 44 0 45 0;
 #X connect 45 0 44 0;
 #X connect 45 1 19 0;
-#X connect 46 0 58 1;
-#X connect 46 0 59 1;
+#X connect 46 0 85 1;
+#X connect 46 0 86 1;
 #X connect 47 0 9 0;
 #X connect 47 0 33 0;
-#X connect 47 0 79 0;
-#X connect 58 0 10 4;
-#X connect 59 0 10 3;
-#X connect 60 0 61 0;
-#X connect 60 0 62 0;
-#X connect 61 0 63 0;
-#X connect 61 0 64 0;
-#X connect 62 0 60 0;
-#X connect 63 0 59 0;
-#X connect 64 0 58 0;
-#X connect 65 0 60 0;
-#X connect 66 0 58 1;
-#X connect 66 0 59 1;
-#X connect 67 0 58 1;
-#X connect 67 0 59 1;
-#X connect 68 0 69 0;
-#X connect 68 0 67 0;
-#X connect 69 0 68 0;
-#X connect 70 0 66 0;
-#X connect 71 0 58 1;
-#X connect 71 0 59 1;
-#X connect 72 0 24 0;
-#X connect 73 0 44 0;
-#X connect 74 0 68 0;
-#X connect 75 0 58 1;
-#X connect 75 0 59 1;
-#X connect 78 0 63 0;
-#X connect 78 0 64 0;
-#X connect 79 0 36 0;
-#X connect 79 0 38 0;
-#X connect 79 0 35 0;
+#X connect 47 0 77 0;
+#X connect 58 0 59 0;
+#X connect 58 0 60 0;
+#X connect 59 0 61 0;
+#X connect 59 0 62 0;
+#X connect 60 0 58 0;
+#X connect 61 0 85 0;
+#X connect 62 0 86 0;
+#X connect 63 0 58 0;
+#X connect 64 0 85 1;
+#X connect 64 0 86 1;
+#X connect 65 0 85 1;
+#X connect 65 0 86 1;
+#X connect 66 0 67 0;
+#X connect 66 0 65 0;
+#X connect 67 0 66 0;
+#X connect 68 0 64 0;
+#X connect 69 0 85 1;
+#X connect 69 0 86 1;
+#X connect 70 0 24 0;
+#X connect 71 0 44 0;
+#X connect 72 0 66 0;
+#X connect 73 0 85 1;
+#X connect 73 0 86 1;
+#X connect 76 0 61 0;
+#X connect 76 0 62 0;
+#X connect 77 0 36 0;
+#X connect 77 0 38 0;
+#X connect 77 0 35 0;
+#X connect 85 0 10 3;
+#X connect 86 0 10 4;
 #X coords 0 -1 1 1 132 132 1 300 100;
 #X restore 150 314 pd ARGO;
 #X obj 322 216 cnv 15 100 30 empty empty empty 20 12 0 14 -24198 -66577
@@ -1610,8 +1610,8 @@ oscillators. This consumes a lot of CPU. Choose martha8 if consumption
 #X obj 20 42 pddp/pddplink https://github.com/gerardparesys/ARGOPd
 ;
 #X restore 395 650 pd ??;
-#X text 326 298 martha;
 #X text 326 288 zexy;
+#X text 326 298 martha~;
 #X connect 5 0 4 0;
 #X connect 13 0 20 0;
 #X connect 13 1 20 1;
