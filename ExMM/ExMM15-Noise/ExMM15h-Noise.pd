@@ -1,0 +1,479 @@
+#N canvas 419 23 736 384 10;
+#X obj 85 353 dac~ 1 2;
+#X text 26 179 Niveau general ->;
+#X text 32 190 General level ->;
+#X obj 23 121 switch~;
+#N canvas 608 166 228 173 ARGOnOff 0;
+#X obj 100 100 tgl 18 1 \$0-SendOnOff \$0-ReceiveOnOff On/Off 20 11
+1 14 -4033 -1 -1 1 1;
+#X obj 99 10 loadbang;
+#X msg 99 33 \; pd dsp 1;
+#X obj 100 129 outlet;
+#X text -50 99 Audio On/Off du patch ->;
+#X text -22 45 Audio General On ->;
+#X text 107 82 17 3 2010;
+#X connect 0 0 3 0;
+#X connect 1 0 2 0;
+#X coords 0 -1 1 1 65 18 2 100 100;
+#X restore 23 103 pd ARGOnOff;
+#X text 28 87 V;
+#X text 28 80 |;
+#X text 16 69 On/Off Patch;
+#X text 46 81 (Audio);
+#N canvas 175 68 374 396 ARGO 0;
+#X obj 101 101 cnv 20 116 34 empty ColorAmpli empty 20 12 0 14 -261299
+-1 1.04858e+06;
+#X obj 85 353 outlet~;
+#X obj 157 104 cnv 10 20 10 empty ColorAmpli Ampli. 1 5 1 14 -261299
+-1 1.04858e+06;
+#X obj 85 43 inlet~;
+#X obj 85 330 *~;
+#X obj 115 118 hsl 101 12 -80 20 0 1 \$0-A ColorAmpli 0dB 0 7 1 9 -261299
+-1 -1 8000 0;
+#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 101 131 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X msg -42 139 label \$1;
+#X text 148 194 -> 0.0001..10 = -80dB..20dB;
+#X obj 142 175 expr (pow(10 \, $f1 / 20));
+#X obj 142 215 sel 0.0001;
+#X msg 100 244 0;
+#X obj 100 118 tgl 12 1 \$0-A \$0-B Mute 2 -5 1 9 -261299 -1 -1 0 1
+;
+#X obj 99 146 select 0 1;
+#X obj 140 295 line~;
+#X obj 140 275 pack 0 10;
+#X msg 123 74 set 0;
+#X obj -42 93 cyclone/sprintf %ddB;
+#X obj -42 116 cyclone/tosymbol;
+#X obj 261 342 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 336 174 309 137 ?. 0;
+#X obj 3 83 cnv 15 300 46 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 3 6 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 26 26 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 64 26 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 7 37 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X text 8 85 Construit sous / Build under Pd 0.43.4-extended;
+#X obj 8 111 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 7 50 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X text 7 98 or Pd-0.46-7 + deken;
+#X restore 265 346 pd ?.;
+#X text 228 110 17 3 2016;
+#X connect 3 0 4 0;
+#X connect 4 0 1 0;
+#X connect 5 0 10 0;
+#X connect 5 0 18 0;
+#X connect 8 0 5 0;
+#X connect 10 0 11 0;
+#X connect 11 0 12 0;
+#X connect 11 1 16 0;
+#X connect 11 1 17 0;
+#X connect 12 0 16 0;
+#X connect 12 0 19 0;
+#X connect 13 0 14 0;
+#X connect 14 0 5 0;
+#X connect 14 1 12 0;
+#X connect 15 0 4 1;
+#X connect 16 0 15 0;
+#X connect 17 0 13 0;
+#X connect 18 0 19 0;
+#X connect 19 0 8 0;
+#X coords 0 -1 1 1 118 36 1 100 100;
+#X restore 132 168 pd ARGO;
+#X obj 469 68 cnv 15 100 70 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#X text 492 70 library:;
+#X text 473 82 pddp;
+#X text 473 93 cyclone;
+#N canvas 432 42 236 269 ARGO 0;
+#X obj 101 104 cnv 30 37 130 empty ColorAmpli empty 20 12 0 14 -1 -258113
+0;
+#X obj 101 110 vu 8 120 \$0-B empty 0 0 1 11 -1 -4034 1 0;
+#X obj 74 34 inlet~;
+#X obj 10 33 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 300 65 442 264 Help 0;
+#X obj 12 48 cnv 15 400 150 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X text 16 50 Citation;
+#X text 28 67 peakamp~ tracks and outputs the absolute value of the
+peak amplitude of the incoming signal. It outputs when banged or using
+its own internal clock. The peak value is reset each time peakamp~
+outputs a value.;
+#X text 29 123 cyclone library;
+#X text 28 135 http://suita.chopin.edu.pl/~czaja/miXed/externs/cyclone.html
+;
+#X text 29 155 Voir doc Max/MSP MSP46ReferenceManual.pdf;
+#X text 18 14 MM-Vumetre;
+#X restore 17 39 pd Help;
+#N canvas 541 112 317 265 VuMetre 0;
+#X obj 48 19 inlet~;
+#X obj 41 54 *~;
+#X obj -25 132 snapshot~;
+#X obj -25 155 sqrt;
+#X obj -25 100 lop~ 10;
+#X obj -25 179 rmstodb;
+#X obj -88 19 loadbang;
+#X obj -25 202 - 100;
+#X obj 58 156 sqrt;
+#X obj 58 180 rmstodb;
+#X obj 58 203 - 100;
+#X obj -89 102 metro 200;
+#X obj -28 19 r SendFluid;
+#X obj 58 102 cyclone/peakamp~ 1000;
+#X obj -25 228 outlet;
+#X obj 58 227 outlet;
+#X connect 0 0 1 0;
+#X connect 0 0 1 1;
+#X connect 1 0 4 0;
+#X connect 1 0 13 0;
+#X connect 2 0 3 0;
+#X connect 3 0 5 0;
+#X connect 4 0 2 0;
+#X connect 5 0 7 0;
+#X connect 6 0 11 0;
+#X connect 7 0 14 0;
+#X connect 8 0 9 0;
+#X connect 9 0 10 0;
+#X connect 10 0 15 0;
+#X connect 11 0 2 0;
+#X connect 12 0 11 1;
+#X connect 13 0 8 0;
+#X restore 74 59 pd VuMetre;
+#X obj 172 211 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 336 174 309 137 ?. 0;
+#X obj 3 83 cnv 15 300 46 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 3 6 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 26 26 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 64 26 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 7 37 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X text 8 85 Construit sous / Build under Pd 0.43.4-extended;
+#X obj 8 111 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 7 50 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X text 7 98 or Pd-0.46-7 + deken;
+#X restore 176 215 pd ?.;
+#X text 127 87 3 3 2019;
+#X connect 2 0 5 0;
+#X connect 5 0 1 0;
+#X connect 5 1 1 1;
+#X coords 0 -1 1 1 39 135 2 100 100;
+#X restore 37 234 pd ARGO;
+#X obj 687 352 cnv 15 34 16 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 353 174 333 161 ?? 0;
+#X obj 17 89 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 17 12 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14
+-4033 -1 1.04858e+06;
+#X obj 40 32 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 78 32 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 20 54 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 22 126 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 22 102 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X text 22 90 Construit sous / Build under Pd-0.49...;
+#X text 21 114 or Pd 0.43.4-extended;
+#X obj 20 66 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X obj 20 42 pddp/pddplink https://github.com/gerardparesys/ARGOPd
+;
+#X restore 687 352 pd ??;
+#N canvas 763 87 323 347 ARGO 0;
+#X obj 101 101 cnv 20 104 34 empty ColorAmpli empty 20 12 0 14 -261299
+-1 1.04858e+06;
+#X obj 110 306 outlet~;
+#X obj 141 104 cnv 10 20 10 empty ColorAmpli Mix. 1 5 1 14 -261299
+-1 1.04858e+06;
+#X obj 86 75 inlet~;
+#X obj 179 75 inlet~;
+#X obj 86 272 *~;
+#X obj 103 118 hsl 101 12 -1 1 0 1 \$0-A ColorAmpli 1 0 7 1 9 -261299
+-1 -1 10000 0;
+#X msg -18 132 label \$1;
+#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 101 131 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 195 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 179 271 *~;
+#X obj 194 244 line~;
+#X obj 194 224 pack 0 10;
+#X obj 101 146 expr ($f1 + 1) / 2;
+#X obj 101 189 expr (1 - $f1);
+#X obj 101 245 line~;
+#X obj 101 225 pack 0 10;
+#X obj -19 109 cyclone/tosymbol;
+#X obj 227 292 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 336 174 309 137 ?. 0;
+#X obj 3 83 cnv 15 300 46 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 3 6 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 26 26 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 64 26 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 7 37 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X text 8 85 Construit sous / Build under Pd 0.43.4-extended;
+#X obj 8 111 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 7 50 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X text 7 98 or Pd-0.46-7 + deken;
+#X restore 231 296 pd ?.;
+#X text 212 99 6 3 2016;
+#X connect 3 0 5 0;
+#X connect 4 0 11 0;
+#X connect 5 0 1 0;
+#X connect 6 0 14 0;
+#X connect 6 0 18 0;
+#X connect 7 0 6 0;
+#X connect 11 0 1 0;
+#X connect 12 0 11 1;
+#X connect 13 0 12 0;
+#X connect 14 0 13 0;
+#X connect 14 0 15 0;
+#X connect 15 0 17 0;
+#X connect 16 0 5 1;
+#X connect 17 0 16 0;
+#X connect 18 0 7 0;
+#X coords 0 -1 1 1 106 36 1 100 100;
+#X restore 132 114 pd ARGO;
+#N canvas 92 120 736 429 ARGO 0;
+#X obj 234 116 rfft~;
+#X msg 30 71 slide 10 10;
+#X obj 234 8 inlet~;
+#X msg 10 98 slide 1 1;
+#X obj 75 131 *~ 0.361;
+#X obj 201 201 cnv 12 198 34 empty empty empty 20 12 0 14 -262144 -1
+1.04858e+06;
+#X obj 201 201 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 11 44 sel 0 1;
+#X msg 364 54 frgb 255 0 0;
+#X msg 363 78 brgb 255 255 255;
+#X obj 657 203 cnv 10 44 10 empty empty Spectrum. 1 5 1 14 -262144
+-1 1.04858e+06;
+#X obj 41 237 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 686 130 429 124 Help 0;
+#X text 13 28 Utilise l'objet Scope~ de la library cyclone;
+#X text 13 48 Doc Pd-extended -> /cyclone/examples/pink-test.pd;
+#X text 124 62 /cyclone/Scope~-help.pd;
+#X obj 32 81 pddp/pddplink http://cycling74.com/docs/max5/refpages/msp-ref/scope~.html
+;
+#X text 15 82 cf;
+#X restore 48 243 pd Help;
+#X msg 365 103 range 0 256;
+#X obj 200 216 vsl 12 131 0.01 100 1 1 \$0-A \$0-B empty 0 -9 0 10
+-262144 -1 -1 7800 0;
+#X obj 234 94 *~;
+#N canvas 233 341 292 221 label 0;
+#X msg 43 127 label \$1;
+#X obj 43 28 inlet;
+#X obj 42 155 outlet;
+#X obj 43 53 expr 1600 / (pow(2 \, $f1));
+#X obj 43 83 cyclone/sprintf %dHz/div;
+#X obj 43 105 symbol;
+#X connect 0 0 2 0;
+#X connect 1 0 3 0;
+#X connect 3 0 4 0;
+#X connect 4 0 5 0;
+#X connect 5 0 0 0;
+#X restore 478 170 pd label;
+#X obj 421 360 expr (pow(2 \, $f1 + 10));
+#X obj 365 30 expr $f1 * 2 / (pow(2 \, $f2));
+#X obj 503 5 t b f;
+#X text 437 102 <- vertical;
+#X msg 110 59 slide 100 100;
+#X obj 75 98 cyclone/count~ 0 1024 1 1;
+#X obj 75 172 cyclone/vectral~ 1024;
+#X msg 421 384 set \$1 1 1;
+#X obj 212 214 cyclone/Scope~ 514 135 4 3 205 0 256 0 0 0 0 255 0 0
+255 255 255 0;
+#X obj 234 143 cyclone/cartopol~;
+#X obj 421 201 hradio 12 1 1 7 \$0-A ColorForm 1600Hz/div 87 6 1 10
+-262144 -1 -1 0;
+#X obj 219 201 tgl 12 1 \$0-A \$0-B On 15 7 1 9 -262144 -1 -1 1 1;
+#X text 667 182 4 3 2018;
+#X obj 334 201 tgl 12 1 \$0-SendLoop \$0-ReceiveLoop Gliss 15 6 1 9
+-262144 -1 -1 1 1;
+#X msg 367 125 2 \, bufsize 411;
+#X msg 367 147 4 \, bufsize 205;
+#X msg 368 167 8 \, bufsize 103;
+#X text 461 148 <--;
+#X obj 421 406 switch~ 4096 1 1;
+#X obj 605 42 cnv 15 100 70 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#X text 628 44 library:;
+#X text 609 55 pddp;
+#X obj 678 380 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 336 174 316 152 ?. 0;
+#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X text 13 85 Construit sous / Build under Pd 0.43.4-extended;
+#X obj 13 111 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 12 53 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X text 12 98 or Pd-0.48;
+#X obj 13 124 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X restore 682 384 pd ?.;
+#X text 609 68 cyclone;
+#X connect 0 0 26 0;
+#X connect 0 1 26 1;
+#X connect 1 0 23 0;
+#X connect 2 0 15 0;
+#X connect 3 0 23 0;
+#X connect 4 0 23 0;
+#X connect 7 0 3 0;
+#X connect 7 1 1 0;
+#X connect 8 0 25 0;
+#X connect 9 0 25 0;
+#X connect 13 0 25 0;
+#X connect 14 0 18 0;
+#X connect 15 0 0 0;
+#X connect 16 0 27 0;
+#X connect 17 0 24 0;
+#X connect 18 0 15 1;
+#X connect 19 0 18 0;
+#X connect 19 1 18 1;
+#X connect 21 0 23 0;
+#X connect 22 0 4 0;
+#X connect 22 0 23 1;
+#X connect 23 0 25 0;
+#X connect 24 0 35 0;
+#X connect 26 0 23 2;
+#X connect 27 0 17 0;
+#X connect 27 0 16 0;
+#X connect 27 0 19 0;
+#X connect 28 0 35 0;
+#X connect 30 0 7 0;
+#X connect 31 0 25 0;
+#X connect 32 0 25 0;
+#X connect 33 0 25 0;
+#X coords 0 -1 1 1 526 150 2 200 200;
+#X restore 151 219 pd ARGO;
+#X text 171 40 https://forum.pdpatchrepo.info/topic/12460/brown-noise-generator
+, f 65;
+#N canvas 295 212 270 186 ARGO 0;
+#X obj 114 105 cnv 10 20 10 empty empty WhiteNoise. 15 5 1 14 -262144
+-1 1.04858e+06;
+#X obj 101 113 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 88 144 outlet~;
+#X obj 87 71 noise~;
+#X obj 100 100 tgl 12 1 \$0-A \$0-B On 14 6 1 10 -262144 -1 -1 1 1
+;
+#X obj 147 144 switch~;
+#X connect 3 0 2 0;
+#X connect 4 0 5 0;
+#X coords 0 -1 1 1 110 18 2 100 100;
+#X restore 113 72 pd ARGO;
+#X text 171 29 https://lists.puredata.info/pipermail/pd-list/2015-11/112110.html
+, f 66;
+#N canvas 328 263 446 273 ARGO 0;
+#X obj 129 107 cnv 5 1 1 empty empty BrownNoise. 0 0 1 14 -262144 -1
+1.04858e+06;
+#X obj 101 127 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 87 223 outlet~;
+#X obj 87 64 noise~;
+#X obj 100 100 tgl 12 1 \$0-A \$0-B On 14 6 1 10 -262144 -1 -1 1 1
+;
+#X obj 30 223 switch~;
+#X obj 87 197 fexpr~ if(abs($x+$y)>1.0 \, $y-$x \, $x+$y);
+#X obj 369 227 cnv 15 34 16 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 353 174 333 161 ?? 0;
+#X obj 17 89 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 17 12 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14
+-4033 -1 1.04858e+06;
+#X obj 40 32 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 78 32 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 20 54 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 22 126 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 22 102 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X text 22 90 Construit sous / Build under Pd-0.49...;
+#X text 21 114 or Pd 0.43.4-extended;
+#X obj 20 66 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X obj 20 42 pddp/pddplink https://github.com/gerardparesys/ARGOPd
+;
+#X restore 369 227 pd ??;
+#X text 17 34 https://forum.pdpatchrepo.info/topic/12460/brown-noise-generator
+, f 65;
+#X obj 126 147 / 1000;
+#X obj 103 114 hsl 105 12 1 1000 1 1 \$0-A ColorForm 50 3 7 1 9 -172009
+-1 -1 5900 0;
+#N canvas 555 145 241 227 label 0;
+#X obj 40 36 inlet;
+#X obj 40 181 outlet;
+#X msg 40 148 label \$1;
+#X obj 40 118 cyclone/tosymbol;
+#X obj 40 88 cyclone/sprintf %s;
+#X obj 40 62 expr (int($f1)) \;;
+#X connect 0 0 5 0;
+#X connect 2 0 1 0;
+#X connect 3 0 2 0;
+#X connect 4 0 3 0;
+#X connect 5 0 4 0;
+#X restore 21 115 pd label;
+#X text 159 83 1 12 2019;
+#X obj 87 172 *~ 0.01;
+#X text 17 23 https://lists.puredata.info/pipermail/pd-list/2015-11/112110.html
+, f 66;
+#X connect 3 0 14 0;
+#X connect 4 0 5 0;
+#X connect 6 0 2 0;
+#X connect 10 0 14 1;
+#X connect 11 0 12 0;
+#X connect 11 0 10 0;
+#X connect 12 0 11 0;
+#X connect 14 0 6 0;
+#X coords 0 -1 1 1 110 32 2 100 100;
+#X restore 231 68 pd ARGO;
+#X obj 8 10 cnv 15 15 15 empty empty ExMM15h-Noise.pd 0 8 1 14 -262144
+-1 0;
+#X connect 4 0 3 0;
+#X connect 9 0 0 1;
+#X connect 9 0 0 0;
+#X connect 9 0 14 0;
+#X connect 9 0 18 0;
+#X connect 17 0 9 0;
+#X connect 20 0 17 0;
+#X connect 22 0 17 1;
