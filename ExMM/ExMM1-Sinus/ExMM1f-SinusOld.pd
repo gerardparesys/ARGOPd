@@ -1,4 +1,4 @@
-#N canvas 258 23 771 466 10;
+#N canvas 253 23 771 466 10;
 #X obj 543 352 dac~ 1 2;
 #X obj 14 10 cnv 15 15 15 empty empty ExMM1f-Sinus.pd 0 8 1 14 -262144
 -66577 0;
@@ -231,7 +231,7 @@ so on.;
 #X connect 22 0 23 0;
 #X connect 24 0 25 0;
 #X coords 0 -1 1 1 246 36 1 100 100;
-#X restore 215 11 pd ARGO;
+#X restore 215 7 pd ARGO;
 #X text 354 432 The.wav extension is automatically add to the file
 name;
 #N canvas 196 164 374 396 ARGO 0;
@@ -378,8 +378,8 @@ name;
 -1 1.04858e+06;
 #X obj 85 43 inlet~;
 #X obj 85 330 *~;
-#X obj 115 118 hsl 101 12 -80 20 0 1 \$0-A ColorAmpli -3dB 0 7 1 9
--261299 -1 -1 7700 0;
+#X obj 115 118 hsl 101 12 -80 20 0 1 \$0-A ColorAmpli 0dB 0 7 1 9 -261299
+-1 -1 8000 0;
 #X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
 ;
 #X obj 101 131 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
@@ -633,7 +633,7 @@ Audio -> Clic encore pour arrêter l'enregistrement;
 #X obj 103 118 hsl 241 12 0 1 0 0 \$0-A ColorTime empty 0 7 1 9 -262144
 -1 -1 17700 0;
 #X obj 103 118 hsl 241 12 0 1 0 0 \$0-A ColorTime A3 0 7 1 9 -208064
--1728 -1 18459 0;
+-1728 -1 17084 0;
 #X text 155 147 2 HSLIDER superposés;
 #X text 154 136 ATTENTION;
 #X obj 197 52 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
@@ -805,7 +805,7 @@ is supplied \, the input is taken to be an audio signal.;
 #X connect 13 2 7 0;
 #X connect 13 3 3 0;
 #X coords 0 -1 1 1 246 36 1 100 100;
-#X restore 215 108 pd ARGO;
+#X restore 215 111 pd ARGO;
 #N canvas 355 145 366 204 ARGO 0;
 #X obj 92 143 osc~;
 #X obj 101 101 cnv 20 244 34 empty ColorTime Oscill-Sinus. 165 8 1
@@ -821,7 +821,7 @@ is supplied \, the input is taken to be an audio signal.;
 #X obj 103 118 hsl 241 12 0 1 0 0 \$0-A ColorTime empty 0 7 1 9 -262144
 -1 -1 11149 0;
 #X obj 103 118 hsl 241 12 0 1 0 0 \$0-A ColorTime Eb-2 0 7 1 9 -208064
--1728 -1 10390 0;
+-1728 -1 11764 0;
 #X text 155 147 2 HSLIDER superposés;
 #X text 154 136 ATTENTION;
 #X obj 197 52 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
@@ -999,6 +999,244 @@ is supplied \, the input is taken to be an audio signal.;
 #X text 648 19 library:;
 #X text 629 31 pddp;
 #X text 629 42 cyclone;
+#N canvas 723 227 349 246 ARGO 0;
+#X obj 101 101 cnv 20 104 34 empty ColorAmpli empty 20 12 0 14 -261299
+-1 1.04858e+06;
+#X obj 88 200 outlet~;
+#X obj 134 104 cnv 10 20 10 empty ColorAmpli Ampli. 1 5 1 14 -261299
+-1 1.04858e+06;
+#X obj 88 74 inlet~;
+#X obj 185 74 inlet~;
+#X obj 87 173 *~;
+#X obj 195 101 cnv 4 10 4 empty empty empty 20 12 0 14 -258113 -66577
+0;
+#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 101 131 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 103 118 hsl 101 12 0 1.25 0 1 \$0-A ColorAmpli empty 0 7 1 9
+-262144 -1 -1 7000 0;
+#X obj 103 118 hsl 101 12 0 1.25 0 0 \$0-A ColorAmpli -10dB 0 7 1 9
+-261299 -258049 -1 7000 0;
+#X text 211 127 2 HSLIDER superposés;
+#X text 210 116 <-- ATTENTION;
+#X obj 215 154 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 346 353 425 238 Help 0;
+#X text 11 19 Amplificateur à gain controlé logarithmiquement;
+#X text 10 45 Sensibilitée de l'entrée de contrôle du gain:;
+#X text 10 60 1 = +80 dB;
+#X text 11 74 Cela signifie par exemple:;
+#X text 189 86 1 = 0 dB;
+#X text 171 98 0.75 = -20 dB;
+#X text 171 111 0.5 = -40 dB;
+#X text 171 124 0.25 = -60 dB;
+#X text 171 74 1.25 = +20 dB (slider à droite);
+#X text 189 137 0 = -80 dB (slider à gauche);
+#X restore 222 160 pd Help;
+#N canvas 593 326 466 292 Ampli-v1-log 0;
+#X obj -53 31 loadbang;
+#X msg 208 178 set \$1;
+#X obj 86 71 +~;
+#X obj 206 121 snapshot~;
+#X obj 207 155 change;
+#X obj 276 33 inlet;
+#X obj 231 210 outlet;
+#X obj 85 31 inlet~;
+#X msg 275 177 label \$1;
+#X obj -46 59 metro 200;
+#X obj 6 31 r SendFluid;
+#X text 228 223 Hslider;
+#X text 271 5 Hslider;
+#X text 236 235 Over;
+#X text 276 16 Under;
+#X obj 85 207 outlet~;
+#X obj 85 158 /~ 10000;
+#X text 19 107 0..1.25 ->;
+#X text 8 138 1..100000 ->;
+#X text -82 173 0.0001..10 = -80dB..20dB ->;
+#X obj 276 60 * 80;
+#X obj 276 82 - 80;
+#X text 285 136 -> -80dB..20dB;
+#X text 282 100 -> -80 .. 20;
+#X text 224 248 0 .. 1.25;
+#X text 263 -7 0 .. 1.25;
+#X text 15 -20 Fluidité de;
+#X text 14 -9 l'affichage;
+#X text 15 2 des sliders;
+#X text -7 13 (200ms par défaut);
+#X obj 85 123 cyclone/pow~ 10000;
+#X text -57 123 compatibility 0.42.5 ->;
+#X obj 276 154 cyclone/tosymbol;
+#X obj 276 119 cyclone/sprintf %ddB;
+#X connect 0 0 9 0;
+#X connect 1 0 6 0;
+#X connect 2 0 3 0;
+#X connect 2 0 30 0;
+#X connect 3 0 4 0;
+#X connect 4 0 1 0;
+#X connect 5 0 2 1;
+#X connect 5 0 20 0;
+#X connect 7 0 2 0;
+#X connect 8 0 6 0;
+#X connect 9 0 3 0;
+#X connect 10 0 9 1;
+#X connect 16 0 15 0;
+#X connect 20 0 21 0;
+#X connect 21 0 33 0;
+#X connect 30 0 16 0;
+#X connect 32 0 8 0;
+#X connect 33 0 32 0;
+#X restore 102 149 pd Ampli-v1-log;
+#X text 22 33 Logarithmic Gain Controlled Amplifier;
+#X text 22 49 Amplificateur à gain controlé loogarithmiquement;
+#X obj 220 194 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 336 174 309 137 ?. 0;
+#X obj 3 83 cnv 15 300 46 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 3 6 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 26 26 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 64 26 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 7 37 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X text 8 85 Construit sous / Build under Pd 0.43.4-extended;
+#X obj 8 111 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 7 50 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X text 7 98 or Pd-0.46-7 + deken;
+#X restore 224 198 pd ?.;
+#X text 209 97 23 8 2018;
+#X connect 3 0 5 0;
+#X connect 4 0 15 0;
+#X connect 5 0 1 0;
+#X connect 9 0 15 1;
+#X connect 15 0 5 1;
+#X connect 15 1 10 0;
+#X coords 0 -1 1 1 106 36 1 100 100;
+#X restore 467 156 pd ARGO;
+#N canvas 723 227 349 246 ARGO 0;
+#X obj 101 101 cnv 20 104 34 empty ColorAmpli empty 20 12 0 14 -261299
+-1 1.04858e+06;
+#X obj 88 200 outlet~;
+#X obj 134 104 cnv 10 20 10 empty ColorAmpli Ampli. 1 5 1 14 -261299
+-1 1.04858e+06;
+#X obj 88 74 inlet~;
+#X obj 185 74 inlet~;
+#X obj 87 173 *~;
+#X obj 195 101 cnv 4 10 4 empty empty empty 20 12 0 14 -258113 -66577
+0;
+#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 101 131 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 103 118 hsl 101 12 0 1.25 0 1 \$0-A ColorAmpli empty 0 7 1 9
+-262144 -1 -1 5000 0;
+#X obj 103 118 hsl 101 12 0 1.25 0 0 \$0-A ColorAmpli -30dB 0 7 1 9
+-261299 -258049 -1 2540 0;
+#X text 211 127 2 HSLIDER superposés;
+#X text 210 116 <-- ATTENTION;
+#X obj 215 154 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 346 353 425 238 Help 0;
+#X text 11 19 Amplificateur à gain controlé logarithmiquement;
+#X text 10 45 Sensibilitée de l'entrée de contrôle du gain:;
+#X text 10 60 1 = +80 dB;
+#X text 11 74 Cela signifie par exemple:;
+#X text 189 86 1 = 0 dB;
+#X text 171 98 0.75 = -20 dB;
+#X text 171 111 0.5 = -40 dB;
+#X text 171 124 0.25 = -60 dB;
+#X text 171 74 1.25 = +20 dB (slider à droite);
+#X text 189 137 0 = -80 dB (slider à gauche);
+#X restore 222 160 pd Help;
+#N canvas 593 326 466 292 Ampli-v1-log 0;
+#X obj -53 31 loadbang;
+#X msg 208 178 set \$1;
+#X obj 86 71 +~;
+#X obj 206 121 snapshot~;
+#X obj 207 155 change;
+#X obj 276 33 inlet;
+#X obj 231 210 outlet;
+#X obj 85 31 inlet~;
+#X msg 275 177 label \$1;
+#X obj -46 59 metro 200;
+#X obj 6 31 r SendFluid;
+#X text 228 223 Hslider;
+#X text 271 5 Hslider;
+#X text 236 235 Over;
+#X text 276 16 Under;
+#X obj 85 207 outlet~;
+#X obj 85 158 /~ 10000;
+#X text 19 107 0..1.25 ->;
+#X text 8 138 1..100000 ->;
+#X text -82 173 0.0001..10 = -80dB..20dB ->;
+#X obj 276 60 * 80;
+#X obj 276 82 - 80;
+#X text 285 136 -> -80dB..20dB;
+#X text 282 100 -> -80 .. 20;
+#X text 224 248 0 .. 1.25;
+#X text 263 -7 0 .. 1.25;
+#X text 15 -20 Fluidité de;
+#X text 14 -9 l'affichage;
+#X text 15 2 des sliders;
+#X text -7 13 (200ms par défaut);
+#X obj 85 123 cyclone/pow~ 10000;
+#X text -57 123 compatibility 0.42.5 ->;
+#X obj 276 154 cyclone/tosymbol;
+#X obj 276 119 cyclone/sprintf %ddB;
+#X connect 0 0 9 0;
+#X connect 1 0 6 0;
+#X connect 2 0 3 0;
+#X connect 2 0 30 0;
+#X connect 3 0 4 0;
+#X connect 4 0 1 0;
+#X connect 5 0 2 1;
+#X connect 5 0 20 0;
+#X connect 7 0 2 0;
+#X connect 8 0 6 0;
+#X connect 9 0 3 0;
+#X connect 10 0 9 1;
+#X connect 16 0 15 0;
+#X connect 20 0 21 0;
+#X connect 21 0 33 0;
+#X connect 30 0 16 0;
+#X connect 32 0 8 0;
+#X connect 33 0 32 0;
+#X restore 102 149 pd Ampli-v1-log;
+#X text 22 33 Logarithmic Gain Controlled Amplifier;
+#X text 22 49 Amplificateur à gain controlé loogarithmiquement;
+#X obj 220 194 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 336 174 309 137 ?. 0;
+#X obj 3 83 cnv 15 300 46 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 3 6 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 26 26 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 64 26 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 7 37 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X text 8 85 Construit sous / Build under Pd 0.43.4-extended;
+#X obj 8 111 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 7 50 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X text 7 98 or Pd-0.46-7 + deken;
+#X restore 224 198 pd ?.;
+#X text 209 97 23 8 2018;
+#X connect 3 0 5 0;
+#X connect 4 0 15 0;
+#X connect 5 0 1 0;
+#X connect 9 0 15 1;
+#X connect 15 0 5 1;
+#X connect 15 1 10 0;
+#X coords 0 -1 1 1 106 36 1 100 100;
+#X restore 368 205 pd ARGO;
 #N canvas 432 42 236 269 ARGO 0;
 #X obj 101 104 cnv 30 37 130 empty ColorAmpli empty 20 12 0 14 -1 -258113
 0;
@@ -1079,37 +1317,7 @@ outputs a value.;
 #X connect 5 1 1 1;
 #X coords 0 -1 1 1 39 135 2 100 100;
 #X restore 661 296 pd ARGO;
-#N canvas 168 221 403 250 ARGO 0;
-#X obj 101 101 cnv 20 104 34 empty ColorAmpli empty 20 12 0 14 -261299
--1 1.04858e+06;
-#X obj 90 157 outlet~;
-#X obj 132 104 cnv 10 20 10 empty ColorAmpli AmpliLin+. 1 5 1 14 -261299
--1 1.04858e+06;
-#X obj 90 -54 inlet~;
-#X obj 187 -56 inlet~;
-#X obj 90 33 *~;
-#X obj 103 118 hsl 101 12 0 2 0 1 \$0-A ColorAmpli empty 0 7 1 9 -262144
--1 -1 0 0;
-#X msg 231 68 set \$1;
-#X obj 187 -30 +~;
-#X obj 232 10 snapshot~;
-#X obj 231 46 change;
-#X msg 280 67 label \$1;
-#X obj 195 101 cnv 4 10 4 empty empty empty 20 12 0 14 -258113 -66577
-0;
-#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
-;
-#X obj 101 131 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
-;
-#X obj 105 8 clip~ 0 100;
-#X obj 103 118 hsl 101 12 0 2 0 0 \$0-A ColorAmpli 0 0 7 1 9 -261299
--258049 -1 0 0;
-#X text 209 122 2 HSLIDER superposés;
-#X text 208 111 <-- ATTENTION;
-#X obj 232 -57 loadbang;
-#X obj 232 -17 metro 201;
-#X obj 291 -57 r SendFluid;
-#X obj 306 152 cnv 15 52 22 empty empty empty 20 12 0 14 -24198 -66577
+#X obj 709 427 cnv 15 52 22 empty empty empty 20 12 0 14 -24198 -66577
 0;
 #N canvas 353 174 321 152 ?... 0;
 #X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
@@ -1129,118 +1337,7 @@ outputs a value.;
 #X text 12 109 or Pd 0.43.4-extended;
 #X obj 12 53 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
 ;
-#X restore 309 155 pd ?...;
-#X text 147 136 24 8 2019;
-#X obj 279 44 cyclone/tosymbol;
-#X connect 3 0 5 0;
-#X connect 4 0 8 0;
-#X connect 5 0 1 0;
-#X connect 6 0 8 1;
-#X connect 6 0 25 0;
-#X connect 7 0 16 0;
-#X connect 8 0 9 0;
-#X connect 8 0 15 0;
-#X connect 9 0 10 0;
-#X connect 10 0 7 0;
-#X connect 11 0 16 0;
-#X connect 15 0 5 1;
-#X connect 19 0 20 0;
-#X connect 20 0 9 0;
-#X connect 21 0 20 1;
-#X connect 25 0 11 0;
-#X coords 0 -1 1 1 106 36 1 100 100;
-#X restore 368 204 pd ARGO;
-#N canvas 175 68 374 396 ARGO 0;
-#X obj 101 101 cnv 20 116 34 empty ColorAmpli empty 20 12 0 14 -261299
--1 1.04858e+06;
-#X obj 85 353 outlet~;
-#X obj 157 104 cnv 10 20 10 empty ColorAmpli Ampli. 1 5 1 14 -261299
--1 1.04858e+06;
-#X obj 85 43 inlet~;
-#X obj 85 330 *~;
-#X obj 115 118 hsl 101 12 -80 20 0 1 \$0-A ColorAmpli 0dB 0 7 1 9 -261299
--1 -1 8000 0;
-#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
-;
-#X obj 101 131 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
-;
-#X msg -42 139 label \$1;
-#X text 148 194 -> 0.0001..10 = -80dB..20dB;
-#X obj 142 175 expr (pow(10 \, $f1 / 20));
-#X obj 142 215 sel 0.0001;
-#X msg 100 244 0;
-#X obj 100 118 tgl 12 1 \$0-A \$0-B Mute 2 -5 1 9 -261299 -1 -1 0 1
-;
-#X obj 99 146 select 0 1;
-#X obj 140 295 line~;
-#X obj 140 275 pack 0 10;
-#X msg 123 74 set 0;
-#X obj -42 93 cyclone/sprintf %ddB;
-#X obj -42 116 cyclone/tosymbol;
-#X obj 261 342 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
-0;
-#N canvas 336 174 309 137 ?. 0;
-#X obj 3 83 cnv 15 300 46 empty empty empty 20 12 0 14 -224896 -66577
-0;
-#X obj 3 6 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
--1 1.04858e+06;
-#X obj 26 26 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
-;
-#X obj 64 26 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
-;
-#X obj 7 37 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
-#X text 8 85 Construit sous / Build under Pd 0.43.4-extended;
-#X obj 8 111 pddp/pddplink http://puredata.info/downloads/pd-extended
-;
-#X obj 7 50 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
-;
-#X text 7 98 or Pd-0.46-7 + deken;
-#X restore 265 346 pd ?.;
-#X text 228 110 17 3 2016;
-#X connect 3 0 4 0;
-#X connect 4 0 1 0;
-#X connect 5 0 10 0;
-#X connect 5 0 18 0;
-#X connect 8 0 5 0;
-#X connect 10 0 11 0;
-#X connect 11 0 12 0;
-#X connect 11 1 16 0;
-#X connect 11 1 17 0;
-#X connect 12 0 16 0;
-#X connect 12 0 19 0;
-#X connect 13 0 14 0;
-#X connect 14 0 5 0;
-#X connect 14 1 12 0;
-#X connect 15 0 4 1;
-#X connect 16 0 15 0;
-#X connect 17 0 13 0;
-#X connect 18 0 19 0;
-#X connect 19 0 8 0;
-#X coords 0 -1 1 1 118 36 1 100 100;
-#X restore 467 156 pd ARGO;
-#X obj 715 428 cnv 15 34 16 empty empty empty 20 12 0 14 -24198 -66577
-0;
-#N canvas 353 174 333 161 ?? 0;
-#X obj 17 89 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
-0;
-#X obj 17 12 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14
--4033 -1 1.04858e+06;
-#X obj 40 32 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
-;
-#X obj 78 32 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
-;
-#X obj 20 54 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
-#X obj 22 126 pddp/pddplink http://puredata.info/downloads/pd-extended
-;
-#X obj 22 102 pddp/pddplink http://puredata.info/downloads/pure-data
-;
-#X text 22 90 Construit sous / Build under Pd-0.49...;
-#X text 21 114 or Pd 0.43.4-extended;
-#X obj 20 66 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
-;
-#X obj 20 42 pddp/pddplink https://github.com/gerardparesys/ARGOPd
-;
-#X restore 715 428 pd ??;
+#X restore 712 430 pd ?...;
 #X connect 11 0 13 0;
 #X connect 11 2 14 0;
 #X connect 13 0 23 0;
@@ -1248,9 +1345,9 @@ outputs a value.;
 #X connect 15 0 0 0;
 #X connect 15 0 0 1;
 #X connect 15 0 22 0;
-#X connect 15 0 29 0;
+#X connect 15 0 31 0;
 #X connect 17 0 16 0;
 #X connect 23 0 30 0;
-#X connect 24 0 31 0;
+#X connect 24 0 29 0;
+#X connect 29 0 30 1;
 #X connect 30 0 15 0;
-#X connect 31 0 30 1;
