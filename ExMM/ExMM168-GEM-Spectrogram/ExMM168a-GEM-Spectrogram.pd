@@ -1,20 +1,21 @@
-#N canvas 663 23 495 545 10;
+#N canvas 629 23 506 545 10;
+#X declare -lib timbreID/timbreIDLib;
 #X declare -stdlib Gem;
-#X text 4 229 Spectrogram Color On/Off ->;
-#X text 115 136 SingleBuffer On ->;
-#X obj 5 6 cnv 15 15 15 empty empty ExMM168a-GEM-Spectrogram.pd 0 8
-1 14 -262144 -1 0;
-#N canvas 113 47 1020 725 ARGO 0;
+#X text 10 231 Spectrogram Color On/Off ->;
+#X text 82 135 SingleBuffer On ->;
+#X obj 11 8 cnv 15 15 15 empty empty ExMM168a-GEM-Spectrogram.pd 0
+8 1 14 -262144 -1 0;
+#N canvas 113 47 915 710 ARGO 0;
 #X obj 212 663 outlet~;
-#X obj 461 107 openpanel;
+#X obj 462 107 openpanel;
 #X msg 489 153 set \$1;
 #X obj 326 531 sel 1 0;
 #X obj 143 80 loadbang;
 #X obj 462 127 t b s;
 #X msg 254 274 set \$1;
-#X obj 314 80 inlet~;
+#X obj 313 80 inlet~;
 #X obj 313 128 threshold~ 0.5 5 0.49 5;
-#X obj 612 86 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+#X obj 613 100 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
 0;
 #N canvas 349 41 644 481 Help 0;
 #X obj 13 156 cnv 15 400 120 empty empty empty 20 12 0 14 -233017 -66577
@@ -51,14 +52,14 @@ Brent dans: timbreID-examples-0.5.4;
 #X text 338 313 Bug under MacOSX;
 #X text 17 338 (en faisant: Dupliquer ou Copier + Coller);
 #X text 338 326 These MiniModules are not directly duplicable;
-#X restore 619 92 pd Help;
+#X restore 620 106 pd Help;
 #X obj 153 272 soundfiler;
 #X obj 143 131 t b b b b;
 #X obj 383 663 spigot;
 #X obj 201 469 cnv 15 400 50 empty empty empty 20 12 0 14 -260097 -66577
 0;
 #X text 203 468 Nom du fichier / File name;
-#X obj 461 85 bang;
+#X obj 462 85 bang;
 #X text 599 206 <- Clic le nom du fichier pour le changer;
 #X text 600 218 <- Click to change the file name;
 #X obj 301 201 cnv 5 298 28 empty empty empty 20 12 0 14 -262144 -66577
@@ -84,8 +85,8 @@ Brent dans: timbreID-examples-0.5.4;
 ;
 #X obj 302 202 cnv 2 8 2 empty empty empty 20 12 0 14 -262144 -66577
 0;
-#X text 567 127 Lit un fichier Audio Mono (1 canal).;
-#X text 568 141 Reads an Mono Audio file (1 channel).;
+#X text 568 141 Lit un fichier Audio Mono (1 canal).;
+#X text 569 155 Reads an Mono Audio file (1 channel).;
 #N canvas 462 252 218 285 label 0;
 #X msg 65 167 label \$1;
 #X obj 66 79 int;
@@ -123,7 +124,6 @@ Brent dans: timbreID-examples-0.5.4;
 #X obj 168 317 delay 1000;
 #X obj 168 294 bang;
 #X obj 290 568 list;
-#X obj 726 534 line;
 #X obj 781 408 f;
 #X msg 781 429 -4 \, 4 \$1;
 #X obj 796 383 * 1000;
@@ -139,10 +139,10 @@ Brent dans: timbreID-examples-0.5.4;
 #X floatatom 465 356 10 0 0 1 norm-scalar norm-scalar-set norm-scalar
 ;
 #X floatatom 465 336 10 0 0 1 num-bins num-bins-set num-bins;
-#X obj 359 285 hradio 12 1 1 8 window-radio window-radio-set 1024 98
-8 1 12 -262144 -1 -1 2;
-#X obj 542 285 hradio 12 1 1 4 overlap-radio overlap-radio-set 4 50
-8 1 12 -262144 -1 -1 2;
+#X obj 359 285 hradio 12 1 1 8 window-radio window-radio-set 2048 98
+8 1 12 -262144 -1 -1 3;
+#X obj 542 285 hradio 12 1 1 4 overlap-radio overlap-radio-set 8 50
+8 1 12 -262144 -1 -1 3;
 #X floatatom 465 376 10 0 0 1 max-mag max-mag -;
 #X floatatom 431 410 10 0 0 1 time-start time-start-set time-start
 ;
@@ -250,7 +250,7 @@ Brent dans: timbreID-examples-0.5.4;
 #X text 169 234 <-- offset to get \; first rectangle \; flush w/left
 edge;
 #X obj 414 150 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 0 256;
+-262144 -1 -1 0.999023 256;
 #X obj 427 47 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
 -262144 -1 -1 0 256;
 #X obj 405 14 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
@@ -396,14 +396,13 @@ edge;
 #X obj 186 580 r num-frames;
 #X obj 290 669 * 4;
 #N canvas 607 23 545 571 analysis 0;
-#X obj 58 308 magSpec spectrogram-sample;
 #X obj 95 152 r overlap-chunk;
 #X obj 111 188 r window-size;
 #X msg 58 241 analyze \$1 \$2;
 #X obj 58 213 pack f f;
 #N canvas 0 22 450 300 (subpatch) 0;
-#X array mag-table 512 float 2;
-#X coords 0 1 512 0 200 140 1;
+#X array mag-table 1024 float 2;
+#X coords 0 1 1024 0 200 140 1;
 #X restore 286 59 graph;
 #X obj 354 226 r window-size;
 #X obj 354 247 / 2;
@@ -414,18 +413,19 @@ edge;
 #X msg 201 277 normalize 0;
 #X obj 58 131 inlet;
 #X obj 58 152 *;
-#X connect 0 0 10 0;
-#X connect 1 0 14 1;
-#X connect 2 0 4 1;
-#X connect 3 0 0 0;
-#X connect 4 0 3 0;
+#X obj 58 308 timbreIDLib/magSpec spectrogram-sample;
+#X connect 0 0 13 1;
+#X connect 1 0 3 1;
+#X connect 2 0 14 0;
+#X connect 3 0 2 0;
+#X connect 5 0 6 0;
 #X connect 6 0 7 0;
-#X connect 7 0 8 0;
-#X connect 10 0 9 0;
-#X connect 11 0 12 0;
-#X connect 12 0 0 0;
-#X connect 13 0 14 0;
-#X connect 14 0 4 0;
+#X connect 9 0 8 0;
+#X connect 10 0 11 0;
+#X connect 11 0 14 0;
+#X connect 12 0 13 0;
+#X connect 13 0 3 0;
+#X connect 14 0 9 0;
 #X restore 241 332 pd analysis;
 #X obj 186 601 swap 1;
 #X obj 186 623 /;
@@ -476,7 +476,6 @@ edge;
 #X connect 22 0 1 0;
 #X connect 22 1 0 1;
 #X connect 23 0 26 0;
-#X connect 23 0 37 0;
 #X connect 24 0 39 2;
 #X connect 26 0 27 0;
 #X connect 26 1 27 1;
@@ -486,7 +485,6 @@ edge;
 #X connect 29 0 24 0;
 #X connect 30 0 17 1;
 #X connect 31 0 28 0;
-#X connect 31 0 38 0;
 #X connect 32 0 11 0;
 #X connect 32 1 17 0;
 #X connect 32 2 18 0;
@@ -651,74 +649,74 @@ edge;
 #X connect 75 1 34 0;
 #X connect 75 2 33 0;
 #X restore 771 603 pd param-settings;
-#N canvas 99 43 563 497 analysis 0;
-#X msg 13 263 max;
-#X obj 13 305 t f f;
-#X obj 45 342 >;
-#X obj 13 386 spigot;
-#X msg 64 319 0;
-#X obj 13 412 s max-mag;
-#X obj 194 398 magSpec spectrogram-sample;
-#X obj 231 242 r overlap-chunk;
-#X obj 247 278 r window-size;
-#X msg 194 331 analyze \$1 \$2;
-#X obj 194 303 pack f f;
+#N canvas 99 43 672 497 analysis 0;
+#X msg 29 265 max;
+#X obj 29 307 t f f;
+#X obj 61 344 >;
+#X obj 29 388 spigot;
+#X msg 80 321 0;
+#X obj 29 414 s max-mag;
+#X obj 285 244 r overlap-chunk;
+#X obj 301 280 r window-size;
+#X msg 248 333 analyze \$1 \$2;
+#X obj 248 305 pack f f;
 #N canvas 0 22 450 300 (subpatch) 0;
-#X array max-mag-table 512 float 2;
-#X coords 0 1 512 0 200 140 1;
-#X restore 352 42 graph;
-#X obj 352 223 r window-size;
-#X obj 352 244 / 2;
-#X obj 194 433 list prepend 0;
-#X obj 308 334 r lb1;
-#X msg 308 355 normalize 0;
-#X obj 194 242 *;
-#X obj 13 284 tabletool max-mag-table;
-#X msg 352 265 \; max-mag-table resize \$1 \;;
-#X obj 194 454 s max-mag-table;
-#X obj 162 108 until;
-#X obj 162 169 f;
-#X obj 196 169 + 1;
-#X obj 162 6 r check-max;
-#X obj 162 57 f;
-#X obj 162 78 t f b;
-#X obj 162 190 t b f;
-#X obj 180 31 r num-frames;
-#X obj 180 145 f;
-#X obj 217 129 r frame-start;
-#X connect 0 0 18 0;
+#X array max-mag-table 1024 float 2;
+#X coords 0 1 1024 0 200 140 1;
+#X restore 406 44 graph;
+#X obj 406 225 r window-size;
+#X obj 406 246 / 2;
+#X obj 248 435 list prepend 0;
+#X obj 362 336 r lb1;
+#X msg 362 357 normalize 0;
+#X obj 248 244 *;
+#X msg 406 267 \; max-mag-table resize \$1 \;;
+#X obj 248 456 s max-mag-table;
+#X obj 216 110 until;
+#X obj 216 171 f;
+#X obj 250 171 + 1;
+#X obj 216 8 r check-max;
+#X obj 216 59 f;
+#X obj 216 80 t f b;
+#X obj 216 192 t b f;
+#X obj 234 33 r num-frames;
+#X obj 234 147 f;
+#X obj 271 131 r frame-start;
+#X obj 29 286 timbreIDLib/tabletool max-mag-table;
+#X obj 248 400 timbreIDLib/magSpec spectrogram-sample;
+#X connect 0 0 29 0;
 #X connect 1 0 3 0;
 #X connect 1 1 2 0;
 #X connect 2 0 3 1;
 #X connect 3 0 2 1;
 #X connect 3 0 5 0;
 #X connect 4 0 2 1;
-#X connect 6 0 14 0;
-#X connect 7 0 17 1;
-#X connect 8 0 10 1;
-#X connect 9 0 6 0;
-#X connect 10 0 9 0;
-#X connect 12 0 13 0;
-#X connect 13 0 19 0;
-#X connect 14 0 20 0;
-#X connect 15 0 16 0;
-#X connect 16 0 6 0;
-#X connect 17 0 10 0;
-#X connect 18 0 1 0;
-#X connect 21 0 22 0;
+#X connect 6 0 16 1;
+#X connect 7 0 9 1;
+#X connect 8 0 30 0;
+#X connect 9 0 8 0;
+#X connect 11 0 12 0;
+#X connect 12 0 17 0;
+#X connect 13 0 18 0;
+#X connect 14 0 15 0;
+#X connect 15 0 30 0;
+#X connect 16 0 9 0;
+#X connect 19 0 20 0;
+#X connect 20 0 21 0;
+#X connect 20 0 25 0;
+#X connect 21 0 20 1;
 #X connect 22 0 23 0;
-#X connect 22 0 27 0;
-#X connect 23 0 22 1;
-#X connect 24 0 25 0;
-#X connect 25 0 26 0;
-#X connect 26 0 21 0;
-#X connect 26 1 4 0;
-#X connect 26 1 29 0;
-#X connect 27 0 0 0;
-#X connect 27 1 17 0;
-#X connect 28 0 25 1;
-#X connect 29 0 22 1;
-#X connect 30 0 29 1;
+#X connect 23 0 24 0;
+#X connect 24 0 19 0;
+#X connect 24 1 4 0;
+#X connect 24 1 27 0;
+#X connect 25 0 0 0;
+#X connect 25 1 16 0;
+#X connect 26 0 23 1;
+#X connect 27 0 20 1;
+#X connect 28 0 27 1;
+#X connect 29 0 1 0;
+#X connect 30 0 13 0;
 #X restore 772 579 pd analysis;
 #N canvas 277 251 518 379 INSTRUCTIONS 0;
 #X text 38 13 This patch plots spectrograms using timbreID's [magSpec]
@@ -740,17 +738,6 @@ the "open-soundfile" button. Then turn GEM rendering on using the checkbox
 in the lower left corner. Next \, click the "render-plot" button in
 the lower right corner.;
 #X restore 771 554 pd INSTRUCTIONS;
-#N canvas 606 238 318 264 GEM-LigneVerte 0;
-#X obj 109 44 gemhead 60;
-#X obj 109 198 translateXYZ;
-#X obj 109 87 color 0 1 0;
-#X obj 204 45 inlet;
-#X obj 109 226 rectangle 0.02 4;
-#X connect 0 0 2 0;
-#X connect 1 0 4 0;
-#X connect 2 0 1 0;
-#X connect 3 0 1 1;
-#X restore 709 644 pd GEM-LigneVerte;
 #X obj 315 273 hsl 283 12 1001 1 1 1 \$0-A norm-scalar-set Intensity
 0 6 1 10 -262144 -1 -1 22600 0;
 #N canvas 369 171 246 200 MouseButton 0;
@@ -831,54 +818,81 @@ the lower right corner.;
 #X obj 491 310 bng 12 250 50 0 empty empty Redraw 17 6 1 10 -262144
 -1 -1;
 #X msg 212 484 ToutDevientRouge.wav;
-#X text 537 182 14 8 2019;
 #X obj 303 218 hsl 284 14 0 127 0 0 \$0-A \$0-B empty -2 -8 0 10 -262144
 -262144 -1 0 1;
 #X symbolatom 300 217 49 0 0 0 - - -;
-#X obj 848 666 cnv 15 52 22 empty empty empty 20 12 0 14 -24198 -66577
-0;
-#N canvas 353 174 321 152 ?... 0;
-#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
-0;
-#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
--1 1.04858e+06;
-#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
-;
-#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
-;
-#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
-#X obj 13 121 pddp/pddplink http://puredata.info/downloads/pd-extended
-;
-#X obj 13 97 pddp/pddplink http://puredata.info/downloads/pure-data
-;
-#X text 13 85 Construit sous / Build under Pd-0.49...;
-#X text 12 109 or Pd 0.43.4-extended;
-#X obj 12 53 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
-;
-#X restore 851 669 pd ?...;
 #X obj -20 225 zexy/list2symbol;
 #X obj 212 525 zexy/list2symbol;
+#X text 537 182 15 4 2020;
+#X obj 718 56 cnv 15 100 80 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#X text 741 56 library:;
+#X text 722 79 pddp;
+#X text 722 90 cyclone;
+#X text 722 68 Gem;
+#X text 722 101 iemlib;
+#X text 723 111 zexy;
+#X text 723 122 timbreID;
+#X obj 851 654 cnv 15 34 16 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 353 174 333 161 ?? 0;
+#X obj 17 89 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 17 12 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14
+-4033 -1 1.04858e+06;
+#X obj 40 32 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 78 32 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 20 54 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 22 126 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 22 102 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X text 22 90 Construit sous / Build under Pd-0.49...;
+#X text 21 114 or Pd 0.43.4-extended;
+#X obj 20 66 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X obj 20 42 pddp/pddplink https://github.com/gerardparesys/ARGOPd
+;
+#X restore 851 654 pd ??;
+#X obj 508 54 declare -lib timbreID/timbreIDLib;
+#N canvas 606 238 318 264 GEM-LigneVerte-NON 0;
+#X obj 118 183 translateXYZ;
+#X obj 118 146 color 0 1 0;
+#X obj 118 21 inlet;
+#X obj 118 211 rectangle 0.01 4;
+#X obj 118 76 t b a;
+#X obj 118 48 line;
+#X obj 118 106 gemhead;
+#X connect 0 0 3 0;
+#X connect 1 0 0 0;
+#X connect 2 0 5 0;
+#X connect 4 0 6 0;
+#X connect 4 1 0 1;
+#X connect 5 0 4 0;
+#X restore 709 644 pd GEM-LigneVerte-NON;
 #X connect 1 0 5 0;
-#X connect 2 0 88 0;
-#X connect 2 0 97 0;
+#X connect 2 0 86 0;
+#X connect 2 0 94 0;
 #X connect 3 0 41 0;
 #X connect 3 0 50 0;
-#X connect 3 0 52 0;
+#X connect 3 0 51 0;
 #X connect 3 1 33 0;
 #X connect 3 1 39 0;
 #X connect 4 0 12 0;
-#X connect 5 0 97 0;
+#X connect 5 0 94 0;
 #X connect 5 1 2 0;
-#X connect 6 0 94 0;
+#X connect 6 0 92 0;
 #X connect 7 0 8 0;
 #X connect 8 0 27 0;
 #X connect 11 0 32 0;
 #X connect 11 0 36 0;
 #X connect 11 0 46 0;
 #X connect 11 0 49 0;
-#X connect 12 0 91 0;
-#X connect 12 2 97 0;
-#X connect 12 3 94 0;
+#X connect 12 0 89 0;
+#X connect 12 2 94 0;
+#X connect 12 3 92 0;
 #X connect 13 0 26 0;
 #X connect 16 0 1 0;
 #X connect 25 0 13 1;
@@ -887,7 +901,7 @@ the lower right corner.;
 #X connect 27 0 40 0;
 #X connect 32 0 21 0;
 #X connect 33 0 44 0;
-#X connect 33 0 51 0;
+#X connect 33 0 109 0;
 #X connect 34 0 21 0;
 #X connect 35 0 34 0;
 #X connect 36 0 37 0;
@@ -905,68 +919,62 @@ the lower right corner.;
 #X connect 44 0 0 0;
 #X connect 44 1 43 0;
 #X connect 45 0 11 0;
-#X connect 47 0 93 0;
+#X connect 47 0 91 0;
 #X connect 48 0 47 0;
 #X connect 49 0 48 0;
 #X connect 50 0 44 0;
-#X connect 51 0 77 0;
-#X connect 52 0 53 0;
-#X connect 53 0 51 0;
-#X connect 54 0 52 1;
-#X connect 55 0 63 0;
-#X connect 56 0 62 0;
-#X connect 57 0 58 0;
-#X connect 57 0 54 0;
-#X connect 58 0 59 1;
-#X connect 59 0 50 1;
-#X connect 60 0 59 0;
-#X connect 61 0 60 1;
-#X connect 61 0 58 1;
-#X connect 62 0 60 0;
-#X connect 62 1 57 0;
-#X connect 63 0 60 0;
-#X connect 63 1 57 0;
-#X connect 63 2 57 1;
-#X connect 66 0 74 0;
-#X connect 67 0 74 1;
-#X connect 74 0 89 0;
-#X connect 78 0 79 0;
-#X connect 79 0 81 0;
-#X connect 81 0 47 0;
-#X connect 81 1 80 0;
+#X connect 51 0 52 0;
+#X connect 52 0 109 0;
+#X connect 53 0 51 1;
+#X connect 54 0 62 0;
+#X connect 55 0 61 0;
+#X connect 56 0 57 0;
+#X connect 56 0 53 0;
+#X connect 57 0 58 1;
+#X connect 58 0 50 1;
+#X connect 59 0 58 0;
+#X connect 60 0 59 1;
+#X connect 60 0 57 1;
+#X connect 61 0 59 0;
+#X connect 61 1 56 0;
+#X connect 62 0 59 0;
+#X connect 62 1 56 0;
+#X connect 62 2 56 1;
+#X connect 65 0 73 0;
+#X connect 66 0 73 1;
+#X connect 73 0 87 0;
+#X connect 76 0 77 0;
+#X connect 77 0 79 0;
+#X connect 79 0 47 0;
+#X connect 79 1 78 0;
+#X connect 80 0 65 0;
 #X connect 82 0 66 0;
-#X connect 84 0 67 0;
-#X connect 86 0 87 0;
-#X connect 87 0 47 0;
-#X connect 87 1 73 2;
-#X connect 89 0 88 1;
-#X connect 89 1 73 1;
-#X connect 90 0 91 0;
-#X connect 91 0 89 0;
-#X connect 92 0 73 0;
-#X connect 93 0 89 0;
-#X connect 94 0 101 0;
-#X connect 96 0 16 0;
-#X connect 97 0 6 0;
-#X connect 97 0 100 0;
-#X connect 100 0 45 0;
-#X connect 101 0 2 0;
+#X connect 84 0 85 0;
+#X connect 85 0 47 0;
+#X connect 85 1 72 2;
+#X connect 87 0 86 1;
+#X connect 87 1 72 1;
+#X connect 88 0 89 0;
+#X connect 89 0 87 0;
+#X connect 90 0 72 0;
+#X connect 91 0 87 0;
+#X connect 92 0 96 0;
+#X connect 93 0 16 0;
+#X connect 94 0 6 0;
+#X connect 94 0 95 0;
+#X connect 95 0 45 0;
+#X connect 96 0 2 0;
 #X coords 0 -1 1 1 300 122 2 300 200;
-#X restore 171 159 pd ARGO;
-#X text 18 478 Provient entièrement du patch spectrogram.pd de William
-Brent dans: timbreID-examples-0.5.4;
-#X text 0 505 cf:;
-#X obj 21 520 pddp/pddplink http://en.wikipedia.org/wiki/Spectrogram
+#X restore 177 161 pd ARGO;
+#X text 6 507 cf:;
+#X obj 27 522 pddp/pddplink http://en.wikipedia.org/wiki/Spectrogram
 ;
-#X obj 297 358 cnv 15 180 20 empty empty empty 20 12 0 14 -258113 -66577
+#X obj 341 284 cnv 15 76 30 empty empty empty 20 12 0 14 -24198 -66577
 0;
-#X text 300 357 Ne fonctionne pas sous linux;
-#X obj 335 282 cnv 15 76 30 empty empty empty 20 12 0 14 -24198 -66577
-0;
-#X text 364 280 ^;
-#X text 364 286 !;
-#X text 339 295 Clic Redraw;
-#N canvas 86 22 1025 608 ARGO 0;
+#X text 370 282 ^;
+#X text 370 288 !;
+#X text 345 297 Clic Redraw;
+#N canvas 86 23 1025 608 ARGO 0;
 #X obj 101 101 cnv 22 183 112 empty empty GEM. 5 12 1 18 -1 -262144
 1.04858e+06;
 #X obj 205 154 tgl 12 1 \$0-A \$0-ColorGEM (F)ullScreen 15 7 1 11 -24198
@@ -1458,9 +1466,9 @@ du patch;
 #X connect 106 2 49 0;
 #X connect 110 0 18 0;
 #X coords 0 -1 1 1 185 114 1 100 100;
-#X restore 227 39 pd ARGO;
-#X obj 153 455 dac~ 1 2;
-#X obj 52 94 switch~;
+#X restore 194 38 pd ARGO;
+#X obj 159 457 dac~ 1 2;
+#X obj 41 95 switch~;
 #N canvas 608 166 228 173 ARGOnOff 0;
 #X obj 100 100 tgl 18 1 \$0-SendOnOff \$0-ReceiveOnOff On/Off 20 11
 1 14 -4033 -1 -1 1 1;
@@ -1473,11 +1481,11 @@ du patch;
 #X connect 0 0 3 0;
 #X connect 1 0 2 0;
 #X coords 0 -1 1 1 65 18 2 100 100;
-#X restore 52 76 pd ARGOnOff;
-#X text 57 60 V;
-#X text 57 53 |;
-#X text 45 42 On/Off Patch;
-#X text 75 54 (Audio);
+#X restore 41 77 pd ARGOnOff;
+#X text 46 61 V;
+#X text 46 54 |;
+#X text 34 43 On/Off Patch;
+#X text 64 55 (Audio);
 #N canvas 175 68 374 396 ARGO 0;
 #X obj 101 101 cnv 20 116 34 empty ColorAmpli empty 20 12 0 14 -261299
 -1 1.04858e+06;
@@ -1545,14 +1553,14 @@ du patch;
 #X connect 18 0 19 0;
 #X connect 19 0 8 0;
 #X coords 0 -1 1 1 118 36 1 100 100;
-#X restore 171 298 pd ARGO;
+#X restore 177 300 pd ARGO;
 #N canvas 413 140 402 279 ARGO 0;
 #X obj 101 101 cnv 10 95 41 \$0-A \$0-B empty 20 12 0 14 -1 -1 1.04858e+06
 ;
 #X obj 101 109 nbx 4 12 0 1e+37 0 0 \$0 \$0-ReceiveCpuPeak CPUPeak
-45 7 1 11 -24198 -1 -24198 8 256;
+45 7 1 11 -24198 -1 -24198 4 256;
 #X obj 101 122 nbx 4 12 0 1e+37 0 0 \$0 \$0-ReceiveCpuMean CPUMean
-45 7 1 11 -24198 -1 -24198 7.09 256;
+45 7 1 11 -24198 -1 -24198 27.28 256;
 #X obj 145 -55 cputime;
 #X obj 145 -76 t b b;
 #X text 188 24 (c) musil@iem.kug.ac.at;
@@ -1612,9 +1620,7 @@ du patch;
 #X connect 17 0 2 0;
 #X connect 18 0 14 0;
 #X coords 0 -1 1 1 97 43 1 100 100;
-#X restore 24 294 pd ARGO;
-#X obj 419 505 cnv 15 52 22 empty empty empty 20 12 0 14 -24198 -66577
-0;
+#X restore 30 296 pd ARGO;
 #N canvas 432 42 236 269 ARGO 0;
 #X obj 101 104 cnv 30 37 130 empty ColorAmpli empty 20 12 0 14 -1 -258113
 0;
@@ -1694,31 +1700,45 @@ outputs a value.;
 #X connect 5 0 1 0;
 #X connect 5 1 1 1;
 #X coords 0 -1 1 1 39 135 2 100 100;
-#X restore 251 339 pd ARGO;
-#N canvas 353 174 321 152 ?... 0;
-#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+#X restore 257 341 pd ARGO;
+#X obj 26 507 pddp/pddplink http://williambrent.conflations.com/pagez/research.html#timbreID
+;
+#X obj 257 16 declare -stdlib Gem;
+#X obj 388 64 cnv 15 100 80 empty empty empty 20 12 0 14 -24198 -66577
 0;
-#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
--1 1.04858e+06;
-#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+#X text 411 64 library:;
+#X text 392 87 pddp;
+#X text 392 98 cyclone;
+#X text 392 76 Gem;
+#X text 392 109 iemlib;
+#X obj 454 512 cnv 15 34 16 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 353 174 333 161 ?? 0;
+#X obj 17 89 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 17 12 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14
+-4033 -1 1.04858e+06;
+#X obj 40 32 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
 ;
-#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+#X obj 78 32 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
 ;
-#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
-#X obj 13 121 pddp/pddplink http://puredata.info/downloads/pd-extended
+#X obj 20 54 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 22 126 pddp/pddplink http://puredata.info/downloads/pd-extended
 ;
-#X obj 13 97 pddp/pddplink http://puredata.info/downloads/pure-data
+#X obj 22 102 pddp/pddplink http://puredata.info/downloads/pure-data
 ;
-#X text 13 85 Construit sous / Build under Pd-0.49...;
-#X text 12 109 or Pd 0.43.4-extended;
-#X obj 12 53 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
+#X text 22 90 Construit sous / Build under Pd-0.49...;
+#X text 21 114 or Pd 0.43.4-extended;
+#X obj 20 66 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
 ;
-#X restore 422 508 pd ?...;
-#X obj 20 505 pddp/pddplink http://williambrent.conflations.com/pagez/research.html#timbreID
+#X obj 20 42 pddp/pddplink https://github.com/gerardparesys/ARGOPd
 ;
-#X obj 251 14 declare -stdlib Gem;
-#X connect 3 0 21 0;
-#X connect 16 0 15 0;
-#X connect 21 0 14 1;
-#X connect 21 0 14 0;
-#X connect 21 0 24 0;
+#X restore 454 512 pd ??;
+#X text 393 119 zexy;
+#X text 393 130 timbreID;
+#X text 24 492 from: timbreID-examples-0.5.4;
+#X connect 3 0 18 0;
+#X connect 13 0 12 0;
+#X connect 18 0 11 1;
+#X connect 18 0 11 0;
+#X connect 18 0 20 0;
