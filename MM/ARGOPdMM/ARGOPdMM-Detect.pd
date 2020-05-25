@@ -1,4 +1,4 @@
-#N canvas 300 65 588 237 10;
+#N canvas 287 64 626 237 10;
 #N canvas 305 90 554 218 ARGO 0;
 #X obj 79 169 outlet~;
 #X obj 83 -11 inlet~;
@@ -169,7 +169,7 @@ or fiddle...;
 #X connect 18 0 16 0;
 #X connect 21 0 18 0;
 #X coords 0 -1 1 1 106 43 1 100 100;
-#X restore 461 97 pd ARGO;
+#X restore 461 124 pd ARGO;
 #X text 15 208 ExMM5-DetectEnvelope;
 #X text 234 208 ExMM7-DetectFreq;
 #N canvas 274 73 556 256 ARGO 0;
@@ -669,7 +669,7 @@ proceedings \, reprinted on crca.ucsd.edu/~msp .;
 #X connect 13 1 11 1;
 #X connect 16 0 15 0;
 #X coords 0 -1 1 1 106 36 1 100 100;
-#X restore 461 56 pd ARGO;
+#X restore 461 83 pd ARGO;
 #N canvas 355 90 463 270 ARGO 0;
 #X obj 101 101 cnv 6 130 27 empty ColorAmpli DetectEnvelope2. 15 7
 1 14 -261299 -1 1.04858e+06;
@@ -875,8 +875,8 @@ proceedings \, reprinted on crca.ucsd.edu/~msp .;
 #X obj 124 -6 loadbang;
 #X obj 127 22 metro 200;
 #X obj 180 -6 r SendFluid;
-#X obj 103 114 hsl 128 12 -1 1 0 0 \$0-A ColorAmpli -0.00787402 0 7
-1 9 -261299 -1 -1 6300 0;
+#X obj 103 114 hsl 128 12 -1 1 0 0 \$0-A ColorAmpli 0 0 7 1 9 -261299
+-1 -1 6350 0;
 #X msg -11 116 label \$1;
 #X msg 66 68 0;
 #X obj 101 193 outlet;
@@ -955,3 +955,53 @@ proceedings \, reprinted on crca.ucsd.edu/~msp .;
 #X connect 21 0 10 0;
 #X coords 0 -1 1 1 133 56 2 100 100;
 #X restore 312 24 pd ARGO;
+#N canvas 424 262 459 331 ARGO 0;
+#X obj 101 101 cnv 7 148 14 empty ColorAmpli empty 20 12 0 14 -261299
+-1 1.04858e+06;
+#X obj 226 103 cnv 8 8 10 empty ColorAmpli > 1 5 1 14 -261299 -1 1.04858e+06
+;
+#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 101 112 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 177 102 nbx 5 12 -1 1 0 1 \$0-A ColorAmpli empty 0 0 1 9 -261299
+-1 -1 0 256;
+#X obj 73 144 expr~ 2 * ($v1 > $v2) -1;
+#X obj 260 264 outlet~;
+#X obj 291 144 expr~ 2 * ($v1 > $v2) -1;
+#X obj 239 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 239 112 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X text 119 257 1 if inlet > number;
+#X text 114 272 -1 if inlet < number;
+#X obj 44 264 outlet~;
+#X obj 44 33 inlet~;
+#X obj 260 33 inlet~;
+#X obj 44 220 *~;
+#X obj 119 102 tgl 12 1 \$0-A \$0-B ByPass 15 6 1 10 -262144 -1 -1
+0 1;
+#X obj 119 178 == 0;
+#X obj 260 220 *~;
+#X obj 73 220 *~;
+#X obj 292 220 *~;
+#X text 187 82 8 5 2020;
+#X connect 4 0 5 1;
+#X connect 4 0 7 1;
+#X connect 5 0 19 0;
+#X connect 7 0 20 0;
+#X connect 13 0 15 0;
+#X connect 13 0 5 0;
+#X connect 14 0 18 0;
+#X connect 14 0 7 0;
+#X connect 15 0 12 0;
+#X connect 16 0 15 1;
+#X connect 16 0 17 0;
+#X connect 16 0 18 1;
+#X connect 17 0 19 1;
+#X connect 17 0 20 1;
+#X connect 18 0 6 0;
+#X connect 19 0 12 0;
+#X connect 20 0 6 0;
+#X coords 0 -1 1 1 150 16 1 100 100;
+#X restore 461 55 pd ARGO;
