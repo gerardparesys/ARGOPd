@@ -1,4 +1,4 @@
-#N canvas 303 75 1070 642 10;
+#N canvas 70 64 1070 642 10;
 #X obj 577 179 bng 15 50 50 0 empty empty empty 17 7 0 10 -260097 -1
 -1;
 #N canvas 446 113 385 280 ARGO 0;
@@ -142,7 +142,7 @@ message received at the input.;
 -1 -1 7200 0;
 #X obj 215 28 inlet~;
 #X obj 103 113 hsl 129 12 0 1 0 0 empty ColorTime 873ms 0 7 1 9 -208064
--1728 -1 0 0;
+-1728 -1 7200 0;
 #N canvas 649 119 303 389 Timems 0;
 #X msg 144 261 set \$1;
 #X obj 3 51 +~;
@@ -277,7 +277,7 @@ message received at the input.;
 #X obj 137 119 nbx 4 12 0 9999 0 1 \$0-A ColorTime min 40 7 1 9 -262144
 -1 -1 1 256;
 #X obj 100 113 nbx 4 12 0 9999 0 1 \$0-A ColorTime empty 40 7 1 9 -262144
--1 -1 4 256;
+-1 -1 2 256;
 #X obj 231 276 random;
 #X obj 231 207 -;
 #X obj 191 166 + 1;
@@ -3121,7 +3121,7 @@ bipolaire.;
 #X connect 20 0 10 0;
 #X connect 20 0 12 0;
 #X coords 0 -1 1 1 133 57 1 100 100;
-#X restore 755 86 pd ARGO;
+#X restore 755 89 pd ARGO;
 #N canvas 358 88 480 343 ARGO 0;
 #X obj 101 101 cnv 20 131 67 empty ColorForm AleaGauss. 52 8 1 14 -261476
 -1 1.04858e+06;
@@ -3256,118 +3256,7 @@ Olaf Matthes <olaf.matthes@gmx.de>;
 #X connect 23 1 24 0;
 #X connect 24 0 19 0;
 #X coords 0 -1 1 1 133 69 1 100 100;
-#X restore 755 149 pd ARGO;
-#N canvas 368 44 447 306 ARGO 0;
-#X obj 101 101 cnv 20 131 55 empty ColorForm Alea. 78 7 1 14 -261476
--1 1.04858e+06;
-#X obj 174 37 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
-0;
-#N canvas 373 67 425 206 Help 0;
-#X obj 9 43 cnv 15 400 120 empty empty empty 20 12 0 14 -228856 -66577
-0;
-#X text 12 43 Citation;
-#X text 20 -21 Alea;
-#X text 19 0 Générateur de nombres aléatoires.;
-#X text 20 17 Random number generator;
-#X text 26 63 Random numbers are generated via a complex equation which
-produces a pseudo-predictable sequence of numbers.;
-#X text 25 101 [random N] outputs pseudorandom integers between 0 and
-N-1.;
-#X restore 181 44 pd Help;
-#X obj 100 100 bng 12 50 50 0 \$0-A \$0-B empty 14 6 1 9 -262144 -1
--1;
-#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
-0;
-#X obj 101 152 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
-0;
-#X obj -57 29 cnv 15 170 24 empty empty empty 20 12 0 14 -261682 -66577
-0;
-#X obj 100 32 inlet;
-#X text -57 36 Input anything message ->;
-#X text -57 26 N'importe quel message ->;
-#X obj 103 139 hsl 128 12 0 127 0 1 \$0-A ColorForm 62 0 7 1 9 -262144
--1 -1 6200 0;
-#N canvas 389 277 212 161 labelX 0;
-#X msg 15 103 label \$1;
-#X obj 14 36 expr (int(1000 * $f1) / 1000) \;;
-#X obj 14 12 inlet;
-#X obj 15 126 outlet;
-#X obj 15 81 cyclone/tosymbol;
-#X obj 15 59 cyclone/sprintf %s;
-#X connect 0 0 3 0;
-#X connect 1 0 5 0;
-#X connect 2 0 1 0;
-#X connect 4 0 0 0;
-#X connect 5 0 4 0;
-#X restore -18 90 pd labelX;
-#X obj 89 246 outlet;
-#X obj 103 115 hsl 128 12 0 127 0 1 \$0-A ColorForm max=92 0 7 1 9
--261299 -1 -1 9200 0;
-#N canvas 389 277 212 161 labelMax 0;
-#X msg 15 103 label \$1;
-#X obj 15 30 inlet;
-#X obj 15 126 outlet;
-#X obj 15 81 cyclone/tosymbol;
-#X obj 15 59 cyclone/sprintf max=%s;
-#X connect 0 0 2 0;
-#X connect 1 0 4 0;
-#X connect 3 0 0 0;
-#X connect 4 0 3 0;
-#X restore -30 130 pd labelMax;
-#N canvas 389 277 212 161 labelMin 0;
-#X msg 15 103 label \$1;
-#X obj 15 30 inlet;
-#X obj 15 126 outlet;
-#X obj 15 59 cyclone/sprintf min=%s;
-#X obj 15 81 cyclone/tosymbol;
-#X connect 0 0 2 0;
-#X connect 1 0 3 0;
-#X connect 3 0 4 0;
-#X connect 4 0 0 0;
-#X restore -18 166 pd labelMin;
-#X obj 103 127 hsl 128 12 0 127 0 1 \$0-A ColorForm min=43 0 7 1 9
--261299 -1 -1 4300 0;
-#X text 85 264 Integer;
-#X text 85 279 0..127;
-#X obj 122 177 random 1000;
-#X obj 122 212 expr int ($f1 / 1000 * ($f3 - $f2) + $f2);
-#X obj 325 260 cnv 15 52 22 empty empty empty 20 12 0 14 -24198 -66577
-0;
-#N canvas 353 174 321 152 ?... 0;
-#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
-0;
-#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
--1 1.04858e+06;
-#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
-;
-#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
-;
-#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
-#X obj 13 121 pddp/pddplink http://puredata.info/downloads/pd-extended
-;
-#X obj 13 97 pddp/pddplink http://puredata.info/downloads/pure-data
-;
-#X text 13 85 Construit sous / Build under Pd-0.49...;
-#X text 12 109 or Pd 0.43.4-extended;
-#X obj 12 53 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
-;
-#X restore 328 263 pd ?...;
-#X text 177 81 18 8 2019;
-#X connect 3 0 19 0;
-#X connect 7 0 3 0;
-#X connect 10 0 11 0;
-#X connect 11 0 10 0;
-#X connect 13 0 14 0;
-#X connect 13 0 20 2;
-#X connect 14 0 13 0;
-#X connect 15 0 16 0;
-#X connect 16 0 15 0;
-#X connect 16 0 20 1;
-#X connect 19 0 20 0;
-#X connect 20 0 10 0;
-#X connect 20 0 12 0;
-#X coords 0 -1 1 1 133 57 1 100 100;
-#X restore 755 23 pd ARGO;
+#X restore 755 151 pd ARGO;
 #N canvas 187 23 409 621 ARGO 0;
 #X obj 101 101 cnv 5 68 68 empty ColorForm Seq 22 30 1 14 -261476 -1
 1.04858e+06;
@@ -4974,11 +4863,11 @@ backslash in front of them (comma \, semi-colon \, and backslash).
 #X obj 133 33 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X obj 158 117 nbx 2 20 0 1e+37 0 0 \$0-A \$0-B empty 0 0 1 17 -208064
--1 -1 51 256;
+-1 -1 21 256;
 #X obj 129 117 nbx 2 20 0 1e+37 0 0 \$0-A \$0-B empty 0 0 1 17 -208064
--1 -1 14 256;
+-1 -1 40 256;
 #X obj 100 117 nbx 2 20 0 1e+37 0 0 \$0-A \$0-B empty 0 0 1 17 -208064
--1 -1 22 256;
+-1 -1 14 256;
 #X obj 109 78 zexy/time;
 #X text 86 179 H;
 #X text 131 179 Min;
@@ -5146,7 +5035,7 @@ backslash in front of them (comma \, semi-colon \, and backslash).
 #X connect 25 0 28 0;
 #X connect 28 0 21 0;
 #X coords 0 -1 1 1 133 69 1 100 100;
-#X restore 755 224 pd ARGO;
+#X restore 755 225 pd ARGO;
 #N canvas 403 44 480 343 ARGO 0;
 #X obj 101 101 cnv 20 131 67 empty ColorForm AleaCauchy. 45 7 1 14
 -261476 -1 1.04858e+06;
@@ -5773,8 +5662,8 @@ line segment that is included inside another fixed line segment.";
 #X obj 168 32 inlet;
 #X text 11 36 Input anything message ->;
 #X text 11 26 N'importe quel message ->;
-#X obj 103 139 hsl 128 12 0 127 0 1 \$0-A ColorForm 48 0 7 1 9 -262144
--1 -1 4800 0;
+#X obj 103 139 hsl 128 12 0 127 0 1 \$0-A ColorForm 58 0 7 1 9 -262144
+-1 -1 5800 0;
 #N canvas 389 277 212 161 labelX 0;
 #X msg 14 103 label \$1;
 #X obj 14 36 expr (int(1000 * $f1) / 1000) \;;
@@ -6348,7 +6237,7 @@ independent.;
 \, $f2)) \, 0);
 #X text 399 2 step;
 #X text 146 2 upper bound;
-#X msg 282 148 65;
+#X msg 282 148 63;
 #X msg 254 99 set \$1;
 #X obj 227 77 t b f;
 #X obj 331 21 loadbang;
@@ -6391,8 +6280,8 @@ independent.;
 0;
 #X obj 103 254 hsl 128 12 0 127 0 0 \$0-A \$0-B empty 0 0 1 9 -262144
 -1 -1 0 0;
-#X obj 103 254 hsl 128 12 0 127 0 0 \$0-A ColorForm 65 0 7 1 9 -262144
--1 -1 6500 0;
+#X obj 103 254 hsl 128 12 0 127 0 0 \$0-A ColorForm 63 0 7 1 9 -262144
+-1 -1 6300 0;
 #X text 313 262 2 superposed hslider;
 #X text 235 251 <- ATTENTION 2 hslider superposes;
 #X obj 161 124 route bang float;
@@ -9409,3 +9298,130 @@ them allows the creation of a very large variety of dynamic systems
 #X obj 20 42 pddp/pddplink https://github.com/gerardparesys/ARGOPd
 ;
 #X restore 997 598 pd ??;
+#N canvas 368 44 467 331 ARGO 0;
+#X obj 101 101 cnv 20 131 61 empty ColorForm Alea. 78 7 1 14 -261476
+-1 1.04858e+06;
+#X obj 388 77 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 373 67 425 206 Help 0;
+#X obj 9 43 cnv 15 400 120 empty empty empty 20 12 0 14 -228856 -66577
+0;
+#X text 12 43 Citation;
+#X text 20 -21 Alea;
+#X text 19 0 Générateur de nombres aléatoires.;
+#X text 20 17 Random number generator;
+#X text 26 63 Random numbers are generated via a complex equation which
+produces a pseudo-predictable sequence of numbers.;
+#X text 25 101 [random N] outputs pseudorandom integers between 0 and
+N-1.;
+#X restore 395 84 pd Help;
+#X obj 100 100 bng 12 50 50 0 \$0-A \$0-B empty 14 6 1 9 -262144 -1
+-1;
+#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 101 158 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 5 29 cnv 15 155 24 empty empty empty 20 12 0 14 -261682 -66577
+0;
+#X obj 160 32 inlet;
+#X text 6 36 Input anything message ->;
+#X text 6 26 N'importe quel message ->;
+#X obj 103 139 hsl 128 12 0 127 0 1 \$0-A ColorForm 74 0 7 1 9 -262144
+-1 -1 7400 0;
+#N canvas 389 277 212 161 labelX 0;
+#X msg 15 103 label \$1;
+#X obj 14 36 expr (int(1000 * $f1) / 1000) \;;
+#X obj 14 12 inlet;
+#X obj 15 126 outlet;
+#X obj 15 81 cyclone/tosymbol;
+#X obj 15 59 cyclone/sprintf %s;
+#X connect 0 0 3 0;
+#X connect 1 0 5 0;
+#X connect 2 0 1 0;
+#X connect 4 0 0 0;
+#X connect 5 0 4 0;
+#X restore 12 146 pd labelX;
+#X obj 80 259 outlet;
+#X obj 103 115 hsl 128 12 0 127 0 1 \$0-A ColorForm max=127 0 7 1 9
+-261299 -1 -1 12700 0;
+#N canvas 389 277 212 161 labelMax 0;
+#X msg 15 103 label \$1;
+#X obj 15 30 inlet;
+#X obj 15 126 outlet;
+#X obj 15 81 cyclone/tosymbol;
+#X obj 15 59 cyclone/sprintf max=%s;
+#X connect 0 0 2 0;
+#X connect 1 0 4 0;
+#X connect 3 0 0 0;
+#X connect 4 0 3 0;
+#X restore 11 101 pd labelMax;
+#N canvas 389 277 212 161 labelMin 0;
+#X msg 15 103 label \$1;
+#X obj 15 30 inlet;
+#X obj 15 126 outlet;
+#X obj 15 59 cyclone/sprintf min=%s;
+#X obj 15 81 cyclone/tosymbol;
+#X connect 0 0 2 0;
+#X connect 1 0 3 0;
+#X connect 3 0 4 0;
+#X connect 4 0 0 0;
+#X restore 12 123 pd labelMin;
+#X obj 103 127 hsl 128 12 0 127 0 1 \$0-A ColorForm min=0 0 7 1 9 -261299
+-1 -1 0 0;
+#X text 76 277 Integer;
+#X text 76 292 0..127;
+#X obj 221 151 bng 12 50 50 0 \$0-A \$0-B empty 14 6 1 9 -262144 -1
+-1;
+#X obj 221 259 outlet;
+#X text 227 277 bang;
+#X obj 222 158 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X text 177 81 14 6 2020;
+#X obj 61 231 t b f f;
+#X obj 279 50 cnv 15 100 70 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#X text 283 52 library:;
+#X text 283 63 pddp;
+#X text 283 74 cyclone;
+#X obj 387 262 cnv 15 34 16 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 353 174 333 161 ?? 0;
+#X obj 17 89 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 17 12 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14
+-4033 -1 1.04858e+06;
+#X obj 40 32 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 78 32 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 20 54 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 22 126 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 22 102 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X text 22 90 Construit sous / Build under Pd-0.49...;
+#X text 21 114 or Pd 0.43.4-extended;
+#X obj 20 66 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X obj 20 42 pddp/pddplink https://github.com/gerardparesys/ARGOPd
+;
+#X restore 387 262 pd ??;
+#X obj 109 187 expr int((random(0 \, 1000) * ($f3 + 1 - $f2) / 1000)+
+$f2);
+#X connect 3 0 31 0;
+#X connect 7 0 3 0;
+#X connect 10 0 11 0;
+#X connect 11 0 10 0;
+#X connect 13 0 14 0;
+#X connect 13 0 31 2;
+#X connect 14 0 13 0;
+#X connect 15 0 16 0;
+#X connect 16 0 15 0;
+#X connect 16 0 31 1;
+#X connect 19 0 20 0;
+#X connect 24 0 19 0;
+#X connect 24 1 12 0;
+#X connect 24 2 10 0;
+#X connect 31 0 24 0;
+#X coords 0 -1 1 1 133 63 1 100 100;
+#X restore 755 21 pd ARGO;
