@@ -122,253 +122,6 @@ window.;
 #X text 7 147 ExMM32-GEMVideo;
 #X text 506 415 ExMM76-GEMFilm-Jukebox;
 #X text 199 103 ExMM30-GEMImage;
-#N canvas 253 89 724 394 ARGO 0;
-#X obj 101 101 cnv 10 298 32 \$0-A \$0-B empty 20 12 0 14 -228856 -1
-1.04858e+06;
-#X obj 101 129 cnv 4 10 4 empty empty empty 20 12 0 14 -128992 -66577
-0;
-#X obj 112 101 nbx 3 12 1 100 0 1 \$0-A \$0-B Render 33 7 1 9 -262144
--1 -1 50 256;
-#X obj 102 261 pix_image;
-#X obj 101 233 gemhead;
-#X msg 114 207 set \$1;
-#X obj 103 326 outlet;
-#X obj 138 -25 loadbang;
-#X obj 108 34 delay 1000;
-#X obj -11 22 openpanel;
-#X msg 17 66 set \$1;
-#X msg -3 232 open \$1;
-#X obj -11 44 t b s;
-#X obj 108 57 t b b;
-#X obj -28 271 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
-0;
-#N canvas 184 22 812 648 Help 0;
-#X text 17 -7 - ATTENTION: GEM doit etre "On";
-#X text 18 7 - Ouvre des fichiers image JPEG \, TIFF \, PNG...;
-#X text 17 52 - Si le module est sauvé avec 1 nom de fichier \, Ce
-fichier sera lu automatiquement a la prochaine ouverture s'il n'a pas
-changé d'emplacement.;
-#X obj 12 393 cnv 15 760 480 empty empty empty 20 12 0 14 -258113 -66577
-0;
-#X text 52 422 Solution: ne pas utiliser d'accent dans les noms de
-fichier;
-#X text 51 477 Se produit avec certaines cartes video \, de certains
-PC \, sous Windows...;
-#X text 51 503 Inconvenient: Charge CPU => la texture est calculée
-(objet pix_texture) par le processeur de l'ordinateur et pas par la
-carte video);
-#X text 15 396 - Erreur dans la fenêtre Pd:;
-#X text 19 633 - Dans la fenêtre GEM les couleurs de l'image ne sont
-pas correctes.;
-#X text 39 438 - GL: énumérant non valide (répété);
-#X text 39 409 - error:GemImageLoad:Unable to find file: C:/Ima/Gérard.jpg
-;
-#X text 94 700 http://rsb.info.nih.gov/ij/download.html;
-#X text 40 659 - Solution 1: Si le fichier a été enregistré avec Photoshop:
-ne pas cocher l'option Couleur "Profill CC";
-#X text 21 91 - Peut Ouvrir automatiquement 1 fichier qui se trouve
-dans le même dossier que lui \, quelquesoit l'emplacement du dossier.
-Pour cela taper le nom du fichier (sans chemin d'accés) dans le message.
-Sauver le module. Le dossier contenant le module ARGO et le fichier
-image est ainsi transportable.;
-#X text 51 464 Solution: cocher Compatible dans le MM GEM;
-#X text 40 686 - Solution 2: Réenregistrer le fichier avec le logiciel
-ImageJ;
-#X obj 13 180 cnv 15 400 200 empty empty empty 20 12 0 14 -233017 -66577
-0;
-#X text 35 210 Description: loads in an image file;
-#X text 35 196 Synopsis: [pix_image];
-#X text 34 227 [pix_image] loads in an image to be used a texture \,
-bitblit \, or something else. If you don't give it a default image
-file \, you can send the open message with a filename.;
-#X text 34 270 [pix_image] loads in TIFFs \, JPEGs and PNGs.;
-#X text 35 289 TIFF-files are loaded using Sam Leffler's libtiff library
-\, a great \, portable image file reading and processing package (Thanks
-Sam!).;
-#X text 33 335 The image can be either drawn directly using [pix_draw]
-(VERY slow) or applied as a texture onto a Geo ([pix_texture]);
-#X text 16 180 Citation;
-#X text 14 -23 GEM-Image;
-#X text 40 546 - GL: invalid value;
-#X text 124 583 Reduce the size of the image;
-#X text 19 21 - Sous MacOSX \, quelquesoit le format de l'image \,
-le colorspace est RGBA.;
-#X text 40 558 - GL: invalid operation;
-#X text 39 451 - OpenGL: invalid enumérant (repeat);
-#X text 52 571 Solution 1: Diminuer la taille de l'image;
-#X text 52 596 Solution 2: Afficher avec GEM-Draw au lieu de GEM-Direct
-;
-#X text 124 608 Display with GEM-Draw instead of GEM-Direct;
-#X text 17 721 - Dans la fenêtre GEM l'image est déformée.;
-#X text 37 735 - Solution : l'image doit avoir des dimensions multiple
-de 2;
-#X text 17 757 - ATTENTION Bug de l'objet pix_image;
-#X text 403 758 - WARNING Bug of pix_image object;
-#X text 423 771 - Under Pd-0.41.4-extended under MacOSX.4;
-#X text 37 783 - Augmente indéfiniment la place occupée en mémoire
-par l'application "pd" à chaque chargement d'une image. Même si la
-même image est chargée plusieurs fois.;
-#X text 423 784 - Indefinitely increases the memory space used by the
-"pd" application to each loading of an image. Even if the same image
-is loaded multiple times.;
-#X text 405 722 - In GEM window image is distorted.;
-#X text 427 737 - Solution: the image must have multiple of 2 dimensions
-;
-#X text 37 770 - Vu sous Pd-0.41.4-extended sous MacOSX.4;
-#X text 25 852 -;
-#X text 253 831 - Solution: Pd-0.42.5-extended (GEM 0.92.3);
-#X restore -21 277 pd Help;
-#X obj 100 101 tgl 12 1 \$0-A \$0-B empty 15 7 1 9 -262144 -1 -1 0
-1;
-#X obj -11 -2 bang;
-#X obj -36 151 cnv 15 400 50 empty empty empty 20 12 0 14 -260097 -66577
-0;
-#X text -34 150 Nom du fichier / File name;
-#X obj 304 103 cnv 10 20 10 empty ColorGEM GEM-Image. 1 5 1 14 -228856
--1 1.04858e+06;
-#X msg -24 114 set \$1;
-#X text 181 77 |;
-#X text 181 85 v;
-#X text 144 66 Reload Image;
-#N canvas 676 300 457 342 Geminfo 0;
-#X obj 93 44 inlet;
-#X obj 184 44 inlet;
-#X obj 55 302 outlet;
-#X text 86 25 gemlist;
-#X text 188 25 bang;
-#X text 59 319 label;
-#X obj 93 85 pix_info;
-#X obj 89 142 change;
-#X obj 136 142 change;
-#X obj 179 142 change;
-#X obj 179 169 sel 32993 34233 6409 6408 32992 6407;
-#X msg 55 278 label \$1;
-#X obj 184 85 t b b b;
-#X msg 179 201 RGBA;
-#X msg 215 201 YUV;
-#X msg 250 201 Grey;
-#X msg 321 201 RGB;
-#X msg 392 201 ?;
-#X text 195 233 <- ATTENTION jamais d'espace dans un label;
-#X obj 5 201 clip 0 100000;
-#X obj 93 201 clip 0 100000;
-#X obj 55 233 cyclone/sprintf %dx%d--%s;
-#X obj 55 256 cyclone/tosymbol;
-#X connect 0 0 6 0;
-#X connect 1 0 12 0;
-#X connect 6 1 7 0;
-#X connect 6 2 8 0;
-#X connect 6 4 9 0;
-#X connect 7 0 19 0;
-#X connect 8 0 20 0;
-#X connect 9 0 10 0;
-#X connect 10 0 13 0;
-#X connect 10 1 14 0;
-#X connect 10 2 15 0;
-#X connect 10 3 13 0;
-#X connect 10 4 16 0;
-#X connect 10 5 16 0;
-#X connect 10 6 17 0;
-#X connect 11 0 2 0;
-#X connect 12 0 7 0;
-#X connect 12 1 8 0;
-#X connect 12 2 9 0;
-#X connect 13 0 21 2;
-#X connect 14 0 21 2;
-#X connect 15 0 21 2;
-#X connect 16 0 21 2;
-#X connect 17 0 21 2;
-#X connect 19 0 21 0;
-#X connect 20 0 21 1;
-#X connect 21 0 22 0;
-#X connect 22 0 11 0;
-#X restore 144 292 pd Geminfo;
-#X text 84 135 gemlist;
-#X obj 407 -29 cnv 15 170 24 empty empty empty 20 12 0 14 -261682 -66577
-0;
-#X obj 388 100 bng 12 50 50 0 \$0-A \$0-B empty 14 6 1 9 -262144 -1
--1;
-#X obj 389 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
-0;
-#X text 423 -32 <- N'importe quel message;
-#X text 423 -22 <- Input anything message;
-#X obj 388 -27 inlet;
-#X text 418 -6 Utile en mode SingleBuffer;
-#X obj 102 -25 inlet;
-#X obj -59 -28 cnv 15 160 20 empty empty empty 20 12 0 14 -261682 -66577
-0;
-#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
-0;
-#X text -56 -27 1:On 0:Off bang:Change ->;
-#X obj 213 -28 cnv 15 170 24 empty empty empty 20 12 0 14 -261682 -66577
-0;
-#X text 229 -31 <- Nom d'un fichier image;
-#X text 229 -21 <- name of an image file;
-#X obj 243 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
-0;
-#X obj 178 101 bng 12 250 50 0 \$0-A \$0-B 0x0--? 15 7 1 9 -262144
--1 -1;
-#X obj 103 114 hsl 285 14 0 127 0 0 \$0-A \$0-B empty -2 -8 0 10 -262144
--262144 -1 0 1;
-#X symbolatom 100 114 49 0 0 0 - - -;
-#X obj -120 208 zexy/list2symbol;
-#X obj -3 207 zexy/list2symbol;
-#X obj 196 1 zexy/list2symbol;
-#X obj 528 306 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
-0;
-#N canvas 336 174 309 137 ?. 0;
-#X obj 3 83 cnv 15 300 46 empty empty empty 20 12 0 14 -224896 -66577
-0;
-#X obj 3 6 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
--1 1.04858e+06;
-#X obj 26 26 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
-;
-#X obj 64 26 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
-;
-#X obj 7 37 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
-#X text 8 85 Construit sous / Build under Pd 0.43.4-extended;
-#X obj 8 111 pddp/pddplink http://puredata.info/downloads/pd-extended
-;
-#X obj 7 50 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
-;
-#X text 7 98 or Pd-0.46-7 + deken;
-#X restore 532 310 pd ?.;
-#X text 322 82 24 11 2017;
-#X obj 196 -25 inlet;
-#X msg -30 167 ARGOPdMM/1.jpg;
-#X connect 2 0 5 0;
-#X connect 3 0 6 0;
-#X connect 3 0 25 0;
-#X connect 4 0 3 0;
-#X connect 5 0 4 0;
-#X connect 7 0 8 0;
-#X connect 8 0 13 0;
-#X connect 9 0 12 0;
-#X connect 10 0 44 0;
-#X connect 11 0 3 0;
-#X connect 12 0 44 0;
-#X connect 12 1 10 0;
-#X connect 13 0 44 0;
-#X connect 13 1 52 0;
-#X connect 16 0 4 0;
-#X connect 17 0 9 0;
-#X connect 21 0 52 0;
-#X connect 25 0 42 0;
-#X connect 28 0 4 0;
-#X connect 32 0 28 0;
-#X connect 34 0 16 0;
-#X connect 42 0 25 1;
-#X connect 42 0 44 0;
-#X connect 43 0 17 0;
-#X connect 44 0 21 0;
-#X connect 44 0 46 0;
-#X connect 45 0 10 0;
-#X connect 46 0 11 0;
-#X connect 47 0 12 0;
-#X connect 51 0 47 0;
-#X connect 52 0 45 0;
-#X coords 0 -1 1 1 300 34 1 100 100;
-#X restore 201 71 pd ARGO;
 #N canvas 492 109 885 558 ARGO 0;
 #X obj 201 201 cnv 7 298 76 \$0-A \$0-B empty 20 12 0 14 -228856 -1
 1.04858e+06;
@@ -901,7 +654,7 @@ Pd:;
 #X text 62 287 Nom du fichier / File name;
 #X obj 130 159 t b b;
 #X obj 297 266 hsl 201 12 0 23 0 0 \$0-SendFrame \$0-ReceiveFrame 11
-0 7 1 12 -262144 -1 -1 9565 0;
+0 7 1 12 -262144 -1 -1 0 0;
 #X obj 278 121 openpanel;
 #X obj 278 98 bang;
 #X obj 227 257 cnv 10 20 10 empty empty YUV 0 4 1 9 -228856 -1 0;
@@ -2718,3 +2471,273 @@ ecrit dans pix_film-help.pd;
 #X connect 81 0 49 1;
 #X coords 0 -1 1 1 230 78 1 200 200;
 #X restore 508 338 pd ARGO;
+#N canvas 587 275 793 405 ARGO 0;
+#X obj 301 151 cnv 10 298 32 \$0-A \$0-B empty 20 12 0 14 -228856 -1
+1.04858e+06;
+#X obj 301 179 cnv 4 10 4 empty empty empty 20 12 0 14 -128992 -66577
+0;
+#X obj 312 151 nbx 3 12 1 100 0 1 \$0-A \$0-B Render 33 7 1 9 -262144
+-1 -1 50 256;
+#X obj 302 311 pix_image;
+#X obj 301 283 gemhead;
+#X msg 314 257 set \$1;
+#X obj 303 378 outlet;
+#X obj 338 25 loadbang;
+#X obj 308 84 delay 1000;
+#X obj 189 72 openpanel;
+#X msg 217 116 set \$1;
+#X msg 197 282 open \$1;
+#X obj 189 94 t b s;
+#X obj 308 107 t b b;
+#X obj 88 120 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 184 23 812 648 Help 0;
+#X text 17 -7 - ATTENTION: GEM doit etre "On";
+#X text 18 7 - Ouvre des fichiers image JPEG \, TIFF \, PNG...;
+#X text 17 52 - Si le module est sauvé avec 1 nom de fichier \, Ce
+fichier sera lu automatiquement a la prochaine ouverture s'il n'a pas
+changé d'emplacement.;
+#X obj 12 393 cnv 15 760 480 empty empty empty 20 12 0 14 -258113 -66577
+0;
+#X text 52 422 Solution: ne pas utiliser d'accent dans les noms de
+fichier;
+#X text 51 477 Se produit avec certaines cartes video \, de certains
+PC \, sous Windows...;
+#X text 51 503 Inconvenient: Charge CPU => la texture est calculée
+(objet pix_texture) par le processeur de l'ordinateur et pas par la
+carte video);
+#X text 15 396 - Erreur dans la fenêtre Pd:;
+#X text 19 633 - Dans la fenêtre GEM les couleurs de l'image ne sont
+pas correctes.;
+#X text 39 438 - GL: énumérant non valide (répété);
+#X text 39 409 - error:GemImageLoad:Unable to find file: C:/Ima/Gérard.jpg
+;
+#X text 94 700 http://rsb.info.nih.gov/ij/download.html;
+#X text 40 659 - Solution 1: Si le fichier a été enregistré avec Photoshop:
+ne pas cocher l'option Couleur "Profill CC";
+#X text 21 91 - Peut Ouvrir automatiquement 1 fichier qui se trouve
+dans le même dossier que lui \, quelquesoit l'emplacement du dossier.
+Pour cela taper le nom du fichier (sans chemin d'accés) dans le message.
+Sauver le module. Le dossier contenant le module ARGO et le fichier
+image est ainsi transportable.;
+#X text 51 464 Solution: cocher Compatible dans le MM GEM;
+#X text 40 686 - Solution 2: Réenregistrer le fichier avec le logiciel
+ImageJ;
+#X obj 13 180 cnv 15 400 200 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X text 35 210 Description: loads in an image file;
+#X text 35 196 Synopsis: [pix_image];
+#X text 34 227 [pix_image] loads in an image to be used a texture \,
+bitblit \, or something else. If you don't give it a default image
+file \, you can send the open message with a filename.;
+#X text 34 270 [pix_image] loads in TIFFs \, JPEGs and PNGs.;
+#X text 35 289 TIFF-files are loaded using Sam Leffler's libtiff library
+\, a great \, portable image file reading and processing package (Thanks
+Sam!).;
+#X text 33 335 The image can be either drawn directly using [pix_draw]
+(VERY slow) or applied as a texture onto a Geo ([pix_texture]);
+#X text 16 180 Citation;
+#X text 14 -23 GEM-Image;
+#X text 40 546 - GL: invalid value;
+#X text 124 583 Reduce the size of the image;
+#X text 19 21 - Sous MacOSX \, quelquesoit le format de l'image \,
+le colorspace est RGBA.;
+#X text 40 558 - GL: invalid operation;
+#X text 39 451 - OpenGL: invalid enumérant (repeat);
+#X text 52 571 Solution 1: Diminuer la taille de l'image;
+#X text 52 596 Solution 2: Afficher avec GEM-Draw au lieu de GEM-Direct
+;
+#X text 124 608 Display with GEM-Draw instead of GEM-Direct;
+#X text 17 721 - Dans la fenêtre GEM l'image est déformée.;
+#X text 37 735 - Solution : l'image doit avoir des dimensions multiple
+de 2;
+#X text 17 757 - ATTENTION Bug de l'objet pix_image;
+#X text 403 758 - WARNING Bug of pix_image object;
+#X text 423 771 - Under Pd-0.41.4-extended under MacOSX.4;
+#X text 37 783 - Augmente indéfiniment la place occupée en mémoire
+par l'application "pd" à chaque chargement d'une image. Même si la
+même image est chargée plusieurs fois.;
+#X text 423 784 - Indefinitely increases the memory space used by the
+"pd" application to each loading of an image. Even if the same image
+is loaded multiple times.;
+#X text 405 722 - In GEM window image is distorted.;
+#X text 427 737 - Solution: the image must have multiple of 2 dimensions
+;
+#X text 37 770 - Vu sous Pd-0.41.4-extended sous MacOSX.4;
+#X text 25 852 -;
+#X text 253 831 - Solution: Pd-0.42.5-extended (GEM 0.92.3);
+#X restore 95 126 pd Help;
+#X obj 300 151 tgl 12 1 \$0-A \$0-B empty 15 7 1 9 -262144 -1 -1 0
+1;
+#X obj 189 48 bang;
+#X obj 164 201 cnv 15 400 50 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X text 166 200 Nom du fichier / File name;
+#X obj 504 153 cnv 10 20 10 empty ColorGEM GEM-Image. 1 5 1 14 -228856
+-1 1.04858e+06;
+#X msg 176 164 set \$1;
+#X text 381 127 |;
+#X text 381 135 v;
+#X text 344 116 Reload Image;
+#N canvas 676 300 457 342 Geminfo 0;
+#X obj 93 44 inlet;
+#X obj 184 44 inlet;
+#X obj 55 302 outlet;
+#X text 86 25 gemlist;
+#X text 188 25 bang;
+#X text 59 319 label;
+#X obj 93 85 pix_info;
+#X obj 89 142 change;
+#X obj 136 142 change;
+#X obj 179 142 change;
+#X obj 179 169 sel 32993 34233 6409 6408 32992 6407;
+#X msg 55 278 label \$1;
+#X obj 184 85 t b b b;
+#X msg 179 201 RGBA;
+#X msg 215 201 YUV;
+#X msg 250 201 Grey;
+#X msg 321 201 RGB;
+#X msg 392 201 ?;
+#X text 195 233 <- ATTENTION jamais d'espace dans un label;
+#X obj 5 201 clip 0 100000;
+#X obj 93 201 clip 0 100000;
+#X obj 55 233 cyclone/sprintf %dx%d--%s;
+#X obj 55 256 cyclone/tosymbol;
+#X connect 0 0 6 0;
+#X connect 1 0 12 0;
+#X connect 6 1 7 0;
+#X connect 6 2 8 0;
+#X connect 6 4 9 0;
+#X connect 7 0 19 0;
+#X connect 8 0 20 0;
+#X connect 9 0 10 0;
+#X connect 10 0 13 0;
+#X connect 10 1 14 0;
+#X connect 10 2 15 0;
+#X connect 10 3 13 0;
+#X connect 10 4 16 0;
+#X connect 10 5 16 0;
+#X connect 10 6 17 0;
+#X connect 11 0 2 0;
+#X connect 12 0 7 0;
+#X connect 12 1 8 0;
+#X connect 12 2 9 0;
+#X connect 13 0 21 2;
+#X connect 14 0 21 2;
+#X connect 15 0 21 2;
+#X connect 16 0 21 2;
+#X connect 17 0 21 2;
+#X connect 19 0 21 0;
+#X connect 20 0 21 1;
+#X connect 21 0 22 0;
+#X connect 22 0 11 0;
+#X restore 344 342 pd Geminfo;
+#X text 284 185 gemlist;
+#X obj 607 21 cnv 15 170 24 empty empty empty 20 12 0 14 -261682 -66577
+0;
+#X obj 588 150 bng 12 50 50 0 \$0-A \$0-B empty 14 6 1 9 -262144 -1
+-1;
+#X obj 589 151 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X text 623 18 <- N'importe quel message;
+#X text 623 28 <- Input anything message;
+#X obj 588 23 inlet;
+#X text 618 44 Utile en mode SingleBuffer;
+#X obj 302 25 inlet;
+#X obj 141 22 cnv 15 160 20 empty empty empty 20 12 0 14 -261682 -66577
+0;
+#X obj 301 151 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X text 144 23 1:On 0:Off bang:Change ->;
+#X obj 413 22 cnv 15 170 24 empty empty empty 20 12 0 14 -261682 -66577
+0;
+#X text 429 19 <- Nom d'un fichier image;
+#X text 429 29 <- name of an image file;
+#X obj 443 151 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 378 151 bng 12 250 50 0 \$0-A \$0-B 640x480--RGBA 15 7 1 9 -262144
+-1 -1;
+#X obj 303 164 hsl 285 14 0 127 0 0 \$0-A \$0-B empty -2 -8 0 10 -262144
+-262144 -1 0 1;
+#X symbolatom 300 164 49 0 0 0 - - -;
+#X obj 94 257 zexy/list2symbol;
+#X obj 197 257 zexy/list2symbol;
+#X obj 396 51 zexy/list2symbol;
+#X obj 396 25 inlet;
+#X obj 181 378 s Sendgemwin;
+#X msg 181 353 title \$1;
+#X obj 721 368 cnv 15 34 16 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 353 174 333 161 ?? 0;
+#X obj 17 89 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 17 12 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14
+-4033 -1 1.04858e+06;
+#X obj 40 32 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 78 32 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 20 54 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 22 126 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 22 102 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X text 22 90 Construit sous / Build under Pd-0.49...;
+#X text 21 114 or Pd 0.43.4-extended;
+#X obj 20 66 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X obj 20 42 pddp/pddplink https://github.com/gerardparesys/ARGOPd
+;
+#X restore 721 368 pd ??;
+#X text 522 132 12 7 2020;
+#X obj 80 331 zexy/list2symbol;
+#X obj 80 306 ggee/stripdir;
+#X obj 155 284 t a a;
+#X obj 642 107 cnv 15 100 100 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#X text 665 109 library:;
+#X text 646 121 pddp;
+#X text 646 132 cyclone;
+#X text 646 143 zexy;
+#X text 647 155 Gem;
+#X text 647 166 ggee;
+#X msg 170 217 ARGOPdMM/1.jpg;
+#X connect 2 0 5 0;
+#X connect 3 0 6 0;
+#X connect 3 0 25 0;
+#X connect 4 0 3 0;
+#X connect 5 0 4 0;
+#X connect 7 0 8 0;
+#X connect 8 0 13 0;
+#X connect 9 0 12 0;
+#X connect 10 0 44 0;
+#X connect 11 0 3 0;
+#X connect 12 0 44 0;
+#X connect 12 1 10 0;
+#X connect 13 0 44 0;
+#X connect 13 1 64 0;
+#X connect 16 0 4 0;
+#X connect 17 0 9 0;
+#X connect 21 0 64 0;
+#X connect 25 0 42 0;
+#X connect 28 0 4 0;
+#X connect 32 0 28 0;
+#X connect 34 0 16 0;
+#X connect 42 0 25 1;
+#X connect 42 0 44 0;
+#X connect 43 0 17 0;
+#X connect 44 0 21 0;
+#X connect 44 0 46 0;
+#X connect 45 0 10 0;
+#X connect 46 0 11 0;
+#X connect 46 0 56 0;
+#X connect 47 0 12 0;
+#X connect 48 0 47 0;
+#X connect 50 0 49 0;
+#X connect 54 0 50 0;
+#X connect 55 0 54 0;
+#X connect 56 0 55 0;
+#X connect 56 1 50 0;
+#X connect 64 0 45 0;
+#X coords 0 -1 1 1 300 34 1 300 150;
+#X restore 201 71 pd ARGO;
