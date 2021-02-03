@@ -52,7 +52,7 @@ Based on the works of:
 - R. Luke DuBois & Dan Trueman: Percolate, munger...  
    https://github.com/Cycling74/percolate
 - Tom Erbe: +pitchdelay~, +bubbler~, +compand~, +decimate...  
-   http://www.soundhack.com/freeware/
+   https://www.soundhack.com/freeware/
 - Andy Farnell (Obiwannabe): liquid, formant...  
    http://aspress.co.uk/sd/index.html
 - Roman Haefeli: clap808...  
@@ -72,7 +72,7 @@ Based on the works of:
 - Matthias Kronlachner: pix_freenect, pix_depth2rgba, gendy~_osx_build  
    https://github.com/kronihias/pd-kinect-examples
 - Labomedia (Olivier Baudu, Benjamin Cadon...)  
-   http://wiki.labomedia.org/
+   https://ressources.labomedia.org
 - Chris McCormick: -obiwansd~...  
    https://github.com/chr15m/s-abstractions
 - Thomas Ouellet Fredericks - Alexandre Quessy - Patrick Sebastien Coulombe - JKP  
@@ -92,10 +92,15 @@ Based on the works of:
 - Hans-Christoph Steiner: filterview...  
    http://puredata.info/downloads/filterview/
 - Tim Vets: Karplus-Strong, PDelayLama  
-   http://www.timvets.net/software/
+   http://www.timvets.net
 - Katja Vetter: octave-harmonizer, soundtouch~...   
    http://www.katjaas.nl
+- Serge Poltavski: soundtouch~ ...  
+   https://github.com/uliss 
+- Olaf Matthes: gauss, cauchy, freeverb~ ...  
+   https://puredata.info/author/olafmatt 
 - ... Thomas Musil ... IOhannes M Zmölnig ... Miller Puckette...  
+   https://puredata.info/author/musil  
    https://git.iem.at/zmoelnig  
    https://github.com/millerpuckette
 __________________________________________________________________
