@@ -1,205 +1,6 @@
 #N canvas 155 23 1068 623 10;
 #X obj 9 9 cnv 15 15 15 empty empty ExMM131o-EEG-Play-2Ch-Sonification-v2.pd
 0 8 1 14 -262144 -66577 0;
-#N canvas 362 47 416 224 ARGO 0;
-#X obj 101 101 cnv 20 148 46 empty ColorForm PitchShift. 50 9 1 14
--188398 -1 1.04858e+06;
-#X obj 101 143 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
-;
-#X obj 90 50 inlet~;
-#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
-;
-#X obj 90 184 outlet~;
-#X obj 19 112 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
-0;
-#N canvas 345 36 418 512 Help 0;
-#X obj 8 36 cnv 15 400 360 empty empty empty 20 12 0 14 -233017 -66577
-0;
-#X text 11 38 Citation;
-#X text 310 10 = Transposition;
-#X text 8 13 PitchShift = Pitch shifting = Décalage en hauteur;
-#X text 28 54 Voir: /doc/3.audio.examples/G09.pitchshift.pd;
-#X text 26 314 The Theory and Technique of Electronic Music;
-#X text 26 303 Voir:;
-#X text 27 327 Miller Puckette;
-#X text 48 341 7.9 Pitchshifting page 202;
-#X text 71 353 Pitch shifter page 218;
-#X text 26 71 This is a classic rotating-tape-head style pitch shifter
-using the vd~ variable delay object. Ther are two moving tape heads
-\, each of which is loudest at the middle of its trajectory \, and
-enveloped out at the moment it has to jump back (or forward) to start
-another scratch. Most of the brain work is in computing how fast the
-tape heads have to move to get the desired transposition.;
-#X text 25 170 The "window size" is the total trajectory of the read
-points in the delay line \, in milliseconds. The delay times are controlled
-by a phasor~ object. The second delay time \, 180 degrees out of phase
-from the first one \, is computed using the "wrap" object.;
-#X text 25 243 The cos~ objects compute the fadein and fadeout of the
-two delay line outputs. They each traverse the positive half of the
-cosine waveform (phase -0.25 to +0.25) over the time the phase goes
-from one end to the other.;
-#X text 7 431 Cela evite de devoir nommer la "delay line".;
-#X text 6 448 Le MiniModule est ainsi duplicable et peux être présent
-à 2 exemplaires dans un même patch.;
-#X text 7 400 (delwrite~ G09-del 5000) + (vd~ G09-del) est remplacé
-par (cyclone/comb~ 5000 0 0 1 0).;
-#X obj 27 368 pddp/pddplink http://crca.ucsd.edu/%7Emsp/techniques/latest/book.pdf
-;
-#X restore 26 118 pd Help;
-#X obj 103 118 hsl 145 12 -36 36 0 1 \$0-A ColorTime 24semitone 0 7
-1 9 -208064 -1728 -1 12000 0;
-#X obj 239 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
-0;
-#N canvas 484 315 248 174 label 0;
-#X obj 38 154 outlet;
-#X obj 38 8 inlet;
-#X msg 38 120 label \$1;
-#X obj 38 35 expr (int(100 * $f1) / 100) \;;
-#X obj 38 64 cyclone/sprintf %ssemitone;
-#X obj 38 98 symbol;
-#X connect 1 0 3 0;
-#X connect 2 0 0 0;
-#X connect 3 0 4 0;
-#X connect 4 0 5 0;
-#X connect 5 0 2 0;
-#X restore 257 108 pd label;
-#X obj 149 47 cnv 15 100 24 empty empty empty 20 12 0 14 -261682 -66577
-0;
-#X text 149 44 Nombre ->;
-#X text 149 54 Number ->;
-#X obj 209 50 inlet;
-#X obj 103 130 hsl 145 12 1 1000 1 1 \$0-A ColorTime 205ms 0 7 1 9
--208064 -1728 -1 11100 0;
-#N canvas 501 238 171 165 label 0;
-#X obj 30 134 outlet;
-#X obj 30 15 inlet;
-#X msg 30 100 label \$1;
-#X obj 30 44 cyclone/sprintf %dms;
-#X obj 30 78 symbol;
-#X connect 1 0 3 0;
-#X connect 2 0 0 0;
-#X connect 3 0 4 0;
-#X connect 4 0 2 0;
-#X restore 257 138 pd label;
-#N canvas 339 115 459 487 PitchShift 0;
-#X obj 44 35 inlet~;
-#X obj 164 460 outlet~;
-#X obj 109 32 inlet;
-#X obj 268 33 inlet;
-#X obj 89 324 *~;
-#X obj 268 159 line~;
-#X obj 268 133 pack 0 200;
-#X obj 109 75 exp;
-#X obj 71 192 /;
-#X obj 210 135 * 0.001;
-#X obj 7 398 cos~;
-#X obj 19 425 *~;
-#X obj 238 291 wrap~;
-#X obj 322 326 *~;
-#X obj 238 398 cos~;
-#X obj 250 425 *~;
-#X obj 210 162 t b f;
-#X obj 238 264 +~ 0.5;
-#X obj 7 341 -~ 0.5;
-#X obj 7 369 *~ 0.5;
-#X obj 238 334 -~ 0.5;
-#X obj 238 369 *~ 0.5;
-#X obj 71 139 - 1;
-#X obj 109 54 * 0.05776;
-#X obj 71 160 * -1;
-#X text 94 16 (halftones);
-#X text 106 185 tape head;
-#X obj 71 220 phasor~;
-#X obj 268 78 max 1;
-#X text 107 198 rotation freq;
-#X text 90 3 transposition;
-#X text 242 10 window (msec);
-#X msg 321 163 clear;
-#X obj 51 398 cyclone/comb~ 5000 0 0 1 0;
-#X obj 284 398 cyclone/comb~ 5000 0 0 1 0;
-#X text 111 91 <- speed change;
-#X obj 89 369 +~ 2;
-#X obj 322 369 +~ 2;
-#X connect 0 0 33 0;
-#X connect 0 0 34 0;
-#X connect 2 0 23 0;
-#X connect 3 0 28 0;
-#X connect 4 0 36 0;
-#X connect 5 0 4 1;
-#X connect 5 0 13 1;
-#X connect 6 0 5 0;
-#X connect 7 0 22 0;
-#X connect 8 0 27 0;
-#X connect 9 0 16 0;
-#X connect 10 0 11 0;
-#X connect 11 0 1 0;
-#X connect 12 0 13 0;
-#X connect 12 0 20 0;
-#X connect 13 0 37 0;
-#X connect 14 0 15 0;
-#X connect 15 0 1 0;
-#X connect 16 0 8 0;
-#X connect 16 1 8 1;
-#X connect 17 0 12 0;
-#X connect 18 0 19 0;
-#X connect 19 0 10 0;
-#X connect 20 0 21 0;
-#X connect 21 0 14 0;
-#X connect 22 0 24 0;
-#X connect 23 0 7 0;
-#X connect 24 0 8 0;
-#X connect 27 0 4 0;
-#X connect 27 0 18 0;
-#X connect 27 0 17 0;
-#X connect 28 0 9 0;
-#X connect 28 0 6 0;
-#X connect 32 0 33 0;
-#X connect 32 0 34 0;
-#X connect 33 0 11 1;
-#X connect 34 0 15 1;
-#X connect 36 0 33 1;
-#X connect 37 0 34 1;
-#X restore 90 156 pd PitchShift;
-#X text 181 29 -36..+36 semitones;
-#X obj 305 17 cnv 15 100 70 empty empty empty 20 12 0 14 -24198 -66577
-0;
-#X text 328 19 library:;
-#X text 309 30 pddp;
-#X text 309 41 cyclone;
-#X text 309 52 zexy;
-#X text 122 82 26 2 2018;
-#X obj 352 177 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
-0;
-#N canvas 336 174 316 152 ?. 0;
-#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
-0;
-#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
--1 1.04858e+06;
-#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
-;
-#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
-;
-#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
-#X text 13 85 Construit sous / Build under Pd 0.43.4-extended;
-#X obj 13 111 pddp/pddplink http://puredata.info/downloads/pd-extended
-;
-#X obj 12 53 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
-;
-#X text 12 98 or Pd-0.48;
-#X obj 13 124 pddp/pddplink http://puredata.info/downloads/pure-data
-;
-#X restore 356 181 pd ?.;
-#X connect 2 0 16 0;
-#X connect 7 0 9 0;
-#X connect 7 0 16 1;
-#X connect 9 0 7 0;
-#X connect 13 0 7 0;
-#X connect 14 0 15 0;
-#X connect 14 0 16 2;
-#X connect 15 0 14 0;
-#X connect 16 0 4 0;
-#X coords 0 -1 1 1 150 48 1 100 100;
-#X restore 216 266 pd ARGO;
 #X text 474 85 -80dB..120dB;
 #X text 236 82 Adjust Amplitude ->;
 #X obj 404 543 dac~ 1 2;
@@ -213,9 +14,9 @@ par (cyclone/comb~ 5000 0 0 1 0).;
 #X obj 101 101 cnv 10 95 41 \$0-A \$0-B empty 20 12 0 14 -1 -1 1.04858e+06
 ;
 #X obj 101 109 nbx 4 12 0 1e+37 0 0 \$0 \$0-ReceiveCpuPeak CPUPeak
-45 7 1 11 -24198 -1 -24198 8 256;
+45 7 1 11 -24198 -1 -24198 6 256;
 #X obj 101 122 nbx 4 12 0 1e+37 0 0 \$0 \$0-ReceiveCpuMean CPUMean
-45 7 1 11 -24198 -1 -24198 7.5 256;
+45 7 1 11 -24198 -1 -24198 4.44 256;
 #X obj 145 -55 cputime;
 #X obj 145 -76 t b b;
 #X text 188 24 (c) musil@iem.kug.ac.at;
@@ -1112,14 +913,14 @@ un ou plusieurs arrays;
 #X text 357 168 (2) Renommer le message qui renomme les 2 arrays;
 #X obj 53 180 t a a b a;
 #X obj 213 179 t a a b a;
-#X msg 87 242 A3899;
-#X msg 234 241 B3899;
+#X msg 87 242 A3229;
+#X msg 234 241 B3229;
 #N canvas 0 22 1149 303 (subpatch) 0;
-#X array B3899 2.65231e+06 float 2;
+#X array B3229 2.65231e+06 float 2;
 #X coords 0 0 2.65231e+06 1 300 40 0;
 #X restore 256 352 graph;
 #N canvas 0 22 844 357 (subpatch) 0;
-#X array A3899 2.65231e+06 float 2;
+#X array A3229 2.65231e+06 float 2;
 #X coords 0 0 2.65231e+06 1 300 40 0;
 #X restore 108 351 graph;
 #X obj 344 286 soundfiler;
@@ -1375,7 +1176,7 @@ un ou plusieurs arrays;
 #X obj 488 228 bng 12 250 50 0 \$0-A \$0-B empty 15 7 1 9 -262144 -1
 -1;
 #X obj 203 214 hsl 295 12 0 1 0 0 \$0-A \$0-B 60.1sec 234 7 1 9 -188398
--1 -1 26592 0;
+-1 -1 16967 0;
 #X obj 295 202 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
 0;
 #X obj 294 58 inlet;
@@ -1471,206 +1272,7 @@ un ou plusieurs arrays;
 #X connect 85 0 43 0;
 #X coords 0 -1 1 1 300 46 2 200 200;
 #X restore 361 14 pd ARGO;
-#N canvas 362 47 416 224 ARGO 0;
-#X obj 101 101 cnv 20 148 46 empty ColorForm PitchShift. 50 9 1 14
--188398 -1 1.04858e+06;
-#X obj 101 143 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
-;
-#X obj 90 50 inlet~;
-#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
-;
-#X obj 90 184 outlet~;
-#X obj 19 112 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
-0;
-#N canvas 345 36 418 512 Help 0;
-#X obj 8 36 cnv 15 400 360 empty empty empty 20 12 0 14 -233017 -66577
-0;
-#X text 11 38 Citation;
-#X text 310 10 = Transposition;
-#X text 8 13 PitchShift = Pitch shifting = Décalage en hauteur;
-#X text 28 54 Voir: /doc/3.audio.examples/G09.pitchshift.pd;
-#X text 26 314 The Theory and Technique of Electronic Music;
-#X text 26 303 Voir:;
-#X text 27 327 Miller Puckette;
-#X text 48 341 7.9 Pitchshifting page 202;
-#X text 71 353 Pitch shifter page 218;
-#X text 26 71 This is a classic rotating-tape-head style pitch shifter
-using the vd~ variable delay object. Ther are two moving tape heads
-\, each of which is loudest at the middle of its trajectory \, and
-enveloped out at the moment it has to jump back (or forward) to start
-another scratch. Most of the brain work is in computing how fast the
-tape heads have to move to get the desired transposition.;
-#X text 25 170 The "window size" is the total trajectory of the read
-points in the delay line \, in milliseconds. The delay times are controlled
-by a phasor~ object. The second delay time \, 180 degrees out of phase
-from the first one \, is computed using the "wrap" object.;
-#X text 25 243 The cos~ objects compute the fadein and fadeout of the
-two delay line outputs. They each traverse the positive half of the
-cosine waveform (phase -0.25 to +0.25) over the time the phase goes
-from one end to the other.;
-#X text 7 431 Cela evite de devoir nommer la "delay line".;
-#X text 6 448 Le MiniModule est ainsi duplicable et peux être présent
-à 2 exemplaires dans un même patch.;
-#X text 7 400 (delwrite~ G09-del 5000) + (vd~ G09-del) est remplacé
-par (cyclone/comb~ 5000 0 0 1 0).;
-#X obj 27 368 pddp/pddplink http://crca.ucsd.edu/%7Emsp/techniques/latest/book.pdf
-;
-#X restore 26 118 pd Help;
-#X obj 103 118 hsl 145 12 -36 36 0 1 \$0-A ColorTime 27semitone 0 7
-1 9 -208064 -1728 -1 12600 0;
-#X obj 239 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
-0;
-#N canvas 484 315 248 174 label 0;
-#X obj 38 154 outlet;
-#X obj 38 8 inlet;
-#X msg 38 120 label \$1;
-#X obj 38 35 expr (int(100 * $f1) / 100) \;;
-#X obj 38 64 cyclone/sprintf %ssemitone;
-#X obj 38 98 symbol;
-#X connect 1 0 3 0;
-#X connect 2 0 0 0;
-#X connect 3 0 4 0;
-#X connect 4 0 5 0;
-#X connect 5 0 2 0;
-#X restore 257 108 pd label;
-#X obj 149 47 cnv 15 100 24 empty empty empty 20 12 0 14 -261682 -66577
-0;
-#X text 149 44 Nombre ->;
-#X text 149 54 Number ->;
-#X obj 209 50 inlet;
-#X obj 103 130 hsl 145 12 1 1000 1 1 \$0-A ColorTime 100ms 0 7 1 9
--208064 -1728 -1 9600 0;
-#N canvas 501 238 171 165 label 0;
-#X obj 30 134 outlet;
-#X obj 30 15 inlet;
-#X msg 30 100 label \$1;
-#X obj 30 44 cyclone/sprintf %dms;
-#X obj 30 78 symbol;
-#X connect 1 0 3 0;
-#X connect 2 0 0 0;
-#X connect 3 0 4 0;
-#X connect 4 0 2 0;
-#X restore 257 138 pd label;
-#N canvas 339 115 459 487 PitchShift 0;
-#X obj 44 35 inlet~;
-#X obj 164 460 outlet~;
-#X obj 109 32 inlet;
-#X obj 268 33 inlet;
-#X obj 89 324 *~;
-#X obj 268 159 line~;
-#X obj 268 133 pack 0 200;
-#X obj 109 75 exp;
-#X obj 71 192 /;
-#X obj 210 135 * 0.001;
-#X obj 7 398 cos~;
-#X obj 19 425 *~;
-#X obj 238 291 wrap~;
-#X obj 322 326 *~;
-#X obj 238 398 cos~;
-#X obj 250 425 *~;
-#X obj 210 162 t b f;
-#X obj 238 264 +~ 0.5;
-#X obj 7 341 -~ 0.5;
-#X obj 7 369 *~ 0.5;
-#X obj 238 334 -~ 0.5;
-#X obj 238 369 *~ 0.5;
-#X obj 71 139 - 1;
-#X obj 109 54 * 0.05776;
-#X obj 71 160 * -1;
-#X text 94 16 (halftones);
-#X text 106 185 tape head;
-#X obj 71 220 phasor~;
-#X obj 268 78 max 1;
-#X text 107 198 rotation freq;
-#X text 90 3 transposition;
-#X text 242 10 window (msec);
-#X msg 321 163 clear;
-#X obj 51 398 cyclone/comb~ 5000 0 0 1 0;
-#X obj 284 398 cyclone/comb~ 5000 0 0 1 0;
-#X text 111 91 <- speed change;
-#X obj 89 369 +~ 2;
-#X obj 322 369 +~ 2;
-#X connect 0 0 33 0;
-#X connect 0 0 34 0;
-#X connect 2 0 23 0;
-#X connect 3 0 28 0;
-#X connect 4 0 36 0;
-#X connect 5 0 4 1;
-#X connect 5 0 13 1;
-#X connect 6 0 5 0;
-#X connect 7 0 22 0;
-#X connect 8 0 27 0;
-#X connect 9 0 16 0;
-#X connect 10 0 11 0;
-#X connect 11 0 1 0;
-#X connect 12 0 13 0;
-#X connect 12 0 20 0;
-#X connect 13 0 37 0;
-#X connect 14 0 15 0;
-#X connect 15 0 1 0;
-#X connect 16 0 8 0;
-#X connect 16 1 8 1;
-#X connect 17 0 12 0;
-#X connect 18 0 19 0;
-#X connect 19 0 10 0;
-#X connect 20 0 21 0;
-#X connect 21 0 14 0;
-#X connect 22 0 24 0;
-#X connect 23 0 7 0;
-#X connect 24 0 8 0;
-#X connect 27 0 4 0;
-#X connect 27 0 18 0;
-#X connect 27 0 17 0;
-#X connect 28 0 9 0;
-#X connect 28 0 6 0;
-#X connect 32 0 33 0;
-#X connect 32 0 34 0;
-#X connect 33 0 11 1;
-#X connect 34 0 15 1;
-#X connect 36 0 33 1;
-#X connect 37 0 34 1;
-#X restore 90 156 pd PitchShift;
-#X text 181 29 -36..+36 semitones;
-#X obj 305 17 cnv 15 100 70 empty empty empty 20 12 0 14 -24198 -66577
-0;
-#X text 328 19 library:;
-#X text 309 30 pddp;
-#X text 309 41 cyclone;
-#X text 309 52 zexy;
-#X text 122 82 26 2 2018;
-#X obj 352 177 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
-0;
-#N canvas 336 174 316 152 ?. 0;
-#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
-0;
-#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
--1 1.04858e+06;
-#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
-;
-#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
-;
-#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
-#X text 13 85 Construit sous / Build under Pd 0.43.4-extended;
-#X obj 13 111 pddp/pddplink http://puredata.info/downloads/pd-extended
-;
-#X obj 12 53 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
-;
-#X text 12 98 or Pd-0.48;
-#X obj 13 124 pddp/pddplink http://puredata.info/downloads/pure-data
-;
-#X restore 356 181 pd ?.;
-#X connect 2 0 16 0;
-#X connect 7 0 9 0;
-#X connect 7 0 16 1;
-#X connect 9 0 7 0;
-#X connect 13 0 7 0;
-#X connect 14 0 15 0;
-#X connect 14 0 16 2;
-#X connect 15 0 14 0;
-#X connect 16 0 4 0;
-#X coords 0 -1 1 1 150 48 1 100 100;
-#X restore 376 266 pd ARGO;
-#N canvas 0 22 1030 642 ARGO 0;
+#N canvas 0 23 1030 642 ARGO 0;
 #X obj 101 151 cnv 10 254 135 empty ColorForm FFT-Equalizer1/2Oct.
 110 8 1 14 -188398 -1 1.04858e+06;
 #X obj 101 282 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
@@ -2746,25 +2348,425 @@ dans un patch contenant 1 ou plusieurs MiniModules FFT.;
 #X obj 12 53 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
 ;
 #X restore 1011 590 pd ?...;
-#X connect 1 0 23 0;
-#X connect 13 0 12 0;
-#X connect 18 0 4 0;
+#N canvas 362 47 416 224 ARGO 0;
+#X obj 101 101 cnv 20 148 46 empty ColorForm PitchShift. 50 9 1 14
+-188398 -1 1.04858e+06;
+#X obj 101 143 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 90 50 inlet~;
+#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 90 184 outlet~;
+#X obj 19 112 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 345 36 418 512 Help 0;
+#X obj 8 36 cnv 15 400 360 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X text 11 38 Citation;
+#X text 310 10 = Transposition;
+#X text 8 13 PitchShift = Pitch shifting = Décalage en hauteur;
+#X text 28 54 Voir: /doc/3.audio.examples/G09.pitchshift.pd;
+#X text 26 314 The Theory and Technique of Electronic Music;
+#X text 26 303 Voir:;
+#X text 27 327 Miller Puckette;
+#X text 48 341 7.9 Pitchshifting page 202;
+#X text 71 353 Pitch shifter page 218;
+#X text 26 71 This is a classic rotating-tape-head style pitch shifter
+using the vd~ variable delay object. Ther are two moving tape heads
+\, each of which is loudest at the middle of its trajectory \, and
+enveloped out at the moment it has to jump back (or forward) to start
+another scratch. Most of the brain work is in computing how fast the
+tape heads have to move to get the desired transposition.;
+#X text 25 170 The "window size" is the total trajectory of the read
+points in the delay line \, in milliseconds. The delay times are controlled
+by a phasor~ object. The second delay time \, 180 degrees out of phase
+from the first one \, is computed using the "wrap" object.;
+#X text 25 243 The cos~ objects compute the fadein and fadeout of the
+two delay line outputs. They each traverse the positive half of the
+cosine waveform (phase -0.25 to +0.25) over the time the phase goes
+from one end to the other.;
+#X text 7 431 Cela evite de devoir nommer la "delay line".;
+#X text 6 448 Le MiniModule est ainsi duplicable et peux être présent
+à 2 exemplaires dans un même patch.;
+#X text 7 400 (delwrite~ G09-del 5000) + (vd~ G09-del) est remplacé
+par (cyclone/comb~ 5000 0 0 1 0).;
+#X obj 27 368 pddp/pddplink http://crca.ucsd.edu/%7Emsp/techniques/latest/book.pdf
+;
+#X restore 26 118 pd Help;
+#X obj 103 118 hsl 145 12 -36 36 0 1 \$0-A ColorTime 24semitone 0 7
+1 9 -208064 -1728 -1 12000 0;
+#X obj 239 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#N canvas 484 315 248 174 label 0;
+#X obj 38 154 outlet;
+#X obj 38 8 inlet;
+#X msg 38 120 label \$1;
+#X obj 38 35 expr (int(100 * $f1) / 100) \;;
+#X obj 38 64 cyclone/sprintf %ssemitone;
+#X obj 38 98 symbol;
+#X connect 1 0 3 0;
+#X connect 2 0 0 0;
+#X connect 3 0 4 0;
+#X connect 4 0 5 0;
+#X connect 5 0 2 0;
+#X restore 257 108 pd label;
+#X obj 149 47 cnv 15 100 24 empty empty empty 20 12 0 14 -261682 -66577
+0;
+#X text 149 44 Nombre ->;
+#X text 149 54 Number ->;
+#X obj 209 50 inlet;
+#X obj 103 130 hsl 145 12 1 1000 1 1 \$0-A ColorTime 205ms 0 7 1 9
+-208064 -1728 -1 11100 0;
+#N canvas 501 238 171 165 label 0;
+#X obj 30 134 outlet;
+#X obj 30 15 inlet;
+#X msg 30 100 label \$1;
+#X obj 30 44 cyclone/sprintf %dms;
+#X obj 30 78 symbol;
+#X connect 1 0 3 0;
+#X connect 2 0 0 0;
+#X connect 3 0 4 0;
+#X connect 4 0 2 0;
+#X restore 257 138 pd label;
+#N canvas 339 115 459 487 PitchShift 0;
+#X obj 44 35 inlet~;
+#X obj 164 460 outlet~;
+#X obj 109 32 inlet;
+#X obj 268 33 inlet;
+#X obj 89 324 *~;
+#X obj 268 159 line~;
+#X obj 268 133 pack 0 200;
+#X obj 109 75 exp;
+#X obj 71 192 /;
+#X obj 210 135 * 0.001;
+#X obj 7 398 cos~;
+#X obj 19 425 *~;
+#X obj 238 291 wrap~;
+#X obj 322 326 *~;
+#X obj 238 398 cos~;
+#X obj 250 425 *~;
+#X obj 210 162 t b f;
+#X obj 238 264 +~ 0.5;
+#X obj 7 341 -~ 0.5;
+#X obj 7 369 *~ 0.5;
+#X obj 238 334 -~ 0.5;
+#X obj 238 369 *~ 0.5;
+#X obj 71 139 - 1;
+#X obj 109 54 * 0.05776;
+#X obj 71 160 * -1;
+#X text 94 16 (halftones);
+#X text 106 185 tape head;
+#X obj 71 220 phasor~;
+#X obj 268 78 max 1;
+#X text 107 198 rotation freq;
+#X text 90 3 transposition;
+#X text 242 10 window (msec);
+#X msg 321 163 clear;
+#X obj 51 398 cyclone/comb~ 5000 0 0 1 0;
+#X obj 284 398 cyclone/comb~ 5000 0 0 1 0;
+#X text 111 91 <- speed change;
+#X obj 89 369 +~ 2;
+#X obj 322 369 +~ 2;
+#X connect 0 0 33 0;
+#X connect 0 0 34 0;
+#X connect 2 0 23 0;
+#X connect 3 0 28 0;
+#X connect 4 0 36 0;
+#X connect 5 0 4 1;
+#X connect 5 0 13 1;
+#X connect 6 0 5 0;
+#X connect 7 0 22 0;
+#X connect 8 0 27 0;
+#X connect 9 0 16 0;
+#X connect 10 0 11 0;
+#X connect 11 0 1 0;
+#X connect 12 0 13 0;
+#X connect 12 0 20 0;
+#X connect 13 0 37 0;
+#X connect 14 0 15 0;
+#X connect 15 0 1 0;
+#X connect 16 0 8 0;
+#X connect 16 1 8 1;
+#X connect 17 0 12 0;
 #X connect 18 0 19 0;
-#X connect 18 0 20 0;
-#X connect 18 1 4 1;
-#X connect 18 1 19 1;
-#X connect 18 1 20 1;
-#X connect 21 0 27 0;
-#X connect 21 0 22 0;
-#X connect 21 1 27 1;
-#X connect 23 0 18 0;
-#X connect 24 0 18 1;
-#X connect 24 0 30 0;
-#X connect 25 0 21 0;
-#X connect 25 1 21 1;
-#X connect 26 0 24 0;
-#X connect 26 0 29 0;
-#X connect 27 0 1 0;
-#X connect 27 0 22 1;
-#X connect 27 1 26 0;
-#X connect 27 1 28 0;
+#X connect 19 0 10 0;
+#X connect 20 0 21 0;
+#X connect 21 0 14 0;
+#X connect 22 0 24 0;
+#X connect 23 0 7 0;
+#X connect 24 0 8 0;
+#X connect 27 0 4 0;
+#X connect 27 0 18 0;
+#X connect 27 0 17 0;
+#X connect 28 0 9 0;
+#X connect 28 0 6 0;
+#X connect 32 0 33 0;
+#X connect 32 0 34 0;
+#X connect 33 0 11 1;
+#X connect 34 0 15 1;
+#X connect 36 0 33 1;
+#X connect 37 0 34 1;
+#X restore 90 156 pd PitchShift;
+#X text 181 29 -36..+36 semitones;
+#X obj 305 17 cnv 15 100 70 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#X text 328 19 library:;
+#X text 309 30 pddp;
+#X text 309 41 cyclone;
+#X text 193 83 27 7 2020;
+#X obj 361 183 cnv 15 34 16 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 353 174 333 161 ?? 0;
+#X obj 17 89 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 17 12 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14
+-4033 -1 1.04858e+06;
+#X obj 40 32 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 78 32 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 20 54 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 22 126 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 22 102 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X text 22 90 Construit sous / Build under Pd-0.49...;
+#X text 21 114 or Pd 0.43.4-extended;
+#X obj 20 66 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X obj 20 42 pddp/pddplink https://github.com/gerardparesys/ARGOPd
+;
+#X restore 361 183 pd ??;
+#X connect 2 0 16 0;
+#X connect 7 0 9 0;
+#X connect 7 0 16 1;
+#X connect 9 0 7 0;
+#X connect 13 0 7 0;
+#X connect 14 0 15 0;
+#X connect 14 0 16 2;
+#X connect 15 0 14 0;
+#X connect 16 0 4 0;
+#X coords 0 -1 1 1 150 48 1 100 100;
+#X restore 216 266 pd ARGO;
+#N canvas 362 47 416 224 ARGO 0;
+#X obj 101 101 cnv 20 148 46 empty ColorForm PitchShift. 50 9 1 14
+-188398 -1 1.04858e+06;
+#X obj 101 143 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 90 50 inlet~;
+#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 90 184 outlet~;
+#X obj 19 112 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 345 36 418 512 Help 0;
+#X obj 8 36 cnv 15 400 360 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X text 11 38 Citation;
+#X text 310 10 = Transposition;
+#X text 8 13 PitchShift = Pitch shifting = Décalage en hauteur;
+#X text 28 54 Voir: /doc/3.audio.examples/G09.pitchshift.pd;
+#X text 26 314 The Theory and Technique of Electronic Music;
+#X text 26 303 Voir:;
+#X text 27 327 Miller Puckette;
+#X text 48 341 7.9 Pitchshifting page 202;
+#X text 71 353 Pitch shifter page 218;
+#X text 26 71 This is a classic rotating-tape-head style pitch shifter
+using the vd~ variable delay object. Ther are two moving tape heads
+\, each of which is loudest at the middle of its trajectory \, and
+enveloped out at the moment it has to jump back (or forward) to start
+another scratch. Most of the brain work is in computing how fast the
+tape heads have to move to get the desired transposition.;
+#X text 25 170 The "window size" is the total trajectory of the read
+points in the delay line \, in milliseconds. The delay times are controlled
+by a phasor~ object. The second delay time \, 180 degrees out of phase
+from the first one \, is computed using the "wrap" object.;
+#X text 25 243 The cos~ objects compute the fadein and fadeout of the
+two delay line outputs. They each traverse the positive half of the
+cosine waveform (phase -0.25 to +0.25) over the time the phase goes
+from one end to the other.;
+#X text 7 431 Cela evite de devoir nommer la "delay line".;
+#X text 6 448 Le MiniModule est ainsi duplicable et peux être présent
+à 2 exemplaires dans un même patch.;
+#X text 7 400 (delwrite~ G09-del 5000) + (vd~ G09-del) est remplacé
+par (cyclone/comb~ 5000 0 0 1 0).;
+#X obj 27 368 pddp/pddplink http://crca.ucsd.edu/%7Emsp/techniques/latest/book.pdf
+;
+#X restore 26 118 pd Help;
+#X obj 103 118 hsl 145 12 -36 36 0 1 \$0-A ColorTime 27semitone 0 7
+1 9 -208064 -1728 -1 12600 0;
+#X obj 239 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#N canvas 484 315 248 174 label 0;
+#X obj 38 154 outlet;
+#X obj 38 8 inlet;
+#X msg 38 120 label \$1;
+#X obj 38 35 expr (int(100 * $f1) / 100) \;;
+#X obj 38 64 cyclone/sprintf %ssemitone;
+#X obj 38 98 symbol;
+#X connect 1 0 3 0;
+#X connect 2 0 0 0;
+#X connect 3 0 4 0;
+#X connect 4 0 5 0;
+#X connect 5 0 2 0;
+#X restore 257 108 pd label;
+#X obj 149 47 cnv 15 100 24 empty empty empty 20 12 0 14 -261682 -66577
+0;
+#X text 149 44 Nombre ->;
+#X text 149 54 Number ->;
+#X obj 209 50 inlet;
+#X obj 103 130 hsl 145 12 1 1000 1 1 \$0-A ColorTime 100ms 0 7 1 9
+-208064 -1728 -1 9600 0;
+#N canvas 501 238 171 165 label 0;
+#X obj 30 134 outlet;
+#X obj 30 15 inlet;
+#X msg 30 100 label \$1;
+#X obj 30 44 cyclone/sprintf %dms;
+#X obj 30 78 symbol;
+#X connect 1 0 3 0;
+#X connect 2 0 0 0;
+#X connect 3 0 4 0;
+#X connect 4 0 2 0;
+#X restore 257 138 pd label;
+#N canvas 339 115 459 487 PitchShift 0;
+#X obj 44 35 inlet~;
+#X obj 164 460 outlet~;
+#X obj 109 32 inlet;
+#X obj 268 33 inlet;
+#X obj 89 324 *~;
+#X obj 268 159 line~;
+#X obj 268 133 pack 0 200;
+#X obj 109 75 exp;
+#X obj 71 192 /;
+#X obj 210 135 * 0.001;
+#X obj 7 398 cos~;
+#X obj 19 425 *~;
+#X obj 238 291 wrap~;
+#X obj 322 326 *~;
+#X obj 238 398 cos~;
+#X obj 250 425 *~;
+#X obj 210 162 t b f;
+#X obj 238 264 +~ 0.5;
+#X obj 7 341 -~ 0.5;
+#X obj 7 369 *~ 0.5;
+#X obj 238 334 -~ 0.5;
+#X obj 238 369 *~ 0.5;
+#X obj 71 139 - 1;
+#X obj 109 54 * 0.05776;
+#X obj 71 160 * -1;
+#X text 94 16 (halftones);
+#X text 106 185 tape head;
+#X obj 71 220 phasor~;
+#X obj 268 78 max 1;
+#X text 107 198 rotation freq;
+#X text 90 3 transposition;
+#X text 242 10 window (msec);
+#X msg 321 163 clear;
+#X obj 51 398 cyclone/comb~ 5000 0 0 1 0;
+#X obj 284 398 cyclone/comb~ 5000 0 0 1 0;
+#X text 111 91 <- speed change;
+#X obj 89 369 +~ 2;
+#X obj 322 369 +~ 2;
+#X connect 0 0 33 0;
+#X connect 0 0 34 0;
+#X connect 2 0 23 0;
+#X connect 3 0 28 0;
+#X connect 4 0 36 0;
+#X connect 5 0 4 1;
+#X connect 5 0 13 1;
+#X connect 6 0 5 0;
+#X connect 7 0 22 0;
+#X connect 8 0 27 0;
+#X connect 9 0 16 0;
+#X connect 10 0 11 0;
+#X connect 11 0 1 0;
+#X connect 12 0 13 0;
+#X connect 12 0 20 0;
+#X connect 13 0 37 0;
+#X connect 14 0 15 0;
+#X connect 15 0 1 0;
+#X connect 16 0 8 0;
+#X connect 16 1 8 1;
+#X connect 17 0 12 0;
+#X connect 18 0 19 0;
+#X connect 19 0 10 0;
+#X connect 20 0 21 0;
+#X connect 21 0 14 0;
+#X connect 22 0 24 0;
+#X connect 23 0 7 0;
+#X connect 24 0 8 0;
+#X connect 27 0 4 0;
+#X connect 27 0 18 0;
+#X connect 27 0 17 0;
+#X connect 28 0 9 0;
+#X connect 28 0 6 0;
+#X connect 32 0 33 0;
+#X connect 32 0 34 0;
+#X connect 33 0 11 1;
+#X connect 34 0 15 1;
+#X connect 36 0 33 1;
+#X connect 37 0 34 1;
+#X restore 90 156 pd PitchShift;
+#X text 181 29 -36..+36 semitones;
+#X obj 305 17 cnv 15 100 70 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#X text 328 19 library:;
+#X text 309 30 pddp;
+#X text 309 41 cyclone;
+#X text 193 83 27 7 2020;
+#X obj 361 183 cnv 15 34 16 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 353 174 333 161 ?? 0;
+#X obj 17 89 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 17 12 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14
+-4033 -1 1.04858e+06;
+#X obj 40 32 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 78 32 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 20 54 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 22 126 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 22 102 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X text 22 90 Construit sous / Build under Pd-0.49...;
+#X text 21 114 or Pd 0.43.4-extended;
+#X obj 20 66 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X obj 20 42 pddp/pddplink https://github.com/gerardparesys/ARGOPd
+;
+#X restore 361 183 pd ??;
+#X connect 2 0 16 0;
+#X connect 7 0 9 0;
+#X connect 7 0 16 1;
+#X connect 9 0 7 0;
+#X connect 13 0 7 0;
+#X connect 14 0 15 0;
+#X connect 14 0 16 2;
+#X connect 15 0 14 0;
+#X connect 16 0 4 0;
+#X coords 0 -1 1 1 150 48 1 100 100;
+#X restore 376 266 pd ARGO;
+#X connect 12 0 11 0;
+#X connect 17 0 3 0;
+#X connect 17 0 18 0;
+#X connect 17 0 19 0;
+#X connect 17 1 3 1;
+#X connect 17 1 18 1;
+#X connect 17 1 19 1;
+#X connect 20 0 25 0;
+#X connect 20 0 21 0;
+#X connect 20 1 25 1;
+#X connect 22 0 17 0;
+#X connect 23 0 17 1;
+#X connect 23 0 28 0;
+#X connect 24 0 20 0;
+#X connect 24 1 20 1;
+#X connect 25 0 21 1;
+#X connect 25 0 32 0;
+#X connect 25 1 26 0;
+#X connect 25 1 33 0;
+#X connect 32 0 22 0;
+#X connect 33 0 23 0;
+#X connect 33 0 27 0;
