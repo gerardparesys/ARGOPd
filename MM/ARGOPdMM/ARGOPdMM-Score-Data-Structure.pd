@@ -9,394 +9,8 @@ template-pitch array amp template-amp;
 #X text 217 139 ExMM186-Score2;
 #X text 67 139 ExMM187-Score;
 #X text 31 207 cf article:;
-#X obj 36 235 pddp/pddplink http://msp.ucsd.edu/Publications/icmc02.dir/
-;
 #X text 33 221 "Using Pd as a score language" Miller Puckette 2002
 ;
-#N canvas 294 23 605 600 ARGO 0;
-#X obj 187 104 cnv 5 1 1 empty ColorAmpli Score. 1 5 1 14 -262144 -1
-1.04858e+06;
-#X obj 103 146 hsl 129 12 1 128 0 1 \$0-A ColorAmpli 64_pixel/sec 0
-6 1 9 -262144 -1 -1 6400 0;
-#N canvas 465 101 242 205 label 0;
-#X msg 34 136 label \$1;
-#X obj 34 41 inlet;
-#X obj 34 163 outlet;
-#X obj 34 68 expr int($f1);
-#X obj 34 114 cyclone/tosymbol;
-#X obj 34 92 cyclone/sprintf %s_pixel/sec;
-#X connect 0 0 2 0;
-#X connect 1 0 3 0;
-#X connect 3 0 5 0;
-#X connect 4 0 0 0;
-#X connect 5 0 4 0;
-#X restore 24 135 pd label;
-#X obj 100 100 tgl 12 1 \$0-A \$0-B On 14 6 1 10 -262144 -1 -1 0 1
-;
-#X obj 13 572 switch~;
-#X obj 103 158 hsl 129 12 1 10000 1 1 \$0-A ColorTime Q=100 0 6 1 9
--188398 -1728 -1 6400 0;
-#N canvas 465 101 242 205 label 0;
-#X msg 34 136 label \$1;
-#X obj 34 41 inlet;
-#X obj 34 163 outlet;
-#X obj 34 68 expr int($f1);
-#X obj 34 114 cyclone/tosymbol;
-#X obj 34 92 cyclone/sprintf Q=%s;
-#X connect 0 0 2 0;
-#X connect 1 0 3 0;
-#X connect 3 0 5 0;
-#X connect 4 0 0 0;
-#X connect 5 0 4 0;
-#X restore 24 157 pd label;
-#X obj 100 117 tgl 12 1 \$0-A \$0-B Start 14 6 1 10 -262144 -1 -1 0
-1;
-#X obj 102 217 select 0 1;
-#X msg 147 372 next;
-#X msg 130 324 traverse pd-data \, next;
-#X obj 130 402 pointer template-toplevel;
-#X obj 130 425 t p p;
-#X obj 130 448 get template-toplevel voiceno;
-#X obj 130 473 pack 0 p;
-#X obj 454 364 r reset;
-#X obj 46 516 s reset;
-#X obj 125 44 r next-evt;
-#X obj 387 572 outlet~;
-#X msg 454 386 \; reset-stop stop \; time-of-last-evt 0 \; pd-data
-sort;
-#X obj 483 544 s delay-multiplier;
-#X obj 469 468 t b f;
-#X msg 466 495 1000;
-#X obj 483 519 /;
-#X obj 130 242 t b b b;
-#X msg 149 288 \; pd-data sort;
-#X obj 65 572 outlet~;
-#X obj 119 572 outlet~;
-#X obj 173 572 outlet~;
-#X obj 227 572 outlet~;
-#X obj 281 572 outlet~;
-#X obj 332 572 outlet~;
-#X obj 130 499 route 0 9 90 99 900 909 990 777;
-#X obj 438 572 outlet~;
-#X obj 35 544 s Q;
-#N canvas 565 104 524 166 template-toplevel 0;
-#X obj 46 91 plot pitch voiceno 3 10 0;
-#X obj 46 118 plot amp 0 3 10 0;
-#X obj 46 26 struct template-toplevel float x float y float voiceno
-array pitch template-pitch array amp template-amp;
-#X obj 48 66 filledpolygon 9 9 0 0 -2 0 2 5 2 5 -2;
-#X restore 312 73 pd template-toplevel;
-#N canvas 2 97 1152 478 data 0;
-#X scalar template-toplevel 9 44.5 0 \; -2 4.5 1 \; 667 52.5 1 \; 901
-8.5 0 \; \; 1 -0.25 0 \; 27 -0.25 2.5 \; 789 0.25 2.5 \; 861 0.5 0
-\; \;;
-#X scalar template-toplevel 24 57.25 990 \; -2 4.5 1 \; 649 40 1 \;
-873 1.75 0 \; \; 1 -0.25 0 \; 27 -0.25 2.5 \; 815 -0.5 3 \; 862 -0.25
-0 \; \;;
-#X scalar template-toplevel 38 81 9 \; -2 4.5 1 \; 637 15.5 1.75 \;
-847 -29.75 0 \; \; 1 -0.25 0 \; 34 -0.5 2.5 \; 801 2 2.25 \; 847 2.25
-0 \; \;;
-#X scalar template-toplevel 62 68.25 777 \; -2 4.5 1 \; 612 28.75 1.25
-\; 827 -11 0 \; \; 1 -0.25 0 \; 27 -0.25 2.5 \; 777 3.25 2.5 \; 823
-2.75 0 \; \;;
-#X scalar template-toplevel 242 93.25 90 \; -2 4.5 0 \; 170 4 1 \;
-539 -47.25 1.25 \; 887 12 0 \; \; 1 -0.25 0 \; 17 -0.25 2.5 \; 796
-1.25 2.25 \; 890 1 0 \; \;;
-#X scalar template-toplevel 259 109.25 909 \; -3 4.5 0 \; 156 4 0 \;
-478 -57.5 1.5 \; 871 7.5 0 \; \; -2 -0.25 0 \; -2 -0.25 2.25 \; 763
--1.25 2.5 \; 872 -0.25 0 \; \;;
-#X scalar template-toplevel 957 68.75 900 \; -5 4.5 0 \; 170 4 1 \;
-\; -3 -0.25 6 \; 5 0 2.5 \; 169 -1 0 \; \;;
-#X scalar template-toplevel 990 63.25 99 \; -3 4.5 0 \; 119 4 1 \;
-\; -6 -0.25 4.5 \; 6 -0.25 1.5 \; 120 -0.75 0 \; \;;
-#X coords 0 119.5 1 119.25 0 0 0;
-#X restore 312 145 pd data;
-#X obj 169 182 bng 12 1000 50 0 \$0-A \$0-B empty 17 7 0 10 -262144
--258113 -1;
-#X obj 101 195 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
-;
-#X obj 223 195 cnv 4 10 4 empty empty empty 20 12 0 14 -208051 -66577
-0;
-#X obj 136 195 cnv 4 10 4 empty empty empty 20 12 0 14 -4033 -66577
-0;
-#X obj 170 195 cnv 4 10 4 empty empty empty 20 12 0 14 -258049 -66577
-0;
-#X obj 153 195 cnv 4 10 4 empty empty empty 20 12 0 14 -4096 -66577
-0;
-#X obj 206 195 cnv 4 10 4 empty empty empty 20 12 0 14 -262081 -66577
-0;
-#X obj 188 195 cnv 4 10 4 empty empty empty 20 12 0 14 -258112 -66577
-0;
-#X obj 118 182 bng 12 1000 50 0 \$0-A \$0-B empty 17 7 0 10 -262144
--4160 -1;
-#X obj 119 195 cnv 4 10 4 empty empty empty 20 12 0 14 -64 -66577 0
-;
-#X obj 193 209 select 0 9 90 99 900 909 990 777;
-#X obj 199 44 r time-of-last-evt;
-#X obj 151 182 bng 12 1000 50 0 \$0-A \$0-B empty 17 7 0 10 -262144
--4096 -1;
-#X obj 100 182 bng 12 1000 50 0 \$0-A \$0-B empty 17 7 0 10 -262144
--1 -1;
-#X obj 187 182 bng 12 1000 50 0 \$0-A \$0-B empty 17 7 0 10 -262144
--258112 -1;
-#X obj 135 182 bng 12 1000 50 0 \$0-A \$0-B empty 17 7 0 10 -262144
--4033 -1;
-#X obj 222 182 bng 12 1000 50 0 \$0-A \$0-B empty 17 7 0 10 -262144
--208051 -1;
-#X obj 205 182 bng 12 1000 50 0 \$0-A \$0-B empty 17 7 0 10 -262144
--262081 -1;
-#X text 545 524 ms/pixel;
-#X obj 312 121 struct template-pitch float x float y float w;
-#X obj 312 97 struct template-amp float x float y float w;
-#X obj 100 129 tgl 12 1 \$0-A \$0-B Score 14 6 1 10 -262144 -1 -1 0
-1;
-#X obj 249 145 s pd-data;
-#X msg 249 123 vis \$1;
-#X obj 65 544 voice2;
-#X obj 119 544 voice2;
-#X obj 173 544 voice2;
-#X obj 227 544 voice2;
-#X obj 281 544 voice2;
-#X obj 332 544 voice2;
-#X obj 387 544 voice2;
-#X obj 438 544 voice2;
-#X obj 415 214 s time-of-last-evt2;
-#X obj 115 170 hsl 117 12 0 1280 0 1 \$0-A ColorAmpli pixel=0 3 6 1
-9 -208064 -1 -1 0 0;
-#N canvas 465 101 242 205 label 0;
-#X msg 34 136 label \$1;
-#X obj 34 41 inlet;
-#X obj 34 163 outlet;
-#X obj 34 68 expr int($f1);
-#X obj 34 114 cyclone/tosymbol;
-#X obj 34 92 cyclone/sprintf pixel=%s;
-#X connect 0 0 2 0;
-#X connect 1 0 3 0;
-#X connect 3 0 5 0;
-#X connect 4 0 0 0;
-#X connect 5 0 4 0;
-#X restore 24 179 pd label;
-#X obj 100 170 bng 12 250 50 0 \$0-A \$0-B empty 17 7 0 10 -208064
--1 -1;
-#X obj 434 262 openpanel;
-#X msg 435 328 \; pd-data read \$1;
-#X obj 163 117 bng 12 250 50 0 \$0-A \$0-B Open-Score 14 6 1 10 -262144
--1 -1;
-#X obj 434 306 zexy/list2symbol;
-#X obj 163 129 bng 12 250 50 0 \$0-A \$0-B Save-Score 14 6 1 10 -262144
--1 -1;
-#X obj 322 262 savepanel;
-#X obj 322 306 zexy/list2symbol;
-#X msg 322 328 \; pd-data write \$1;
-#X obj 434 240 tof/path;
-#X obj 322 240 tof/path;
-#X obj 24 40 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
-0;
-#N canvas 454 23 619 741 Help 0;
-#X obj 27 641 cnv 15 400 360 empty empty empty 20 12 0 14 -233017 -66577
-0;
-#X text 31 643 Citation;
-#X text 43 658 This patch shows an example of how to use data collections
-as musical sequences (with apologies to Yuasa and Stockhausen). Here
-the black traces show dynamics and the colored ones show pitch. The
-fatness of the pitch traces give bandwidth. Any of the three can change
-over the life of the event.;
-#X text 41 751 To hear the result \, turn the volume up to 70 or so
-(higher if it's not loud enough the first time) and hit "start". You
-can set the tempo lower if that helps you follow the "score" the first
-couple of times.;
-#X text 40 913 This confuses Tk's scroll bars \, by the way \, and
-when you resize the window the image still sticks to the top and not
-the bottom of the window as it should. When you resize a canvas with
-y having positive units (growing upward) \, just hit 'save' and Pd
-will check the scrolling and correct if necessary.;
-#X text 40 815 Note the screen units in the "data" window (open it
-and get "properties" to see them.) Normally \, there are -1 y units
-per pixel - that is \, adding 1 to y moves down one pixel. This is
-the "natural" y unit for most drawing programs. In the data window
-\, each pixel is 0.25 units \, meaning that adding one to a 'y' value
-moves it up four pixels.;
-#X obj 113 36 pddp/pddplink http://msp.ucsd.edu/Publications/icmc02.dir/
-;
-#X text 110 22 "Using Pd as a score language" Miller Puckette 2002
-;
-#X obj 8 202 cnv 15 290 430 empty empty empty 20 12 0 14 -24198 -66577
-0;
-#X text 25 220 Mode Edition;
-#X text 39 314 A l'extremite d'une zone d'un objet;
-#X text 51 328 Curseur = Fleche verticale;
-#X text 51 369 Curseur = 2 fleches;
-#X text 11 203 Modifier la partition (fenetre "data"):;
-#X text 38 233 Selectionner un objet;
-#X text 68 341 Deplacer l'extremite;
-#X text 67 383 Augmenter/Diminuerl'extremite;
-#X text 67 354 alt Clic l'extremite -> Supprime;
-#X text 68 396 alt Clic l'extremite -> Supprime;
-#X text 25 301 Mode Jeu sous MacOS;
-#X text 39 492 A l'extremite d'une zone d'un objet;
-#X text 52 538 Curseur = 2 fleches;
-#X text 74 520 Deplacer l'extremite;
-#X text 78 549 Augmenter/Diminuerl'extremite;
-#X text 52 506 Curseur = normal;
-#X text 25 479 Mode Jeu sous Linux;
-#X text 67 581 Clic l'extremite -> Supprime;
-#X text 52 566 Ctrl + Curseur = X;
-#X text 52 599 Ctrl + Curseur = +;
-#X text 68 614 Clic l'extremite -> Ajoute un vecteur;
-#X text 67 427 Clic l'extremite -> Supprime;
-#X text 68 456 Clic l'extremite -> Ajoute un vecteur;
-#X text 52 412 Pomme + Curseur = X;
-#X text 52 441 Pomme + Curseur = +;
-#X obj 305 202 cnv 15 290 430 empty empty empty 20 12 0 14 -24198 -66577
-0;
-#X text 322 220 Edit Mode;
-#X text 322 301 Run Mode under MacOS;
-#X text 322 479 Run Mode under Linux;
-#X text 335 233 Select an object;
-#X text 348 245 Copy;
-#X text 349 258 Paste;
-#X text 349 270 Duplicate;
-#X text 349 283 Delete;
-#X text 52 270 Dupliquer;
-#X text 52 258 Coller;
-#X text 51 245 Copier;
-#X text 52 283 Supprimer;
-#X obj 9 60 cnv 15 585 75 empty empty empty 20 12 0 14 -258113 -66577
-0;
-#X text 157 77 data-start2.pd;
-#X text 157 90 voice2.pd;
-#X text 14 104 doivent se trouver dans le meme dossier;
-#X text 14 114 que ce patch;
-#X obj 9 141 cnv 15 585 55 empty empty empty 20 12 0 14 -258113 -66577
-0;
-#X text 13 64 ATTENTION: les fichiers data-array2.pd;
-#X text 322 64 Warning: the files data-array2.pd;
-#X text 436 77 data-start2.pd;
-#X text 436 90 voice2.pd;
-#X text 322 105 must be in the same folder as the patch.;
-#X text 34 5 cf: doc/4.data.structures/07.sequencer.pd;
-#X text 34 20 cf: article:;
-#X text 308 203 Edit the score (data window);
-#X text 336 314 At the end of a zone of an object;
-#X text 365 341 Move the end;
-#X text 364 354 alt Clic the end -> Delete;
-#X text 348 328 Pointer = vertical arrow;
-#X text 348 369 Pointer = 2 arrows;
-#X text 364 383 Increase / Decrease the end;
-#X text 365 396 alt Clic the end -> Delete;
-#X text 349 412 Apple + Pointer = X;
-#X text 364 427 Clic the end -> Delete;
-#X text 349 441 Apple + Pointer = +;
-#X text 365 456 Clic the end -> Add a vector;
-#X text 336 492 At the end of a zone of an object;
-#X text 349 506 Pointer = normal;
-#X text 371 520 Move the end;
-#X text 349 538 Pointer = 2 arrows;
-#X text 375 549 Increase / Decrease the end;
-#X text 349 566 Ctrl + Pointer = X;
-#X text 364 581 Clic the end -> Delete;
-#X text 349 599 Ctrl + Pointer = +;
-#X text 365 614 Clic the end -> Add a vector;
-#X text 26 148 ATTENTION: Ce MiniModule Score ne peut pas \; être utilise
-2 fois dans la meme \; instance de Pd.;
-#X text 332 152 WARNING: This MiniModule Score can not be \; used 2
-times in the same instance of Pd.;
-#X restore 31 46 pd Help;
-#X obj 434 284 t a b;
-#X msg 89 77 0;
-#X obj 543 566 cnv 15 52 22 empty empty empty 20 12 0 14 -24198 -66577
-0;
-#N canvas 353 174 321 152 ?... 0;
-#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
-0;
-#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
--1 1.04858e+06;
-#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
-;
-#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
-;
-#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
-#X obj 13 121 pddp/pddplink http://puredata.info/downloads/pd-extended
-;
-#X obj 13 97 pddp/pddplink http://puredata.info/downloads/pure-data
-;
-#X text 13 85 Construit sous / Build under Pd-0.49...;
-#X text 12 109 or Pd 0.43.4-extended;
-#X obj 12 53 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
-;
-#X restore 546 569 pd ?...;
-#X text 177 82 24 8 2019;
-#X connect 1 0 2 0;
-#X connect 1 0 21 0;
-#X connect 2 0 1 0;
-#X connect 3 0 4 0;
-#X connect 5 0 6 0;
-#X connect 5 0 34 0;
-#X connect 6 0 5 0;
-#X connect 7 0 8 0;
-#X connect 8 0 16 0;
-#X connect 8 1 24 0;
-#X connect 9 0 11 0;
-#X connect 10 0 11 0;
-#X connect 11 0 12 0;
-#X connect 12 0 13 0;
-#X connect 12 1 14 1;
-#X connect 13 0 14 0;
-#X connect 13 0 47 0;
-#X connect 14 0 32 0;
-#X connect 15 0 19 0;
-#X connect 17 0 72 0;
-#X connect 21 0 22 0;
-#X connect 21 1 23 1;
-#X connect 22 0 23 0;
-#X connect 23 0 20 0;
-#X connect 24 0 10 0;
-#X connect 24 1 25 0;
-#X connect 24 2 16 0;
-#X connect 32 0 61 0;
-#X connect 32 1 62 0;
-#X connect 32 2 63 0;
-#X connect 32 3 64 0;
-#X connect 32 4 65 0;
-#X connect 32 5 66 0;
-#X connect 32 6 67 0;
-#X connect 32 7 68 0;
-#X connect 47 0 50 0;
-#X connect 47 1 45 0;
-#X connect 47 2 52 0;
-#X connect 47 3 49 0;
-#X connect 47 4 37 0;
-#X connect 47 5 51 0;
-#X connect 47 6 54 0;
-#X connect 47 7 53 0;
-#X connect 48 0 70 0;
-#X connect 58 0 60 0;
-#X connect 60 0 59 0;
-#X connect 61 0 26 0;
-#X connect 62 0 27 0;
-#X connect 63 0 28 0;
-#X connect 64 0 29 0;
-#X connect 65 0 30 0;
-#X connect 66 0 31 0;
-#X connect 67 0 18 0;
-#X connect 68 0 33 0;
-#X connect 70 0 69 0;
-#X connect 70 0 71 0;
-#X connect 71 0 70 0;
-#X connect 72 0 9 0;
-#X connect 73 0 85 0;
-#X connect 75 0 81 0;
-#X connect 76 0 74 0;
-#X connect 77 0 82 0;
-#X connect 78 0 79 0;
-#X connect 79 0 80 0;
-#X connect 81 0 73 0;
-#X connect 82 0 78 0;
-#X connect 85 0 76 0;
-#X connect 85 1 86 0;
-#X connect 86 0 7 0;
-#X coords 0 -1 1 1 134 100 2 100 100;
-#X restore 69 39 pd ARGO;
 #N canvas 249 23 606 597 ARGO 0;
 #X obj 181 104 cnv 5 1 1 empty ColorAmpli Score2. 1 5 1 14 -262144
 -1 1.04858e+06;
@@ -608,8 +222,6 @@ per pixel - that is \, adding 1 to y moves down one pixel. This is
 the "natural" y unit for most drawing programs. In the data window
 \, each pixel is 0.25 units \, meaning that adding one to a 'y' value
 moves it up four pixels.;
-#X obj 115 34 pddp/pddplink http://msp.ucsd.edu/Publications/icmc02.dir/
-;
 #X text 112 20 "Using Pd as a score language" Miller Puckette 2002
 ;
 #X obj 10 263 cnv 15 290 430 empty empty empty 20 12 0 14 -24198 -66577
@@ -697,29 +309,40 @@ generators replaced \; by an audio input;
 2 fois dans la meme \; instance de Pd.;
 #X text 328 215 WARNING: This MiniModule Score can not be \; used 2
 times in the same instance of Pd.;
+#X obj 114 32 pddp/pddplink http://msp.ucsd.edu/Publications/icmc02.pdf
+;
 #X restore 21 58 pd Help;
-#X obj 541 567 cnv 15 52 22 empty empty empty 20 12 0 14 -24198 -66577
+#X obj 554 570 cnv 15 34 16 empty empty empty 20 12 0 14 -24198 -66577
 0;
-#N canvas 353 174 321 152 ?... 0;
-#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+#N canvas 353 174 333 161 ?? 0;
+#X obj 17 89 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
 0;
-#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
--1 1.04858e+06;
-#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+#X obj 17 12 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14
+-4033 -1 1.04858e+06;
+#X obj 40 32 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
 ;
-#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+#X obj 78 32 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
 ;
-#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
-#X obj 13 121 pddp/pddplink http://puredata.info/downloads/pd-extended
+#X obj 20 54 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 22 126 pddp/pddplink http://puredata.info/downloads/pd-extended
 ;
-#X obj 13 97 pddp/pddplink http://puredata.info/downloads/pure-data
+#X obj 22 102 pddp/pddplink http://puredata.info/downloads/pure-data
 ;
-#X text 13 85 Construit sous / Build under Pd-0.49...;
-#X text 12 109 or Pd 0.43.4-extended;
-#X obj 12 53 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
+#X text 22 90 Construit sous / Build under Pd-0.49...;
+#X text 21 114 or Pd 0.43.4-extended;
+#X obj 20 66 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
 ;
-#X restore 544 570 pd ?...;
-#X text 175 83 24 8 2019;
+#X obj 20 42 pddp/pddplink https://github.com/gerardparesys/ARGOPd
+;
+#X restore 554 570 pd ??;
+#X text 175 83 11 3 2021;
+#X obj 460 18 cnv 15 100 70 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#X text 483 20 library:;
+#X text 464 31 pddp;
+#X text 464 42 cyclone;
+#X text 464 53 zexy;
+#X text 464 64 tof;
 #X connect 1 0 2 0;
 #X connect 1 0 21 0;
 #X connect 2 0 1 0;
@@ -792,3 +415,398 @@ times in the same instance of Pd.;
 #X connect 86 0 85 0;
 #X coords 0 -1 1 1 134 100 2 100 100;
 #X restore 220 39 pd ARGO;
+#X obj 36 235 pddp/pddplink http://msp.ucsd.edu/Publications/icmc02.pdf
+;
+#N canvas 294 23 605 600 ARGO 0;
+#X obj 187 104 cnv 5 1 1 empty ColorAmpli Score. 1 5 1 14 -262144 -1
+1.04858e+06;
+#X obj 103 146 hsl 129 12 1 128 0 1 \$0-A ColorAmpli 64_pixel/sec 0
+6 1 9 -262144 -1 -1 6400 0;
+#N canvas 465 101 242 205 label 0;
+#X msg 34 136 label \$1;
+#X obj 34 41 inlet;
+#X obj 34 163 outlet;
+#X obj 34 68 expr int($f1);
+#X obj 34 114 cyclone/tosymbol;
+#X obj 34 92 cyclone/sprintf %s_pixel/sec;
+#X connect 0 0 2 0;
+#X connect 1 0 3 0;
+#X connect 3 0 5 0;
+#X connect 4 0 0 0;
+#X connect 5 0 4 0;
+#X restore 24 135 pd label;
+#X obj 100 100 tgl 12 1 \$0-A \$0-B On 14 6 1 10 -262144 -1 -1 0 1
+;
+#X obj 13 572 switch~;
+#X obj 103 158 hsl 129 12 1 10000 1 1 \$0-A ColorTime Q=100 0 6 1 9
+-188398 -1728 -1 6400 0;
+#N canvas 465 101 242 205 label 0;
+#X msg 34 136 label \$1;
+#X obj 34 41 inlet;
+#X obj 34 163 outlet;
+#X obj 34 68 expr int($f1);
+#X obj 34 114 cyclone/tosymbol;
+#X obj 34 92 cyclone/sprintf Q=%s;
+#X connect 0 0 2 0;
+#X connect 1 0 3 0;
+#X connect 3 0 5 0;
+#X connect 4 0 0 0;
+#X connect 5 0 4 0;
+#X restore 24 157 pd label;
+#X obj 100 117 tgl 12 1 \$0-A \$0-B Start 14 6 1 10 -262144 -1 -1 0
+1;
+#X obj 102 217 select 0 1;
+#X msg 147 372 next;
+#X msg 130 324 traverse pd-data \, next;
+#X obj 130 402 pointer template-toplevel;
+#X obj 130 425 t p p;
+#X obj 130 448 get template-toplevel voiceno;
+#X obj 130 473 pack 0 p;
+#X obj 454 364 r reset;
+#X obj 46 516 s reset;
+#X obj 125 44 r next-evt;
+#X obj 387 572 outlet~;
+#X msg 454 386 \; reset-stop stop \; time-of-last-evt 0 \; pd-data
+sort;
+#X obj 483 544 s delay-multiplier;
+#X obj 469 468 t b f;
+#X msg 466 495 1000;
+#X obj 483 519 /;
+#X obj 130 242 t b b b;
+#X msg 149 288 \; pd-data sort;
+#X obj 65 572 outlet~;
+#X obj 119 572 outlet~;
+#X obj 173 572 outlet~;
+#X obj 227 572 outlet~;
+#X obj 281 572 outlet~;
+#X obj 332 572 outlet~;
+#X obj 130 499 route 0 9 90 99 900 909 990 777;
+#X obj 438 572 outlet~;
+#X obj 35 544 s Q;
+#N canvas 565 104 524 166 template-toplevel 0;
+#X obj 46 91 plot pitch voiceno 3 10 0;
+#X obj 46 118 plot amp 0 3 10 0;
+#X obj 46 26 struct template-toplevel float x float y float voiceno
+array pitch template-pitch array amp template-amp;
+#X obj 48 66 filledpolygon 9 9 0 0 -2 0 2 5 2 5 -2;
+#X restore 312 73 pd template-toplevel;
+#N canvas 2 97 1152 478 data 0;
+#X scalar template-toplevel 9 44.5 0 \; -2 4.5 1 \; 667 52.5 1 \; 901
+8.5 0 \; \; 1 -0.25 0 \; 27 -0.25 2.5 \; 789 0.25 2.5 \; 861 0.5 0
+\; \;;
+#X scalar template-toplevel 24 57.25 990 \; -2 4.5 1 \; 649 40 1 \;
+873 1.75 0 \; \; 1 -0.25 0 \; 27 -0.25 2.5 \; 815 -0.5 3 \; 862 -0.25
+0 \; \;;
+#X scalar template-toplevel 38 81 9 \; -2 4.5 1 \; 637 15.5 1.75 \;
+847 -29.75 0 \; \; 1 -0.25 0 \; 34 -0.5 2.5 \; 801 2 2.25 \; 847 2.25
+0 \; \;;
+#X scalar template-toplevel 62 68.25 777 \; -2 4.5 1 \; 612 28.75 1.25
+\; 827 -11 0 \; \; 1 -0.25 0 \; 27 -0.25 2.5 \; 777 3.25 2.5 \; 823
+2.75 0 \; \;;
+#X scalar template-toplevel 242 93.25 90 \; -2 4.5 0 \; 170 4 1 \;
+539 -47.25 1.25 \; 887 12 0 \; \; 1 -0.25 0 \; 17 -0.25 2.5 \; 796
+1.25 2.25 \; 890 1 0 \; \;;
+#X scalar template-toplevel 259 109.25 909 \; -3 4.5 0 \; 156 4 0 \;
+478 -57.5 1.5 \; 871 7.5 0 \; \; -2 -0.25 0 \; -2 -0.25 2.25 \; 763
+-1.25 2.5 \; 872 -0.25 0 \; \;;
+#X scalar template-toplevel 957 68.75 900 \; -5 4.5 0 \; 170 4 1 \;
+\; -3 -0.25 6 \; 5 0 2.5 \; 169 -1 0 \; \;;
+#X scalar template-toplevel 990 63.25 99 \; -3 4.5 0 \; 119 4 1 \;
+\; -6 -0.25 4.5 \; 6 -0.25 1.5 \; 120 -0.75 0 \; \;;
+#X coords 0 119.5 1 119.25 0 0 0;
+#X restore 312 145 pd data;
+#X obj 169 182 bng 12 1000 50 0 \$0-A \$0-B empty 17 7 0 10 -262144
+-258113 -1;
+#X obj 101 195 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 223 195 cnv 4 10 4 empty empty empty 20 12 0 14 -208051 -66577
+0;
+#X obj 136 195 cnv 4 10 4 empty empty empty 20 12 0 14 -4033 -66577
+0;
+#X obj 170 195 cnv 4 10 4 empty empty empty 20 12 0 14 -258049 -66577
+0;
+#X obj 153 195 cnv 4 10 4 empty empty empty 20 12 0 14 -4096 -66577
+0;
+#X obj 206 195 cnv 4 10 4 empty empty empty 20 12 0 14 -262081 -66577
+0;
+#X obj 188 195 cnv 4 10 4 empty empty empty 20 12 0 14 -258112 -66577
+0;
+#X obj 118 182 bng 12 1000 50 0 \$0-A \$0-B empty 17 7 0 10 -262144
+-4160 -1;
+#X obj 119 195 cnv 4 10 4 empty empty empty 20 12 0 14 -64 -66577 0
+;
+#X obj 193 209 select 0 9 90 99 900 909 990 777;
+#X obj 199 44 r time-of-last-evt;
+#X obj 151 182 bng 12 1000 50 0 \$0-A \$0-B empty 17 7 0 10 -262144
+-4096 -1;
+#X obj 100 182 bng 12 1000 50 0 \$0-A \$0-B empty 17 7 0 10 -262144
+-1 -1;
+#X obj 187 182 bng 12 1000 50 0 \$0-A \$0-B empty 17 7 0 10 -262144
+-258112 -1;
+#X obj 135 182 bng 12 1000 50 0 \$0-A \$0-B empty 17 7 0 10 -262144
+-4033 -1;
+#X obj 222 182 bng 12 1000 50 0 \$0-A \$0-B empty 17 7 0 10 -262144
+-208051 -1;
+#X obj 205 182 bng 12 1000 50 0 \$0-A \$0-B empty 17 7 0 10 -262144
+-262081 -1;
+#X text 545 524 ms/pixel;
+#X obj 312 121 struct template-pitch float x float y float w;
+#X obj 312 97 struct template-amp float x float y float w;
+#X obj 100 129 tgl 12 1 \$0-A \$0-B Score 14 6 1 10 -262144 -1 -1 0
+1;
+#X obj 249 145 s pd-data;
+#X msg 249 123 vis \$1;
+#X obj 65 544 voice2;
+#X obj 119 544 voice2;
+#X obj 173 544 voice2;
+#X obj 227 544 voice2;
+#X obj 281 544 voice2;
+#X obj 332 544 voice2;
+#X obj 387 544 voice2;
+#X obj 438 544 voice2;
+#X obj 415 214 s time-of-last-evt2;
+#X obj 115 170 hsl 117 12 0 1280 0 1 \$0-A ColorAmpli pixel=0 3 6 1
+9 -208064 -1 -1 0 0;
+#N canvas 465 101 242 205 label 0;
+#X msg 34 136 label \$1;
+#X obj 34 41 inlet;
+#X obj 34 163 outlet;
+#X obj 34 68 expr int($f1);
+#X obj 34 114 cyclone/tosymbol;
+#X obj 34 92 cyclone/sprintf pixel=%s;
+#X connect 0 0 2 0;
+#X connect 1 0 3 0;
+#X connect 3 0 5 0;
+#X connect 4 0 0 0;
+#X connect 5 0 4 0;
+#X restore 24 179 pd label;
+#X obj 100 170 bng 12 250 50 0 \$0-A \$0-B empty 17 7 0 10 -208064
+-1 -1;
+#X obj 434 262 openpanel;
+#X msg 435 328 \; pd-data read \$1;
+#X obj 163 117 bng 12 250 50 0 \$0-A \$0-B Open-Score 14 6 1 10 -262144
+-1 -1;
+#X obj 434 306 zexy/list2symbol;
+#X obj 163 129 bng 12 250 50 0 \$0-A \$0-B Save-Score 14 6 1 10 -262144
+-1 -1;
+#X obj 322 262 savepanel;
+#X obj 322 306 zexy/list2symbol;
+#X msg 322 328 \; pd-data write \$1;
+#X obj 434 240 tof/path;
+#X obj 322 240 tof/path;
+#X obj 24 40 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 454 23 619 741 Help 0;
+#X obj 27 641 cnv 15 400 360 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X text 31 643 Citation;
+#X text 43 658 This patch shows an example of how to use data collections
+as musical sequences (with apologies to Yuasa and Stockhausen). Here
+the black traces show dynamics and the colored ones show pitch. The
+fatness of the pitch traces give bandwidth. Any of the three can change
+over the life of the event.;
+#X text 41 751 To hear the result \, turn the volume up to 70 or so
+(higher if it's not loud enough the first time) and hit "start". You
+can set the tempo lower if that helps you follow the "score" the first
+couple of times.;
+#X text 40 913 This confuses Tk's scroll bars \, by the way \, and
+when you resize the window the image still sticks to the top and not
+the bottom of the window as it should. When you resize a canvas with
+y having positive units (growing upward) \, just hit 'save' and Pd
+will check the scrolling and correct if necessary.;
+#X text 40 815 Note the screen units in the "data" window (open it
+and get "properties" to see them.) Normally \, there are -1 y units
+per pixel - that is \, adding 1 to y moves down one pixel. This is
+the "natural" y unit for most drawing programs. In the data window
+\, each pixel is 0.25 units \, meaning that adding one to a 'y' value
+moves it up four pixels.;
+#X text 110 22 "Using Pd as a score language" Miller Puckette 2002
+;
+#X obj 8 202 cnv 15 290 430 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#X text 25 220 Mode Edition;
+#X text 39 314 A l'extremite d'une zone d'un objet;
+#X text 51 328 Curseur = Fleche verticale;
+#X text 51 369 Curseur = 2 fleches;
+#X text 11 203 Modifier la partition (fenetre "data"):;
+#X text 38 233 Selectionner un objet;
+#X text 68 341 Deplacer l'extremite;
+#X text 67 383 Augmenter/Diminuerl'extremite;
+#X text 67 354 alt Clic l'extremite -> Supprime;
+#X text 68 396 alt Clic l'extremite -> Supprime;
+#X text 25 301 Mode Jeu sous MacOS;
+#X text 39 492 A l'extremite d'une zone d'un objet;
+#X text 52 538 Curseur = 2 fleches;
+#X text 74 520 Deplacer l'extremite;
+#X text 78 549 Augmenter/Diminuerl'extremite;
+#X text 52 506 Curseur = normal;
+#X text 25 479 Mode Jeu sous Linux;
+#X text 67 581 Clic l'extremite -> Supprime;
+#X text 52 566 Ctrl + Curseur = X;
+#X text 52 599 Ctrl + Curseur = +;
+#X text 68 614 Clic l'extremite -> Ajoute un vecteur;
+#X text 67 427 Clic l'extremite -> Supprime;
+#X text 68 456 Clic l'extremite -> Ajoute un vecteur;
+#X text 52 412 Pomme + Curseur = X;
+#X text 52 441 Pomme + Curseur = +;
+#X obj 305 202 cnv 15 290 430 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#X text 322 220 Edit Mode;
+#X text 322 301 Run Mode under MacOS;
+#X text 322 479 Run Mode under Linux;
+#X text 335 233 Select an object;
+#X text 348 245 Copy;
+#X text 349 258 Paste;
+#X text 349 270 Duplicate;
+#X text 349 283 Delete;
+#X text 52 270 Dupliquer;
+#X text 52 258 Coller;
+#X text 51 245 Copier;
+#X text 52 283 Supprimer;
+#X obj 9 60 cnv 15 585 75 empty empty empty 20 12 0 14 -258113 -66577
+0;
+#X text 157 77 data-start2.pd;
+#X text 157 90 voice2.pd;
+#X text 14 104 doivent se trouver dans le meme dossier;
+#X text 14 114 que ce patch;
+#X obj 9 141 cnv 15 585 55 empty empty empty 20 12 0 14 -258113 -66577
+0;
+#X text 13 64 ATTENTION: les fichiers data-array2.pd;
+#X text 322 64 Warning: the files data-array2.pd;
+#X text 436 77 data-start2.pd;
+#X text 436 90 voice2.pd;
+#X text 322 105 must be in the same folder as the patch.;
+#X text 34 5 cf: doc/4.data.structures/07.sequencer.pd;
+#X text 34 20 cf: article:;
+#X text 308 203 Edit the score (data window);
+#X text 336 314 At the end of a zone of an object;
+#X text 365 341 Move the end;
+#X text 364 354 alt Clic the end -> Delete;
+#X text 348 328 Pointer = vertical arrow;
+#X text 348 369 Pointer = 2 arrows;
+#X text 364 383 Increase / Decrease the end;
+#X text 365 396 alt Clic the end -> Delete;
+#X text 349 412 Apple + Pointer = X;
+#X text 364 427 Clic the end -> Delete;
+#X text 349 441 Apple + Pointer = +;
+#X text 365 456 Clic the end -> Add a vector;
+#X text 336 492 At the end of a zone of an object;
+#X text 349 506 Pointer = normal;
+#X text 371 520 Move the end;
+#X text 349 538 Pointer = 2 arrows;
+#X text 375 549 Increase / Decrease the end;
+#X text 349 566 Ctrl + Pointer = X;
+#X text 364 581 Clic the end -> Delete;
+#X text 349 599 Ctrl + Pointer = +;
+#X text 365 614 Clic the end -> Add a vector;
+#X text 26 148 ATTENTION: Ce MiniModule Score ne peut pas \; être utilise
+2 fois dans la meme \; instance de Pd.;
+#X text 332 152 WARNING: This MiniModule Score can not be \; used 2
+times in the same instance of Pd.;
+#X obj 110 35 pddp/pddplink http://msp.ucsd.edu/Publications/icmc02.pdf
+;
+#X restore 31 46 pd Help;
+#X obj 434 284 t a b;
+#X msg 89 77 0;
+#X text 177 82 11 3 2021;
+#X obj 540 572 cnv 15 34 16 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 353 174 333 161 ?? 0;
+#X obj 17 89 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 17 12 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14
+-4033 -1 1.04858e+06;
+#X obj 40 32 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 78 32 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 20 54 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 22 126 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 22 102 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X text 22 90 Construit sous / Build under Pd-0.49...;
+#X text 21 114 or Pd 0.43.4-extended;
+#X obj 20 66 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X obj 20 42 pddp/pddplink https://github.com/gerardparesys/ARGOPd
+;
+#X restore 540 572 pd ??;
+#X obj 460 18 cnv 15 100 70 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#X text 483 20 library:;
+#X text 464 31 pddp;
+#X text 464 42 cyclone;
+#X text 464 53 zexy;
+#X text 464 64 tof;
+#X connect 1 0 2 0;
+#X connect 1 0 21 0;
+#X connect 2 0 1 0;
+#X connect 3 0 4 0;
+#X connect 5 0 6 0;
+#X connect 5 0 34 0;
+#X connect 6 0 5 0;
+#X connect 7 0 8 0;
+#X connect 8 0 16 0;
+#X connect 8 1 24 0;
+#X connect 9 0 11 0;
+#X connect 10 0 11 0;
+#X connect 11 0 12 0;
+#X connect 12 0 13 0;
+#X connect 12 1 14 1;
+#X connect 13 0 14 0;
+#X connect 13 0 47 0;
+#X connect 14 0 32 0;
+#X connect 15 0 19 0;
+#X connect 17 0 72 0;
+#X connect 21 0 22 0;
+#X connect 21 1 23 1;
+#X connect 22 0 23 0;
+#X connect 23 0 20 0;
+#X connect 24 0 10 0;
+#X connect 24 1 25 0;
+#X connect 24 2 16 0;
+#X connect 32 0 61 0;
+#X connect 32 1 62 0;
+#X connect 32 2 63 0;
+#X connect 32 3 64 0;
+#X connect 32 4 65 0;
+#X connect 32 5 66 0;
+#X connect 32 6 67 0;
+#X connect 32 7 68 0;
+#X connect 47 0 50 0;
+#X connect 47 1 45 0;
+#X connect 47 2 52 0;
+#X connect 47 3 49 0;
+#X connect 47 4 37 0;
+#X connect 47 5 51 0;
+#X connect 47 6 54 0;
+#X connect 47 7 53 0;
+#X connect 48 0 70 0;
+#X connect 58 0 60 0;
+#X connect 60 0 59 0;
+#X connect 61 0 26 0;
+#X connect 62 0 27 0;
+#X connect 63 0 28 0;
+#X connect 64 0 29 0;
+#X connect 65 0 30 0;
+#X connect 66 0 31 0;
+#X connect 67 0 18 0;
+#X connect 68 0 33 0;
+#X connect 70 0 69 0;
+#X connect 70 0 71 0;
+#X connect 71 0 70 0;
+#X connect 72 0 9 0;
+#X connect 73 0 85 0;
+#X connect 75 0 81 0;
+#X connect 76 0 74 0;
+#X connect 77 0 82 0;
+#X connect 78 0 79 0;
+#X connect 79 0 80 0;
+#X connect 81 0 73 0;
+#X connect 82 0 78 0;
+#X connect 85 0 76 0;
+#X connect 85 1 86 0;
+#X connect 86 0 7 0;
+#X coords 0 -1 1 1 134 100 2 100 100;
+#X restore 69 39 pd ARGO;
