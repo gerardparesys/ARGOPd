@@ -14,7 +14,7 @@
 #X connect 5 0 2 0;
 #X connect 6 0 7 0;
 #X coords 0 -1 1 1 110 18 2 100 100;
-#X restore 16 179 pd ARGO;
+#X restore 16 177 pd ARGO;
 #N canvas 150 150 244 208 ARGO 0;
 #X obj 101 113 cnv 4 10 4 empty empty empty 0 0 0 9 -1 -66577 0;
 #X obj 100 100 nbx 5 12 0 99999 0 1 \$0-A \$0-B Hz 47 7 1 9 -262144
@@ -309,9 +309,9 @@ fois dans le même patch.;
 #X text 67 445 WARNING: This MiniModule can not be present 2 times
 in the same patch.;
 #X text 33 247 Discontinu;
-#X text 48 297 Continu;
+#X text 48 300 Continu;
 #X text 33 258 Discontinuous;
-#X text 48 308 Continuous;
+#X text 48 311 Continuous;
 #N canvas 446 69 248 203 ARGO 0;
 #X obj 102 165 outlet~;
 #X msg 47 101 help;
@@ -722,7 +722,7 @@ is interpolated accordingly.;
 #X connect 20 0 21 0;
 #X connect 21 0 12 0;
 #X coords 0 -1 1 1 106 31 1 200 100;
-#X restore 16 65 pd ARGO;
+#X restore 16 34 pd ARGO;
 #X text 437 579 ExMM9-Envelope;
 #X text 372 119 ExMM124-TriRectangle;
 #X text 436 366 ExMM126-Oscill-Table;
@@ -2927,7 +2927,7 @@ A dans (3);
 #X obj 81 245 cyclone/tosymbol;
 #X obj 62 112 cyclone/sprintf A%d;
 #X obj 62 134 cyclone/tosymbol;
-#X msg 81 223 A230;
+#X msg 81 223 A194;
 #X connect 0 0 1 0;
 #X connect 1 0 2 0;
 #X connect 2 0 23 0;
@@ -2945,9 +2945,9 @@ A dans (3);
 #X connect 25 0 22 0;
 #X restore 76 193 pd RenameArray;
 #X obj 90 369 tabread4~;
-#X msg 134 230 A230;
+#X msg 134 230 A194;
 #X obj 134 250 symbol;
-#X msg 192 230 A230;
+#X msg 192 230 A194;
 #X obj 192 250 symbol;
 #X obj 101 101 cnv 20 244 84 empty ColorTime Oscill-Table. 163 10 1
 14 -208064 -1 1.04858e+06;
@@ -2956,7 +2956,7 @@ A dans (3);
 #X obj 100 106 nbx 7 12 0 20000 0 1 \$0-A ColorTime Hz 58 7 1 9 -208064
 -1 -1 440 256;
 #N canvas 0 22 450 300 (subpatch) 0;
-#X array A230 2051 float 1;
+#X array A194 2051 float 1;
 #A 0 -0.0113473 0 0.0113473 0.0226929 0.0340353 0.0453728 0.0567039
 0.0680269 0.0793401 0.0906421 0.101931 0.113206 0.124464 0.135705 0.146926
 0.158126 0.169304 0.180458 0.191586 0.202687 0.213759 0.224801 0.235811
@@ -3247,7 +3247,7 @@ A dans (3);
 -1 -1;
 #X obj 216 106 bng 12 250 50 0 \$0-A \$0-B Normal 14 7 1 10 -208064
 -1 -1;
-#X msg 238 303 A230;
+#X msg 238 303 A194;
 #X obj 238 323 symbol;
 #X msg 238 348 \; \$1 normalize 1;
 #X obj 192 273 t b a;
@@ -3832,9 +3832,9 @@ that its integral is unity - a curious object!";
 #X connect 18 0 8 0;
 #X connect 19 0 18 0;
 #X coords 0 -1 1 1 106 31 1 200 100;
-#X restore 16 111 pd ARGO;
-#X text 13 140 ExMM95d-Dirac.pd;
-#X text 13 94 ExMM95a-1Pulse.pd;
+#X restore 16 80 pd ARGO;
+#X text 13 109 ExMM95d-Dirac.pd;
+#X text 13 63 ExMM95a-1Pulse.pd;
 #N canvas 833 159 484 374 ARGO 0;
 #X obj 101 101 cnv 20 244 34 empty ColorTime Oscill-Pulse2. 71 10 1
 14 -208064 -1 1.04858e+06;
@@ -4929,7 +4929,7 @@ a pulse train using stretched wavetable lookup.;
 #X connect 4 0 5 0;
 #X connect 6 0 4 0;
 #X coords 0 -1 1 1 110 18 2 100 100;
-#X restore 16 158 pd ARGO;
+#X restore 16 129 pd ARGO;
 #N canvas 307 364 756 334 ARGO 0;
 #X obj 200 22 inlet~;
 #X obj 306 103 cnv 10 44 10 empty empty Envelope. 1 5 1 14 -262144
@@ -5119,3 +5119,59 @@ is supplied \, the input is taken to be an audio signal.;
 #X coords 0 -1 1 1 182 18 1 100 100;
 #X restore 178 8 pd ARGO;
 #X text 435 65 ExMM1j-Sinus-message.pd;
+#N canvas 416 282 345 180 ARGO 0;
+#X obj 114 105 cnv 10 20 10 empty empty WhiteNoise. 15 5 1 14 -262144
+-1 1.04858e+06;
+#X obj 101 113 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 36 144 outlet~;
+#X obj 36 55 noise~;
+#X obj 100 100 tgl 12 1 \$0-A \$0-B On 14 6 1 10 -262144 -1 -1 0 1
+;
+#X obj 100 144 switch~;
+#X obj 100 30 inlet;
+#X text 82 11 0/1 On/Off;
+#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 234 144 outlet~;
+#X obj 234 55 noise~;
+#X text 162 120 15 3 2021;
+#X obj 139 55 noise~;
+#X obj 199 113 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 36 103 *~ 0.5;
+#X obj 234 103 *~ 0.5;
+#X text 166 26 Stereo white noise;
+#X obj 297 144 cnv 15 34 16 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 353 174 333 161 ?? 0;
+#X obj 17 89 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 17 12 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14
+-4033 -1 1.04858e+06;
+#X obj 40 32 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 78 32 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 20 54 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 22 126 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 22 102 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X text 22 90 Construit sous / Build under Pd-0.49...;
+#X text 21 114 or Pd 0.43.4-extended;
+#X obj 20 66 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X obj 20 42 pddp/pddplink https://github.com/gerardparesys/ARGOPd
+;
+#X restore 297 144 pd ??;
+#X connect 3 0 14 0;
+#X connect 4 0 5 0;
+#X connect 6 0 4 0;
+#X connect 10 0 15 0;
+#X connect 12 0 14 0;
+#X connect 12 0 15 0;
+#X connect 14 0 2 0;
+#X connect 15 0 9 0;
+#X coords 0 -1 1 1 110 18 2 100 100;
+#X restore 16 152 pd ARGO;
