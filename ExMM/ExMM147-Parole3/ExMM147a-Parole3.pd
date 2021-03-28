@@ -295,9 +295,9 @@ Audio -> Clic encore pour arrêter l'enregistrement;
 #X obj 101 101 cnv 10 95 41 \$0-A \$0-B empty 20 12 0 14 -1 -1 1.04858e+06
 ;
 #X obj 101 109 nbx 4 12 0 1e+37 0 0 \$0 \$0-ReceiveCpuPeak CPUPeak
-45 7 1 11 -24198 -1 -24198 2 256;
+45 7 1 11 -24198 -1 -24198 4 256;
 #X obj 101 122 nbx 4 12 0 1e+37 0 0 \$0 \$0-ReceiveCpuMean CPUMean
-45 7 1 11 -24198 -1 -24198 5.7 256;
+45 7 1 11 -24198 -1 -24198 5.1 256;
 #X obj 145 -55 cputime;
 #X obj 145 -76 t b b;
 #X text 188 24 (c) musil@iem.kug.ac.at;
@@ -446,31 +446,32 @@ outputs a value.;
 #X msg 90 262 set \$1;
 #X obj 35 401 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
 0;
-#N canvas 412 50 438 432 Help 0;
-#X obj 14 111 cnv 15 400 230 empty empty empty 20 12 0 14 -233017 -66577
+#N canvas 411 45 450 458 Help 0;
+#X obj 13 146 cnv 15 400 230 empty empty empty 20 12 0 14 -233017 -66577
 0;
-#X text 17 110 Citation;
-#X obj 13 346 cnv 15 290 60 empty empty empty 20 12 0 14 -258113 -66577
+#X text 16 145 Citation;
+#X obj 12 381 cnv 15 290 60 empty empty empty 20 12 0 14 -258113 -66577
 0;
-#X text 52 361 < 90 sec at 44100 samples/sec;
-#X text 16 350 Audio < 4e+06 samples;
-#X text 49 128 flite : text-to-speech synthesis with libflite;
-#X text 46 144 ACKNOWLEDGEMENTS:;
-#X text 64 159 Flite runtime speech synthesis library by Alan W Black
+#X text 51 396 < 90 sec at 44100 samples/sec;
+#X text 15 385 Audio < 4e+06 samples;
+#X text 48 163 flite : text-to-speech synthesis with libflite;
+#X text 45 179 ACKNOWLEDGEMENTS:;
+#X text 63 194 Flite runtime speech synthesis library by Alan W Black
 and Kevin A. Lenzo., f 55;
-#X text 14 8 MM Parole3;
-#X text 35 23 Utilise l'objet flite de le library moocow;
-#X obj 64 186 pddp/pddplink http://www.speech.cs.cmu.edu/flite/;
-#X text 64 203 Flite (festival-lite) is a small \, fast run-time synthesis
+#X text 16 16 MM Parole3;
+#X obj 63 221 pddp/pddplink http://www.speech.cs.cmu.edu/flite/;
+#X text 63 238 Flite (festival-lite) is a small \, fast run-time synthesis
 engine developed at CMU and primarily designed for small embedded machines
 and/or large servers. Flite is designed as an alternative synthesis
 engine to Festival for voices built using the FestVox suite of voice
 building tools., f 56;
-#X obj 35 38 pddp/pddplink http://en.wikipedia.org/wiki/Festival_Speech_Synthesis_System
+#X obj 37 102 pddp/pddplink http://en.wikipedia.org/wiki/Festival_Speech_Synthesis_System
 ;
-#X text 34 52 flite: Text-to-Speech external v0.02-3 by Bryan Jurish
-;
-#X text 52 288 Bryan Jurish <moocow.bovine@gmail.com>;
+#X text 53 310 Bryan Jurish <moocow.bovine@gmail.com>;
+#X text 128 46 Utilise l'objet speech.flite de la library ceammc;
+#X text 35 61 CEAMMC PureData distribution 2020.12:;
+#X obj 35 75 pddp/pddplink https://github.com/uliss/pure-data;
+#X text 35 32 Use speech.flite object from the ceammc library;
 #X restore 42 407 pd Help;
 #X obj 252 556 spigot;
 #X obj 78 298 cnv 15 400 90 empty empty empty 20 12 0 14 -260097 -66577
@@ -478,10 +479,10 @@ building tools., f 56;
 #X obj 201 201 cnv 5 298 28 empty empty empty 20 12 0 14 -262144 -66577
 0;
 #X obj 203 239 hsl 295 40 0 1 0 0 \$0-A \$0-B 1sec 245 36 1 9 -188398
--1 -1 0 1;
+-1 -1 12769 1;
 #X obj 343 286 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
 ;
-#X obj 251 200 tgl 12 1 \$0-A \$0-B Play 14 6 1 9 -262144 -1 -1 0 1
+#X obj 251 200 tgl 12 1 \$0-A \$0-B Play 14 6 1 9 -262144 -1 -1 1 1
 ;
 #X obj 200 200 bng 12 250 50 0 \$0-A \$0-B empty 14 6 1 9 -262144 -1
 -1;
@@ -513,7 +514,7 @@ un array, f 61;
 #X text 223 167 (2) Renommer le message qui renomme l'array;
 #X text 223 185 Démarrer en nommant l'array (graph) A et en mettant
 A dans (3), f 63;
-#X msg 102 213 A486;
+#X msg 102 213 A312;
 #X connect 0 0 1 0;
 #X connect 1 0 2 0;
 #X connect 2 0 20 0;
@@ -562,7 +563,7 @@ A dans (3), f 63;
 #N canvas 347 327 389 234 Normalize 0;
 #X obj 106 38 inlet;
 #X msg 155 175 \; \$1 normalize;
-#X msg 106 107 A486;
+#X msg 106 107 A312;
 #X obj 279 36 inlet;
 #X obj 279 59 t b b;
 #X obj 105 132 zexy/list2symbol;
@@ -612,7 +613,7 @@ A dans (3), f 63;
 #X obj 307 200 tgl 12 1 \$0-A \$0-B Loop 15 6 1 9 -262144 -1 -1 0 1
 ;
 #N canvas 0 50 844 357 (subpatch) 0;
-#X array A486 46708 float 2;
+#X array A312 46708 float 2;
 #X coords 0 1 46708 -1 300 40 1 0 0;
 #X restore 200 239 graph;
 #X text 589 143 list2symbol pour les textes avec espace;
@@ -658,7 +659,6 @@ A dans (3), f 63;
 #X obj 277 279 nbx 3 12 100 400 0 1 \$0-A ColorForm Speed: -34 6 1
 10 -191424 -1 -1 100 256;
 #X msg 141 584 @array \$1;
-#X text 501 192 19 2 2021;
 #X obj 251 212 hradio 12 1 1 4 \$0-A ColorForm slt 50 6 1 10 -188398
 -1 -1 1;
 #X obj 222 217 cnv 3 3 3 empty empty Voice: 0 0 1 10 -262144 -66577
@@ -724,12 +724,13 @@ A dans (3), f 63;
 -1;
 #X msg 369 139 100;
 #X msg 363 112 0;
+#X text 501 192 28 3 2021;
 #X connect 1 0 53 0;
 #X connect 2 0 16 0;
 #X connect 2 0 25 0;
 #X connect 2 1 17 0;
 #X connect 2 1 23 0;
-#X connect 3 0 104 0;
+#X connect 3 0 103 0;
 #X connect 4 0 32 0;
 #X connect 7 0 12 0;
 #X connect 12 0 2 0;
@@ -779,30 +780,30 @@ A dans (3), f 63;
 #X connect 83 0 82 0;
 #X connect 84 0 82 0;
 #X connect 91 0 82 0;
-#X connect 92 0 105 0;
+#X connect 92 0 104 0;
 #X connect 93 0 82 0;
-#X connect 95 0 97 0;
-#X connect 97 0 95 0;
-#X connect 97 1 98 0;
-#X connect 98 0 53 0;
-#X connect 98 1 91 0;
-#X connect 102 0 84 0;
+#X connect 94 0 96 0;
+#X connect 96 0 94 0;
+#X connect 96 1 97 0;
+#X connect 97 0 53 0;
+#X connect 97 1 91 0;
+#X connect 101 0 84 0;
+#X connect 102 0 105 0;
+#X connect 103 0 53 0;
 #X connect 103 0 106 0;
-#X connect 104 0 53 0;
-#X connect 104 0 107 0;
-#X connect 104 1 32 0;
-#X connect 104 2 14 0;
-#X connect 105 0 95 0;
-#X connect 105 1 102 0;
-#X connect 106 0 95 0;
-#X connect 106 1 83 0;
-#X connect 107 0 95 0;
-#X connect 108 0 109 0;
-#X connect 108 0 110 0;
-#X connect 109 0 103 0;
-#X connect 109 0 92 0;
-#X connect 110 0 55 0;
-#X connect 110 0 12 0;
+#X connect 103 1 32 0;
+#X connect 103 2 14 0;
+#X connect 104 0 94 0;
+#X connect 104 1 101 0;
+#X connect 105 0 94 0;
+#X connect 105 1 83 0;
+#X connect 106 0 94 0;
+#X connect 107 0 108 0;
+#X connect 107 0 109 0;
+#X connect 108 0 102 0;
+#X connect 108 0 92 0;
+#X connect 109 0 55 0;
+#X connect 109 0 12 0;
 #X coords 0 -1 1 1 300 91 2 200 200;
 #X restore 296 194 pd ARGO;
 #X obj 768 16 declare -lib ceammc;
