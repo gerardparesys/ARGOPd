@@ -20,8 +20,7 @@ A Module (or MiniModule MM) is a "subpatch" (not an "abstraction") with the prop
 
 ARGOPd is for users who have never programmed with Pure Data.
 
-Under Creative Commons license  
-https://creativecommons.org/licenses/by-nc-sa/2.0/
+Under GPL-3.0 License  
 
 The documentation [ARGOPdManuv051.pdf](ARGOPdManuv051.pdf) must be updated:  
 replace: Pd-0.41.4-extended by: Pd-0.43.4-extended or Pd-0.50 + libraries, but remains valid.
