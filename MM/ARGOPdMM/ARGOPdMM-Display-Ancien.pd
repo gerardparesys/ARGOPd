@@ -3,9 +3,9 @@
 #X obj 101 101 cnv 10 95 41 \$0-A \$0-B empty 20 12 0 14 -1 -1 1.04858e+06
 ;
 #X obj 101 109 nbx 4 12 0 1e+37 0 0 \$0 \$0-ReceiveCpuPeak CPUPeak
-45 7 1 11 -24198 -1 -24198 6 256;
+45 7 1 11 -24198 -1 -24198 2 256;
 #X obj 101 122 nbx 4 12 0 1e+37 0 0 \$0 \$0-ReceiveCpuMean CPUMean
-45 7 1 11 -24198 -1 -24198 3.99 256;
+45 7 1 11 -24198 -1 -24198 3.89 256;
 #X obj 145 -55 cputime;
 #X obj 145 -76 t b b;
 #X text 188 24 (c) musil@iem.kug.ac.at;
@@ -462,44 +462,40 @@ default values are 1 to 1;
 #X msg 175 63 20;
 #X msg -32 56 range -1 1;
 #X obj 112 31 clip~ -1 1;
-#X obj 112 123 cyclone/scope~ 198 62 40 3 176 -1 1 1 0 1 0 255 0 0
-255 255 255 0;
-#X text 294 82 29 3 2021;
-#X obj 332 170 cnv 15 34 16 empty empty empty 20 12 0 14 -24198 -66577
+#X text 294 82 15 3 2016;
+#X obj 347 160 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
 0;
-#N canvas 353 174 333 161 ?? 0;
-#X obj 17 89 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+#N canvas 336 174 309 137 ?. 0;
+#X obj 3 83 cnv 15 300 46 empty empty empty 20 12 0 14 -224896 -66577
 0;
-#X obj 17 12 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14
--4033 -1 1.04858e+06;
-#X obj 40 32 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+#X obj 3 6 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 26 26 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
 ;
-#X obj 78 32 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+#X obj 64 26 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
 ;
-#X obj 20 54 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
-#X obj 22 126 pddp/pddplink http://puredata.info/downloads/pd-extended
+#X obj 7 37 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X text 8 85 Construit sous / Build under Pd 0.43.4-extended;
+#X obj 8 111 pddp/pddplink http://puredata.info/downloads/pd-extended
 ;
-#X obj 22 102 pddp/pddplink http://puredata.info/downloads/pure-data
+#X obj 7 50 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
 ;
-#X text 22 90 Construit sous / Build under Pd-0.49...;
-#X text 21 114 or Pd 0.43.4-extended;
-#X obj 20 66 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
-;
-#X obj 20 42 pddp/pddplink https://github.com/gerardparesys/ARGOPd
-;
-#X restore 332 170 pd ??;
+#X text 7 98 or Pd-0.46-7 + deken;
+#X restore 351 164 pd ?.;
+#X obj 112 123 cyclone/Scope~ 198 62 40 3 176 -1 1 1 0 1 0 255 0 0
+255 255 255 0 98 102 0 empty;
 #X connect 0 0 15 0;
-#X connect 2 0 22 0;
+#X connect 2 0 25 0;
 #X connect 3 0 5 0;
-#X connect 4 0 22 0;
-#X connect 5 0 22 0;
+#X connect 4 0 25 0;
+#X connect 5 0 25 0;
 #X connect 6 0 7 0;
 #X connect 6 1 20 0;
 #X connect 6 2 2 0;
 #X connect 6 3 4 0;
-#X connect 7 0 22 0;
+#X connect 7 0 25 0;
 #X connect 11 0 6 0;
-#X connect 12 0 22 0;
+#X connect 12 0 25 0;
 #X connect 13 0 12 0;
 #X connect 14 0 15 1;
 #X connect 15 0 21 0;
@@ -509,8 +505,8 @@ default values are 1 to 1;
 #X connect 17 0 13 0;
 #X connect 18 0 14 0;
 #X connect 19 0 3 0;
-#X connect 20 0 22 0;
-#X connect 21 0 22 0;
+#X connect 20 0 25 0;
+#X connect 21 0 25 0;
 #X coords 0 -1 1 1 222 87 2 100 100;
 #X restore 13 108 pd ARGO;
 #N canvas 462 219 430 320 ARGO 0;
@@ -552,34 +548,30 @@ default values are 1 to 1;
 #X obj 277 -12 clip~ -1 1;
 #X msg -24 136 range -1 1;
 #X msg -33 111 bufsize 176;
-#X obj 101 123 cyclone/scope~ 198 61 40 3 176 -1 1 0 0 0 0 255 0 0
-255 255 255 0;
-#X obj 101 187 cyclone/scope~ 198 61 40 3 176 -1 1 0 0 0 0 255 0 0
-255 255 255 0;
-#X text 243 85 29 3 2021;
-#X obj 307 234 cnv 15 34 16 empty empty empty 20 12 0 14 -24198 -66577
+#X obj 101 123 cyclone/Scope~ 198 61 40 3 176 -1 1 0 0 0 0 255 0 0
+255 255 255 0 98 102 0 empty;
+#X obj 101 187 cyclone/Scope~ 198 61 40 3 176 -1 1 0 0 0 0 255 0 0
+255 255 255 0 98 102 0 empty;
+#X text 243 85 15 3 2016;
+#X obj 308 224 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
 0;
-#N canvas 353 174 333 161 ?? 0;
-#X obj 17 89 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+#N canvas 336 174 309 137 ?. 0;
+#X obj 3 83 cnv 15 300 46 empty empty empty 20 12 0 14 -224896 -66577
 0;
-#X obj 17 12 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14
--4033 -1 1.04858e+06;
-#X obj 40 32 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+#X obj 3 6 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 26 26 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
 ;
-#X obj 78 32 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+#X obj 64 26 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
 ;
-#X obj 20 54 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
-#X obj 22 126 pddp/pddplink http://puredata.info/downloads/pd-extended
+#X obj 7 37 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X text 8 85 Construit sous / Build under Pd 0.43.4-extended;
+#X obj 8 111 pddp/pddplink http://puredata.info/downloads/pd-extended
 ;
-#X obj 22 102 pddp/pddplink http://puredata.info/downloads/pure-data
+#X obj 7 50 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
 ;
-#X text 22 90 Construit sous / Build under Pd-0.49...;
-#X text 21 114 or Pd 0.43.4-extended;
-#X obj 20 66 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
-;
-#X obj 20 42 pddp/pddplink https://github.com/gerardparesys/ARGOPd
-;
-#X restore 307 234 pd ??;
+#X text 7 98 or Pd-0.46-7 + deken;
+#X restore 312 228 pd ?.;
 #X connect 0 0 18 0;
 #X connect 3 0 22 0;
 #X connect 3 0 23 0;
@@ -679,32 +671,30 @@ default values are 1 to 1;
 0;
 #X msg 69 68 bang;
 #X msg 261 128 delay 1 \, triglevel 0.1 \, trigger 1;
-#X obj 201 223 cyclone/scope~ 198 61 40 3 176 -1 1 0 0 0 0 255 0 0
-255 255 255 0;
-#X text 343 185 29 3 2021;
-#X obj 409 269 cnv 15 34 16 empty empty empty 20 12 0 14 -24198 -66577
+#X obj 201 223 cyclone/Scope~ 198 61 40 3 176 -1 1 0 0 0 0 255 0 0
+255 255 255 0 98 102 0 empty;
+#X text 343 185 28 8 2019;
+#X obj 407 265 cnv 15 52 22 empty empty empty 20 12 0 14 -24198 -66577
 0;
-#N canvas 353 174 333 161 ?? 0;
-#X obj 17 89 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+#N canvas 353 174 321 152 ?... 0;
+#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
 0;
-#X obj 17 12 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14
--4033 -1 1.04858e+06;
-#X obj 40 32 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
 ;
-#X obj 78 32 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
 ;
-#X obj 20 54 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
-#X obj 22 126 pddp/pddplink http://puredata.info/downloads/pd-extended
+#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 13 121 pddp/pddplink http://puredata.info/downloads/pd-extended
 ;
-#X obj 22 102 pddp/pddplink http://puredata.info/downloads/pure-data
+#X obj 13 97 pddp/pddplink http://puredata.info/downloads/pure-data
 ;
-#X text 22 90 Construit sous / Build under Pd-0.49...;
-#X text 21 114 or Pd 0.43.4-extended;
-#X obj 20 66 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
+#X text 13 85 Construit sous / Build under Pd-0.49...;
+#X text 12 109 or Pd 0.43.4-extended;
+#X obj 12 53 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
 ;
-#X obj 20 42 pddp/pddplink https://github.com/gerardparesys/ARGOPd
-;
-#X restore 409 269 pd ??;
+#X restore 410 268 pd ?...;
 #X connect 0 0 10 0;
 #X connect 2 0 18 0;
 #X connect 3 0 9 0;
@@ -946,7 +936,7 @@ outputs a value.;
 #X obj 75 172 cyclone/vectral~ 1024;
 #X msg 421 384 set \$1 1 1;
 #X obj 212 214 cyclone/Scope~ 514 135 4 3 205 0 256 0 0 0 0 255 0 0
-255 255 255 0;
+255 255 255 0 98 102 0 empty;
 #X obj 234 143 cyclone/cartopol~;
 #X obj 421 201 hradio 12 1 1 7 \$0-A ColorForm 400Hz/div 87 6 1 10
 -262144 -1 -1 2;
@@ -1784,7 +1774,7 @@ outputs a value.;
 #X text 37 41 utilise l'objet scope~ de la library cyclone;
 #X restore 100 207 pd Help;
 #X obj 213 222 cyclone/scope~ 297 127 8 3 128 0 32 0 0 0 0 255 0 0
-255 255 255 0;
+255 255 255 0 98 102 0 empty;
 #X obj 425 20 cnv 15 100 70 empty empty empty 20 12 0 14 -24198 -66577
 0;
 #X text 448 22 library:;
@@ -1873,7 +1863,7 @@ outputs a value.;
 #X obj 212 218 cnv 15 296 135 empty empty empty 20 12 0 14 -1 -66577
 0;
 #X obj 213 287 cyclone/scope~ 297 66 8 3 128 0 32 0 0 0 0 255 0 0 255
-255 255 0;
+255 255 0 98 102 0 empty;
 #X obj 6 49 cnv 15 100 70 empty empty empty 20 12 0 14 -24198 -66577
 0;
 #X text 29 51 library:;
@@ -1881,7 +1871,7 @@ outputs a value.;
 #X text 10 75 cyclone;
 #X obj 217 203 tgl 12 1 \$0-A \$0-B On 15 7 1 9 -262144 -1 -1 0 1;
 #X obj 213 219 cyclone/scope~ 297 66 8 3 128 0 32 0 0 0 0 255 0 0 255
-255 255 0;
+255 255 0 98 102 0 empty;
 #X obj 544 335 cnv 15 34 16 empty empty empty 20 12 0 14 -24198 -66577
 0;
 #N canvas 353 174 333 161 ?? 0;
@@ -1982,7 +1972,7 @@ outputs a value.;
 #X obj 103 99 cyclone/count~ 0 1024 1 1;
 #X obj 261 127 cyclone/cartopol~;
 #X obj 201 220 cyclone/scope~ 198 129 4 3 256 0 512 0 0 0 0 255 0 0
-255 252 255 0;
+255 252 255 0 98 102 0 empty;
 #X obj 423 205 cnv 15 100 70 empty empty empty 20 12 0 14 -24198 -66577
 0;
 #X text 446 207 library:;
@@ -2079,7 +2069,7 @@ outputs a value.;
 #X obj 75 98 cyclone/count~ 0 1024 1 1;
 #X obj 75 172 cyclone/vectral~ 1024;
 #X obj 213 214 cyclone/scope~ 514 135 4 3 256 0 256 0 0 0 0 255 0 0
-255 255 255 0;
+255 255 255 0 98 102 0 empty;
 #X obj 234 143 cyclone/cartopol~;
 #X obj 219 201 tgl 12 1 \$0-A \$0-B On 15 7 1 9 -262144 -1 -1 0 1;
 #X obj 334 201 tgl 12 1 \$0-SendLoop \$0-ReceiveLoop Gliss 15 6 1 9
@@ -2139,7 +2129,7 @@ outputs a value.;
 #X coords 0 -1 1 1 528 150 2 200 200;
 #X restore 223 376 pd ARGO;
 #X text 558 621 <- Ne fonctionne pas avec library cyclone superieure
-a cyclone-v0-0extended;
+a cyclone-v0-0extended, f 46;
 #X text 558 591 <- Does not work with cyclone library greater than
-cyclone-v0-0extended;
+cyclone-v0-0extended, f 46;
 #X connect 6 0 5 0;
