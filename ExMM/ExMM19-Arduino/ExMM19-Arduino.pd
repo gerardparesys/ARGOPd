@@ -814,129 +814,6 @@ d'un fichier Audio.;
 #X connect 19 0 8 0;
 #X coords 0 -1 1 1 118 36 1 100 100;
 #X restore 130 267 pd ARGO;
-#N canvas 448 109 444 283 ARGO 0;
-#X obj 112 -32 inlet~;
-#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
-;
-#X msg -15 35 frgb 255 0 0;
-#X obj 130 105 nbx 4 12 1 2000 0 1 \$0-A ColorTime ms/div 40 7 1 9
--208064 -1 -1 50 256;
-#X msg 2 14 brgb 255 255 255;
-#X obj 125 57 * 2;
-#X obj -49 -7 t b b b b;
-#X msg -49 77 bufsize 176;
-#X obj 225 -28 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
-0;
-#N canvas 346 63 417 574 Help 0;
-#X text 10 57 cf doc/examples/cyclone/scope-gop.pd;
-#X text 10 113 cf MSP46ReferenceManual.pdf;
-#X text 10 69 cf doc/examples/cyclone/scope-test.pd;
-#X text 10 81 cf doc/examples/cyclone/scope-test1.pd;
-#X text 10 46 cf doc/examples/cyclone/pink-test.pd;
-#X text 10 26 cf extra/cyclone/Scope~-help.pd;
-#X text 10 93 cf doc/examples/cyclone/scope-test2.pd;
-#X obj 8 161 cnv 15 400 500 empty empty empty 20 12 0 14 -233017 -66577
-0;
-#X text 25 275 The word delay \, followed by a number \, sets the number
-of milliseconds of delay before scope~ begins collecting values. After
-a non-zero delay period \, scope~ enters a state in which it may wait
-for a trigger condition to be satisfied in the input signal based on
-the setting of the trigger state (set with the trigger message) and
-trigger level (set with the triglevel message). By default \, the delay
-is 0;
-#X text 12 164 Citation (MSP46ReferenceManual.pdf);
-#X text 25 391 trigger Sets the trigger mode. After a non-zero delay
-period (set with the delay message) \, scope~ begins to wait for a
-particular feature in the input signal before it begins collecting
-samples. trigger 1 sets an upward trigger in which the signal must
-go from being below the trigger level (default 0) to being equal to
-it or above it. trigger 2 sets a downward trigger in which the signal
-must go from being above the trigger level to being equal to it or
-below it. The default trigger mode is 0 \, which does not wait after
-a non-zero delay period before collecting samples again. This is sometimes
-referred to as a line trigger mode.;
-#X text 23 560 The word triglevel \, followed by a number \, sets the
-trigger level \, used by trigger modes 1 and 2 The default trigger
-level is 0 If you are displaying a waveform \, making slight changes
-to the trigger level will move the waveform to the left or right inside
-the scope~. It is possible to set the trigger level so that scope~
-will never change the display.;
-#X text 28 183 The word bufsize \, followed by a number \, changes
-the number of samples stored in the buffer used by the scope~ object.
-;
-#X text 26 222 The word range \, followed by two numbers (float or
-int) sets the minimum and maximum displayed signal amplitudes. The
-default values are 1 to 1;
-#X text 10 125 cf MSP46TutorialsAndTopics.pdf;
-#X text 48 137 -> Tutorial 24: AnalysisOscilloscope;
-#X text 10 -2 Clic sur la forme d'onde pour la figer.;
-#X text 223 12 Click to freeze the waveform.;
-#X text 11 -25 MM-Scope: utilise l'objet Scope~ de la library cyclone
-;
-#X restore 232 -22 pd Help;
-#X obj 100 121 cnv 15 222 66 empty empty Scope. 153 -10 1 14 -1 -1
-0;
-#X msg -49 -32 bang;
-#X msg 182 31 delay 1 \, triglevel \$1 \, trigger 1;
-#X obj 310 124 vsl 12 59 -1 1 0 1 \$0-A \$0-B Sync -9 -10 1 9 -261299
--1 -1 2900 1;
-#X obj 100 124 vsl 12 59 0.01 100 1 1 \$0-A \$0-B Amp 2 -10 1 9 -261299
--1 -1 2900 1;
-#X obj 112 -7 *~;
-#X obj 207 105 bng 12 250 50 0 \$0-A \$0-B Reset 14 6 1 9 -262144 -1
--1;
-#X msg 267 56 0;
-#X msg 234 56 1;
-#X msg 175 63 20;
-#X msg -32 56 range -1 1;
-#X obj 112 31 clip~ -1 1;
-#X text 294 82 15 3 2016;
-#X obj 347 160 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
-0;
-#N canvas 336 174 309 137 ?. 0;
-#X obj 3 83 cnv 15 300 46 empty empty empty 20 12 0 14 -224896 -66577
-0;
-#X obj 3 6 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
--1 1.04858e+06;
-#X obj 26 26 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
-;
-#X obj 64 26 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
-;
-#X obj 7 37 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
-#X text 8 85 Construit sous / Build under Pd 0.43.4-extended;
-#X obj 8 111 pddp/pddplink http://puredata.info/downloads/pd-extended
-;
-#X obj 7 50 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
-;
-#X text 7 98 or Pd-0.46-7 + deken;
-#X restore 351 164 pd ?.;
-#X obj 112 123 cyclone/Scope~ 198 62 100 3 176 -1 1 1 0 1 0 255 0 0
-255 255 255 0;
-#X connect 0 0 15 0;
-#X connect 2 0 25 0;
-#X connect 3 0 5 0;
-#X connect 4 0 25 0;
-#X connect 5 0 25 0;
-#X connect 6 0 7 0;
-#X connect 6 1 20 0;
-#X connect 6 2 2 0;
-#X connect 6 3 4 0;
-#X connect 7 0 25 0;
-#X connect 11 0 6 0;
-#X connect 12 0 25 0;
-#X connect 13 0 12 0;
-#X connect 14 0 15 1;
-#X connect 15 0 21 0;
-#X connect 16 0 17 0;
-#X connect 16 0 18 0;
-#X connect 16 0 19 0;
-#X connect 17 0 13 0;
-#X connect 18 0 14 0;
-#X connect 19 0 3 0;
-#X connect 20 0 25 0;
-#X connect 21 0 25 0;
-#X coords 0 -1 1 1 222 87 2 100 100;
-#X restore 322 198 pd ARGO;
 #X obj 482 313 cnv 15 52 22 empty empty empty 20 12 0 14 -24198 -66577
 0;
 #N canvas 353 174 321 152 ?... 0;
@@ -1138,9 +1015,136 @@ format..;
 #X connect 47 0 39 0;
 #X coords 0 -1 1 1 292 34 2 100 100;
 #X restore 15 205 pd ARGO;
-#X connect 0 0 25 0;
-#X connect 0 1 15 0;
+#N canvas 448 109 444 283 ARGO 0;
+#X obj 112 -32 inlet~;
+#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X msg -15 35 frgb 255 0 0;
+#X obj 130 105 nbx 4 12 1 2000 0 1 \$0-A ColorTime ms/div 40 7 1 9
+-208064 -1 -1 20 256;
+#X msg 2 14 brgb 255 255 255;
+#X obj 125 57 * 2;
+#X obj -49 -7 t b b b b;
+#X msg -49 77 bufsize 176;
+#X obj 225 -28 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 346 63 417 574 Help 0;
+#X text 10 57 cf doc/examples/cyclone/scope-gop.pd;
+#X text 10 113 cf MSP46ReferenceManual.pdf;
+#X text 10 69 cf doc/examples/cyclone/scope-test.pd;
+#X text 10 81 cf doc/examples/cyclone/scope-test1.pd;
+#X text 10 46 cf doc/examples/cyclone/pink-test.pd;
+#X text 10 26 cf extra/cyclone/Scope~-help.pd;
+#X text 10 93 cf doc/examples/cyclone/scope-test2.pd;
+#X obj 8 161 cnv 15 400 500 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X text 25 275 The word delay \, followed by a number \, sets the number
+of milliseconds of delay before scope~ begins collecting values. After
+a non-zero delay period \, scope~ enters a state in which it may wait
+for a trigger condition to be satisfied in the input signal based on
+the setting of the trigger state (set with the trigger message) and
+trigger level (set with the triglevel message). By default \, the delay
+is 0;
+#X text 12 164 Citation (MSP46ReferenceManual.pdf);
+#X text 25 391 trigger Sets the trigger mode. After a non-zero delay
+period (set with the delay message) \, scope~ begins to wait for a
+particular feature in the input signal before it begins collecting
+samples. trigger 1 sets an upward trigger in which the signal must
+go from being below the trigger level (default 0) to being equal to
+it or above it. trigger 2 sets a downward trigger in which the signal
+must go from being above the trigger level to being equal to it or
+below it. The default trigger mode is 0 \, which does not wait after
+a non-zero delay period before collecting samples again. This is sometimes
+referred to as a line trigger mode.;
+#X text 23 560 The word triglevel \, followed by a number \, sets the
+trigger level \, used by trigger modes 1 and 2 The default trigger
+level is 0 If you are displaying a waveform \, making slight changes
+to the trigger level will move the waveform to the left or right inside
+the scope~. It is possible to set the trigger level so that scope~
+will never change the display.;
+#X text 28 183 The word bufsize \, followed by a number \, changes
+the number of samples stored in the buffer used by the scope~ object.
+;
+#X text 26 222 The word range \, followed by two numbers (float or
+int) sets the minimum and maximum displayed signal amplitudes. The
+default values are 1 to 1;
+#X text 10 125 cf MSP46TutorialsAndTopics.pdf;
+#X text 48 137 -> Tutorial 24: AnalysisOscilloscope;
+#X text 10 -2 Clic sur la forme d'onde pour la figer.;
+#X text 223 12 Click to freeze the waveform.;
+#X text 11 -25 MM-Scope: utilise l'objet Scope~ de la library cyclone
+;
+#X restore 232 -22 pd Help;
+#X obj 100 121 cnv 15 222 66 empty empty Scope. 153 -10 1 14 -1 -1
+0;
+#X msg -49 -32 bang;
+#X msg 182 31 delay 1 \, triglevel \$1 \, trigger 1;
+#X obj 310 124 vsl 12 59 -1 1 0 1 \$0-A \$0-B Sync -9 -10 1 9 -261299
+-1 -1 2900 1;
+#X obj 100 124 vsl 12 59 0.01 100 1 1 \$0-A \$0-B Amp 2 -10 1 9 -261299
+-1 -1 2900 1;
+#X obj 112 -7 *~;
+#X obj 207 105 bng 12 250 50 0 \$0-A \$0-B Reset 14 6 1 9 -262144 -1
+-1;
+#X msg 267 56 0;
+#X msg 234 56 1;
+#X msg 175 63 20;
+#X msg -32 56 range -1 1;
+#X obj 112 31 clip~ -1 1;
+#X obj 112 123 cyclone/scope~ 198 62 40 3 176 -1 1 1 0 1 0 255 0 0
+255 255 255 0 98 102 0 empty;
+#X text 294 82 29 3 2021;
+#X obj 332 170 cnv 15 34 16 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 353 174 333 161 ?? 0;
+#X obj 17 89 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 17 12 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14
+-4033 -1 1.04858e+06;
+#X obj 40 32 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 78 32 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 20 54 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 22 126 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 22 102 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X text 22 90 Construit sous / Build under Pd-0.49...;
+#X text 21 114 or Pd 0.43.4-extended;
+#X obj 20 66 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X obj 20 42 pddp/pddplink https://github.com/gerardparesys/ARGOPd
+;
+#X restore 332 170 pd ??;
+#X connect 0 0 15 0;
+#X connect 2 0 22 0;
+#X connect 3 0 5 0;
+#X connect 4 0 22 0;
+#X connect 5 0 22 0;
+#X connect 6 0 7 0;
+#X connect 6 1 20 0;
+#X connect 6 2 2 0;
+#X connect 6 3 4 0;
+#X connect 7 0 22 0;
+#X connect 11 0 6 0;
+#X connect 12 0 22 0;
+#X connect 13 0 12 0;
+#X connect 14 0 15 1;
+#X connect 15 0 21 0;
+#X connect 16 0 17 0;
+#X connect 16 0 18 0;
+#X connect 16 0 19 0;
+#X connect 17 0 13 0;
+#X connect 18 0 14 0;
+#X connect 19 0 3 0;
+#X connect 20 0 22 0;
+#X connect 21 0 22 0;
+#X coords 0 -1 1 1 222 87 2 100 100;
+#X restore 322 198 pd ARGO;
+#X connect 0 0 24 0;
+#X connect 0 1 25 0;
 #X connect 9 0 8 0;
 #X connect 14 0 1 0;
 #X connect 14 0 1 1;
-#X connect 25 0 14 0;
+#X connect 24 0 14 0;
