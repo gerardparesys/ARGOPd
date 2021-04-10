@@ -171,120 +171,6 @@
 #X text 52 327 Adjust ->;
 #X text 52 317 Régler ->;
 #X text 157 342 1 = normal;
-#N canvas 357 43 442 262 ARGO 0;
-#X obj 40 -35 inlet~;
-#X obj 101 101 cnv 12 198 18 empty empty empty 20 12 0 14 -262144 -1
-1.04858e+06;
-#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
-;
-#X msg -34 86 frgb 255 0 0;
-#X obj 124 105 nbx 4 12 1 2000 0 1 \$0-A ColorTime ms/div 40 7 1 9
--208064 -1 -1 60 256;
-#X msg -22 54 range -1 1;
-#X obj 205 105 tgl 12 1 \$0-A \$0-B Sync 15 6 1 9 -262144 -1 -1 0 1
-;
-#X msg 120 52 delay 0 \, triglevel 0 \, trigger 0;
-#X obj 126 5 sel 0 1;
-#X msg -37 110 brgb 255 255 255;
-#X obj 86 64 * 2;
-#X obj 41 -7 clip~ -1 1;
-#X obj -31 -7 t b b b b;
-#X msg -31 29 bufsize 176;
-#X obj 196 -34 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
-0;
-#N canvas 346 63 417 574 Help 0;
-#X text 10 57 cf doc/examples/cyclone/scope-gop.pd;
-#X text 10 113 cf MSP46ReferenceManual.pdf;
-#X text 10 69 cf doc/examples/cyclone/scope-test.pd;
-#X text 10 81 cf doc/examples/cyclone/scope-test1.pd;
-#X text 10 46 cf doc/examples/cyclone/pink-test.pd;
-#X text 10 26 cf extra/cyclone/Scope~-help.pd;
-#X text 10 93 cf doc/examples/cyclone/scope-test2.pd;
-#X obj 8 161 cnv 15 400 500 empty empty empty 20 12 0 14 -233017 -66577
-0;
-#X text 25 275 The word delay \, followed by a number \, sets the number
-of milliseconds of delay before scope~ begins collecting values. After
-a non-zero delay period \, scope~ enters a state in which it may wait
-for a trigger condition to be satisfied in the input signal based on
-the setting of the trigger state (set with the trigger message) and
-trigger level (set with the triglevel message). By default \, the delay
-is 0;
-#X text 12 164 Citation (MSP46ReferenceManual.pdf);
-#X text 25 391 trigger Sets the trigger mode. After a non-zero delay
-period (set with the delay message) \, scope~ begins to wait for a
-particular feature in the input signal before it begins collecting
-samples. trigger 1 sets an upward trigger in which the signal must
-go from being below the trigger level (default 0) to being equal to
-it or above it. trigger 2 sets a downward trigger in which the signal
-must go from being above the trigger level to being equal to it or
-below it. The default trigger mode is 0 \, which does not wait after
-a non-zero delay period before collecting samples again. This is sometimes
-referred to as a line trigger mode.;
-#X text 23 560 The word triglevel \, followed by a number \, sets the
-trigger level \, used by trigger modes 1 and 2 The default trigger
-level is 0 If you are displaying a waveform \, making slight changes
-to the trigger level will move the waveform to the left or right inside
-the scope~. It is possible to set the trigger level so that scope~
-will never change the display.;
-#X text 28 183 The word bufsize \, followed by a number \, changes
-the number of samples stored in the buffer used by the scope~ object.
-;
-#X text 26 222 The word range \, followed by two numbers (float or
-int) sets the minimum and maximum displayed signal amplitudes. The
-default values are 1 to 1;
-#X text 10 125 cf MSP46TutorialsAndTopics.pdf;
-#X text 48 137 -> Tutorial 24: AnalysisOscilloscope;
-#X text 10 -2 Clic sur la forme d'onde pour la figer.;
-#X text 223 12 Click to freeze the waveform.;
-#X text 11 -25 MM-Scope: utilise l'objet Scope~ de la library cyclone
-;
-#X restore 203 -28 pd Help;
-#X obj 100 121 cnv 15 199 65 empty empty Scope. 155 -10 1 14 -1 -1
-0;
-#X msg -31 -32 bang;
-#X msg 161 28 delay 1 \, triglevel 0.1 \, trigger 1;
-#X obj 101 123 cyclone/Scope~ 198 61 120 3 176 -1 1 0 0 0 0 255 0 0
-255 255 255 0;
-#X text 243 85 15 3 2016;
-#X obj 310 159 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
-0;
-#N canvas 336 174 309 137 ?. 0;
-#X obj 3 83 cnv 15 300 46 empty empty empty 20 12 0 14 -224896 -66577
-0;
-#X obj 3 6 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
--1 1.04858e+06;
-#X obj 26 26 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
-;
-#X obj 64 26 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
-;
-#X obj 7 37 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
-#X text 8 85 Construit sous / Build under Pd 0.43.4-extended;
-#X obj 8 111 pddp/pddplink http://puredata.info/downloads/pd-extended
-;
-#X obj 7 50 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
-;
-#X text 7 98 or Pd-0.46-7 + deken;
-#X restore 314 163 pd ?.;
-#X connect 0 0 11 0;
-#X connect 3 0 19 0;
-#X connect 4 0 10 0;
-#X connect 5 0 19 0;
-#X connect 6 0 8 0;
-#X connect 7 0 19 0;
-#X connect 8 0 7 0;
-#X connect 8 1 18 0;
-#X connect 9 0 19 0;
-#X connect 10 0 19 0;
-#X connect 11 0 19 0;
-#X connect 12 0 13 0;
-#X connect 12 1 5 0;
-#X connect 12 2 3 0;
-#X connect 12 3 9 0;
-#X connect 13 0 19 0;
-#X connect 17 0 12 0;
-#X connect 18 0 19 0;
-#X coords 0 -1 1 1 200 86 2 100 100;
-#X restore 239 419 pd ARGO;
 #N canvas 175 68 374 396 ARGO 0;
 #X obj 101 101 cnv 20 116 34 empty ColorAmpli empty 20 12 0 14 -261299
 -1 1.04858e+06;
@@ -353,125 +239,6 @@ default values are 1 to 1;
 #X connect 19 0 8 0;
 #X coords 0 -1 1 1 118 36 1 100 100;
 #X restore 114 430 pd ARGO;
-#N canvas 723 227 349 246 ARGO 0;
-#X obj 101 101 cnv 20 104 34 empty ColorAmpli empty 20 12 0 14 -261299
--1 1.04858e+06;
-#X obj 88 200 outlet~;
-#X obj 134 104 cnv 10 20 10 empty ColorAmpli Ampli. 1 5 1 14 -261299
--1 1.04858e+06;
-#X obj 88 74 inlet~;
-#X obj 185 74 inlet~;
-#X obj 87 173 *~;
-#X obj 195 101 cnv 4 10 4 empty empty empty 20 12 0 14 -258113 -66577
-0;
-#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
-;
-#X obj 101 131 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
-;
-#X obj 103 118 hsl 101 12 0 1.25 0 1 \$0-A ColorAmpli empty 0 7 1 9
--262144 -1 -1 0 0;
-#X obj 103 118 hsl 101 12 0 1.25 0 0 \$0-A ColorAmpli -80dB 0 7 1 9
--261299 -258049 -1 8000 0;
-#X text 211 127 2 HSLIDER superposés;
-#X text 210 116 <-- ATTENTION;
-#X obj 215 154 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
-0;
-#N canvas 346 353 425 238 Help 0;
-#X text 11 19 Amplificateur à gain controlé logarithmiquement;
-#X text 10 45 Sensibilitée de l'entrée de contrôle du gain:;
-#X text 10 60 1 = +80 dB;
-#X text 11 74 Cela signifie par exemple:;
-#X text 189 86 1 = 0 dB;
-#X text 171 98 0.75 = -20 dB;
-#X text 171 111 0.5 = -40 dB;
-#X text 171 124 0.25 = -60 dB;
-#X text 171 74 1.25 = +20 dB (slider à droite);
-#X text 189 137 0 = -80 dB (slider à gauche);
-#X restore 222 160 pd Help;
-#N canvas 593 326 466 292 Ampli-v1-log 0;
-#X obj -53 31 loadbang;
-#X msg 208 178 set \$1;
-#X obj 86 71 +~;
-#X obj 206 121 snapshot~;
-#X obj 207 155 change;
-#X obj 276 33 inlet;
-#X obj 231 210 outlet;
-#X obj 85 31 inlet~;
-#X msg 275 177 label \$1;
-#X obj -46 59 metro 200;
-#X obj 6 31 r SendFluid;
-#X text 228 223 Hslider;
-#X text 271 5 Hslider;
-#X text 236 235 Over;
-#X text 276 16 Under;
-#X obj 85 207 outlet~;
-#X obj 85 158 /~ 10000;
-#X text 19 107 0..1.25 ->;
-#X text 8 138 1..100000 ->;
-#X text -82 173 0.0001..10 = -80dB..20dB ->;
-#X obj 276 60 * 80;
-#X obj 276 82 - 80;
-#X text 285 136 -> -80dB..20dB;
-#X text 282 100 -> -80 .. 20;
-#X text 224 248 0 .. 1.25;
-#X text 263 -7 0 .. 1.25;
-#X text 15 -20 Fluidité de;
-#X text 14 -9 l'affichage;
-#X text 15 2 des sliders;
-#X text -7 13 (200ms par défaut);
-#X obj 85 123 cyclone/pow~ 10000;
-#X text -57 123 compatibility 0.42.5 ->;
-#X obj 276 154 cyclone/tosymbol;
-#X obj 276 119 cyclone/sprintf %ddB;
-#X connect 0 0 9 0;
-#X connect 1 0 6 0;
-#X connect 2 0 3 0;
-#X connect 2 0 30 0;
-#X connect 3 0 4 0;
-#X connect 4 0 1 0;
-#X connect 5 0 2 1;
-#X connect 5 0 20 0;
-#X connect 7 0 2 0;
-#X connect 8 0 6 0;
-#X connect 9 0 3 0;
-#X connect 10 0 9 1;
-#X connect 16 0 15 0;
-#X connect 20 0 21 0;
-#X connect 21 0 33 0;
-#X connect 30 0 16 0;
-#X connect 32 0 8 0;
-#X connect 33 0 32 0;
-#X restore 102 149 pd Ampli-v1-log;
-#X text 22 33 Logarithmic Gain Controlled Amplifier;
-#X text 22 49 Amplificateur à gain controlé loogarithmiquement;
-#X obj 220 194 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
-0;
-#N canvas 336 174 309 137 ?. 0;
-#X obj 3 83 cnv 15 300 46 empty empty empty 20 12 0 14 -224896 -66577
-0;
-#X obj 3 6 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
--1 1.04858e+06;
-#X obj 26 26 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
-;
-#X obj 64 26 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
-;
-#X obj 7 37 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
-#X text 8 85 Construit sous / Build under Pd 0.43.4-extended;
-#X obj 8 111 pddp/pddplink http://puredata.info/downloads/pd-extended
-;
-#X obj 7 50 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
-;
-#X text 7 98 or Pd-0.46-7 + deken;
-#X restore 224 198 pd ?.;
-#X text 209 97 23 8 2018;
-#X connect 3 0 5 0;
-#X connect 4 0 15 0;
-#X connect 5 0 1 0;
-#X connect 9 0 15 1;
-#X connect 15 0 5 1;
-#X connect 15 1 10 0;
-#X coords 0 -1 1 1 106 36 1 100 100;
-#X restore 114 246 pd ARGO;
 #X obj 398 574 cnv 15 52 22 empty empty empty 20 12 0 14 -24198 -66577
 0;
 #N canvas 353 174 321 152 ?... 0;
@@ -745,125 +512,6 @@ outputs a value.;
 #X connect 5 1 1 1;
 #X coords 0 -1 1 1 39 135 2 100 100;
 #X restore 162 471 pd ARGO;
-#N canvas 723 227 349 246 ARGO 0;
-#X obj 101 101 cnv 20 104 34 empty ColorAmpli empty 20 12 0 14 -261299
--1 1.04858e+06;
-#X obj 88 200 outlet~;
-#X obj 134 104 cnv 10 20 10 empty ColorAmpli Ampli. 1 5 1 14 -261299
--1 1.04858e+06;
-#X obj 88 74 inlet~;
-#X obj 185 74 inlet~;
-#X obj 87 173 *~;
-#X obj 195 101 cnv 4 10 4 empty empty empty 20 12 0 14 -258113 -66577
-0;
-#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
-;
-#X obj 101 131 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
-;
-#X obj 103 118 hsl 101 12 0 1.25 0 1 \$0-A ColorAmpli empty 0 7 1 9
--262144 -1 -1 0 0;
-#X obj 103 118 hsl 101 12 0 1.25 0 0 \$0-A ColorAmpli -80dB 0 7 1 9
--261299 -258049 -1 6400 0;
-#X text 211 127 2 HSLIDER superposés;
-#X text 210 116 <-- ATTENTION;
-#X obj 215 154 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
-0;
-#N canvas 346 353 425 238 Help 0;
-#X text 11 19 Amplificateur à gain controlé logarithmiquement;
-#X text 10 45 Sensibilitée de l'entrée de contrôle du gain:;
-#X text 10 60 1 = +80 dB;
-#X text 11 74 Cela signifie par exemple:;
-#X text 189 86 1 = 0 dB;
-#X text 171 98 0.75 = -20 dB;
-#X text 171 111 0.5 = -40 dB;
-#X text 171 124 0.25 = -60 dB;
-#X text 171 74 1.25 = +20 dB (slider à droite);
-#X text 189 137 0 = -80 dB (slider à gauche);
-#X restore 222 160 pd Help;
-#N canvas 593 326 466 292 Ampli-v1-log 0;
-#X obj -53 31 loadbang;
-#X msg 208 178 set \$1;
-#X obj 86 71 +~;
-#X obj 206 121 snapshot~;
-#X obj 207 155 change;
-#X obj 276 33 inlet;
-#X obj 231 210 outlet;
-#X obj 85 31 inlet~;
-#X msg 275 177 label \$1;
-#X obj -46 59 metro 200;
-#X obj 6 31 r SendFluid;
-#X text 228 223 Hslider;
-#X text 271 5 Hslider;
-#X text 236 235 Over;
-#X text 276 16 Under;
-#X obj 85 207 outlet~;
-#X obj 85 158 /~ 10000;
-#X text 19 107 0..1.25 ->;
-#X text 8 138 1..100000 ->;
-#X text -82 173 0.0001..10 = -80dB..20dB ->;
-#X obj 276 60 * 80;
-#X obj 276 82 - 80;
-#X text 285 136 -> -80dB..20dB;
-#X text 282 100 -> -80 .. 20;
-#X text 224 248 0 .. 1.25;
-#X text 263 -7 0 .. 1.25;
-#X text 15 -20 Fluidité de;
-#X text 14 -9 l'affichage;
-#X text 15 2 des sliders;
-#X text -7 13 (200ms par défaut);
-#X obj 85 123 cyclone/pow~ 10000;
-#X text -57 123 compatibility 0.42.5 ->;
-#X obj 276 154 cyclone/tosymbol;
-#X obj 276 119 cyclone/sprintf %ddB;
-#X connect 0 0 9 0;
-#X connect 1 0 6 0;
-#X connect 2 0 3 0;
-#X connect 2 0 30 0;
-#X connect 3 0 4 0;
-#X connect 4 0 1 0;
-#X connect 5 0 2 1;
-#X connect 5 0 20 0;
-#X connect 7 0 2 0;
-#X connect 8 0 6 0;
-#X connect 9 0 3 0;
-#X connect 10 0 9 1;
-#X connect 16 0 15 0;
-#X connect 20 0 21 0;
-#X connect 21 0 33 0;
-#X connect 30 0 16 0;
-#X connect 32 0 8 0;
-#X connect 33 0 32 0;
-#X restore 102 149 pd Ampli-v1-log;
-#X text 22 33 Logarithmic Gain Controlled Amplifier;
-#X text 22 49 Amplificateur à gain controlé loogarithmiquement;
-#X obj 220 194 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
-0;
-#N canvas 336 174 309 137 ?. 0;
-#X obj 3 83 cnv 15 300 46 empty empty empty 20 12 0 14 -224896 -66577
-0;
-#X obj 3 6 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
--1 1.04858e+06;
-#X obj 26 26 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
-;
-#X obj 64 26 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
-;
-#X obj 7 37 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
-#X text 8 85 Construit sous / Build under Pd 0.43.4-extended;
-#X obj 8 111 pddp/pddplink http://puredata.info/downloads/pd-extended
-;
-#X obj 7 50 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
-;
-#X text 7 98 or Pd-0.46-7 + deken;
-#X restore 224 198 pd ?.;
-#X text 209 97 23 8 2018;
-#X connect 3 0 5 0;
-#X connect 4 0 15 0;
-#X connect 5 0 1 0;
-#X connect 9 0 15 1;
-#X connect 15 0 5 1;
-#X connect 15 1 10 0;
-#X coords 0 -1 1 1 106 36 1 100 100;
-#X restore 114 365 pd ARGO;
 #N canvas 306 45 344 241 ARGO 0;
 #X obj 101 101 cnv 20 104 34 empty ColorAmpli empty 20 12 0 14 -261299
 -1 1.04858e+06;
@@ -988,15 +636,369 @@ patches in Pd;
 #X connect 15 0 1 0;
 #X coords 0 -1 1 1 106 36 1 100 100;
 #X restore 114 307 pd ARGO;
-#X connect 4 0 35 1;
-#X connect 4 1 41 1;
-#X connect 4 2 40 1;
+#N canvas 357 43 498 322 ARGO 0;
+#X obj 140 65 inlet~;
+#X obj 201 201 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X msg 66 186 frgb 255 0 0;
+#X obj 224 205 nbx 4 12 1 2000 0 1 \$0-A ColorTime ms/div 40 7 1 9
+-208064 -1 -1 60 256;
+#X msg 78 154 range -1 1;
+#X obj 305 205 tgl 12 1 \$0-A \$0-B Sync 15 6 1 9 -262144 -1 -1 0 1
+;
+#X msg 220 152 delay 0 \, triglevel 0 \, trigger 0;
+#X obj 226 105 sel 0 1;
+#X msg 63 210 brgb 255 255 255;
+#X obj 186 164 * 2;
+#X obj 141 93 clip~ -1 1;
+#X obj 69 93 t b b b b;
+#X msg 69 129 bufsize 176;
+#X obj 296 66 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 346 63 417 574 Help 0;
+#X text 10 57 cf doc/examples/cyclone/scope-gop.pd;
+#X text 10 113 cf MSP46ReferenceManual.pdf;
+#X text 10 69 cf doc/examples/cyclone/scope-test.pd;
+#X text 10 81 cf doc/examples/cyclone/scope-test1.pd;
+#X text 10 46 cf doc/examples/cyclone/pink-test.pd;
+#X text 10 26 cf extra/cyclone/Scope~-help.pd;
+#X text 10 93 cf doc/examples/cyclone/scope-test2.pd;
+#X obj 8 161 cnv 15 400 500 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X text 25 275 The word delay \, followed by a number \, sets the number
+of milliseconds of delay before scope~ begins collecting values. After
+a non-zero delay period \, scope~ enters a state in which it may wait
+for a trigger condition to be satisfied in the input signal based on
+the setting of the trigger state (set with the trigger message) and
+trigger level (set with the triglevel message). By default \, the delay
+is 0;
+#X text 12 164 Citation (MSP46ReferenceManual.pdf);
+#X text 25 391 trigger Sets the trigger mode. After a non-zero delay
+period (set with the delay message) \, scope~ begins to wait for a
+particular feature in the input signal before it begins collecting
+samples. trigger 1 sets an upward trigger in which the signal must
+go from being below the trigger level (default 0) to being equal to
+it or above it. trigger 2 sets a downward trigger in which the signal
+must go from being above the trigger level to being equal to it or
+below it. The default trigger mode is 0 \, which does not wait after
+a non-zero delay period before collecting samples again. This is sometimes
+referred to as a line trigger mode.;
+#X text 23 560 The word triglevel \, followed by a number \, sets the
+trigger level \, used by trigger modes 1 and 2 The default trigger
+level is 0 If you are displaying a waveform \, making slight changes
+to the trigger level will move the waveform to the left or right inside
+the scope~. It is possible to set the trigger level so that scope~
+will never change the display.;
+#X text 28 183 The word bufsize \, followed by a number \, changes
+the number of samples stored in the buffer used by the scope~ object.
+;
+#X text 26 222 The word range \, followed by two numbers (float or
+int) sets the minimum and maximum displayed signal amplitudes. The
+default values are 1 to 1;
+#X text 10 125 cf MSP46TutorialsAndTopics.pdf;
+#X text 48 137 -> Tutorial 24: AnalysisOscilloscope;
+#X text 10 -2 Clic sur la forme d'onde pour la figer.;
+#X text 223 12 Click to freeze the waveform.;
+#X text 11 -25 MM-Scope: utilise l'objet Scope~ de la library cyclone
+;
+#X restore 303 72 pd Help;
+#X obj 200 221 cnv 15 199 65 empty empty Scope. 150 -10 1 14 -1 -1
+0;
+#X msg 69 68 bang;
+#X msg 261 128 delay 1 \, triglevel 0.1 \, trigger 1;
+#X obj 201 223 cyclone/scope~ 198 61 120 3 176 -1 1 0 0 0 0 255 0 0
+255 255 255 0 98 102 0 empty;
+#X text 343 185 29 3 2021;
+#X obj 409 269 cnv 15 34 16 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 353 174 333 161 ?? 0;
+#X obj 17 89 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 17 12 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14
+-4033 -1 1.04858e+06;
+#X obj 40 32 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 78 32 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 20 54 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 22 126 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 22 102 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X text 22 90 Construit sous / Build under Pd-0.49...;
+#X text 21 114 or Pd 0.43.4-extended;
+#X obj 20 66 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X obj 20 42 pddp/pddplink https://github.com/gerardparesys/ARGOPd
+;
+#X restore 409 269 pd ??;
+#X connect 0 0 10 0;
+#X connect 2 0 18 0;
+#X connect 3 0 9 0;
+#X connect 4 0 18 0;
+#X connect 5 0 7 0;
+#X connect 6 0 18 0;
+#X connect 7 0 6 0;
+#X connect 7 1 17 0;
+#X connect 8 0 18 0;
+#X connect 9 0 18 0;
+#X connect 10 0 18 0;
+#X connect 11 0 12 0;
+#X connect 11 1 4 0;
+#X connect 11 2 2 0;
+#X connect 11 3 8 0;
+#X connect 12 0 18 0;
+#X connect 16 0 11 0;
+#X connect 17 0 18 0;
+#X coords 0 -1 1 1 200 86 2 200 200;
+#X restore 239 419 pd ARGO;
+#N canvas 723 227 349 246 ARGO 0;
+#X obj 101 101 cnv 20 104 34 empty ColorAmpli empty 20 12 0 14 -261299
+-1 1.04858e+06;
+#X obj 88 200 outlet~;
+#X obj 134 104 cnv 10 20 10 empty ColorAmpli Ampli. 1 5 1 14 -261299
+-1 1.04858e+06;
+#X obj 88 74 inlet~;
+#X obj 185 74 inlet~;
+#X obj 87 173 *~;
+#X obj 195 101 cnv 4 10 4 empty empty empty 20 12 0 14 -258113 -66577
+0;
+#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 101 131 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 103 118 hsl 101 12 0 1.25 0 1 \$0-A ColorAmpli empty 0 7 1 9
+-262144 -1 -1 0 0;
+#X obj 103 118 hsl 101 12 0 1.25 0 0 \$0-A ColorAmpli -80dB 0 7 1 9
+-261299 -258049 -1 0 0;
+#X text 211 127 2 HSLIDER superposés;
+#X text 210 116 <-- ATTENTION;
+#X obj 215 154 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 346 353 425 238 Help 0;
+#X text 11 19 Amplificateur à gain controlé logarithmiquement;
+#X text 10 45 Sensibilitée de l'entrée de contrôle du gain:;
+#X text 10 60 1 = +80 dB;
+#X text 11 74 Cela signifie par exemple:;
+#X text 189 86 1 = 0 dB;
+#X text 171 98 0.75 = -20 dB;
+#X text 171 111 0.5 = -40 dB;
+#X text 171 124 0.25 = -60 dB;
+#X text 171 74 1.25 = +20 dB (slider à droite);
+#X text 189 137 0 = -80 dB (slider à gauche);
+#X restore 222 160 pd Help;
+#X text 22 33 Logarithmic Gain Controlled Amplifier;
+#X text 209 97 30 3 2021;
+#X text 22 49 Amplificateur à gain controlé logarithmiquement;
+#X obj 271 199 cnv 15 34 16 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 353 174 333 161 ?? 0;
+#X obj 17 89 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 17 12 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14
+-4033 -1 1.04858e+06;
+#X obj 40 32 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 78 32 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 20 54 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 22 126 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 22 102 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X text 22 90 Construit sous / Build under Pd-0.49...;
+#X text 21 114 or Pd 0.43.4-extended;
+#X obj 20 66 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X obj 20 42 pddp/pddplink https://github.com/gerardparesys/ARGOPd
+;
+#X restore 271 199 pd ??;
+#N canvas 593 326 583 314 Ampli-v2-log 0;
+#X obj 253 60 loadbang;
+#X msg 360 209 set \$1;
+#X obj 181 99 +~;
+#X obj 360 151 snapshot~;
+#X obj 360 184 change;
+#X obj 429 60 inlet;
+#X obj 384 241 outlet;
+#X obj 181 60 inlet~;
+#X msg 429 209 label \$1;
+#X obj 360 112 metro 200;
+#X obj 312 60 r SendFluid;
+#X text 381 257 Hslider;
+#X text 424 33 Hslider;
+#X text 389 269 Over;
+#X text 429 44 Under;
+#X obj 181 241 outlet~;
+#X text 119 135 0..1.25 ->;
+#X text 17 201 0.0001..10 = -80dB..20dB ->;
+#X obj 429 88 * 80;
+#X obj 429 112 - 80;
+#X text 438 167 -> -80dB..20dB;
+#X text 435 128 -> -80 .. 20;
+#X text 377 282 0 .. 1.25;
+#X text 416 21 0 .. 1.25;
+#X text 315 8 Fluidité de;
+#X text 314 19 l'affichage;
+#X text 315 30 des sliders;
+#X text 293 41 (200ms par défaut);
+#X obj 429 184 cyclone/tosymbol;
+#X obj 429 151 cyclone/sprintf %ddB;
+#X obj 181 151 expr~ pow(10000 \, $v1)/10000;
+#X connect 0 0 9 0;
+#X connect 1 0 6 0;
+#X connect 2 0 3 0;
+#X connect 2 0 30 0;
+#X connect 3 0 4 0;
+#X connect 4 0 1 0;
+#X connect 5 0 2 1;
+#X connect 5 0 18 0;
+#X connect 7 0 2 0;
+#X connect 8 0 6 0;
+#X connect 9 0 3 0;
+#X connect 10 0 9 1;
+#X connect 18 0 19 0;
+#X connect 19 0 29 0;
+#X connect 28 0 8 0;
+#X connect 29 0 28 0;
+#X connect 30 0 15 0;
+#X restore 102 149 pd Ampli-v2-log;
+#X connect 3 0 5 0;
+#X connect 4 0 20 0;
+#X connect 5 0 1 0;
+#X connect 9 0 20 1;
+#X connect 20 0 5 1;
+#X connect 20 1 10 0;
+#X coords 0 -1 1 1 106 36 1 100 100;
+#X restore 114 246 pd ARGO;
+#N canvas 723 227 349 246 ARGO 0;
+#X obj 101 101 cnv 20 104 34 empty ColorAmpli empty 20 12 0 14 -261299
+-1 1.04858e+06;
+#X obj 88 200 outlet~;
+#X obj 134 104 cnv 10 20 10 empty ColorAmpli Ampli. 1 5 1 14 -261299
+-1 1.04858e+06;
+#X obj 88 74 inlet~;
+#X obj 185 74 inlet~;
+#X obj 87 173 *~;
+#X obj 195 101 cnv 4 10 4 empty empty empty 20 12 0 14 -258113 -66577
+0;
+#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 101 131 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 103 118 hsl 101 12 0 1.25 0 1 \$0-A ColorAmpli empty 0 7 1 9
+-262144 -1 -1 0 0;
+#X obj 103 118 hsl 101 12 0 1.25 0 0 \$0-A ColorAmpli -80dB 0 7 1 9
+-261299 -258049 -1 0 0;
+#X text 211 127 2 HSLIDER superposés;
+#X text 210 116 <-- ATTENTION;
+#X obj 215 154 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 346 353 425 238 Help 0;
+#X text 11 19 Amplificateur à gain controlé logarithmiquement;
+#X text 10 45 Sensibilitée de l'entrée de contrôle du gain:;
+#X text 10 60 1 = +80 dB;
+#X text 11 74 Cela signifie par exemple:;
+#X text 189 86 1 = 0 dB;
+#X text 171 98 0.75 = -20 dB;
+#X text 171 111 0.5 = -40 dB;
+#X text 171 124 0.25 = -60 dB;
+#X text 171 74 1.25 = +20 dB (slider à droite);
+#X text 189 137 0 = -80 dB (slider à gauche);
+#X restore 222 160 pd Help;
+#X text 22 33 Logarithmic Gain Controlled Amplifier;
+#X text 209 97 30 3 2021;
+#X text 22 49 Amplificateur à gain controlé logarithmiquement;
+#X obj 271 199 cnv 15 34 16 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 353 174 333 161 ?? 0;
+#X obj 17 89 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 17 12 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14
+-4033 -1 1.04858e+06;
+#X obj 40 32 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 78 32 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 20 54 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 22 126 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 22 102 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X text 22 90 Construit sous / Build under Pd-0.49...;
+#X text 21 114 or Pd 0.43.4-extended;
+#X obj 20 66 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X obj 20 42 pddp/pddplink https://github.com/gerardparesys/ARGOPd
+;
+#X restore 271 199 pd ??;
+#N canvas 593 326 583 314 Ampli-v2-log 0;
+#X obj 253 60 loadbang;
+#X msg 360 209 set \$1;
+#X obj 181 99 +~;
+#X obj 360 151 snapshot~;
+#X obj 360 184 change;
+#X obj 429 60 inlet;
+#X obj 384 241 outlet;
+#X obj 181 60 inlet~;
+#X msg 429 209 label \$1;
+#X obj 360 112 metro 200;
+#X obj 312 60 r SendFluid;
+#X text 381 257 Hslider;
+#X text 424 33 Hslider;
+#X text 389 269 Over;
+#X text 429 44 Under;
+#X obj 181 241 outlet~;
+#X text 119 135 0..1.25 ->;
+#X text 17 201 0.0001..10 = -80dB..20dB ->;
+#X obj 429 88 * 80;
+#X obj 429 112 - 80;
+#X text 438 167 -> -80dB..20dB;
+#X text 435 128 -> -80 .. 20;
+#X text 377 282 0 .. 1.25;
+#X text 416 21 0 .. 1.25;
+#X text 315 8 Fluidité de;
+#X text 314 19 l'affichage;
+#X text 315 30 des sliders;
+#X text 293 41 (200ms par défaut);
+#X obj 429 184 cyclone/tosymbol;
+#X obj 429 151 cyclone/sprintf %ddB;
+#X obj 181 151 expr~ pow(10000 \, $v1)/10000;
+#X connect 0 0 9 0;
+#X connect 1 0 6 0;
+#X connect 2 0 3 0;
+#X connect 2 0 30 0;
+#X connect 3 0 4 0;
+#X connect 4 0 1 0;
+#X connect 5 0 2 1;
+#X connect 5 0 18 0;
+#X connect 7 0 2 0;
+#X connect 8 0 6 0;
+#X connect 9 0 3 0;
+#X connect 10 0 9 1;
+#X connect 18 0 19 0;
+#X connect 19 0 29 0;
+#X connect 28 0 8 0;
+#X connect 29 0 28 0;
+#X connect 30 0 15 0;
+#X restore 102 149 pd Ampli-v2-log;
+#X connect 3 0 5 0;
+#X connect 4 0 20 0;
+#X connect 5 0 1 0;
+#X connect 9 0 20 1;
+#X connect 20 0 5 1;
+#X connect 20 1 10 0;
+#X coords 0 -1 1 1 106 36 1 100 100;
+#X restore 114 365 pd ARGO;
+#X connect 4 0 40 1;
+#X connect 4 1 38 1;
+#X connect 4 2 41 1;
 #X connect 17 0 16 0;
-#X connect 34 0 27 1;
-#X connect 34 0 27 0;
-#X connect 34 0 39 0;
-#X connect 35 0 41 0;
-#X connect 38 0 35 0;
-#X connect 40 0 34 0;
-#X connect 40 0 33 0;
-#X connect 41 0 40 0;
+#X connect 33 0 27 1;
+#X connect 33 0 27 0;
+#X connect 33 0 37 0;
+#X connect 36 0 40 0;
+#X connect 38 0 41 0;
+#X connect 40 0 38 0;
+#X connect 41 0 33 0;
+#X connect 41 0 39 0;
