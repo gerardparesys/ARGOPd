@@ -1,15 +1,14 @@
 #N canvas 474 23 435 642 10;
 #X obj 12 7 cnv 15 15 15 empty empty ExMM145a-Count-Audio.pd 0 8 1
 14 -262144 -66577 0;
-#X obj 269 217 tgl 48 0 \$0-B \$0-B 10 5 26 2 36 -262144 -262144 -1
+#X obj 269 217 tgl 48 0 \$0-B \$0-B 0 5 26 2 36 -262144 -262144 -1
 0 1;
 #X msg 269 189 label \$1;
 #X msg 159 189 say \$1;
 #X msg 87 192 say hello;
 #X text 39 25 On/Off Metronome ->;
 #X obj 159 272 motex/system;
-#X msg 119 151 2012;
-#X obj 229 150 makefilename %d;
+#X obj 269 167 makefilename %d;
 #N canvas 383 56 627 559 ARGO 0;
 #X obj 454 139 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
 0;
@@ -92,9 +91,9 @@ il faut envoyer un bang a l'entrée du MM.;
 #X obj 158 209 delay 5;
 #X obj 528 284 + 1;
 #X obj 300 218 nbx 4 12 -999 9999 0 1 \$0-A ColorTime empty 40 7 1
-9 -262144 -1 -1 10 256;
+9 -262144 -1 -1 0 256;
 #X msg 341 151 set \$1;
-#X msg 383 178 10;
+#X msg 383 178 0;
 #X obj 355 80 loadbang;
 #X msg 311 151 1;
 #X obj 348 492 spigot 0;
@@ -228,8 +227,8 @@ il faut envoyer un bang a l'entrée du MM.;
 #X obj 201 132 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
 0;
 #X obj 200 112 nbx 3 12 1 999 0 1 \$0-A ColorTime BPM 36 8 1 11 -208064
--1 -1 60 256;
-#X obj 200 100 tgl 12 1 \$0-A \$0-B empty 17 7 0 10 -262144 -1 -1 1
+-1 -1 30 256;
+#X obj 200 100 tgl 12 1 \$0-A \$0-B empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 7 96 cnv 15 190 20 empty empty empty 20 12 0 14 -261682 -66577
 0;
@@ -324,11 +323,14 @@ Voix système;
 #X text 27 394 System Preferences -> Accessibility -> Speech -> System
 Voice, f 61;
 #X text 314 99 cyclone;
+#X obj 159 139 t f f;
+#X msg 119 151 2021;
 #X connect 2 0 1 0;
 #X connect 3 0 6 0;
 #X connect 4 0 6 0;
-#X connect 7 0 3 0;
-#X connect 8 0 2 0;
+#X connect 7 0 2 0;
+#X connect 8 0 31 0;
 #X connect 9 0 8 0;
-#X connect 9 0 3 0;
-#X connect 10 0 9 0;
+#X connect 31 0 3 0;
+#X connect 31 1 7 0;
+#X connect 32 0 3 0;
