@@ -1,4 +1,4 @@
-#N canvas 342 23 741 504 10;
+#N canvas 526 35 727 528 10;
 #X obj 476 472 dac~ 1 2;
 #X text 273 473 .wav file format recorder;
 #X text 269 462 Enregistreur audio au format .wav;
@@ -339,7 +339,7 @@ outputs a value.;
 #X connect 5 1 1 1;
 #X coords 0 -1 1 1 39 135 2 100 100;
 #X restore 537 354 pd ARGO;
-#X obj 693 477 cnv 15 34 16 empty empty empty 20 12 0 14 -24198 -66577
+#X obj 645 473 cnv 15 34 16 empty empty empty 20 12 0 14 -24198 -66577
 0;
 #N canvas 353 174 333 161 ?? 0;
 #X obj 17 89 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
@@ -361,139 +361,15 @@ outputs a value.;
 ;
 #X obj 20 42 pddp/pddplink https://github.com/gerardparesys/ARGOPd
 ;
-#X restore 693 477 pd ??;
+#X restore 645 473 pd ??;
 #X text 594 76 soundhack;
-#N canvas 633 193 352 249 ARGO 0;
-#X obj 101 101 cnv 20 104 45 empty ColorAmpli +decimate. 27 9 1 14
--261299 -1 1.04858e+06;
-#X obj 23 209 outlet~;
-#X obj 23 40 inlet~;
-#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
-;
-#X obj 101 142 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
-;
-#X obj 262 134 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
-0;
-#N canvas 376 68 452 194 Help 0;
-#X obj 18 82 cnv 15 360 75 empty empty empty 20 12 0 14 -233017 -66577
-0;
-#X text 26 90 The +decimate~ object provides bit depth and sample rate
-reduction for added aliasing and decimation noise. A very noisy plugin.
-Bit depth and fold can accept non-integer values (hold down shift and
-drag).;
-#X text 23 44 a pd external in soundhack-0.0.8-pd;
-#X obj 23 59 pddp/pddplink http://www.soundhack.com/freeware/;
-#X text 22 19 MM +decimate;
-#X text 23 32 Based on Tom Erbe's work: "+decimate~";
-#X restore 269 140 pd Help;
-#X obj 195 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
-0;
-#X obj 206 40 inlet;
-#X text 202 11 Number;
-#X text 209 100 24 11 2019;
-#X obj 278 202 cnv 15 34 16 empty empty empty 20 12 0 14 -24198 -66577
-0;
-#N canvas 353 174 333 161 ?? 0;
-#X obj 17 89 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
-0;
-#X obj 17 12 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14
--4033 -1 1.04858e+06;
-#X obj 40 32 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
-;
-#X obj 78 32 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
-;
-#X obj 20 54 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
-#X obj 22 126 pddp/pddplink http://puredata.info/downloads/pd-extended
-;
-#X obj 22 102 pddp/pddplink http://puredata.info/downloads/pure-data
-;
-#X text 22 90 Construit sous / Build under Pd-0.49...;
-#X text 21 114 or Pd 0.43.4-extended;
-#X obj 20 66 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
-;
-#X obj 20 42 pddp/pddplink https://github.com/gerardparesys/ARGOPd
-;
-#X restore 278 202 pd ??;
-#X floatatom 140 155 5 0 8 0 - - -;
-#X text 207 114 Bit Depth;
-#X text 208 128 Folds;
-#X obj 23 178 soundhack/+decimate~;
-#X obj 103 117 hsl 93 12 1 24 0 1 \$0-A ColorAmpli bit=8 0 7 1 9 -261299
--1 -1 2800 0;
-#N canvas 555 145 241 227 label 0;
-#X obj 40 36 inlet;
-#X obj 40 181 outlet;
-#X msg 40 148 label \$1;
-#X text 35 18 Hslider;
-#X text 33 6 0.1 .. 10;
-#X obj 40 118 cyclone/tosymbol;
-#X obj 40 62 expr (int(100 * $f1) / 100) \;;
-#X obj 40 88 cyclone/sprintf bit=%s;
-#X connect 0 0 6 0;
-#X connect 2 0 1 0;
-#X connect 5 0 2 0;
-#X connect 6 0 7 0;
-#X connect 7 0 5 0;
-#X restore 33 108 pd label;
-#X obj 23 69 clip~ -1 0.999999;
-#X obj 103 129 hsl 97 12 8 0 0 1 \$0-A ColorAmpli SampleRate=2187.64
-0 7 1 9 -261299 -1 -1 4400 0;
-#N canvas 584 238 850 604 label 0;
-#X obj 42 36 inlet;
-#X obj 42 246 outlet;
-#X msg 42 213 label \$1;
-#X text 35 18 Hslider;
-#X obj 42 183 cyclone/tosymbol;
-#X obj 42 153 cyclone/sprintf SampleRate=%s;
-#X obj 183 79 samplerate~;
-#X obj 182 36 loadbang;
-#X obj 159 53 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X obj 42 109 expr ($f2 / pow(2 \, $f1));
-#X obj 261 123 expr (int(100 * $f1) / 100) \;;
-#X text 33 6 0 .. 8;
-#X obj 61 67 t f b;
-#X connect 0 0 12 0;
-#X connect 2 0 1 0;
-#X connect 4 0 2 0;
-#X connect 5 0 4 0;
-#X connect 6 0 9 1;
-#X connect 8 0 6 0;
-#X connect 9 0 5 0;
-#X connect 12 0 9 0;
-#X connect 12 1 6 0;
-#X restore 34 132 pd label;
-#X obj 147 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
-0;
-#X obj 206 69 clip 0 8;
-#X text 200 23 0 .. 8;
-#X obj 135 40 inlet;
-#X text 131 11 Number;
-#X text 129 23 1 .. 24;
-#X obj 135 69 clip 1 24;
-#X connect 2 0 19 0;
-#X connect 8 0 23 0;
-#X connect 13 0 16 2;
-#X connect 16 0 1 0;
-#X connect 17 0 18 0;
-#X connect 17 0 16 1;
-#X connect 18 0 17 0;
-#X connect 19 0 16 0;
-#X connect 20 0 21 0;
-#X connect 20 0 13 0;
-#X connect 21 0 20 0;
-#X connect 23 0 20 0;
-#X connect 25 0 28 0;
-#X connect 28 0 17 0;
-#X coords 0 -1 1 1 106 47 1 100 100;
-#X restore 222 182 pd ARGO;
 #X text 429 143 a pd external in soundhack-0.0.8-pd;
 #X obj 429 158 pddp/pddplink http://www.soundhack.com/freeware/;
 #X text 428 118 MM +decimate;
 #X text 429 131 Based on Tom Erbe's work: "+decimate";
 #X obj 138 8 cnv 15 15 15 empty empty ExMM212b-decimate.pd 0 8 1 14
 -262144 -1 0;
-#X text 380 181 "The +decimate~ object provides bit depth and sample
+#X text 337 186 "The +decimate~ object provides bit depth and sample
 rate reduction for added aliasing and decimation noise. A very noisy
 plugin.";
 #N canvas 293 120 776 424 ARGO 0;
@@ -506,8 +382,8 @@ plugin.";
 #X msg 25 100 set \$1;
 #X obj -67 -45 loadbang;
 #X text 14 260 avec espace;
-#X obj 194 101 tgl 12 1 \$0-A \$0-B Play-3.8sec 14 6 1 9 -262144 -1
--1 1 1;
+#X obj 194 101 tgl 12 1 \$0-A \$0-B Play-2sec 14 6 1 9 -262144 -1 -1
+1 1;
 #X obj 158 101 bng 12 250 50 0 \$0-A \$0-B Stop 14 6 1 9 -262144 -1
 -1;
 #X obj 121 101 tgl 12 1 \$0-A \$0-B Loop 14 6 1 9 -262144 -1 -1 1 1
@@ -746,7 +622,7 @@ channels are not read.;
 #X restore 633 318 pd ?.;
 #X text 403 96 27 3 2017;
 #X obj 214 274 readsf~ 2;
-#X msg 0 162 Ya-pas-la-bonne-façon-de-faire-lomelette.wav;
+#X msg 0 162 Ya-pas-la-bonne-facon-de-faire-lomelette.wav;
 #X connect 3 0 27 0;
 #X connect 4 0 62 0;
 #X connect 5 0 62 0;
@@ -1384,14 +1260,134 @@ Pd;
 #X connect 21 0 23 0;
 #X coords 0 -1 1 1 200 150 2 100 100;
 #X restore 9 249 pd ARGO;
+#N canvas 633 193 352 249 ARGO 0;
+#X obj 101 101 cnv 20 104 45 empty ColorAmpli +decimate. 27 9 1 14
+-261299 -1 1.04858e+06;
+#X obj 23 209 outlet~;
+#X obj 23 40 inlet~;
+#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 101 142 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 262 134 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 376 68 452 194 Help 0;
+#X obj 18 82 cnv 15 360 75 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X text 26 90 The +decimate~ object provides bit depth and sample rate
+reduction for added aliasing and decimation noise. A very noisy plugin.
+Bit depth and fold can accept non-integer values (hold down shift and
+drag).;
+#X text 23 44 a pd external in soundhack-0.0.8-pd;
+#X obj 23 59 pddp/pddplink http://www.soundhack.com/freeware/;
+#X text 22 19 MM +decimate;
+#X text 23 32 Based on Tom Erbe's work: "+decimate~";
+#X restore 269 140 pd Help;
+#X obj 195 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 225 40 inlet;
+#X text 221 11 Number;
+#X obj 278 202 cnv 15 34 16 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 353 174 333 161 ?? 0;
+#X obj 17 89 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 17 12 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14
+-4033 -1 1.04858e+06;
+#X obj 40 32 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 78 32 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 20 54 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 22 126 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 22 102 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X text 22 90 Construit sous / Build under Pd-0.49...;
+#X text 21 114 or Pd 0.43.4-extended;
+#X obj 20 66 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X obj 20 42 pddp/pddplink https://github.com/gerardparesys/ARGOPd
+;
+#X restore 278 202 pd ??;
+#X text 207 114 Bit Depth;
+#X text 208 128 Folds;
+#X obj 23 178 soundhack/+decimate~;
+#X obj 103 117 hsl 93 12 1 24 0 1 \$0-A ColorAmpli bit=8 0 7 1 9 -261299
+-1 -1 2800 0;
+#N canvas 555 145 241 227 label 0;
+#X obj 40 36 inlet;
+#X obj 40 181 outlet;
+#X msg 40 148 label \$1;
+#X text 35 18 Hslider;
+#X text 33 6 0.1 .. 10;
+#X obj 40 62 expr (int(100 * $f1) / 100) \;;
+#X obj 40 88 makefilename bit=%s;
+#X connect 0 0 5 0;
+#X connect 2 0 1 0;
+#X connect 5 0 6 0;
+#X connect 6 0 2 0;
+#X restore 33 108 pd label;
+#X obj 23 69 clip~ -1 0.999999;
+#X obj 103 129 hsl 97 12 8 0 0 1 \$0-A ColorAmpli SampleRate=1227.77
+0 7 1 9 -261299 -1 -1 3400 0;
+#N canvas 596 404 321 290 label 0;
+#X obj 53 47 inlet;
+#X obj 53 247 outlet;
+#X msg 53 224 label \$1;
+#X text 46 29 Hslider;
+#X obj 167 123 samplerate~;
+#X obj 101 47 loadbang;
+#X obj 53 178 expr ($f2 / pow(2 \, $f1));
+#X text 44 17 0 .. 8;
+#X obj 53 76 t f b;
+#X obj 167 47 r pd-dsp-started;
+#X obj 53 201 makefilename SampleRate=%s;
+#X obj 167 148 t b f;
+#X connect 0 0 8 0;
+#X connect 2 0 1 0;
+#X connect 4 0 11 0;
+#X connect 5 0 4 0;
+#X connect 6 0 10 0;
+#X connect 8 0 6 0;
+#X connect 8 1 4 0;
+#X connect 9 0 4 0;
+#X connect 10 0 2 0;
+#X connect 11 0 6 0;
+#X connect 11 1 6 1;
+#X restore 34 132 pd label;
+#X obj 147 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 225 69 clip 0 8;
+#X text 219 23 0 .. 8;
+#X obj 145 40 inlet;
+#X text 141 11 Number;
+#X text 139 23 1 .. 24;
+#X obj 145 69 clip 1 24;
+#X text 209 100 2 5 2021;
+#X connect 2 0 17 0;
+#X connect 8 0 21 0;
+#X connect 14 0 1 0;
+#X connect 15 0 16 0;
+#X connect 15 0 14 1;
+#X connect 16 0 15 0;
+#X connect 17 0 14 0;
+#X connect 18 0 19 0;
+#X connect 18 0 14 2;
+#X connect 19 0 18 0;
+#X connect 21 0 18 0;
+#X connect 23 0 26 0;
+#X connect 26 0 15 0;
+#X coords 0 -1 1 1 106 47 1 100 100;
+#X restore 222 182 pd ARGO;
 #X connect 8 0 7 0;
 #X connect 14 0 0 1;
 #X connect 14 0 0 0;
 #X connect 14 0 13 0;
 #X connect 14 0 19 0;
-#X connect 23 0 32 0;
-#X connect 23 0 33 1;
-#X connect 30 0 31 0;
-#X connect 31 0 23 0;
-#X connect 31 0 33 0;
-#X connect 32 3 14 0;
+#X connect 29 0 30 0;
+#X connect 30 0 32 0;
+#X connect 30 0 33 0;
+#X connect 31 3 14 0;
+#X connect 33 0 31 0;
+#X connect 33 0 32 1;
