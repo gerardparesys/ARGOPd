@@ -4112,192 +4112,6 @@ rendering ON before loading a font.;
 #X connect 48 0 14 0;
 #X coords 0 -1 1 1 300 48 1 100 100;
 #X restore 310 73 pd ARGO;
-#N canvas 679 23 761 445 ARGO 0;
-#X obj 101 101 cnv 10 298 46 empty ColorForm empty 20 12 0 14 -228856
--1 1.04858e+06;
-#X obj 81 421 outlet;
-#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -128992 -66577
-0;
-#X obj 373 284 snapshot~;
-#X obj 373 307 change;
-#X obj 373 4 inlet~;
-#X obj 81 4 inlet;
-#X text 85 82 gemlist;
-#X text 84 146 gemlist;
-#X obj 81 239 t a b;
-#X msg 102 355 font \$1;
-#X msg 10 291 justify left base;
-#X obj 81 397 text3d;
-#X obj 247 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
-0;
-#X text 239 81 Text;
-#X obj 244 4 inlet;
-#X obj 297 106 hsl 101 12 0 1 0 1 \$0-A ColorGEM empty 0 7 1 9 -262144
--1 -1 1800 0;
-#X obj 428 28 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
-0;
-#N canvas 496 68 433 521 Help 0;
-#X obj 12 169 cnv 15 400 150 empty empty empty 20 12 0 14 -233017 -66577
-0;
-#X text 15 168 Citation;
-#X text 22 216 Any TrueType-font can be rendered. Per default a file
-"arial.ttf" is searched in the paths. If it is not found you will not
-see anything unless you load a valid font via the "font"-message. The
-font-loader uses pd's search-paths \, so you could specify your path
-aon the command-line and load fonts with just "font times.ttf".;
-#X text 22 187 [text3d] renders one line of a text with the current
-color \, and all 3D-transformation;
-#X obj 13 326 cnv 15 400 40 empty empty empty 20 12 0 14 -261681 -66577
-0;
-#X text 26 330 Note: on some systems it might be necessary to turn
-rendering ON before loading a font.;
-#X text 13 65 Sous MacOSX les fichiers de fontes de caractères;
-#X text 13 77 sont dans:;
-#X text 83 126 /Library/Fonts/;
-#X text 82 78 /Bibliotheque/Fonts/;
-#X text 14 113 Under MacOSX the font files;
-#X text 14 125 are in:;
-#X text 82 139 /Users/You.../Library/Fonts;
-#X text 82 92 /Utilisateurs/Vous.../Bibliotheque/Fonts;
-#X text 13 29 Open .ttf font file (Linux \, MacOSX \, Windows);
-#X text 44 42 .dfont font file (MacOSX);
-#X text 13 12 GEM-Text3d;
-#X obj 14 375 cnv 15 400 120 empty empty empty 20 12 0 14 -258113 -66577
-0;
-#X text 27 432 Sans importance...;
-#X text 43 408 error: [text3d]: cannot find font-file '.../vera.ttf'
-;
-#X text 18 384 - In Pd window:;
-#X text 19 396 - Dans la fenêtre Pd:;
-#X text 28 421 Not important ...;
-#X restore 435 35 pd Help;
-#X obj 18 4 loadbang;
-#X obj 158 30 openpanel;
-#X msg 186 76 set \$1;
-#X obj 159 50 t b s;
-#X msg 181 157 set \$1;
-#X obj 158 9 bang;
-#X obj 107 184 cnv 15 400 50 empty empty empty 20 12 0 14 -260097 -66577
-0;
-#X obj 389 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
-;
-#X text 374 72 Control;
-#X text 382 84 Size;
-#X obj 140 190 cnv 4 10 4 empty empty empty 20 12 0 14 -128992 -66577
-0;
-#X obj 18 69 t b b b b;
-#X text 109 183 Nom du fichier de font/ File font name;
-#X msg 112 201 Georgia.ttf;
-#N canvas 795 278 314 225 Size~ 0;
-#X msg 174 152 set \$1;
-#X obj 23 53 +~;
-#X obj 94 194 outlet;
-#X obj 175 100 snapshot~;
-#X obj 175 132 change;
-#X obj 68 12 inlet;
-#X obj 23 12 inlet~;
-#X obj 23 193 outlet~;
-#X msg 68 154 label \$1;
-#X obj 174 13 loadbang;
-#X obj 175 53 metro 200;
-#X obj 232 14 r SendFluid;
-#X obj 68 110 * 500;
-#X obj 68 132 zexy/list2symbol;
-#X connect 0 0 2 0;
-#X connect 1 0 3 0;
-#X connect 1 0 7 0;
-#X connect 3 0 4 0;
-#X connect 4 0 0 0;
-#X connect 5 0 1 1;
-#X connect 5 0 12 0;
-#X connect 6 0 1 0;
-#X connect 8 0 2 0;
-#X connect 9 0 10 0;
-#X connect 10 0 3 0;
-#X connect 11 0 10 1;
-#X connect 12 0 13 0;
-#X connect 13 0 8 0;
-#X restore 373 156 pd Size~;
-#X obj 297 106 hsl 101 12 0 1 0 0 \$0-A ColorGEM 90 0 8 1 12 -228856
--1 -1 1800 0;
-#X obj 373 352 clip 0 1000;
-#X obj 373 330 * 500;
-#X text 403 132 <- Click to open a .ttf font file (Linux \, MacOSX
-\, Windows);
-#X text 422 95 ATTENTION;
-#X text 404 105 <- 2 HSLIDER superposés;
-#X text 505 144 a .dfont font file (MacOSX);
-#X obj 161 121 cnv 10 20 10 empty ColorForm GEM-Text3d-ASCII. 1 5 1
-14 -228856 -1 1.04858e+06;
-#X msg 244 352 string \$1;
-#X obj 217 106 nbx 5 12 0 99999 0 1 \$0-A \$0-B ASCII 46 7 1 9 -262144
--1 -1 65 256;
-#X obj 100 106 tgl 12 1 \$0-A ColorGEM On/Off 15 6 1 9 -262144 -1 -1
-1 1;
-#X obj 81 164 spigot;
-#X obj 167 241 zexy/list2symbol;
-#X obj 102 322 zexy/list2symbol;
-#X obj 694 404 cnv 15 52 22 empty empty empty 20 12 0 14 -24198 -66577
-0;
-#N canvas 353 174 321 152 ?... 0;
-#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
-0;
-#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
--1 1.04858e+06;
-#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
-;
-#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
-;
-#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
-#X obj 13 121 pddp/pddplink http://puredata.info/downloads/pd-extended
-;
-#X obj 13 97 pddp/pddplink http://puredata.info/downloads/pure-data
-;
-#X text 13 85 Construit sous / Build under Pd-0.49...;
-#X text 12 109 or Pd 0.43.4-extended;
-#X obj 12 53 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
-;
-#X restore 697 407 pd ?...;
-#X text 303 83 16 8 2019;
-#X obj 103 133 hsl 290 15 0 127 0 0 \$0-A \$0-B empty -2 -8 0 10 -262144
--262144 -1 0 1;
-#X symbolatom 100 133 49 0 0 0 - - -;
-#X connect 3 0 4 0;
-#X connect 4 0 36 0;
-#X connect 5 0 33 0;
-#X connect 6 0 45 0;
-#X connect 9 0 12 0;
-#X connect 9 1 3 0;
-#X connect 10 0 12 0;
-#X connect 11 0 12 0;
-#X connect 12 0 1 0;
-#X connect 15 0 43 0;
-#X connect 16 0 33 1;
-#X connect 19 0 30 0;
-#X connect 20 0 22 0;
-#X connect 21 0 52 0;
-#X connect 22 0 52 0;
-#X connect 22 1 21 0;
-#X connect 23 0 32 0;
-#X connect 24 0 20 0;
-#X connect 30 2 52 0;
-#X connect 30 3 32 0;
-#X connect 32 0 46 0;
-#X connect 33 0 3 0;
-#X connect 33 1 34 0;
-#X connect 35 0 12 1;
-#X connect 36 0 35 0;
-#X connect 42 0 12 0;
-#X connect 43 0 42 0;
-#X connect 44 0 45 1;
-#X connect 45 0 9 0;
-#X connect 46 0 21 0;
-#X connect 47 0 10 0;
-#X connect 51 0 24 0;
-#X connect 52 0 23 0;
-#X connect 52 0 47 0;
-#X coords 0 -1 1 1 300 48 1 100 100;
-#X restore 310 177 pd ARGO;
 #X text 307 224 ExMM70h-GEMText3d-ASCII;
 #N canvas 419 119 617 382 ARGO 0;
 #X text 80 84 gemlist;
@@ -7223,3 +7037,189 @@ the lower right corner.;
 #X coords 0 -1 1 1 300 122 2 300 200;
 #X restore 574 476 pd ARGO;
 #X text 571 598 ExMM168-GEM-Spectrogram;
+#N canvas 248 500 761 445 ARGO 0;
+#X obj 101 101 cnv 10 298 46 empty ColorForm empty 20 12 0 14 -228856
+-1 1.04858e+06;
+#X obj 81 421 outlet;
+#X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -128992 -66577
+0;
+#X obj 373 284 snapshot~;
+#X obj 373 307 change;
+#X obj 373 4 inlet~;
+#X obj 81 4 inlet;
+#X text 85 82 gemlist;
+#X text 84 146 gemlist;
+#X obj 81 239 t a b;
+#X msg 102 355 font \$1;
+#X msg 10 291 justify left base;
+#X obj 81 397 text3d;
+#X obj 247 101 cnv 4 10 4 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X text 239 81 Text;
+#X obj 244 4 inlet;
+#X obj 297 106 hsl 101 12 0 1 0 1 \$0-A ColorGEM empty 0 7 1 9 -262144
+-1 -1 1700 0;
+#X obj 428 28 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 496 68 433 521 Help 0;
+#X obj 12 169 cnv 15 400 150 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X text 15 168 Citation;
+#X text 22 216 Any TrueType-font can be rendered. Per default a file
+"arial.ttf" is searched in the paths. If it is not found you will not
+see anything unless you load a valid font via the "font"-message. The
+font-loader uses pd's search-paths \, so you could specify your path
+aon the command-line and load fonts with just "font times.ttf".;
+#X text 22 187 [text3d] renders one line of a text with the current
+color \, and all 3D-transformation;
+#X obj 13 326 cnv 15 400 40 empty empty empty 20 12 0 14 -261681 -66577
+0;
+#X text 26 330 Note: on some systems it might be necessary to turn
+rendering ON before loading a font.;
+#X text 13 65 Sous MacOSX les fichiers de fontes de caractères;
+#X text 13 77 sont dans:;
+#X text 83 126 /Library/Fonts/;
+#X text 82 78 /Bibliotheque/Fonts/;
+#X text 14 113 Under MacOSX the font files;
+#X text 14 125 are in:;
+#X text 82 139 /Users/You.../Library/Fonts;
+#X text 82 92 /Utilisateurs/Vous.../Bibliotheque/Fonts;
+#X text 13 29 Open .ttf font file (Linux \, MacOSX \, Windows);
+#X text 44 42 .dfont font file (MacOSX);
+#X text 13 12 GEM-Text3d;
+#X obj 14 375 cnv 15 400 120 empty empty empty 20 12 0 14 -258113 -66577
+0;
+#X text 27 432 Sans importance...;
+#X text 43 408 error: [text3d]: cannot find font-file '.../vera.ttf'
+;
+#X text 18 384 - In Pd window:;
+#X text 19 396 - Dans la fenêtre Pd:;
+#X text 28 421 Not important ...;
+#X restore 435 35 pd Help;
+#X obj 18 4 loadbang;
+#X obj 158 30 openpanel;
+#X msg 186 76 set \$1;
+#X obj 159 50 t b s;
+#X msg 181 157 set \$1;
+#X obj 158 9 bang;
+#X obj 107 184 cnv 15 400 50 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 389 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X text 374 72 Control;
+#X text 382 84 Size;
+#X obj 140 190 cnv 4 10 4 empty empty empty 20 12 0 14 -128992 -66577
+0;
+#X obj 18 69 t b b b b;
+#X text 109 183 Nom du fichier de font/ File font name;
+#X msg 112 201 Georgia.ttf;
+#N canvas 795 278 314 225 Size~ 0;
+#X msg 174 152 set \$1;
+#X obj 23 53 +~;
+#X obj 94 194 outlet;
+#X obj 175 100 snapshot~;
+#X obj 175 132 change;
+#X obj 68 12 inlet;
+#X obj 23 12 inlet~;
+#X obj 23 193 outlet~;
+#X msg 68 154 label \$1;
+#X obj 174 13 loadbang;
+#X obj 175 53 metro 200;
+#X obj 232 14 r SendFluid;
+#X obj 68 110 * 500;
+#X obj 68 132 zexy/list2symbol;
+#X connect 0 0 2 0;
+#X connect 1 0 3 0;
+#X connect 1 0 7 0;
+#X connect 3 0 4 0;
+#X connect 4 0 0 0;
+#X connect 5 0 1 1;
+#X connect 5 0 12 0;
+#X connect 6 0 1 0;
+#X connect 8 0 2 0;
+#X connect 9 0 10 0;
+#X connect 10 0 3 0;
+#X connect 11 0 10 1;
+#X connect 12 0 13 0;
+#X connect 13 0 8 0;
+#X restore 373 156 pd Size~;
+#X obj 297 106 hsl 101 12 0 1 0 0 \$0-A ColorGEM 85 0 8 1 12 -228856
+-1 -1 0 0;
+#X obj 373 352 clip 0 1000;
+#X obj 373 330 * 500;
+#X text 403 132 <- Click to open a .ttf font file (Linux \, MacOSX
+\, Windows);
+#X text 422 95 ATTENTION;
+#X text 404 105 <- 2 HSLIDER superposés;
+#X text 505 144 a .dfont font file (MacOSX);
+#X obj 161 120 cnv 10 20 10 empty ColorForm GEM-Text3d-ASCII. 1 5 1
+14 -228856 -1 1.04858e+06;
+#X msg 244 352 string \$1;
+#X obj 217 106 nbx 5 12 0 99999 0 1 \$0-A \$0-B ASCII 46 7 1 9 -262144
+-1 -1 103 256;
+#X obj 100 106 tgl 12 1 \$0-A ColorGEM On/Off 15 6 1 9 -262144 -1 -1
+0 1;
+#X obj 81 164 spigot;
+#X obj 167 241 zexy/list2symbol;
+#X obj 102 322 zexy/list2symbol;
+#X obj 694 404 cnv 15 52 22 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 353 174 321 152 ?... 0;
+#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
+-1 1.04858e+06;
+#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 13 121 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 13 97 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X text 13 85 Construit sous / Build under Pd-0.49...;
+#X text 12 109 or Pd 0.43.4-extended;
+#X obj 12 53 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X restore 697 407 pd ?...;
+#X text 303 83 16 8 2019;
+#X obj 103 131 hsl 290 15 0 127 0 0 \$0-A \$0-B empty -2 -8 0 10 -262144
+-262144 -1 0 1;
+#X symbolatom 100 131 49 0 0 0 - - -;
+#X connect 3 0 4 0;
+#X connect 4 0 36 0;
+#X connect 5 0 33 0;
+#X connect 6 0 45 0;
+#X connect 9 0 12 0;
+#X connect 9 1 3 0;
+#X connect 10 0 12 0;
+#X connect 11 0 12 0;
+#X connect 12 0 1 0;
+#X connect 15 0 43 0;
+#X connect 16 0 33 1;
+#X connect 19 0 30 0;
+#X connect 20 0 22 0;
+#X connect 21 0 52 0;
+#X connect 22 0 52 0;
+#X connect 22 1 21 0;
+#X connect 23 0 32 0;
+#X connect 24 0 20 0;
+#X connect 30 2 52 0;
+#X connect 30 3 32 0;
+#X connect 32 0 46 0;
+#X connect 33 0 3 0;
+#X connect 33 1 34 0;
+#X connect 35 0 12 1;
+#X connect 36 0 35 0;
+#X connect 42 0 12 0;
+#X connect 43 0 42 0;
+#X connect 44 0 45 1;
+#X connect 45 0 9 0;
+#X connect 46 0 21 0;
+#X connect 47 0 10 0;
+#X connect 51 0 24 0;
+#X connect 52 0 23 0;
+#X connect 52 0 47 0;
+#X coords 0 -1 1 1 300 48 1 100 100;
+#X restore 310 177 pd ARGO;
