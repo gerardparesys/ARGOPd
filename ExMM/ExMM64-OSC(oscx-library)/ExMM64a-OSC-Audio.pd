@@ -1,4 +1,4 @@
-#N canvas 168 44 861 336 10;
+#N canvas 168 44 879 343 10;
 #X text 2 93 Envoie des messages commençant par /argo;
 #X text 1 106 Changer ce préfixe en éditant le message send /argo \$1
 ;
@@ -54,7 +54,7 @@ sur le meme port.;
 0;
 #X obj 325 146 cnv 10 20 10 empty empty Adresse-IP 0 4 1 9 -261476
 -1 0;
-#X symbolatom 224 141 16 0 0 2 - - -, f 16;
+#X symbolatom 224 141 16 0 0 2 - - -;
 #X msg 114 375 disconnect;
 #X obj 188 270 change;
 #X obj 188 248 snapshot~;
@@ -252,7 +252,7 @@ Peach.;
 #X obj 497 204 cnv 10 20 10 empty empty ReceiveOSC 0 7 1 14 -261476
 -1 0;
 #X obj 400 215 nbx 8 11 -10000 10000 0 1 \$0-A \$0-B empty 70 6 1 9
--262144 -1 -1 0.930471 256;
+-262144 -1 -1 0.452994 256;
 #X obj 400 200 bng 15 250 50 0 \$0-A \$0-B Receive 20 7 1 9 -261476
 -258113 -1;
 #X obj 466 215 tgl 11 1 \$0-A \$0-B Print 16 7 1 9 -262144 -1 -1 0
@@ -404,33 +404,19 @@ meme port;
 #X connect 22 0 8 0;
 #X coords 0 1 100 -1 180 32 1 400 200;
 #X restore 330 193 graph;
-#X obj 802 298 cnv 15 42 25 empty empty empty 20 12 0 14 -24198 -66577
-0;
-#N canvas 336 174 316 152 ?. 0;
-#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
-0;
-#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
--1 1.04858e+06;
-#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
-;
-#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
-;
-#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
-#X text 13 85 Construit sous / Build under Pd 0.43.4-extended;
-#X obj 13 111 pddp/pddplink http://puredata.info/downloads/pd-extended
-;
-#X obj 12 53 pddp/pddplink http://paresys.pagesperso-orange.fr/ARGOPd/
-;
-#X text 12 98 or Pd-0.48;
-#X obj 13 124 pddp/pddplink http://puredata.info/downloads/pure-data
-;
-#X restore 806 302 pd ?.;
 #X text 453 255 CAUTION: Do not open this ReceiveOSC module 2 times
 with the same port number because 2 dumpOSC objects cannot run on the
 same port.;
+#X obj 603 14 cnv 15 100 70 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#X text 626 16 library:;
+#X text 607 27 pddp;
+#X text 607 40 zexy;
+#X text 608 52 oscx;
+#X text 608 64 cyclone;
 #N canvas 355 145 366 204 ARGO 0;
 #X obj 92 143 osc~;
-#X obj 101 101 cnv 20 244 34 empty ColorTime Oscill-Sinus. 165 8 1
+#X obj 101 101 cnv 20 244 34 empty ColorTime Oscill-Sinus. 155 8 1
 14 -208064 -1 1.04858e+06;
 #X obj 92 168 outlet~;
 #X obj 100 106 nbx 7 12 0 20000 0 1 \$0-A ColorTime Hz 60 7 1 9 -208064
@@ -606,7 +592,7 @@ is supplied \, the input is taken to be an audio signal.;
 ;
 #X text 7 98 or Pd-0.46-7 + deken;
 #X restore 308 166 pd ?.;
-#X text 282 80 7 12 2017;
+#X text 282 80 28 8 2019;
 #X connect 0 0 2 0;
 #X connect 3 0 13 1;
 #X connect 4 0 13 0;
@@ -617,7 +603,31 @@ is supplied \, the input is taken to be an audio signal.;
 #X connect 13 3 3 0;
 #X coords 0 -1 1 1 246 36 1 100 100;
 #X restore 329 10 pd ARGO;
+#X text 41 23 (library oscx);
+#X obj 804 300 cnv 15 34 16 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 353 174 333 161 ?? 0;
+#X obj 17 89 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 17 12 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14
+-4033 -1 1.04858e+06;
+#X obj 40 32 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 78 32 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 20 54 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 22 126 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 22 102 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X text 22 90 Construit sous / Build under Pd-0.49...;
+#X text 21 114 or Pd 0.43.4-extended;
+#X obj 20 66 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X obj 20 42 pddp/pddplink https://github.com/gerardparesys/ARGOPd
+;
+#X restore 804 300 pd ??;
 #X connect 20 0 21 0;
 #X connect 26 0 8 0;
 #X connect 26 0 8 1;
-#X connect 30 0 25 0;
+#X connect 34 0 25 0;
