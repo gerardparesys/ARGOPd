@@ -1,7 +1,8 @@
-// OSCReceive2.pde
-// 25 3 2019
+// SketchReceiveOSC.pde
+// 9 5 2021
 //
-// OK Processing 3.3.7 mode Java sous Ubuntu ou MacOS
+// OK Processing 1.5.1 Windows 10
+// OK Processing 3.3.7 mode Java Ubuntu & MacOS
 // OK en local ou sur reseau 
 // OK Processing 3.3.7 mode Android
 //           Menu Android -> Sketch Permissions -> INTERNET  
