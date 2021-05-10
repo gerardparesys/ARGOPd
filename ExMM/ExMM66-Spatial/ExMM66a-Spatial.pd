@@ -1,4 +1,4 @@
-#N canvas 408 23 664 265 10;
+#N canvas 521 64 664 265 10;
 #X obj 6 7 cnv 15 15 15 empty empty ExMM66a-Spatial.pd 0 8 1 14 -262144
 -66577 0;
 #X text 151 84 L'éloignement du son (en déplaçant un carré vers le
@@ -7,210 +7,6 @@ haut) est simulé par une diminution de l'amplitude.;
 #X text 145 165 <- Niveau general;
 #X text 151 114 The distance of the sound (by moving a square upwards)
 is simulated by a reduction of the amplitude.;
-#N canvas 200 115 572 371 ARGO 0;
-#X obj 312 240 outlet~;
-#X obj 414 240 outlet~;
-#X obj 456 82 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
-0;
-#N canvas 372 208 495 183 Help 0;
-#X text 17 42 "get_pos" = if my_canvas has a receive-name and a send-name
-;
-#X text 375 41 and you send the;
-#X text 373 57 coordinates.;
-#X text 20 58 message "get_pos" to it \, you receive the current x-
-and y-;
-#X text 21 75 Pd-0.41.4-extended.app/Contents/Resources/extra/iemlib/7_guis-INTRO.pd
-;
-#X text 18 -47 L'éloignement du son (en déplaçant un carré vers le
-haut) est simulé par une diminution de l'amplitude.;
-#X text 18 -17 The distance of the sound (by moving a square upwards)
-is simulated by a reduction of the amplitude.;
-#X restore 463 89 pd Help;
-#X text 326 256 X;
-#X text 429 254 Y;
-#X msg 190 217 get_pos;
-#X obj 212 170 metro 20;
-#X obj 136 6 loadbang;
-#X msg 101 188 vis 1;
-#X msg 26 188 editmode 1;
-#X obj 75 162 t b b;
-#X obj 90 133 sel 1;
-#X obj 382 6 inlet~;
-#X obj 281 79 int;
-#X obj 200 79 int;
-#X obj 101 217 s pd-Spatial1;
-#N canvas 72 23 325 263 Spatial1 1;
-#X obj 63 54 cnv 1 200 1 empty empty empty 20 12 0 14 -258113 -66577
-0;
-#X text 7 231 En mode Edit (Ctrl E ou Pomme E) déplacer le carré;
-#X obj 56 210 cnv 1 211 11 \$0-SendRL1 \$0-ReceiveGetPos3 L 2 6 0 12
--261299 -1 0;
-#X obj 256 210 cnv 1 11 11 empty empty R 2 6 0 12 -261299 -1 0;
-#X obj 161 10 cnv 1 1 200 empty empty empty 20 12 0 14 -258113 -66577
-0;
-#X obj 63 134 cnv 1 200 1 empty empty empty 20 12 0 14 -258113 -66577
-0;
-#X text 267 123 -20dB;
-#X obj 127 188 cnv 11 11 11 \$0-SendCanvasR \$0-ReceiveGetPos3 empty
-20 12 0 14 -258113 -66577 0;
-#X text 266 43 -40dB;
-#X restore 108 240 pd Spatial1;
-#X obj 201 101 cnv 20 118 28 empty ColorAmpli empty 20 12 0 14 -261299
--1 1.04858e+06;
-#X obj 309 125 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
-;
-#X obj 201 125 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
-;
-#X obj 212 100 tgl 12 1 \$0-A \$0-B Visible 14 7 1 9 -262144 -1 -1
-1 1;
-#X obj 266 102 cnv 10 20 10 empty ColorAmpli Spatial. 1 5 1 14 -261299
--1 1.04858e+06;
-#X obj 201 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
-;
-#X text 252 110 dB;
-#X msg 145 188 vis 0;
-#X obj 284 114 hradio 10 1 0 3 empty empty empty 0 -8 0 10 -262144
--1 -1 0;
-#X obj 283 113 nbx 4 12 -100 10 0 0 \$0-A ColorTime empty 0 0 1 9 -262144
--1 -1 -14 256;
-#X obj 201 113 hradio 10 1 0 3 empty empty empty 0 -8 0 10 -262144
--1 -1 0;
-#X obj 200 112 nbx 4 12 -100 10 0 0 \$0-A ColorTime empty 0 0 1 9 -262144
--1 -1 -9 256;
-#N canvas 76 138 315 364 PourSpatial 0;
-#X obj 83 18 inlet;
-#X obj 190 18 inlet;
-#X obj 60 318 outlet;
-#X obj 110 318 outlet;
-#X obj 83 71 unpack 1 2;
-#X obj 83 151 - 0;
-#X obj 159 155 - 0;
-#X obj 83 101 change;
-#X obj 140 103 change;
-#X obj 17 18 loadbang;
-#X obj 18 42 delay 1000;
-#X obj 190 72 unpack 1 2;
-#X obj 189 102 change;
-#X obj 247 104 change;
-#X obj 190 125 t b f;
-#X obj 248 128 t b f;
-#X obj 106 224 / 200;
-#X obj 61 224 / -200;
-#X obj 60 249 + 1;
-#X obj 83 176 clip 0 200;
-#X obj 111 274 * 1;
-#X obj 137 246 t b f;
-#X obj 61 273 * 1;
-#X obj 158 201 / 4;
-#X obj 159 177 clip -1000 0;
-#X obj 159 223 iemlib/db2v;
-#X connect 0 0 4 0;
-#X connect 1 0 11 0;
-#X connect 4 0 7 0;
-#X connect 4 1 8 0;
-#X connect 5 0 19 0;
-#X connect 6 0 24 0;
-#X connect 7 0 5 0;
-#X connect 8 0 6 0;
-#X connect 9 0 10 0;
-#X connect 10 0 7 0;
-#X connect 10 0 8 0;
-#X connect 10 0 12 0;
-#X connect 10 0 13 0;
-#X connect 11 0 12 0;
-#X connect 11 1 13 0;
-#X connect 12 0 14 0;
-#X connect 13 0 15 0;
-#X connect 14 0 5 0;
-#X connect 14 1 5 1;
-#X connect 15 0 6 0;
-#X connect 15 1 6 1;
-#X connect 16 0 20 0;
-#X connect 17 0 18 0;
-#X connect 18 0 22 0;
-#X connect 19 0 17 0;
-#X connect 19 0 16 0;
-#X connect 20 0 3 0;
-#X connect 21 0 20 0;
-#X connect 21 0 22 0;
-#X connect 21 1 20 1;
-#X connect 21 1 22 1;
-#X connect 22 0 2 0;
-#X connect 23 0 25 0;
-#X connect 24 0 23 0;
-#X connect 25 0 21 0;
-#X restore 200 32 pd PourSpatial;
-#X obj 326 183 line~;
-#X obj 312 217 *~;
-#X msg 326 160 \$1 50;
-#X obj 428 183 line~;
-#X msg 428 160 \$1 50;
-#X obj 414 217 *~;
-#X obj 193 6 r \$0-SendCanvasR;
-#X obj 190 240 s \$0-ReceiveGetPos3;
-#X obj 299 6 r \$0-SendRL1;
-#X obj 492 243 cnv 15 52 22 empty empty empty 20 12 0 14 -24198 -66577
-0;
-#N canvas 353 174 321 152 ?... 0;
-#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
-0;
-#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
--1 1.04858e+06;
-#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
-;
-#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
-;
-#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
-#X obj 13 121 pddp/pddplink http://puredata.info/downloads/pd-extended
-;
-#X obj 13 97 pddp/pddplink http://puredata.info/downloads/pure-data
-;
-#X text 13 85 Construit sous / Build under Pd-0.49...;
-#X text 12 109 or Pd 0.43.4-extended;
-#X obj 12 53 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
-;
-#X restore 495 246 pd ?...;
-#X text 223 131 4 9 2019, f 9;
-#X obj 200 57 iemlib/v2db;
-#X obj 281 57 iemlib/v2db;
-#X obj 80 278 cnv 15 380 70 empty empty empty 20 12 0 14 -258113 -66577
-0;
-#X text 90 287 ATTENTION: ce MiniModule ne peut pas etre present 2
-fois dans le meme patch.;
-#X text 88 313 WARNING: this MiniModule can not be present 2 times
-in the same patch.;
-#X connect 6 0 38 0;
-#X connect 7 0 6 0;
-#X connect 8 0 6 0;
-#X connect 9 0 16 0;
-#X connect 10 0 16 0;
-#X connect 11 0 10 0;
-#X connect 11 1 9 0;
-#X connect 12 0 11 0;
-#X connect 12 1 25 0;
-#X connect 13 0 32 0;
-#X connect 13 0 36 0;
-#X connect 14 0 27 0;
-#X connect 15 0 29 0;
-#X connect 21 0 12 0;
-#X connect 21 0 7 0;
-#X connect 25 0 16 0;
-#X connect 30 0 33 0;
-#X connect 30 0 43 0;
-#X connect 30 1 35 0;
-#X connect 30 1 44 0;
-#X connect 31 0 32 1;
-#X connect 32 0 0 0;
-#X connect 33 0 31 0;
-#X connect 34 0 36 1;
-#X connect 35 0 34 0;
-#X connect 36 0 1 0;
-#X connect 37 0 30 0;
-#X connect 39 0 30 1;
-#X connect 43 0 15 0;
-#X connect 44 0 14 0;
-#X coords 0 -1 1 1 120 30 2 200 100;
-#X restore 26 103 pd ARGO;
 #X obj 62 219 dac~ 1 2;
 #X obj 381 54 switch~;
 #N canvas 608 166 228 173 ARGOnOff 0;
@@ -239,7 +35,7 @@ in the same patch.;
 #X msg 25 100 set \$1;
 #X obj -67 -45 loadbang;
 #X text 14 260 avec espace;
-#X obj 194 101 tgl 12 1 \$0-A \$0-B Play-0.3sec 14 6 1 9 -262144 -1
+#X obj 194 101 tgl 12 1 \$0-A \$0-B Play-0.1sec 14 6 1 9 -262144 -1
 -1 1 1;
 #X obj 158 101 bng 12 250 50 0 \$0-A \$0-B Stop 14 6 1 9 -262144 -1
 -1;
@@ -592,44 +388,247 @@ channel are not read.;
 #X connect 25 0 13 0;
 #X coords 0 -1 1 1 118 36 1 100 100;
 #X restore 27 154 pd ARGO;
-#X obj 590 223 cnv 15 52 22 empty empty empty 20 12 0 14 -24198 -66577
-0;
-#N canvas 353 174 321 152 ?... 0;
-#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
-0;
-#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
--1 1.04858e+06;
-#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
-;
-#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
-;
-#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
-#X obj 13 121 pddp/pddplink http://puredata.info/downloads/pd-extended
-;
-#X obj 13 97 pddp/pddplink http://puredata.info/downloads/pure-data
-;
-#X text 13 85 Construit sous / Build under Pd-0.49...;
-#X text 12 109 or Pd 0.43.4-extended;
-#X obj 12 53 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
-;
-#X restore 593 226 pd ?...;
 #X obj 509 23 cnv 15 100 70 empty empty empty 20 12 0 14 -24198 -66577
 0;
 #X text 532 25 library:;
 #X text 513 37 pddp;
 #X text 513 48 cyclone;
 #X text 513 59 zexy;
-#X text 513 70 iemlib;
 #X obj 261 148 cnv 15 380 70 empty empty empty 20 12 0 14 -258113 -66577
 0;
 #X text 271 157 ATTENTION: ce MiniModule ne peut pas etre present 2
 fois dans le meme patch.;
 #X text 269 183 WARNING: this MiniModule can not be present 2 times
 in the same patch.;
-#X connect 5 0 13 0;
-#X connect 5 1 13 1;
-#X connect 8 0 7 0;
+#X obj 607 223 cnv 15 34 16 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 353 174 333 161 ?? 0;
+#X obj 17 89 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 17 12 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14
+-4033 -1 1.04858e+06;
+#X obj 40 32 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 78 32 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 20 54 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 22 126 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 22 102 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X text 22 90 Construit sous / Build under Pd-0.49...;
+#X text 21 114 or Pd 0.43.4-extended;
+#X obj 20 66 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X obj 20 42 pddp/pddplink https://github.com/gerardparesys/ARGOPd
+;
+#X restore 607 223 pd ??;
+#N canvas 343 147 549 383 ARGO 0;
+#X obj 349 240 outlet~;
+#X obj 413 240 outlet~;
+#X obj 456 82 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 372 208 495 183 Help 0;
+#X text 13 103 "get_pos" = if my_canvas has a receive-name and a send-name
+;
+#X text 371 102 and you send the;
+#X text 369 118 coordinates.;
+#X text 16 119 message "get_pos" to it \, you receive the current x-
+and y-;
+#X text 17 136 Pd-0.41.4-extended.app/Contents/Resources/extra/iemlib/7_guis-INTRO.pd
+;
+#X text 14 14 L'éloignement du son (en déplaçant un carré vers le haut)
+est simulé par une diminution de l'amplitude.;
+#X text 14 44 The distance of the sound (by moving a square upwards)
+is simulated by a reduction of the amplitude.;
+#X restore 463 89 pd Help;
+#X text 359 256 X;
+#X text 429 254 Y;
+#X msg 223 217 get_pos;
+#X obj 245 158 metro 20;
+#X obj 138 6 loadbang;
+#X msg 129 188 vis 1;
+#X msg 54 188 editmode 1;
+#X obj 103 158 t b b;
+#X obj 118 133 sel 1;
+#X obj 384 6 inlet~;
+#X obj 129 217 s pd-Spatial1;
+#N canvas 195 82 325 263 Spatial1 1;
+#X obj 63 54 cnv 1 200 1 empty empty empty 20 12 0 14 -258113 -66577
+0;
+#X text 7 231 En mode Edit (Ctrl E ou Pomme E) déplacer le carré;
+#X obj 56 210 cnv 1 211 11 \$0-SendRL1 \$0-ReceiveGetPos3 L 2 6 0 12
+-261299 -1 0;
+#X obj 256 210 cnv 1 11 11 empty empty R 2 6 0 12 -261299 -1 0;
+#X obj 161 10 cnv 1 1 200 empty empty empty 20 12 0 14 -258113 -66577
+0;
+#X obj 63 134 cnv 1 200 1 empty empty empty 20 12 0 14 -258113 -66577
+0;
+#X text 267 123 -20dB;
+#X obj 221 183 cnv 11 11 11 \$0-SendCanvasR \$0-ReceiveGetPos3 empty
+20 12 0 14 -258113 -66577 0;
+#X text 266 43 -40dB;
+#X restore 136 240 pd Spatial1;
+#X obj 201 101 cnv 20 118 28 empty ColorAmpli empty 20 12 0 14 -261299
+-1 1.04858e+06;
+#X obj 309 125 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 201 125 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 212 100 tgl 12 1 \$0-A \$0-B Visible 14 7 1 9 -262144 -1 -1
+1 1;
+#X obj 266 102 cnv 10 20 10 empty ColorAmpli Spatial. 1 5 1 14 -261299
+-1 1.04858e+06;
+#X obj 201 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X text 252 110 dB;
+#X msg 173 188 vis 0;
+#X obj 284 114 hradio 10 1 0 3 empty empty empty 0 -8 0 10 -262144
+-1 -1 2;
+#X obj 283 113 nbx 4 12 -100 10 0 0 \$0-A ColorTime empty 0 0 1 9 -262144
+-1 -1 -8 256;
+#X obj 201 113 hradio 10 1 0 3 empty empty empty 0 -8 0 10 -262144
+-1 -1 0;
+#X obj 200 112 nbx 4 12 -100 10 0 0 \$0-A ColorTime empty 0 0 1 9 -262144
+-1 -1 -21 256;
+#N canvas 76 138 315 364 PourSpatial 0;
+#X obj 83 18 inlet;
+#X obj 190 18 inlet;
+#X obj 60 318 outlet;
+#X obj 110 318 outlet;
+#X obj 83 71 unpack 1 2;
+#X obj 83 151 - 0;
+#X obj 159 155 - 0;
+#X obj 83 101 change;
+#X obj 140 103 change;
+#X obj 17 18 loadbang;
+#X obj 18 42 delay 1000;
+#X obj 190 72 unpack 1 2;
+#X obj 189 102 change;
+#X obj 247 104 change;
+#X obj 190 125 t b f;
+#X obj 248 128 t b f;
+#X obj 106 224 / 200;
+#X obj 61 224 / -200;
+#X obj 60 249 + 1;
+#X obj 83 176 clip 0 200;
+#X obj 111 274 * 1;
+#X obj 137 246 t b f;
+#X obj 61 273 * 1;
+#X obj 158 201 / 4;
+#X obj 159 177 clip -1000 0;
+#X obj 159 223 expr pow(10 \, $f1 / 20);
+#X connect 0 0 4 0;
+#X connect 1 0 11 0;
+#X connect 4 0 7 0;
+#X connect 4 1 8 0;
+#X connect 5 0 19 0;
+#X connect 6 0 24 0;
+#X connect 7 0 5 0;
+#X connect 8 0 6 0;
+#X connect 9 0 10 0;
+#X connect 10 0 7 0;
+#X connect 10 0 8 0;
+#X connect 10 0 12 0;
+#X connect 10 0 13 0;
+#X connect 11 0 12 0;
+#X connect 11 1 13 0;
+#X connect 12 0 14 0;
+#X connect 13 0 15 0;
+#X connect 14 0 5 0;
+#X connect 14 1 5 1;
+#X connect 15 0 6 0;
+#X connect 15 1 6 1;
+#X connect 16 0 20 0;
+#X connect 17 0 18 0;
+#X connect 18 0 22 0;
+#X connect 19 0 17 0;
+#X connect 19 0 16 0;
+#X connect 20 0 3 0;
+#X connect 21 0 20 0;
+#X connect 21 0 22 0;
+#X connect 21 1 20 1;
+#X connect 21 1 22 1;
+#X connect 22 0 2 0;
+#X connect 23 0 25 0;
+#X connect 24 0 23 0;
+#X connect 25 0 21 0;
+#X restore 202 32 pd PourSpatial;
+#X obj 364 188 line~;
+#X obj 349 217 *~;
+#X msg 364 158 \$1 50;
+#X obj 428 188 line~;
+#X msg 428 158 \$1 50;
+#X obj 413 217 *~;
+#X obj 195 6 r \$0-SendCanvasR;
+#X obj 223 240 s \$0-ReceiveGetPos3;
+#X obj 301 6 r \$0-SendRL1;
+#X obj 80 278 cnv 15 380 70 empty empty empty 20 12 0 14 -258113 -66577
+0;
+#X text 90 287 ATTENTION: ce MiniModule ne peut pas etre present 2
+fois dans le meme patch.;
+#X text 88 313 WARNING: this MiniModule can not be present 2 times
+in the same patch.;
+#X obj 114 76 expr int(20 * log10($f1));
+#X obj 283 73 expr int(20 * log10($f1));
+#X text 243 131 10 5 2021;
+#X obj 469 332 cnv 15 34 16 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#N canvas 353 174 333 161 ?? 0;
+#X obj 17 89 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+0;
+#X obj 17 12 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14
+-4033 -1 1.04858e+06;
+#X obj 40 32 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 78 32 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+;
+#X obj 20 54 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 22 126 pddp/pddplink http://puredata.info/downloads/pd-extended
+;
+#X obj 22 102 pddp/pddplink http://puredata.info/downloads/pure-data
+;
+#X text 22 90 Construit sous / Build under Pd-0.49...;
+#X text 21 114 or Pd 0.43.4-extended;
+#X obj 20 66 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
+;
+#X obj 20 42 pddp/pddplink https://github.com/gerardparesys/ARGOPd
+;
+#X restore 469 332 pd ??;
+#X connect 6 0 36 0;
+#X connect 7 0 6 0;
+#X connect 8 0 6 0;
+#X connect 9 0 14 0;
+#X connect 10 0 14 0;
+#X connect 11 0 10 0;
+#X connect 11 1 9 0;
+#X connect 12 0 11 0;
+#X connect 12 1 23 0;
+#X connect 13 0 30 0;
+#X connect 13 0 34 0;
+#X connect 19 0 12 0;
+#X connect 19 0 7 0;
+#X connect 23 0 14 0;
+#X connect 28 0 31 0;
+#X connect 28 0 41 0;
+#X connect 28 1 33 0;
+#X connect 28 1 42 0;
+#X connect 29 0 30 1;
+#X connect 30 0 0 0;
+#X connect 31 0 29 0;
+#X connect 32 0 34 1;
+#X connect 33 0 32 0;
+#X connect 34 0 1 0;
+#X connect 35 0 28 0;
+#X connect 37 0 28 1;
+#X connect 41 0 27 0;
+#X connect 42 0 25 0;
+#X coords 0 -1 1 1 120 30 2 200 100;
+#X restore 26 103 pd ARGO;
+#X connect 7 0 6 0;
+#X connect 11 0 23 0;
 #X connect 12 0 5 0;
-#X connect 13 0 6 0;
-#X connect 13 1 6 1;
+#X connect 12 1 5 1;
+#X connect 23 0 12 0;
+#X connect 23 1 12 1;
 #X coords 0 0 1 1 85 60 0;
