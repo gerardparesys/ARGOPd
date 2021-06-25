@@ -12,9 +12,9 @@
 #X obj 101 101 cnv 10 95 41 \$0-A \$0-B empty 20 12 0 14 -1 -1 1.04858e+06
 ;
 #X obj 101 109 nbx 4 12 0 1e+37 0 0 \$0 \$0-ReceiveCpuPeak CPUPeak
-45 7 1 11 -24198 -1 -24198 6 256;
+45 7 1 11 -24198 -1 -24198 4 256;
 #X obj 101 122 nbx 4 12 0 1e+37 0 0 \$0 \$0-ReceiveCpuMean CPUMean
-45 7 1 11 -24198 -1 -24198 4.6 256;
+45 7 1 11 -24198 -1 -24198 3.92 256;
 #X obj 145 -55 cputime;
 #X obj 145 -76 t b b;
 #X text 188 24 (c) musil@iem.kug.ac.at;
@@ -600,10 +600,10 @@ ainsi transportable.;
 #X obj 630 32 inlet;
 #X obj 299 336 * 1;
 #X msg 364 103 set \$1;
-#X msg 337 139 0;
+#X msg 337 139 1;
 #X obj 337 78 t b f;
 #X obj 631 61 t b f;
-#X msg 374 140 0;
+#X msg 374 140 1;
 #X obj 375 194 sel 1 0;
 #X obj 98 139 /~ 1;
 #X obj 201 194 threshold~ 1 0 1 0;
@@ -714,9 +714,9 @@ ainsi transportable.;
 -1;
 #X obj 385 206 tgl 12 1 \$0-A \$0-B <-> 14 6 1 9 -208064 -1 -1 0 1
 ;
-#X obj 306 206 tgl 12 1 \$0-A \$0-B Loop 15 6 1 9 -262144 -1 -1 0 1
+#X obj 306 206 tgl 12 1 \$0-A \$0-B Loop 15 6 1 9 -262144 -1 -1 1 1
 ;
-#X obj 269 200 tgl 12 1 \$0-A \$0-B Play 14 6 1 9 -262144 -1 -1 0 1
+#X obj 269 200 tgl 12 1 \$0-A \$0-B Play 14 6 1 9 -262144 -1 -1 1 1
 ;
 #X obj 200 200 bng 12 250 50 0 \$0-A \$0-B empty 14 6 1 9 -262144 -1
 -1;
@@ -760,13 +760,13 @@ ainsi transportable.;
 #X text 463 46 100 = normal;
 #X text 501 188 20 7 2020;
 #X obj 203 245 hsl 295 80 0 1 0 0 \$0-A \$0-B 1sec 234 75 1 9 -188398
--1 -1 22442 0;
+-1 -1 22076 0;
 #N canvas 0 23 844 357 (subpatch) 0;
-#X array A112 46367 float 2;
+#X array A120 46367 float 2;
 #X coords 0 10 46367 -10 300 40 2 0 0;
 #X restore 200 245 graph;
 #N canvas 0 23 1149 303 (subpatch) 0;
-#X array B112 46367 float 2;
+#X array B120 46367 float 2;
 #X coords 0 10 46367 -10 300 40 2 0 0;
 #X restore 200 285 graph;
 #X obj 488 318 bng 12 250 50 0 \$0-A \$0-B empty 15 7 1 9 -262144 -1
@@ -853,8 +853,8 @@ ainsi transportable.;
 un ou plusieurs arrays, f 50;
 #X obj 41 171 t a a b a;
 #X obj 185 171 t a a b a;
-#X msg 75 341 A112;
-#X msg 219 341 B112;
+#X msg 75 341 A120;
+#X msg 219 341 B120;
 #X obj 611 265 soundfiler;
 #X msg 611 234 read -resize \$1 \$2 \$3;
 #X obj 611 204 pack s s s;
@@ -875,12 +875,12 @@ un ou plusieurs arrays, f 50;
 #X obj 929 28 inlet;
 #X text 926 11 Normalize;
 #X msg 835 433 \; \$1 const 0;
-#X msg 851 341 B112;
+#X msg 851 341 B120;
 #X obj 835 367 cyclone/tosymbol;
-#X msg 807 341 A112;
-#X msg 968 341 B112;
+#X msg 807 341 A120;
+#X msg 968 341 B120;
 #X obj 952 367 cyclone/tosymbol;
-#X msg 924 341 A112;
+#X msg 924 341 A120;
 #X msg 952 433 \; \$1 normalize;
 #N canvas 0 23 450 300 label 0;
 #X msg 159 209 label \$1;
@@ -920,18 +920,18 @@ un ou plusieurs arrays, f 50;
 #X obj 363 367 cyclone/tosymbol;
 #X obj 316 127 cyclone/sprintf C%d;
 #X obj 460 127 cyclone/sprintf D%d;
-#X msg 363 341 C112;
-#X msg 507 341 D112;
+#X msg 363 341 C120;
+#X msg 507 341 D120;
 #X text 30 55 (1) Renommer les arrays;
 #X text 29 70 (2) Renommer le message qui renomme les arrays;
 #X text 29 88 Démarrer en nommant les arrays (graph) A B C D et en
 mettant A B C D dans (3), f 46;
 #N canvas 0 23 1149 303 (subpatch) 0;
-#X array D112 46367 float 2;
+#X array D120 46367 float 2;
 #X coords 0 0 46367 1 300 40 0;
 #X restore 535 466 graph;
 #N canvas 0 23 844 357 (subpatch) 0;
-#X array C112 46367 float 2;
+#X array C120 46367 float 2;
 #X coords 0 0 46367 1 300 40 0;
 #X restore 387 465 graph;
 #X msg 985 182 src1 \$1;
@@ -949,18 +949,18 @@ mettant A B C D dans (3), f 46;
 #X obj 611 289 max;
 #X msg 644 289 \$1;
 #X msg 783 225 0;
-#X msg 656 341 B112;
+#X msg 656 341 B120;
 #X obj 612 367 cyclone/tosymbol;
-#X msg 612 341 A112;
+#X msg 612 341 A120;
 #X msg 612 433 \; \$1 resize \$2;
 #X obj 612 393 pack s f;
 #X obj 611 313 t b b f f f;
 #X text 769 452 label duration, f 12;
 #X text 621 95 pour les noms de fichier avec espace, f 25;
 #X obj 1182 30 inlet;
-#X msg 1155 341 B112;
+#X msg 1155 341 B120;
 #X obj 1111 367 cyclone/tosymbol;
-#X msg 1111 341 A112;
+#X msg 1111 341 A120;
 #X obj 1155 288 t b b f;
 #X msg 1111 433 \; \$1 bounds 0 \$2 \$3 \$4;
 #X obj 1111 393 pack s f f f;
