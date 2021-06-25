@@ -56,6 +56,8 @@ Based on the works of:
    http://aspress.co.uk/sd/index.html
 - Roman Haefeli: clap808...  
    https://github.com/reduzent
+- Tobias Hartmann: one_sample_osc  
+  https://github.com/tob-har/one_sample_osc
 - Xavier Hautbois  
    https://xhautbois.pagesperso-orange.fr/index.html
 - Cyrille Henry: pmpd...  
