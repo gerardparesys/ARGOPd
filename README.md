@@ -74,17 +74,23 @@ Based on the works of:
    https://github.com/kronihias/pd-kinect-examples
 - Labomedia (Olivier Baudu, Benjamin Cadon...)  
    https://ressources.labomedia.org
+- Olaf Matthes: gauss, cauchy, freeverb~ ...  
+   https://puredata.info/author/olafmatt 
 - Chris McCormick: -obiwansd~...  
    https://github.com/chr15m/s-abstractions
 - Thomas Ouellet Fredericks - Alexandre Quessy - Patrick Sebastien Coulombe - JKP  
    https://github.com/patricksebastien/mtl
 - Leonard J. Paul: Surround Granulation  
    http://www.videogameaudio.com/
+- Serge Poltavski: soundtouch~, fluid~...  
+   https://github.com/uliss 
 - Ville Pulkki: vbap  
    http://legacy.spa.aalto.fi/research/cat/vbap/
 - Berenger Recoules  
    http://code.google.com/p/pdlive/  
    https://github.com/b2renger
+- Christof Ressi: vstplugin~  
+   https://github.com/Spacechild1/vstplugin  
 - Spencer Russell: gendy~, sfr-granulator...  
    http://ssfrr.com/  
    https://github.com/ssfrr
@@ -96,10 +102,6 @@ Based on the works of:
    http://www.timvets.net
 - Katja Vetter: octave-harmonizer, soundtouch~...   
    http://www.katjaas.nl
-- Serge Poltavski: soundtouch~, fluid~...  
-   https://github.com/uliss 
-- Olaf Matthes: gauss, cauchy, freeverb~ ...  
-   https://puredata.info/author/olafmatt 
 - ... Thomas Musil ... IOhannes M Zmölnig ... Miller Puckette...  
    https://puredata.info/author/musil  
    https://git.iem.at/zmoelnig  
