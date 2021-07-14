@@ -26,9 +26,9 @@
 #X obj 101 101 cnv 10 95 41 \$0-A \$0-B empty 20 12 0 14 -1 -1 1.04858e+06
 ;
 #X obj 101 109 nbx 4 12 0 1e+37 0 0 \$0 \$0-ReceiveCpuPeak CPUPeak
-45 7 1 11 -24198 -1 -24198 10 256;
+45 7 1 11 -24198 -1 -24198 8 256;
 #X obj 101 122 nbx 4 12 0 1e+37 0 0 \$0 \$0-ReceiveCpuMean CPUMean
-45 7 1 11 -24198 -1 -24198 9.12 256;
+45 7 1 11 -24198 -1 -24198 5.45 256;
 #X obj 145 -55 cputime;
 #X obj 145 -76 t b b;
 #X text 188 24 (c) musil@iem.kug.ac.at;
@@ -113,7 +113,7 @@
 #X obj 263 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
 ;
 #X obj 203 106 hsl 101 12 0.3 3.7 0 1 \$0-A ColorAmpli 3 0 7 1 9 -261299
--1 -1 6700 0;
+-1 -1 6800 0;
 #X obj 184 74 zexy/multiplex~ 1 2 3 4;
 #X obj 68 51 + 1;
 #X obj 67 27 int;
@@ -181,7 +181,7 @@
 #X obj 263 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
 ;
 #X obj 203 106 hsl 101 12 0.3 3.7 0 1 \$0-A ColorAmpli 3 0 7 1 9 -261299
--1 -1 6600 0;
+-1 -1 6300 0;
 #X obj 184 74 zexy/multiplex~ 1 2 3 4;
 #X obj 68 51 + 1;
 #X obj 67 27 int;
@@ -305,8 +305,8 @@
 -1 1.04858e+06;
 #X obj 85 43 inlet~;
 #X obj 85 330 *~;
-#X obj 115 118 hsl 101 12 -80 20 0 1 \$0-A ColorAmpli 0 0 7 1 9 -261299
--1 -1 7000 0;
+#X obj 115 118 hsl 101 12 -80 20 0 1 \$0-A ColorAmpli -10dB 0 7 1 9
+-261299 -1 -1 7000 0;
 #X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
 ;
 #X obj 101 131 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
@@ -316,7 +316,7 @@
 #X obj 142 175 expr (pow(10 \, $f1 / 20));
 #X obj 142 215 sel 0.0001;
 #X msg 100 244 0;
-#X obj 100 118 tgl 12 1 \$0-A \$0-B Mute 2 -5 1 9 -261299 -1 -1 1 1
+#X obj 100 118 tgl 12 1 \$0-A \$0-B Mute 2 -5 1 9 -261299 -1 -1 0 1
 ;
 #X obj 99 146 select 0 1;
 #X obj 140 295 line~;
@@ -1216,8 +1216,8 @@
 #X obj 103 118 hsl 241 12 0 1 0 0 \$0-A ColorTime empty 0 7 1 9 -262144
 -1 -1 22200 0;
 #X obj 103 118 hsl 241 12 0 1 0 0 \$0-A ColorTime Gb7 0 7 1 9 -208064
--1728 -1 0 0;
-#X obj 31 174 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+-1728 -1 22169 0;
+#X obj 16 114 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
 0;
 #N canvas 443 143 425 238 Help 0;
 #X obj 8 85 cnv 15 400 100 empty empty empty 20 12 0 14 -233017 -66577
@@ -1228,7 +1228,7 @@
 ;
 #X text 10 33 Frequency control input sensitivity:;
 #X text 10 57 1 = 240 x semitone = 20 octaves;
-#X restore 38 180 pd Help;
+#X restore 23 120 pd Help;
 #X text 350 122 2 HSLIDER superposés;
 #X text 375 101 ATTENTION;
 #N canvas 686 258 404 343 Freq-v7-sig- 0;
@@ -1456,12 +1456,10 @@
 #X obj 188 213 lop~ 15000;
 #X obj 188 236 lop~ 15000;
 #X obj 188 261 lop~ 15000;
-#X obj 34 17 inlet;
-#X obj 83 17 inlet;
-#X obj 34 294 switch~;
-#X msg 137 106 set 1024 1 16;
-#X msg 62 106 set 64 1 1;
-#X obj 83 55 sel 0 1;
+#X obj 54 17 inlet;
+#X msg 129 106 set 1024 1 16;
+#X msg 54 106 set 64 1 1;
+#X obj 54 55 sel 0 1;
 #X obj 410 294 outlet~;
 #X obj 497 141 samphold~;
 #X obj 497 55 noise~;
@@ -1469,8 +1467,7 @@
 #X obj 497 213 lop~ 15000;
 #X obj 497 236 lop~ 15000;
 #X obj 497 261 lop~ 15000;
-#X text 32 0 On/Off;
-#X text 75 0 AntiAlias;
+#X text 46 0 AntiAlias;
 #X obj 412 17 inlet~ hold;
 #X text 504 310 Alea;
 #X text 125 310 Ramp;
@@ -1478,9 +1475,10 @@
 #X text 413 311 Sinus;
 #X text 406 321 Cosinus;
 #X text 191 312 Square;
+#X obj 54 294 block~;
 #X connect 0 0 2 0;
-#X connect 0 0 22 0;
-#X connect 0 0 23 1;
+#X connect 0 0 20 0;
+#X connect 0 0 21 1;
 #X connect 2 0 3 0;
 #X connect 2 0 4 0;
 #X connect 2 0 7 0;
@@ -1496,21 +1494,21 @@
 #X connect 13 0 14 0;
 #X connect 14 0 15 0;
 #X connect 15 0 6 0;
-#X connect 16 0 18 0;
-#X connect 17 0 21 0;
+#X connect 16 0 19 0;
+#X connect 17 0 35 0;
+#X connect 18 0 35 0;
 #X connect 19 0 18 0;
-#X connect 20 0 18 0;
-#X connect 21 0 20 0;
-#X connect 21 1 19 0;
-#X connect 23 0 26 0;
-#X connect 24 0 23 0;
-#X connect 26 0 27 0;
-#X connect 27 0 28 0;
-#X connect 28 0 25 0;
-#X connect 31 0 0 0;
+#X connect 19 1 17 0;
+#X connect 21 0 24 0;
+#X connect 22 0 21 0;
+#X connect 24 0 25 0;
+#X connect 25 0 26 0;
+#X connect 26 0 23 0;
+#X connect 28 0 0 0;
 #X restore 120 195 pd 16x;
 #X f 51;
-#X text 294 84 12 7 2021;
+#X obj 8 298 switch~;
+#X text 294 84 13 7 2021;
 #X connect 6 0 10 0;
 #X connect 8 0 1 0;
 #X connect 9 0 4 0;
@@ -1519,7 +1517,7 @@
 #X connect 15 0 22 0;
 #X connect 16 0 22 2;
 #X connect 22 0 17 0;
-#X connect 22 1 64 2;
+#X connect 22 1 64 1;
 #X connect 22 2 16 0;
 #X connect 22 3 14 0;
 #X connect 34 0 11 0;
@@ -1528,8 +1526,8 @@
 #X connect 37 0 24 0;
 #X connect 52 0 54 0;
 #X connect 54 0 14 0;
-#X connect 59 0 64 0;
-#X connect 60 0 64 1;
+#X connect 59 0 65 0;
+#X connect 60 0 64 0;
 #X connect 64 0 8 0;
 #X connect 64 0 9 0;
 #X connect 64 1 34 0;
