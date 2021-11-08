@@ -2,42 +2,40 @@
 #X obj 8 9 cnv 15 15 15 empty empty ExMM68a-ReverbFdn.pd 0 8 1 14 -262144
 -66577 0;
 #N canvas 284 45 747 332 ARGO 0;
-#X obj 201 101 cnv 20 130 54 empty ColorForm empty 20 12 0 14 -188398
+#X obj 201 101 cnv 20 130 66 empty ColorForm empty 20 12 0 14 -188398
 -1 1.04858e+06;
 #X obj 248 103 cnv 10 40 10 empty ColorForm ReverbFdn. 1 5 1 14 -188398
 -1 1.04858e+06;
 #X obj 201 163 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
 ;
 #X obj 321 163 cnv 4 10 4 empty empty empty 0 0 0 9 -1 -66577 0;
-#X obj 187 74 inlet~;
-#X obj 311 74 inlet~;
+#X obj 187 53 inlet~;
+#X obj 311 53 inlet~;
 #X obj 201 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
 ;
-#X obj 170 271 outlet~;
-#X obj 220 271 outlet~;
+#X obj 176 271 outlet~;
+#X obj 226 271 outlet~;
 #X obj 321 101 cnv 4 10 4 empty empty empty 0 0 0 9 -1 -66577 0;
-#X obj 203 138 hsl 127 12 0 100 0 1 \$0-A ColorForm Brill=50 0 7 1
-9 -188398 -1 -1 6300 0;
+#X obj 203 138 hsl 127 12 0 100 0 1 \$0-A ColorForm Brill=66 0 7 1
+9 -188398 -1 -1 8400 0;
 #X obj 203 114 hsl 127 12 0 100 0 1 \$0-A ColorForm Size=90 0 7 1 9
 -188398 -1 -1 11400 0;
-#X obj 203 150 hsl 127 12 0 1 0 1 \$0-A ColorAmpli Dir 0 7 1 9 -261299
--1 -1 6300 0;
-#X obj 193 38 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
+#X obj 502 219 cnv 15 60 30 empty empty empty 20 12 0 14 -24198 -66577
 0;
-#N canvas 132 195 463 246 Help 0;
-#X obj -169 -78 cnv 15 440 180 empty empty empty 20 12 0 14 -228856
--66577 0;
-#X text -166 -78 Citation;
-#X text -168 -104 - Voir mtl library (PD-0.42.5-extended) -> reverbFdn~.pd
+#N canvas 132 195 473 246 Help 0;
+#X obj 14 42 cnv 15 440 180 empty empty empty 20 12 0 14 -228856 -66577
+0;
+#X text 17 42 Citation;
+#X text 15 16 - Voir mtl library (PD-0.42.5-extended) -> reverbFdn~.pd
 ;
-#X text -127 24 Version: 2008-03-05;
-#X text -127 8 Author: Miller Puckette;
-#X text -146 -50 Description: feedback delay network based reverb;
-#X text -145 -35 outlets 3 and 4 can be used to feed rear channels
-in a multichannel setup (they don't require addition computation power).
+#X text 56 144 Version: 2008-03-05;
+#X text 56 128 Author: Miller Puckette;
+#X text 37 70 Description: feedback delay network based reverb;
+#X text 38 85 outlets 3 and 4 can be used to feed rear channels in
+a multichannel setup (they don't require addition computation power).
 ;
-#X text -158 -64 fx.reverb.fdn~;
-#X restore 200 45 pd Help;
+#X text 25 56 fx.reverb.fdn~;
+#X restore 509 226 pd Help;
 #N canvas 399 412 301 243 DirEffect 0;
 #X obj 30 25 inlet~;
 #X obj 186 25 inlet~;
@@ -45,7 +43,6 @@ in a multichannel setup (they don't require addition computation power).
 #X obj 80 25 inlet~;
 #X obj 34 207 outlet~;
 #X obj 193 203 outlet~;
-#X text 242 7 0...1;
 #X text 38 11 Dir1;
 #X text 90 9 Dir2;
 #X text 184 6 Effect2;
@@ -53,30 +50,29 @@ in a multichannel setup (they don't require addition computation power).
 #X obj 81 146 *~;
 #X obj 133 146 *~;
 #X obj 193 147 *~;
-#X obj 98 82 - 1;
-#X obj 97 108 * -1;
 #X obj 33 146 *~;
 #X obj 241 26 inlet;
-#X obj 218 107 * 1;
-#X connect 0 0 16 0;
-#X connect 1 0 13 0;
-#X connect 2 0 12 0;
-#X connect 3 0 11 0;
-#X connect 11 0 5 0;
-#X connect 12 0 4 0;
-#X connect 13 0 5 0;
-#X connect 14 0 15 0;
-#X connect 15 0 11 1;
-#X connect 15 0 16 1;
-#X connect 16 0 4 0;
-#X connect 17 0 14 0;
+#X text 242 7 0...100;
+#X obj 218 107 * 0.01;
+#X obj 98 82 - 100;
+#X obj 97 108 * -0.01;
+#X connect 0 0 13 0;
+#X connect 1 0 12 0;
+#X connect 2 0 11 0;
+#X connect 3 0 10 0;
+#X connect 10 0 5 0;
+#X connect 11 0 4 0;
+#X connect 12 0 5 0;
+#X connect 13 0 4 0;
+#X connect 14 0 16 0;
+#X connect 14 0 17 0;
+#X connect 16 0 11 1;
+#X connect 16 0 12 1;
 #X connect 17 0 18 0;
-#X connect 18 0 12 1;
+#X connect 18 0 10 1;
 #X connect 18 0 13 1;
-#X restore 190 235 pd DirEffect;
-#X obj 348 99 cnv 15 380 60 empty empty empty 20 12 0 14 -258113 -66577
-0;
-#X obj 348 159 cnv 15 380 60 empty empty empty 20 12 0 14 -258113 -66577
+#X restore 187 235 pd DirEffect;
+#X obj 348 99 cnv 15 380 100 empty empty empty 20 12 0 14 -258113 -66577
 0;
 #N canvas 0 23 809 653 doit-modif 0;
 #X obj 224 283 *~;
@@ -104,10 +100,10 @@ in a multichannel setup (they don't require addition computation power).
 #X obj 73 273 *~;
 #X obj 121 277 *~;
 #X obj 233 165 line~;
-#X obj 25 39 delread~ \$0-del1 10;
-#X obj 125 81 delread~ \$0-del3 13.4567;
-#X obj 76 60 delread~ \$0-del2 11.6356;
-#X obj 179 102 delread~ \$0-del4 16.7345;
+#X obj 25 39 delread~ \$0-delA1 10;
+#X obj 125 81 delread~ \$0-delA3 13.4567;
+#X obj 76 60 delread~ \$0-delA2 11.6356;
+#X obj 179 102 delread~ \$0-delA4 16.7345;
 #X obj 530 304 *~;
 #X obj 637 306 *~;
 #X obj 566 305 *~;
@@ -117,17 +113,17 @@ in a multichannel setup (they don't require addition computation power).
 #X obj 420 299 *~;
 #X obj 457 302 *~;
 #X obj 660 251 line~;
-#X obj 226 125 delread~ \$0-del5 20.1862;
-#X obj 272 149 delread~ \$0-del6 25.7417;
-#X obj 312 172 delread~ \$0-del7 31.4693;
-#X obj 349 193 delread~ \$0-del8 38.2944;
-#X obj 384 214 delread~ \$0-del9 46.6838;
-#X obj 420 102 delread~ \$0-del10 55.4567;
-#X obj 494 144 delread~ \$0-del12 76.8243;
-#X obj 530 165 delread~ \$0-del13 88.5623;
-#X obj 567 186 delread~ \$0-del14 101.278;
-#X obj 601 207 delread~ \$0-del15 115.397;
-#X obj 638 228 delread~ \$0-del16 130.502;
+#X obj 226 125 delread~ \$0-delA5 20.1862;
+#X obj 272 149 delread~ \$0-delA6 25.7417;
+#X obj 312 172 delread~ \$0-delA7 31.4693;
+#X obj 349 193 delread~ \$0-delA8 38.2944;
+#X obj 384 214 delread~ \$0-delA9 46.6838;
+#X obj 420 102 delread~ \$0-delA10 55.4567;
+#X obj 494 144 delread~ \$0-delA12 76.8243;
+#X obj 530 165 delread~ \$0-delA13 88.5623;
+#X obj 567 186 delread~ \$0-delA14 101.278;
+#X obj 601 207 delread~ \$0-delA15 115.397;
+#X obj 638 228 delread~ \$0-delA16 130.502;
 #X obj 31 243 inlet~;
 #X obj 93 243 inlet~;
 #X obj 75 337 +~;
@@ -198,23 +194,23 @@ in a multichannel setup (they don't require addition computation power).
 #X obj 512 620 outlet~;
 #X obj 582 621 outlet~;
 #X obj 652 621 outlet~;
-#X obj 457 123 delread~ \$0-del11 65.1755;
-#X obj 623 556 delwrite~ \$0-del16 130.502;
-#X obj 366 599 delwrite~ \$0-del9 46.6838;
-#X obj 403 578 delwrite~ \$0-del10 55.4567;
-#X obj 439 557 delwrite~ \$0-del11 65.1755;
-#X obj 475 536 delwrite~ \$0-del12 76.8243;
-#X obj 512 515 delwrite~ \$0-del13 88.5623;
-#X obj 549 501 delwrite~ \$0-del14 101.278;
-#X obj 587 578 delwrite~ \$0-del15 115.397;
-#X obj 329 503 delwrite~ \$0-del8 38.2944;
-#X obj 293 525 delwrite~ \$0-del7 31.4693;
-#X obj 258 547 delwrite~ \$0-del6 25.7417;
-#X obj 221 569 delwrite~ \$0-del5 20.1862;
-#X obj 78 550 delwrite~ \$0-del1 10;
-#X obj 113 526 delwrite~ \$0-del2 11.6356;
-#X obj 148 504 delwrite~ \$0-del3 13.4567;
-#X obj 185 590 delwrite~ \$0-del4 16.7345;
+#X obj 457 123 delread~ \$0-delA11 65.1755;
+#X obj 623 556 delwrite~ \$0-delA16 130.502;
+#X obj 366 599 delwrite~ \$0-delA9 46.6838;
+#X obj 403 578 delwrite~ \$0-delA10 55.4567;
+#X obj 439 557 delwrite~ \$0-delA11 65.1755;
+#X obj 475 536 delwrite~ \$0-delA12 76.8243;
+#X obj 512 515 delwrite~ \$0-delA13 88.5623;
+#X obj 549 501 delwrite~ \$0-delA14 101.278;
+#X obj 587 578 delwrite~ \$0-delA15 115.397;
+#X obj 329 503 delwrite~ \$0-delA8 38.2944;
+#X obj 293 525 delwrite~ \$0-delA7 31.4693;
+#X obj 258 547 delwrite~ \$0-delA6 25.7417;
+#X obj 221 569 delwrite~ \$0-delA5 20.1862;
+#X obj 78 550 delwrite~ \$0-delA1 10;
+#X obj 113 526 delwrite~ \$0-delA2 11.6356;
+#X obj 148 504 delwrite~ \$0-delA3 13.4567;
+#X obj 185 590 delwrite~ \$0-delA4 16.7345;
 #X obj 155 15 inlet;
 #X text 190 15 lop;
 #X obj 408 16 inlet;
@@ -455,82 +451,113 @@ in a multichannel setup (they don't require addition computation power).
 #X connect 151 0 8 1;
 #X connect 151 0 4 1;
 #X restore 251 194 pd doit-modif;
-#X obj 270 270 outlet~;
-#X obj 320 271 outlet~;
+#X obj 276 270 outlet~;
+#X obj 326 271 outlet~;
 #X obj 239 163 cnv 4 10 4 empty empty empty 0 0 0 9 -1 -66577 0;
 #X obj 282 163 cnv 4 10 4 empty empty empty 0 0 0 9 -1 -66577 0;
-#X msg 19 74 label \$1;
-#X msg 19 233 label \$1;
-#X obj 203 126 hsl 127 12 20 3000 1 1 \$0-A ColorForm Freq=244Hz 0
-7 1 9 -188398 -1 -1 6300 0;
-#X msg 18 157 label \$1;
-#X text 170 288 Front;
-#X text 229 288 Front;
-#X text 278 289 Rear;
-#X text 329 290 Rear;
-#X text 171 303 Left;
-#X text 279 302 Left;
-#X text 230 302 Right;
-#X text 328 302 Right;
-#X text 355 103 ATTENTION: un MiniModule ReverbFdn ne peux pas être
-dupliqué. "warning: xxxx: multiply defined" est alors écrit dans la
-fenêtre Pd.;
-#X text 354 161 Warning: : a Reverb MiniModuleFdn can not be duplicated.
-"warning: xxxx: multiply defined" is written in the Pd window.;
-#X obj 19 211 cyclone/tosymbol;
-#X obj 18 135 cyclone/tosymbol;
-#X obj 19 52 cyclone/tosymbol;
-#X obj 19 189 cyclone/sprintf Brill=%d;
-#X obj 18 113 cyclone/sprintf Freq=%dHz;
-#X obj 19 30 cyclone/sprintf Size=%d;
-#X obj 615 287 cnv 15 52 22 empty empty empty 20 12 0 14 -24198 -66577
+#X obj 203 126 hsl 127 12 20 3000 1 1 \$0-A ColorForm Freq=840Hz 0
+7 1 9 -188398 -1 -1 9400 0;
+#X text 176 288 Front;
+#X text 235 288 Front;
+#X text 284 289 Rear;
+#X text 335 290 Rear;
+#X text 177 303 Left;
+#X text 285 302 Left;
+#X text 236 302 Right;
+#X text 334 302 Right;
+#X text 227 84 7 11 2021;
+#X text 355 103 ATTENTION: Ce MiniModule ne peux pas être dupliqué.
+"warning: xxxx: multiply defined" est alors écrit dans la fenêtre Pd.
+;
+#X text 354 161 Warning: This MiniModule can not be duplicated. "warning:
+xxxx: multiply defined" is written in the Pd window.;
+#X obj 517 288 cnv 15 34 16 empty empty empty 20 12 0 14 -24198 -66577
 0;
-#N canvas 353 174 321 152 ?... 0;
-#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+#N canvas 353 174 333 161 ?? 0;
+#X obj 17 89 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
 0;
-#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
--1 1.04858e+06;
-#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+#X obj 17 12 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14
+-4033 -1 1.04858e+06;
+#X obj 40 32 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
 ;
-#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+#X obj 78 32 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
 ;
-#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
-#X obj 13 121 pddp/pddplink http://puredata.info/downloads/pd-extended
+#X obj 20 54 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 22 126 pddp/pddplink http://puredata.info/downloads/pd-extended
 ;
-#X obj 13 97 pddp/pddplink http://puredata.info/downloads/pure-data
+#X obj 22 102 pddp/pddplink http://puredata.info/downloads/pure-data
 ;
-#X text 13 85 Construit sous / Build under Pd-0.49...;
-#X text 12 109 or Pd 0.43.4-extended;
-#X obj 12 53 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
+#X text 22 90 Construit sous / Build under Pd-0.49...;
+#X text 21 114 or Pd 0.43.4-extended;
+#X obj 20 66 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
 ;
-#X restore 618 290 pd ?...;
-#X text 237 80 23 8 2019;
-#X connect 4 0 15 0;
-#X connect 4 0 18 0;
-#X connect 5 0 15 1;
-#X connect 5 0 18 1;
-#X connect 10 0 18 3;
-#X connect 10 0 40 0;
-#X connect 11 0 18 4;
-#X connect 11 0 42 0;
-#X connect 12 0 15 4;
-#X connect 15 0 7 0;
-#X connect 15 1 8 0;
-#X connect 18 0 15 2;
-#X connect 18 1 15 3;
-#X connect 18 2 19 0;
-#X connect 18 3 20 0;
-#X connect 23 0 11 0;
-#X connect 24 0 10 0;
-#X connect 25 0 18 2;
-#X connect 25 0 41 0;
-#X connect 26 0 25 0;
-#X connect 37 0 24 0;
-#X connect 38 0 26 0;
-#X connect 39 0 23 0;
-#X connect 40 0 37 0;
-#X connect 41 0 38 0;
-#X connect 42 0 39 0;
+#X obj 20 42 pddp/pddplink https://github.com/gerardparesys/ARGOPd
+;
+#X restore 517 288 pd ??;
+#N canvas 465 101 242 205 label 0;
+#X msg 34 136 label \$1;
+#X obj 34 41 inlet;
+#X obj 34 163 outlet;
+#X obj 34 114 makefilename Size=%d;
+#X connect 0 0 2 0;
+#X connect 1 0 3 0;
+#X connect 3 0 0 0;
+#X restore 128 108 pd label;
+#N canvas 465 101 242 205 label 0;
+#X msg 34 136 label \$1;
+#X obj 34 41 inlet;
+#X obj 34 163 outlet;
+#X obj 34 114 makefilename Freq=%dHz;
+#X connect 0 0 2 0;
+#X connect 1 0 3 0;
+#X connect 3 0 0 0;
+#X restore 127 131 pd label;
+#N canvas 465 101 242 205 label 0;
+#X msg 34 136 label \$1;
+#X obj 34 41 inlet;
+#X obj 34 163 outlet;
+#X obj 34 114 makefilename Brill=%d;
+#X connect 0 0 2 0;
+#X connect 1 0 3 0;
+#X connect 3 0 0 0;
+#X restore 128 155 pd label;
+#X obj 203 150 hsl 127 12 0 100 0 1 \$0-A ColorAmpli Effect=13 0 7
+1 9 -261299 -1 -1 1700 0;
+#N canvas 465 101 242 205 label 0;
+#X msg 34 136 label \$1;
+#X obj 34 41 inlet;
+#X obj 34 163 outlet;
+#X obj 34 92 makefilename Effect=%d;
+#X connect 0 0 2 0;
+#X connect 1 0 3 0;
+#X connect 3 0 0 0;
+#X restore 128 178 pd label;
+#X obj 397 53 cnv 15 100 30 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#X text 420 55 library:;
+#X text 401 66 pddp;
+#X connect 4 0 14 0;
+#X connect 4 0 16 0;
+#X connect 5 0 14 1;
+#X connect 5 0 16 1;
+#X connect 10 0 16 3;
+#X connect 10 0 37 0;
+#X connect 11 0 16 4;
+#X connect 11 0 35 0;
+#X connect 14 0 7 0;
+#X connect 14 1 8 0;
+#X connect 16 0 14 2;
+#X connect 16 1 14 3;
+#X connect 16 2 17 0;
+#X connect 16 3 18 0;
+#X connect 21 0 16 2;
+#X connect 21 0 36 0;
+#X connect 35 0 11 0;
+#X connect 36 0 21 0;
+#X connect 37 0 10 0;
+#X connect 38 0 39 0;
+#X connect 38 0 14 4;
+#X connect 39 0 38 0;
 #X coords 0 -1 1 1 132 68 1 200 100;
 #X restore 149 96 pd ARGO;
 #X obj 207 368 dac~ 1 2;
@@ -548,7 +575,7 @@ fenêtre Pd.;
 #X obj 101 109 nbx 4 12 0 1e+37 0 0 \$0 \$0-ReceiveCpuPeak CPUPeak
 45 7 1 11 -24198 -1 -24198 6 256;
 #X obj 101 122 nbx 4 12 0 1e+37 0 0 \$0 \$0-ReceiveCpuMean CPUMean
-45 7 1 11 -24198 -1 -24198 6.91 256;
+45 7 1 11 -24198 -1 -24198 3.8 256;
 #X obj 145 -55 cputime;
 #X obj 145 -76 t b b;
 #X text 188 24 (c) musil@iem.kug.ac.at;
@@ -1212,8 +1239,8 @@ Audio -> Clic encore pour arrêter l'enregistrement;
 -1 1.04858e+06;
 #X obj 85 43 inlet~;
 #X obj 85 330 *~;
-#X obj 115 118 hsl 101 12 -80 20 0 1 \$0-A ColorAmpli 0dB 0 7 1 9 -261299
--1 -1 8000 0;
+#X obj 115 118 hsl 101 12 -80 20 0 1 \$0-A ColorAmpli -10dB 0 7 1 9
+-261299 -1 -1 7000 0;
 #X obj 101 101 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
 ;
 #X obj 101 131 cnv 4 10 4 empty empty empty 20 12 0 14 -1 -66577 0
@@ -1282,29 +1309,33 @@ Audio -> Clic encore pour arrêter l'enregistrement;
 #X connect 25 0 13 0;
 #X coords 0 -1 1 1 118 36 1 100 100;
 #X restore 124 197 pd ARGO;
-#X obj 372 394 cnv 15 52 22 empty empty empty 20 12 0 14 -24198 -66577
+#X obj 376 392 cnv 15 34 16 empty empty empty 20 12 0 14 -24198 -66577
 0;
-#N canvas 353 174 321 152 ?... 0;
-#X obj 8 84 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
+#N canvas 353 174 333 161 ?? 0;
+#X obj 17 89 cnv 15 300 56 empty empty empty 20 12 0 14 -224896 -66577
 0;
-#X obj 8 7 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14 -4033
--1 1.04858e+06;
-#X obj 31 27 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
+#X obj 17 12 cnv 18 300 70 empty empty ARGOPdMiniModules 3 10 1 14
+-4033 -1 1.04858e+06;
+#X obj 40 32 cnv 10 10 10 empty empty Gerard 0 5 1 11 -4033 -1 1.04858e+06
 ;
-#X obj 69 27 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
+#X obj 78 32 cnv 10 10 10 empty empty Paresys 0 5 1 11 -4033 -1 1.04858e+06
 ;
-#X obj 12 40 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
-#X obj 13 121 pddp/pddplink http://puredata.info/downloads/pd-extended
+#X obj 20 54 pddp/pddplink http://gerard.paresys.free.fr/ARGOPd/;
+#X obj 22 126 pddp/pddplink http://puredata.info/downloads/pd-extended
 ;
-#X obj 13 97 pddp/pddplink http://puredata.info/downloads/pure-data
+#X obj 22 102 pddp/pddplink http://puredata.info/downloads/pure-data
 ;
-#X text 13 85 Construit sous / Build under Pd-0.49...;
-#X text 12 109 or Pd 0.43.4-extended;
-#X obj 12 53 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
+#X text 22 90 Construit sous / Build under Pd-0.49...;
+#X text 21 114 or Pd 0.43.4-extended;
+#X obj 20 66 pddp/pddplink https://paresys.pagesperso-orange.fr/ARGOPd/
 ;
-#X restore 375 397 pd ?...;
+#X obj 20 42 pddp/pddplink https://github.com/gerardparesys/ARGOPd
+;
+#X restore 376 392 pd ??;
 #X connect 1 0 21 0;
 #X connect 1 1 21 1;
+#X connect 1 2 21 0;
+#X connect 1 3 21 1;
 #X connect 13 0 12 0;
 #X connect 18 0 1 0;
 #X connect 18 1 1 1;
