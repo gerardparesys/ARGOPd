@@ -29,6 +29,8 @@ http://gerard.paresys.free.fr/ARGOPd/
 or  
 https://paresys.pagesperso-orange.fr/ARGOPd/
 
+[ARGOPd FAQ](http://gerard.paresys.free.fr/ARGOPd/ARGOPdFAQ.html)  
+
 email: gerard.paresys@free.fr
 
 __________________________________________________________________
