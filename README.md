@@ -12,7 +12,7 @@ It needs libraries, all available on Deken:
 [ARGOPd-libraries.txt](ARGOPd-libraries.txt)
 
 Most patches also work under Pd-0.43.4-extended  
-http://puredata.info/downloads/pd-extended
+[http://puredata.info/downloads/pd-extended](http://puredata.info/downloads/pd-extended/releases/0.43.4/)
 
 For MacOSX, Linux, Windows.
 
