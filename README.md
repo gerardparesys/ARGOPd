@@ -59,7 +59,7 @@ Based on the works of:
 - Tobias Hartmann: one_sample_osc  
   https://github.com/tob-har/one_sample_osc
 - Xavier Hautbois  
-   https://xhautbois.pagesperso-orange.fr/index.html
+   https://www.xavierhautbois.fr/
 - Cyrille Henry: pmpd...  
    http://drpichon.free.fr/pmpd/
 - Derek Holzer: Particlechamber...  
