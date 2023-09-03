@@ -26,8 +26,6 @@ The documentation [ARGOPdManuv051.pdf](ARGOPdManuv051.pdf) must be updated:
 replace: Pd-0.41.4-extended by: Pd-0.43.4-extended or Pd-0.50 + libraries, but remains valid.
 
 http://gerard.paresys.free.fr/ARGOPd/  
-or  
-https://paresys.pagesperso-orange.fr/ARGOPd/
 
 [ARGOPd FAQ](http://gerard.paresys.free.fr/ARGOPd/ARGOPdFAQ.html)  
 
