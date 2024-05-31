@@ -82,7 +82,7 @@ Based on the works of:
    https://github.com/patricksebastien/mtl
 - Leonard J. Paul: Surround Granulation  
    http://www.videogameaudio.com/
-- Serge Poltavski: soundtouch~, fluid~, speech.flite...  
+- Serge Poltavski: ceammc library: soundtouch~, fluid~, speech.flite...  
    https://github.com/uliss 
 - Ville Pulkki: vbap  
    http://legacy.spa.aalto.fi/research/cat/vbap/
